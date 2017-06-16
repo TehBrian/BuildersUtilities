@@ -1,0 +1,15 @@
+disable-weather-changes: true
+
+disable-physics: true
+
+disable-gravity-physics: false
+
+disable-explosions: true
+
+disable-soil-trample: true
+
+disable-leaves-decay: true
+
+fix-attackspeed: true
+
+iron-trapdoor-interaction: true
