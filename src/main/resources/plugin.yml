@@ -1,6 +1,6 @@
 name: BuildersUtilities
 main: com.buildersrefuge.utilities.Main
-version: 1.0
+version: 1.2.4
 commands:
     banner:
         description: opens banner creator
@@ -37,6 +37,9 @@ commands:
         description: alias
     /scale:
         description: alias
+    butil:
+        description: alias
+        aliases: bu
     /cuboid:
         description: alias
         aliases: /cub

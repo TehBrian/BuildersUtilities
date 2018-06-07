@@ -1,5 +1,7 @@
 disable-weather-changes: true
 
+disable-redstone: false
+
 disable-physics: true
 
 disable-gravity-physics: false
@@ -12,4 +14,4 @@ disable-leaves-decay: true
 
 fix-attackspeed: true
 
-iron-trapdoor-interaction: true
+prevent-dragon-egg-teleport: true
