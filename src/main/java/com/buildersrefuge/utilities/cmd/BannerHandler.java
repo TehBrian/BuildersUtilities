@@ -17,7 +17,6 @@ public class BannerHandler implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("banner") || cmd.getName().equalsIgnoreCase("bm")) {
             if (!(sender instanceof Player)) {
                 return false;
             }
@@ -27,8 +26,6 @@ public class BannerHandler implements Listener, CommandExecutor {
                 p.openInventory(g.generateStartInv());
                 return true;
             }
-
-        }
         return false;
     }
 }

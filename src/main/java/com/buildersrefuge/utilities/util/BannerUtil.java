@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class BannerUtil {
 
-    List<DyeColor> allColors;
-    List<PatternType> allPatterns;
+    private List<DyeColor> allColors;
+    private List<PatternType> allPatterns;
 
     public BannerUtil() {
         allColors = new ArrayList<>();
@@ -75,7 +75,7 @@ public class BannerUtil {
     }
 
     @SuppressWarnings("deprecation")
-    public ItemStack createBanner(String name, int amount, DyeColor base, String lore) {
+    ItemStack createBanner(String name, int amount, DyeColor base, String lore) {
         Items i = new Items();
         ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
@@ -97,7 +97,7 @@ public class BannerUtil {
     }
 
     @SuppressWarnings("deprecation")
-    public ItemStack createBanner(String name, int amount, DyeColor base, String lore, Pattern pat) {
+    ItemStack createBanner(String name, int amount, DyeColor base, String lore, Pattern pat) {
         Items i = new Items();
         ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
@@ -119,11 +119,11 @@ public class BannerUtil {
         return item;
     }
 
-    public List<PatternType> getAllPatternTypes() {
+    List<PatternType> getAllPatternTypes() {
         return allPatterns;
     }
 
-    public List<DyeColor> getAllColors() {
+    List<DyeColor> getAllColors() {
         return allColors;
     }
 
@@ -140,7 +140,7 @@ public class BannerUtil {
     }
 
     @SuppressWarnings("deprecation")
-    public DyeColor getBaseColor(ItemStack i) {
+    DyeColor getBaseColor(ItemStack i) {
         if (i.getType().equals(Material.BANNER)) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
             if (com.buildersrefuge.utilities.Main.version.contains("v1_12") || com.buildersrefuge.utilities.Main.version.contains("v1_11")) {
@@ -179,7 +179,7 @@ public class BannerUtil {
         return allPatterns.get(r.nextInt(allPatterns.size()));
     }
 
-    public DyeColor getDyeColor(ItemStack i) {
+    DyeColor getDyeColor(ItemStack i) {
         if (i.getType().equals(Material.INK_SACK)) {
             return allColors.get(i.getDurability());
         } else {
