@@ -42,6 +42,7 @@ public class CommandHandler implements Listener, CommandExecutor {
                     }
                     return true;
                 }
+                break;
             case "n":
                 if (p.hasPermission("builders.util.nightvision")) {
                     if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
@@ -54,6 +55,7 @@ public class CommandHandler implements Listener, CommandExecutor {
                     }
                     return true;
                 }
+                break;
             case "butil":
 
                 ToggleGUI gui = new ToggleGUI();
@@ -69,6 +71,7 @@ public class CommandHandler implements Listener, CommandExecutor {
                         return true;
                     }
                 }
+                break;
             case "/1":
                 plugin.getServer().dispatchCommand(p, "/pos1");
                 return true;
