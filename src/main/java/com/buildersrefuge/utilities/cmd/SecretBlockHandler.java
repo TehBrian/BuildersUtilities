@@ -17,16 +17,14 @@ public class SecretBlockHandler implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("blocks") || cmd.getName().equalsIgnoreCase("secretblocks")) {
-            if (!(sender instanceof Player)) {
-                return false;
-            }
-            Player p = (Player) sender;
-            if (p.hasPermission("builders.util.secretblocks")) {
-                SecretBlockGUI g = new SecretBlockGUI();
-                p.openInventory(g.generateStartInv());
-                return true;
-            }
+        if (!(sender instanceof Player)) {
+            return false;
+        }
+        Player p = (Player) sender;
+        if (p.hasPermission("builders.util.secretblocks")) {
+            SecretBlockGUI g = new SecretBlockGUI();
+            p.openInventory(g.generateStartInv());
+            return true;
         }
         return false;
     }

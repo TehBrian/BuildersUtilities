@@ -11,7 +11,7 @@ import java.util.List;
 
 public class NoClipManager {
     public static List<String> noClipPlayerNames;
-    Main main;
+    private Main main;
 
     public NoClipManager(Main main) {
         noClipPlayerNames = new ArrayList<>();
@@ -20,12 +20,7 @@ public class NoClipManager {
     }
 
     private void everyTick() {
-        Bukkit.getScheduler().runTaskTimer(this.main, new Runnable() {
-            @Override
-            public void run() {
-                checkForBlocks();
-            }
-        }, 1L, 1L);
+        Bukkit.getScheduler().runTaskTimer(this.main, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {
@@ -33,59 +28,49 @@ public class NoClipManager {
             Player p = Bukkit.getPlayer(name);
             if (p.isOnline()) {
                 if (p.getGameMode().equals(GameMode.CREATIVE)) {
-                    boolean noClip = false;
+                    boolean noClip;
                     if (p.getLocation().add(0, -0.1, 0).getBlock().getType() != Material.AIR && p.isSneaking()) {
                         noClip = true;
-                    } else if (p.getLocation().add(+0.4, 0, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(-0.4, 0, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 0, +0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 0, -0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(+0.4, 1, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(-0.4, 1, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 1, +0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 1, -0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, +1.9, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
+                    } else {
+                        noClip = isNoClip(p);
                     }
                     if (noClip) {
                         p.setGameMode(GameMode.SPECTATOR);
                     }
                 } else if (p.getGameMode().equals(GameMode.SPECTATOR)) {
-                    boolean noClip = false;
+                    boolean noClip;
                     if (p.getLocation().add(0, -0.1, 0).getBlock().getType() != Material.AIR) {
                         noClip = true;
-                    } else if (p.getLocation().add(+0.4, 0, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(-0.4, 0, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 0, +0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 0, -0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(+0.4, 1, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(-0.4, 1, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 1, +0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, 1, -0.4).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    } else if (p.getLocation().add(0, +1.9, 0).getBlock().getType() != Material.AIR) {
-                        noClip = true;
-                    }
+                    } else noClip = isNoClip(p);
                     if (!noClip) {
                         p.setGameMode(GameMode.CREATIVE);
                     }
                 }
             }
         }
+    }
+
+    private boolean isNoClip(Player p) {
+        boolean noClip = false;
+        if (p.getLocation().add(+0.4, 0, 0).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(-0.4, 0, 0).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(0, 0, +0.4).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(0, 0, -0.4).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(+0.4, 1, 0).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(-0.4, 1, 0).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(0, 1, +0.4).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(0, 1, -0.4).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        } else if (p.getLocation().add(0, +1.9, 0).getBlock().getType() != Material.AIR) {
+            noClip = true;
+        }
+        return noClip;
     }
 }

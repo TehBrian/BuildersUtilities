@@ -11,9 +11,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ToggleGUI {
 
-    public ToggleGUI() {
-    }
-
     public Inventory generateInv(Player p) {
         Items i = new Items();
         Inventory inv = Bukkit.createInventory(null, 27, "§1Builders Utilities");
@@ -63,8 +60,6 @@ public class ToggleGUI {
             inv.setItem(12, i.create(Material.STAINED_GLASS, (short) 1, 1, "&6Glazed Terracotta Rotating", "&c&l1.12+ only"));
             inv.setItem(21, ORANGE_GLASS_PANE);
         }
-
-        //
 
         if (p.hasPermission("builders.util.nightvision")) {
             if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {

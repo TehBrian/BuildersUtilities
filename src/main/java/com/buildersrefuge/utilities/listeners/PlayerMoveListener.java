@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlayerMoveListener implements Listener {
-    HashMap<String, Double> lastVelocity = new HashMap<>();
-    static List<String> slower = new ArrayList<>();
-    static List<String> slower2 = new ArrayList<>();
+    private HashMap<String, Double> lastVelocity = new HashMap<>();
+    private static List<String> slower = new ArrayList<>();
+    private static List<String> slower2 = new ArrayList<>();
     public static List<String> enabledPlayers = new ArrayList<>();
 
     public Main plugin;
