@@ -24,7 +24,7 @@ public class Items {
         ItemMeta meta = is.getItemMeta();
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
-            List<String> loreList = new ArrayList<String>();
+            List<String> loreList = new ArrayList<>();
             for (String s : loreListArray) {
                 loreList.add(s.replace("&", "§"));
             }
@@ -53,7 +53,7 @@ public class Items {
         ItemMeta meta = item.getItemMeta();
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
-            List<String> loreList = new ArrayList<String>();
+            List<String> loreList = new ArrayList<>();
             for (String s : loreListArray) {
                 loreList.add(s.replace("&", "§"));
             }

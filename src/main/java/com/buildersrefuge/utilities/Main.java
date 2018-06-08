@@ -25,7 +25,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.PluginManager;
@@ -35,35 +34,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin implements Listener {
-    BannerInventoryListener IL;
-    BannerHandler CH;
-    NoClipManager ncM;
     public static String version;
     public static List<String> ironTrapdoorNames;
     public static List<String> slabNames;
     public static List<String> terracottaNames;
 
     public void onEnable() {
+        String a = this.getServer().getClass().getPackage().getName();
+        version = a.substring(a.lastIndexOf('.') + 1);
+
+        PluginManager pm = getServer().getPluginManager();
+        CommandHandler commandHandler = new CommandHandler(this);
+
         ironTrapdoorNames = new ArrayList<>();
         slabNames = new ArrayList<>();
         terracottaNames = new ArrayList<>();
+
         this.saveDefaultConfig();
-        String a = this.getServer().getClass().getPackage().getName();
-        version = a.substring(a.lastIndexOf('.') + 1);
-        IL = new BannerInventoryListener(this);
-        CH = new BannerHandler(this);
-        ncM = new NoClipManager(this);
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(IL, this);
-        pm.registerEvents(CH, this);
+        new NoClipManager(this);
+
+        pm.registerEvents(new BannerInventoryListener(this), this);
         pm.registerEvents(new ColorInventoryListener(this), this);
         pm.registerEvents(new SecretBlocksInventoryListener(this), this);
         pm.registerEvents(new ToggleInventoryListener(this), this);
         pm.registerEvents(new PlayerMoveListener(this), this);
-        pm.registerEvents(new ColorHandler(this), this);
         pm.registerEvents(this, this);
-        CommandHandler commandHandler = new CommandHandler(this);
-        getCommand("banner").setExecutor(CH);
+
+        getCommand("banner").setExecutor(new BannerHandler(this));
         getCommand("armorcolor").setExecutor(new ColorHandler(this));
         getCommand("blocks").setExecutor(new SecretBlockHandler(this));
         getCommand("n").setExecutor(commandHandler);
@@ -129,13 +126,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent e) {
-        if (!this.getConfig().getBoolean("prevent-dragon-egg-teleport")) {
-            return;
-        }
-        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            return;
-        }
-        if (e.getClickedBlock().getType().equals(Material.DRAGON_EGG)) {
+        if (this.getConfig().getBoolean("prevent-dragon-egg-teleport") && e.getClickedBlock().getType().equals(Material.DRAGON_EGG) && e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             e.setCancelled(true);
         }
     }
@@ -143,16 +134,10 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBlockBreak(PlayerInteractEvent e) {
-        if (slabNames.contains(e.getPlayer().getName())) {
+        if (e.isCancelled() || slabNames.contains(e.getPlayer().getName()) || !e.getPlayer().getGameMode().equals(GameMode.CREATIVE) || !e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             return;
         }
-        if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
-            return;
-        }
-        if (!e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-            return;
-        }
-        Material type = e.getPlayer().getInventory().getItemInHand().getType();
+        Material type = e.getPlayer().getInventory().getItemInMainHand().getType();
         if (!version.contains("v1_8")) {
             if (!(type.equals(Material.STEP) || type.equals(Material.WOOD_STEP) || type.equals(Material.STONE_SLAB2) || type.equals(Material.PURPUR_SLAB))) {
                 return;
@@ -162,50 +147,45 @@ public class Main extends JavaPlugin implements Listener {
                 return;
             }
         }
-        if (e.isCancelled()) {
-            return;
-        }
-        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STEP)) {
-            if (e.getClickedBlock().getData() <= 7) {
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                    e.getClickedBlock().setType(Material.STEP);
-                    e.getClickedBlock().setData(data);
-                } else {
-                    e.getClickedBlock().setType(Material.STEP);
-                    e.getClickedBlock().setData((byte) (data + 8));
+        switch (e.getClickedBlock().getType()) {
+            case DOUBLE_STEP:
+
+                if (e.getClickedBlock().getData() <= 7) {
+                    e.setCancelled(true);
+                    byte data = e.getClickedBlock().getData();
+                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
+                        e.getClickedBlock().setType(Material.STEP);
+                        e.getClickedBlock().setData(data);
+                    } else {
+                        e.getClickedBlock().setType(Material.STEP);
+                        e.getClickedBlock().setData((byte) (data + 8));
+                    }
                 }
-            }
-        }
-        if (e.getClickedBlock().getType().equals(Material.WOOD_DOUBLE_STEP)) {
-            if (e.getClickedBlock().getData() <= 7) {
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                    e.getClickedBlock().setType(Material.WOOD_STEP);
-                    e.getClickedBlock().setData(data);
-                } else {
-                    e.getClickedBlock().setType(Material.WOOD_STEP);
-                    e.getClickedBlock().setData((byte) (data + 8));
+            case WOOD_DOUBLE_STEP:
+                if (e.getClickedBlock().getData() <= 7) {
+                    e.setCancelled(true);
+                    byte data = e.getClickedBlock().getData();
+                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
+                        e.getClickedBlock().setType(Material.WOOD_STEP);
+                        e.getClickedBlock().setData(data);
+                    } else {
+                        e.getClickedBlock().setType(Material.WOOD_STEP);
+                        e.getClickedBlock().setData((byte) (data + 8));
+                    }
                 }
-            }
-        }
-        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STONE_SLAB2)) {
-            if (e.getClickedBlock().getData() <= 7) {
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                    e.getClickedBlock().setType(Material.STONE_SLAB2);
-                    e.getClickedBlock().setData(data);
-                } else {
-                    e.getClickedBlock().setType(Material.STONE_SLAB2);
-                    e.getClickedBlock().setData((byte) (data + 8));
+            case DOUBLE_STONE_SLAB2:
+                if (e.getClickedBlock().getData() <= 7) {
+                    e.setCancelled(true);
+                    byte data = e.getClickedBlock().getData();
+                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
+                        e.getClickedBlock().setType(Material.STONE_SLAB2);
+                        e.getClickedBlock().setData(data);
+                    } else {
+                        e.getClickedBlock().setType(Material.STONE_SLAB2);
+                        e.getClickedBlock().setData((byte) (data + 8));
+                    }
                 }
-            }
-        }
-        if (!version.contains("v1_8")) {
-            if (e.getClickedBlock().getType().equals(Material.PURPUR_DOUBLE_SLAB)) {
+            case PURPUR_DOUBLE_SLAB:
                 if (e.getClickedBlock().getData() <= 7) {
                     e.setCancelled(true);
                     byte data = e.getClickedBlock().getData();
@@ -217,11 +197,11 @@ public class Main extends JavaPlugin implements Listener {
                         e.getClickedBlock().setData((byte) (data + 8));
                     }
                 }
-            }
         }
+
     }
 
-    public boolean isTop(Player p, Block b) {
+    private boolean isTop(Player p, Block b) {
         Location start = p.getEyeLocation().clone();
         while ((!start.getBlock().equals(b)) && start.distance(p.getEyeLocation()) < 6) {
             start.add(p.getLocation().getDirection().multiply(0.05));
@@ -289,7 +269,7 @@ public class Main extends JavaPlugin implements Listener {
         if (event.getCause() == null) {
             return;
         }
-        if (event.getCause().equals(TeleportCause.SPECTATE)) {
+        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.SPECTATE)) {
             if (!event.getPlayer().hasPermission("builders.util.tpgm3")) {
                 event.setCancelled(true);
             }
@@ -299,7 +279,7 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public void GlazedTerracottaInteract(final PlayerInteractEvent e) {
-        if (!version.contains("v1_12")) {
+        if (!version.contains("v1_12") && (e.getHand() == null)) {
             return;
         }
         if (e.getHand() == null) {
@@ -327,17 +307,14 @@ public class Main extends JavaPlugin implements Listener {
         if (!(type.equals(Material.AIR))) {
             return;
         }
-        Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-            @Override
-            public void run() {
-                Block b = e.getClickedBlock();
-                byte da = b.getData();
-                byte data = (byte) (da + 1);
-                if (!(da >= 0 && da < 4)) {
-                    data = 0;
-                }
-                b.setData(data, true);
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            Block b = e.getClickedBlock();
+            byte da = b.getData();
+            byte data = (byte) (da + 1);
+            if (!(da >= 0 && da < 4)) {
+                data = 0;
             }
+            b.setData(data, true);
         }, 0L);
         e.setCancelled(true);
     }

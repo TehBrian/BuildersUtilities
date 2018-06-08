@@ -33,54 +33,68 @@ public class ToggleInventoryListener implements Listener {
         ToggleGUI gui = new ToggleGUI();
         if (name.equals("§1Builders Utilities")) {
             e.setCancelled(true);
-            if (slot == 1 || slot == 10 || slot == 19) {
-                if (Main.ironTrapdoorNames.contains(p.getName())) {
-                    Main.ironTrapdoorNames.remove(p.getName());
-                } else {
-                    Main.ironTrapdoorNames.add(p.getName());
-                }
-            }
-            if (slot == 2 || slot == 11 || slot == 20) {
-                if (Main.slabNames.contains(p.getName())) {
-                    Main.slabNames.remove(p.getName());
-                } else {
-                    Main.slabNames.add(p.getName());
-                }
-            }
-            if (slot == 3 || slot == 12 || slot == 21) {
-                if (Main.version.contains("v1_12")) {
-                    if (Main.terracottaNames.contains(p.getName())) {
-                        Main.terracottaNames.remove(p.getName());
+            switch (slot) {
+                case 1:
+                case 10:
+                case 19:
+                    if (Main.ironTrapdoorNames.contains(p.getName())) {
+                        Main.ironTrapdoorNames.remove(p.getName());
                     } else {
-                        Main.terracottaNames.add(p.getName());
+                        Main.ironTrapdoorNames.add(p.getName());
                     }
-                }
-            }
-            if (slot == 5 || slot == 14 || slot == 23) {
-                if (p.hasPermission("builders.util.nightvision")) {
-                    if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
-                        p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                    break;
+                case 2:
+                case 11:
+                case 20:
+                    if (Main.slabNames.contains(p.getName())) {
+                        Main.slabNames.remove(p.getName());
                     } else {
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
+                        Main.slabNames.add(p.getName());
                     }
-                }
-            }
-            if (slot == 6 || slot == 15 || slot == 24) {
-                if (p.hasPermission("builders.util.noclip")) {
-                    if (NoClipManager.noClipPlayerNames.contains(p.getName())) {
-                        NoClipManager.noClipPlayerNames.remove(p.getName());
-                        if (p.getGameMode() == GameMode.SPECTATOR) {
-                            p.setGameMode(GameMode.CREATIVE);
+                    break;
+                case 3:
+                case 12:
+                case 21:
+                    if (Main.version.contains("v1_12")) {
+                        if (Main.terracottaNames.contains(p.getName())) {
+                            Main.terracottaNames.remove(p.getName());
+                        } else {
+                            Main.terracottaNames.add(p.getName());
                         }
-                    } else {
-                        NoClipManager.noClipPlayerNames.add(p.getName());
                     }
-                }
-            }
-            if (slot == 7 || slot == 16 || slot == 25) {
-                if (p.hasPermission("builders.util.advancedfly")) {
-                    com.buildersrefuge.utilities.listeners.PlayerMoveListener.togglePlayer(p);
-                }
+                    break;
+                case 5:
+                case 14:
+                case 23:
+                    if (p.hasPermission("builders.util.nightvision")) {
+                        if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
+                            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                        } else {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
+                        }
+                    }
+                    break;
+                case 6:
+                case 15:
+                case 24:
+                    if (p.hasPermission("builders.util.noclip")) {
+                        if (NoClipManager.noClipPlayerNames.contains(p.getName())) {
+                            NoClipManager.noClipPlayerNames.remove(p.getName());
+                            if (p.getGameMode() == GameMode.SPECTATOR) {
+                                p.setGameMode(GameMode.CREATIVE);
+                            }
+                        } else {
+                            NoClipManager.noClipPlayerNames.add(p.getName());
+                        }
+                    }
+                    break;
+                case 7:
+                case 16:
+                case 25:
+                    if (p.hasPermission("builders.util.advancedfly")) {
+                        PlayerMoveListener.togglePlayer(p);
+                    }
+                    break;
             }
             gui.updateInv(e.getClickedInventory(), p);
         }

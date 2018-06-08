@@ -54,14 +54,11 @@ public class SecretBlocksInventoryListener implements Listener {
         String[] id = e.getItemInHand().getItemMeta().getLore().get(0).replace("§7§lID§7 ", "").split(":");
         final int _id = Integer.parseInt(id[0]);
         final int _data = Integer.parseInt(id[1]);
-        Bukkit.getScheduler().runTaskLater(this.plugin, new Runnable() {
-            @Override
-            public void run() {
-                final Material mat = Material.getMaterial(_id);
-                Block b = e.getBlockPlaced();
-                b.setType(mat, true);
-                b.setData((byte) _data, true);
-            }
+        Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
+            final Material mat = Material.getMaterial(_id);
+            Block b = e.getBlockPlaced();
+            b.setType(mat, true);
+            b.setData((byte) _data, true);
         }, 0L);
         e.setCancelled(true);
     }

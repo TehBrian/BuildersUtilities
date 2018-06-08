@@ -17,7 +17,6 @@ public class ColorHandler implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("color") || cmd.getName().equalsIgnoreCase("armorcolor")) {
             if (!(sender instanceof Player)) {
                 return false;
             }
@@ -27,7 +26,6 @@ public class ColorHandler implements Listener, CommandExecutor {
                 p.openInventory(g.generateInv());
                 return true;
             }
-        }
         return false;
     }
 
