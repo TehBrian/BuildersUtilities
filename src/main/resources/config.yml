@@ -15,3 +15,5 @@ disable-leaves-decay: true
 fix-attackspeed: true
 
 prevent-dragon-egg-teleport: true
+
+remove-end-gate-from-blocks: false

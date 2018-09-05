@@ -1,5 +1,6 @@
 package com.buildersrefuge.utilities.util;
 
+import com.buildersrefuge.utilities.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -50,7 +51,9 @@ public class SecretBlockGUI {
         inv.setItem(20, i.create(Material.DRAGON_EGG, (short) 0, 1, "§3Dragon Egg", ""));
         if (!com.buildersrefuge.utilities.Main.version.contains("v1_8")) {
             inv.setItem(21, i.create(Material.GRASS_PATH, (short) 0, 1, "§3Grass Path", ""));
-            inv.setItem(22, i.createHead(endGatewayB64, 1, "§3End Gateway", "§7§lID§7 209:0"));
+            if (!Main.main.getConfig().getBoolean("remove-end-gate-from-blocks")){
+                inv.setItem(22, i.createHead(endGatewayB64, 1, "§3End Gateway", "§7§lID§7 209:0"));
+            }
         }
 
 
