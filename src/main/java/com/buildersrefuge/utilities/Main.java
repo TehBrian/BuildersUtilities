@@ -6,6 +6,7 @@ import com.buildersrefuge.utilities.cmd.CommandHandler;
 import com.buildersrefuge.utilities.cmd.SecretBlockHandler;
 import com.buildersrefuge.utilities.listeners.*;
 import com.buildersrefuge.utilities.object.NoClipManager;
+import com.massivestats.MassiveStats;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin implements Listener {
     public static List<String> ironTrapdoorNames;
     public static List<String> slabNames;
     public static List<String> terracottaNames;
+    public static Main main;
 
     public void onEnable() {
         String a = this.getServer().getClass().getPackage().getName();
@@ -49,6 +51,8 @@ public class Main extends JavaPlugin implements Listener {
         ironTrapdoorNames = new ArrayList<>();
         slabNames = new ArrayList<>();
         terracottaNames = new ArrayList<>();
+
+        main = this;
 
         this.saveDefaultConfig();
         new NoClipManager(this);
@@ -82,6 +86,8 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("/scale").setExecutor(commandHandler);
         getCommand("/twist").setExecutor(commandHandler);
         getCommand("butil").setExecutor(commandHandler);
+
+        new MassiveStats(this);
     }
 
     @EventHandler
@@ -106,7 +112,8 @@ public class Main extends JavaPlugin implements Listener {
                     e.getChangedType().name().toLowerCase().contains("tripwire") ||
                     e.getChangedType().name().toLowerCase().contains("plate") ||
                     e.getChangedType().name().toLowerCase().contains("string") ||
-                    e.getChangedType().name().toLowerCase().contains("piston")) {
+                    e.getChangedType().name().toLowerCase().contains("piston") ||
+                    e.getChangedType().name().toLowerCase().contains("observer")) {
                 if (!e.getBlock().getType().name().contains("air")) {
                     return;
                 }
@@ -126,79 +133,92 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent e) {
-        if (this.getConfig().getBoolean("prevent-dragon-egg-teleport") && e.getClickedBlock().getType().equals(Material.DRAGON_EGG) && e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getClickedBlock().getType().equals(Material.DRAGON_EGG) && this.getConfig().getBoolean("prevent-dragon-egg-teleport")) {
             e.setCancelled(true);
         }
     }
 
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onBlockBreak(PlayerInteractEvent e) {
-        if (e.isCancelled() || slabNames.contains(e.getPlayer().getName()) || !e.getPlayer().getGameMode().equals(GameMode.CREATIVE) || !e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+    public void onBlockBreak(PlayerInteractEvent e)
+    {
+        if (slabNames.contains(e.getPlayer().getName())){
             return;
         }
-        Material type = e.getPlayer().getInventory().getItemInMainHand().getType();
-        if (!version.contains("v1_8")) {
-            if (!(type.equals(Material.STEP) || type.equals(Material.WOOD_STEP) || type.equals(Material.STONE_SLAB2) || type.equals(Material.PURPUR_SLAB))) {
-                return;
-            }
-        } else {
-            if (!(type.equals(Material.STEP) || type.equals(Material.WOOD_STEP) || type.equals(Material.STONE_SLAB2))) {
+        if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)){
+            return;
+        }
+        if (!e.getAction().equals(Action.LEFT_CLICK_BLOCK)){return;}
+        Material type = e.getPlayer().getInventory().getItemInHand().getType();
+        if (!version.contains("v1_8")){
+            if (!(type.equals(Material.STEP)||type.equals(Material.WOOD_STEP)||type.equals(Material.STONE_SLAB2)||type.equals(Material.PURPUR_SLAB))){
                 return;
             }
         }
-        switch (e.getClickedBlock().getType()) {
-            case DOUBLE_STEP:
-
-                if (e.getClickedBlock().getData() <= 7) {
-                    e.setCancelled(true);
-                    byte data = e.getClickedBlock().getData();
-                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                        e.getClickedBlock().setType(Material.STEP);
-                        e.getClickedBlock().setData(data);
-                    } else {
-                        e.getClickedBlock().setType(Material.STEP);
-                        e.getClickedBlock().setData((byte) (data + 8));
-                    }
-                }
-            case WOOD_DOUBLE_STEP:
-                if (e.getClickedBlock().getData() <= 7) {
-                    e.setCancelled(true);
-                    byte data = e.getClickedBlock().getData();
-                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                        e.getClickedBlock().setType(Material.WOOD_STEP);
-                        e.getClickedBlock().setData(data);
-                    } else {
-                        e.getClickedBlock().setType(Material.WOOD_STEP);
-                        e.getClickedBlock().setData((byte) (data + 8));
-                    }
-                }
-            case DOUBLE_STONE_SLAB2:
-                if (e.getClickedBlock().getData() <= 7) {
-                    e.setCancelled(true);
-                    byte data = e.getClickedBlock().getData();
-                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                        e.getClickedBlock().setType(Material.STONE_SLAB2);
-                        e.getClickedBlock().setData(data);
-                    } else {
-                        e.getClickedBlock().setType(Material.STONE_SLAB2);
-                        e.getClickedBlock().setData((byte) (data + 8));
-                    }
-                }
-            case PURPUR_DOUBLE_SLAB:
-                if (e.getClickedBlock().getData() <= 7) {
-                    e.setCancelled(true);
-                    byte data = e.getClickedBlock().getData();
-                    if (isTop(e.getPlayer(), e.getClickedBlock())) {
-                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
-                        e.getClickedBlock().setData(data);
-                    } else {
-                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
-                        e.getClickedBlock().setData((byte) (data + 8));
-                    }
-                }
+        else{
+            if (!(type.equals(Material.STEP)||type.equals(Material.WOOD_STEP)||type.equals(Material.STONE_SLAB2))){
+                return;
+            }
         }
-
+        if (e.isCancelled()){return;}
+        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STEP)){
+            if (e.getClickedBlock().getData()<=7){
+                e.setCancelled(true);
+                byte data = e.getClickedBlock().getData();
+                if (isTop(e.getPlayer(), e.getClickedBlock())){
+                    e.getClickedBlock().setType(Material.STEP);
+                    e.getClickedBlock().setData(data);
+                }
+                else{
+                    e.getClickedBlock().setType(Material.STEP);
+                    e.getClickedBlock().setData((byte) (data+8));
+                }
+            }
+        }
+        if (e.getClickedBlock().getType().equals(Material.WOOD_DOUBLE_STEP)){
+            if (e.getClickedBlock().getData()<=7){
+                e.setCancelled(true);
+                byte data = e.getClickedBlock().getData();
+                if (isTop(e.getPlayer(), e.getClickedBlock())){
+                    e.getClickedBlock().setType(Material.WOOD_STEP);
+                    e.getClickedBlock().setData(data);
+                }
+                else{
+                    e.getClickedBlock().setType(Material.WOOD_STEP);
+                    e.getClickedBlock().setData((byte) (data+8));
+                }
+            }
+        }
+        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STONE_SLAB2)){
+            if (e.getClickedBlock().getData()<=7){
+                e.setCancelled(true);
+                byte data = e.getClickedBlock().getData();
+                if (isTop(e.getPlayer(), e.getClickedBlock())){
+                    e.getClickedBlock().setType(Material.STONE_SLAB2);
+                    e.getClickedBlock().setData(data);
+                }
+                else{
+                    e.getClickedBlock().setType(Material.STONE_SLAB2);
+                    e.getClickedBlock().setData((byte) (data+8));
+                }
+            }
+        }
+        if (!version.contains("v1_8")){
+            if (e.getClickedBlock().getType().equals(Material.PURPUR_DOUBLE_SLAB)){
+                if (e.getClickedBlock().getData()<=7){
+                    e.setCancelled(true);
+                    byte data = e.getClickedBlock().getData();
+                    if (isTop(e.getPlayer(), e.getClickedBlock())){
+                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
+                        e.getClickedBlock().setData(data);
+                    }
+                    else{
+                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
+                        e.getClickedBlock().setData((byte) (data+8));
+                    }
+                }
+            }
+        }
     }
 
     private boolean isTop(Player p, Block b) {

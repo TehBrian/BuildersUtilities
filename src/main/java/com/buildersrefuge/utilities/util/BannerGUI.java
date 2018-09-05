@@ -55,24 +55,31 @@ public class BannerGUI {
     }
 
     public Inventory generatePatternInv(Inventory inv, ItemStack clicked) {
-        Items i = new Items();
-        BannerUtil bU = new BannerUtil();
-        Inventory inv1 = Bukkit.createInventory(null, 54, "§1Select a pattern");
-        for (int x = 0; x < 54; x++) {
-            inv1.setItem(x, i.create(Material.STAINED_GLASS_PANE, (short) 7, 1, "&7", ""));
+        try{
+            Items i = new Items();
+            BannerUtil bU = new BannerUtil();
+            Inventory inv1 = Bukkit.createInventory(null, 54, "§1Select a pattern");
+            for (int x = 0; x < 54; x++) {
+                inv1.setItem(x, i.create(Material.STAINED_GLASS_PANE, (short) 7, 1, "&7", ""));
+            }
+            inv1.setItem(1, i.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19", 1, "&7Click to randomise", ""));
+            inv1.setItem(4, inv.getItem(4));
+            inv1.setItem(7, i.create(Material.BARRIER, (short) 0, 1, "&cClick to close", ""));
+            DyeColor base = DyeColor.WHITE;
+            DyeColor click = bU.getDyeColor(clicked);
+            if (click.equals(DyeColor.WHITE) || click.equals(DyeColor.SILVER) || click.equals(DyeColor.LIME) || click.equals(DyeColor.LIGHT_BLUE) || click.equals(DyeColor.YELLOW)) {
+                base = DyeColor.BLACK;
+            }
+            for (int x = 9; x < 47; x++) {
+                inv1.setItem(x, bU.createBanner("&3" + bU.getAllPatternTypes().get(x - 9).toString().toLowerCase().replace("_", " "), 1, base, "&7__&7click to select", new Pattern(click, bU.getAllPatternTypes().get(x - 9))));
+            }
+            return inv1;
         }
-        inv1.setItem(1, i.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19", 1, "&7Click to randomise", ""));
-        inv1.setItem(4, inv.getItem(4));
-        inv1.setItem(7, i.create(Material.BARRIER, (short) 0, 1, "&cClick to close", ""));
-        DyeColor base = DyeColor.WHITE;
-        DyeColor click = bU.getDyeColor(clicked);
-        if (click.equals(DyeColor.WHITE) || click.equals(DyeColor.SILVER) || click.equals(DyeColor.LIME) || click.equals(DyeColor.LIGHT_BLUE) || click.equals(DyeColor.YELLOW)) {
-            base = DyeColor.BLACK;
+        catch (Exception e){
+            return inv;
         }
-        for (int x = 9; x < 47; x++) {
-            inv1.setItem(x, bU.createBanner("&3" + bU.getAllPatternTypes().get(x - 9).toString().toLowerCase().replace("_", " "), 1, base, "&7__&7click to select", new Pattern(click, bU.getAllPatternTypes().get(x - 9))));
-        }
-        return inv1;
+
+
     }
 
 }
