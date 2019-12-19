@@ -72,6 +72,8 @@ Sure! Feel free to submit a PR or file an issue. Even if it's just a small typo,
 all changes are welcome. If you're contributing code, please follow our code style,
 which is just IntelliJ's default code style.
 
+---
+
 #### ok looks great brian but where's the frekin secret blocks menu?
 it's gone i'm so sorry
 
