@@ -36,14 +36,14 @@ To fix this, put on some sunglasses, play some 80s techno music, and
 furiously mash your keyboard. Now you should be able to read it with no problem!
 
 ## Why should I use it?
-Take a look at the [What's different?](whats-different) section! In addition
+Take a look at the [What's different?](#whats-different) section! In addition
 to that, everything's been nicely polished and reviewed, rigorously, by me,
 over a couple sleepless nights. Now *that's* what I call quality code.
 
 ## Sounds great! How do I get it?
 You could do one of two things:
 - [Download the pre-built .jar files.](https://github.com/ItsTehBrian/BuildersUtilities/releases)
-- [Build it yourself.](how-do-i-build-it-myself)
+- [Build it yourself.](#how-do-i-build-it-myself)
 
 ### How do I build it myself?
 Ah, well aren't you just Mr. Fancypants? This is a bit
