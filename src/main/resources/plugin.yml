@@ -1,56 +1,76 @@
-name: BuildersUtilities
-main: com.buildersrefuge.utilities.Main
-version: "${bukkit.plugin.version}"
-author: Arcaniax
+name: ${name}
+version: ${version}
+description: ${description}
+author: ${author}
+website: ${url}
+main: ${mainClass}
+api-version: 1.14
+permission-message: &permission-message §cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.
 commands:
-    banner:
-        description: opens banner creator
-        aliases: bm
-    armorcolor:
-        description: opens armor color creator
-        aliases: color
-    nc:
-        aliases: noclip
-        description: Toggles NoClip.
-    af:
-        aliases: advfly
-        description: Toggles Advanced fly.
-    n:
-        aliases: nv
-        description: Toggles Nightvision.
-    /1:
-        description: alias
-    /2:
-        description: alias
-    /r:
-        description: alias
-    /s:
-        description: alias
-    /c:
-        description: alias
-    /f:
-        description: alias
-    /pa:
-        description: alias
-    /derot:
-        description: alias
-    /twist:
-        description: alias
-    /scale:
-        description: alias
-    butil:
-        description: alias
-        aliases: bu
-    /cuboid:
-        description: alias
-        aliases: /cub
-    /convex:
-        description: alias
-        aliases: /con
-    blocks:
-        description: opens secret blocks menu
-        aliases: secretblocks
-    ws:
-        description: alias
-    fs:
-        description: alias
+  advancedfly:
+    description: Toggles advanced fly.
+    aliases: [advfly, af]
+    permission: buildersutilities.advancedfly
+    permission-message: *permission-message
+    usage: /<command>
+  armorcolor:
+    description: Opens the armor color creator.
+    aliases: acc
+    permission: buildersutilities.armorcolor
+    permission-message: *permission-message
+    usage: /<command>
+  banner:
+    description: Opens the banner creator.
+    aliases: bc
+    permission: buildersutilities.banner
+    permission-message: *permission-message
+    usage: /<command>
+  buildersutilities:
+    description: Opens the options menu.
+    aliases: [butils, bu]
+    permission: buildersutilities.buildersutilities
+    permission-message: *permission-message
+    usage: /<command>
+  nightvision:
+    description: Toggles night vision.
+    aliases: nv
+    permission: buildersutilities.nightvision
+    permission-message: *permission-message
+    usage: /<command>
+  noclip:
+    description: Toggles NoClip.
+    aliases: nc
+    permission: buildersutilities.noclip
+    permission-message: *permission-message
+    usage: /<command>
+  reloadbuildersutilities:
+    description: Reloads the config.
+    aliases: [reloadbutils, reloadbu]
+    permission: buildersutilities.reloadbuildersutilities
+    permission-message: *permission-message
+    usage: /<command>
+permissions:
+  buildersutilities.advancedfly:
+    description: Permission to use /advancedfly.
+    default: op
+  buildersutilities.armorcolor:
+    description: Permission to use /armorcolor.
+    default: true
+  buildersutilities.banner:
+    description: Permission to use /banner.
+    default: true
+  buildersutilities.buildersutilities:
+    description: Permission to use /buildersutilities.
+    default: true
+  buildersutilities.nightvision:
+    description: Permission to use /nightvision.
+    default: true
+  buildersutilities.noclip:
+    description: Permission to use /noclip.
+    default: op
+  buildersutilities.reloadbuildersutilities:
+    description: Permission to use /reloadbuildersutilities.
+    default: op
+  buildersutilities.tpgm3:
+    description: Permission to teleport while in Spectator mode.
+    default: true
