@@ -1,107 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.buildersrefuge</groupId>
-    <artifactId>BuildersUtilities</artifactId>
-    <version>1.2.6</version>
+    <groupId>xyz.tehbrian</groupId>
+    <artifactId>buildersutilities</artifactId>
+    <!-- Version is used in plugin.yml -->
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <!-- Name, Description, and URL are used in plugin.yml -->
+    <name>BuildersUtilities</name>
+    <description>A lot of tiny features that help builders do their thing.</description>
+    <url>https://github.com/ItsTehBrian/BuildersUtilities</url>
+
+    <developers>
+        <developer>
+            <name>TehBrian</name>
+            <url>https://tehbrian.xyz</url>
+        </developer>
+        <developer>
+            <name>Arcaniax</name>
+            <url>https://patreon.com/arcaniax</url>
+        </developer>
+    </developers>
 
     <properties>
+        <!--  Author, and MainClass are used in plugin.yml -->
+        <author>TehBrian and Arcaniax</author>
+        <mainClass>xyz.tehbrian.buildersutilities.BuildersUtilities</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <build.number>${buildNumber}</build.number>
-        <bukkit.plugin.version>${project.version} ${buildDescription}</bukkit.plugin.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
-
-    <build>
-        <finalName>${project.name}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
 
     <repositories>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/artifactory/repo/</url>
-        </repository>
-        <repository>
-            <id>FAWE</id>
-            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
-        </repository>
-        <repository>
-            <id>p2</id>
-            <url>http://ci.athion.net/job/PlotSquared/ws/mvn/</url>
-        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-bukkit</artifactId>
-            <version>6.1.5</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12-R0.1-SNAPSHOT</version>
+            <version>1.14.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.plotsquared</groupId>
-            <artifactId>plotsquared-api</artifactId>
-            <scope>provided</scope>
-            <version>latest</version>
-        </dependency>
-        <dependency>
-            <groupId>com.boydti</groupId>
-            <artifactId>fawe-api</artifactId>
-            <scope>provided</scope>
-            <version>latest</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.14.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>static_build_number</id>
-            <activation>
-                <property>
-                    <name>!env.BUILD_NUMBER</name>
-                </property>
-            </activation>
-            <properties>
-                <buildNumber>0</buildNumber>
-                <buildDescription>(compiled at ${maven.build.timestamp})</buildDescription>
-            </properties>
-        </profile>
-        <profile>
-            <id>dynamic_build_number</id>
-            <activation>
-                <property>
-                    <name>env.BUILD_NUMBER</name>
-                </property>
-            </activation>
-            <properties>
-                <buildNumber>${env.BUILD_NUMBER}</buildNumber>
-                <buildDescription>(build ${env.BUILD_NUMBER})</buildDescription>
-            </properties>
-        </profile>
-    </profiles>
+    <build>
+        <finalName>${project.name}-${project.version}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <defaultGoal>clean install</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Filtering replaces things like ${version} to the version in the POM.
+                We use that for plugin.yml to reduce redundancy, having only to update the POM. -->
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- But filtering could mess up other things, so disable it for everything else. -->
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
 </project>
