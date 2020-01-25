@@ -101,14 +101,17 @@ public class BannerInventory {
 
         Material base;
 
-        if (dyeColor == DyeColor.WHITE
-                || dyeColor == DyeColor.LIGHT_GRAY
-                || dyeColor == DyeColor.LIME
-                || dyeColor == DyeColor.LIGHT_BLUE
-                || dyeColor == DyeColor.YELLOW) {
-            base = Material.BLACK_BANNER;
-        } else {
-            base = Material.WHITE_BANNER;
+        switch (dyeColor) {
+            case WHITE:
+            case LIGHT_GRAY:
+            case LIME:
+            case LIGHT_BLUE:
+            case YELLOW:
+                base = Material.BLACK_BANNER;
+                break;
+            default:
+                base = Material.WHITE_BANNER;
+                break;
         }
 
         for (int x = 9; x < (BannerUtils.getAllPatternTypes().size() + 9); x++) {
