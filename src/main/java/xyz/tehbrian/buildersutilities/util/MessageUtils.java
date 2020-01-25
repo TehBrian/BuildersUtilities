@@ -1,7 +1,6 @@
 package xyz.tehbrian.buildersutilities.util;
 
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.util.List;
@@ -16,17 +15,11 @@ public class MessageUtils {
     }
 
     public static String getMessage(String configKey) {
-        BuildersUtilities main = BuildersUtilities.getInstance();
-        FileConfiguration config = main.getConfig();
-
-        return color(config.getString(configKey));
+        return color(BuildersUtilities.getInstance().getConfig().getString(configKey));
     }
 
     public static List<String> getMessageList(String configKey) {
-        BuildersUtilities main = BuildersUtilities.getInstance();
-        FileConfiguration config = main.getConfig();
-
-        List<String> messages = config.getStringList(configKey);
+        List<String> messages = BuildersUtilities.getInstance().getConfig().getStringList(configKey);
         messages.replaceAll(MessageUtils::color);
         return messages;
     }
