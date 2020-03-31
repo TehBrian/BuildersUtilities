@@ -15,7 +15,7 @@ Other than that, actually quite a bit has been changed:
 - You no longer need FAWE or WorldEdit.
 - Every single message and string is now easily configurable.
 - Both the permissions and the commands have been completely redone.
-- All of the GUIs have been changed. Everything looks and feels a lot nicer.
+- All the GUIs have been changed. Everything looks and feels a lot nicer.
 - Most notably, the code has essentially been rewritten.
 
 What I originally set out to do with this fork was to clean up some code and
@@ -28,7 +28,7 @@ helping builders do their thing.
 
 ## What are the permissions and commands?
 Instead of giving you a big list that I have to update every now and again,
-just navigate to `src/main/resources/plugin.yml` and you'll find all of the
+just navigate to `src/main/resources/plugin.yml` and you'll find all the
 permissions and commands in a slightly more "programmy" style than a pretty list.
 
 If you find YAML too hard to read, that means you aren't a pro hacker yet.
@@ -50,15 +50,17 @@ Ah, well aren't you just Mr. Fancypants? This is a bit
 more of a pain, but it's still pretty simple.
 
 Unless you have a good reason to build the plugin yourself, I'd recommend
-downloading the pre-built .jar files, it's just easier. But hey, you do you.
+downloading the pre-built .jar files. It's just easier, but hey, you do you.
 
-Unfortunately NMS was required in the plugin because of the fact that we used
-custom player heads. This just means we have to take a minor detour and
+Unfortunately NMS was required in the plugin, due to the fact that we used
+custom player heads. This means that we have to take a minor detour and
 use BuildTools as well.
 
 1. Make sure you have git and maven installed.
 2. Install and run BuildTools for 1.15.2: https://www.spigotmc.org/wiki/buildtools/,
 this should install CraftBukkit to your local maven repository.
+(**SIDENOTE**: Ever since 1.15, you have to use the flag `--compile craftbukkit` in order
+to compile CraftBukkit. Make sure you use that flag!)
 3. Open up your Terminal of choice and navigate to some nice directory, like
 your desktop.
 4. Clone this git repository by doing `git clone https://github.com/ItsTehBrian/BuildersUtilities.git`.
