@@ -10,10 +10,13 @@ import xyz.tehbrian.buildersutilities.listeners.inventory.ArmorColorInventoryLis
 import xyz.tehbrian.buildersutilities.listeners.inventory.BannerInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventory.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.managers.NoClipManager;
+import xyz.tehbrian.buildersutilities.managers.PlayerDataManager;
 
 public class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
+
+    private PlayerDataManager playerDataManager;
 
     public BuildersUtilities() {
         instance = this;
@@ -40,19 +43,30 @@ public class BuildersUtilities extends JavaPlugin {
 
         pm.registerEvents(new ArmorColorInventoryListener(), this);
         pm.registerEvents(new BannerInventoryListener(), this);
-        pm.registerEvents(new OptionsInventoryListener(), this);
-        pm.registerEvents(new AdvancedFlyListener(), this);
+        pm.registerEvents(new OptionsInventoryListener(this), this);
+        pm.registerEvents(new AdvancedFlyListener(this), this);
         pm.registerEvents(new BuildingUtilitiesListener(this), this);
         pm.registerEvents(new OptionsListener(this), this);
     }
 
     private void setupCommands() {
-        getCommand("advancedfly").setExecutor(new AdvancedFlyCommand());
+        getCommand("advancedfly").setExecutor(new AdvancedFlyCommand(this));
         getCommand("armorcolor").setExecutor(new ArmorColorCommand());
         getCommand("banner").setExecutor(new BannerCommand());
         getCommand("buildersutilities").setExecutor(new BuildersUtilitiesCommand());
-        getCommand("nightvision").setExecutor(new NightVisionCommand());
-        getCommand("noclip").setExecutor(new NoClipCommand());
+        getCommand("nightvision").setExecutor(new NightVisionCommand(this));
+        getCommand("noclip").setExecutor(new NoClipCommand(this));
         getCommand("reloadbuildersutilities").setExecutor(new ReloadBuildersUtilitiesCommand(this));
+    }
+
+    /*
+        TODO: What is the performance hit of checking if null very often?
+        Could we possibly initialize in onEnable? Would that be safe?
+     */
+    public PlayerDataManager getPlayerDataManager() {
+        if (playerDataManager == null) {
+            playerDataManager = new PlayerDataManager();
+        }
+        return playerDataManager;
     }
 }

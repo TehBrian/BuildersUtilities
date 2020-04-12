@@ -5,9 +5,6 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
-import java.util.Objects;
-import java.util.UUID;
-
 /*
     TODO: Clean up this code.
     Isn't checking like 10 blocks per player
@@ -16,14 +13,19 @@ import java.util.UUID;
  */
 public class NoClipManager {
 
+    private final BuildersUtilities main;
+
     public NoClipManager(BuildersUtilities main) {
+        this.main = main;
         Bukkit.getScheduler().runTaskTimer(main, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {
-        for (UUID uuid : PlayerOptionsManager.getEnabledNoClipList()) {
-            Player p = Objects.requireNonNull(Bukkit.getPlayer(uuid));
-            if (!p.isOnline()) return;
+        for (PlayerData playerData : main.getPlayerDataManager().getPlayerDataMap().values()) {
+            if (!playerData.hasNightVisionEnabled()) continue;
+
+            Player p = playerData.getPlayer();
+            if (!p.isOnline()) continue;
 
             boolean noClip;
             boolean tp = false;

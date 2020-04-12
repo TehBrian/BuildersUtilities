@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
-import xyz.tehbrian.buildersutilities.managers.PlayerOptionsManager;
+import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,6 +22,12 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class AdvancedFlyListener implements Listener {
 
+    private final BuildersUtilities main;
+
+    public AdvancedFlyListener(BuildersUtilities main) {
+        this.main = main;
+    }
+
     private final Set<Player> slower = new HashSet<>();
     private final Set<Player> slower2 = new HashSet<>();
     private final HashMap<Player, Double> lastVelocity = new HashMap<>();
@@ -29,7 +35,7 @@ public class AdvancedFlyListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (!PlayerOptionsManager.getEnabledAdvancedFly(player)) return;
+        if (!main.getPlayerDataManager().getPlayerData(player).hasAdvancedFlyEnabled()) return;
         if (!player.isFlying()) return;
 
         Double speed = event.getFrom().clone().add(0, -event.getFrom().getY(), 0).distance(Objects.requireNonNull(event.getTo()).clone().add(0, -event.getTo().getY(), 0));

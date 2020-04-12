@@ -14,7 +14,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.managers.PlayerOptionsManager;
 
 import java.util.Objects;
 
@@ -35,7 +34,8 @@ public class BuildingUtilitiesListener implements Listener {
      */
     @EventHandler(ignoreCancelled = true)
     public void onIronTrapDoorInteract(PlayerInteractEvent event) {
-        if (!PlayerOptionsManager.getEnabledTrapdoorToggle(event.getPlayer())) return;
+        if (!main.getPlayerDataManager().getPlayerData(event.getPlayer()).hasIronTrapdoorToggleEnabled())
+            return;
 
         if (Objects.requireNonNull(event.getClickedBlock()).getType() != Material.IRON_TRAPDOOR) return;
         if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
@@ -58,7 +58,8 @@ public class BuildingUtilitiesListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onSlabBreak(BlockBreakEvent event) {
-        if (!PlayerOptionsManager.getEnabledSlabBreak(event.getPlayer())) return;
+        if (!main.getPlayerDataManager().getPlayerData(event.getPlayer()).hasDoubleSlabBreakEnabled())
+            return;
 
         if (!Tag.SLABS.isTagged(event.getPlayer().getInventory().getItemInMainHand().getType())) return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) return;
@@ -79,7 +80,8 @@ public class BuildingUtilitiesListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onGlazedTerracottaInteract(PlayerInteractEvent event) {
-        if (!PlayerOptionsManager.getEnabledTerracottaRotate(event.getPlayer())) return;
+        if (!main.getPlayerDataManager().getPlayerData(event.getPlayer()).hasGlazedTerracottaRotateEnabled())
+            return;
 
         if (!Objects.requireNonNull(event.getClickedBlock()).getType().name().toLowerCase().contains("glazed")) return;
         if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
