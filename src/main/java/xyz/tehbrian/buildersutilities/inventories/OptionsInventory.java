@@ -80,16 +80,16 @@ public class OptionsInventory {
         if (p.hasPermission("buildersutilities.noclip")) {
             if (PlayerOptionsManager.getEnabledNoClip(p)) {
                 inv.setItem(6, GREEN_GLASS_PANE);
-                inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.noclip"), MessageUtils.getMessageList("msg.options.enabled")));
+                inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.no_clip"), MessageUtils.getMessageList("msg.options.enabled")));
                 inv.setItem(24, GREEN_GLASS_PANE);
             } else {
                 inv.setItem(6, RED_GLASS_PANE);
-                inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.noclip"), MessageUtils.getMessageList("msg.options.disabled")));
+                inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.no_clip"), MessageUtils.getMessageList("msg.options.disabled")));
                 inv.setItem(24, RED_GLASS_PANE);
             }
         } else {
             inv.setItem(6, ORANGE_GLASS_PANE);
-            inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.noclip"), MessageUtils.getMessageList("msg.options.no_permission")));
+            inv.setItem(15, ItemUtils.create(Material.COMPASS, 1, MessageUtils.getMessage("msg.options.no_clip"), MessageUtils.getMessageList("msg.options.no_permission")));
             inv.setItem(24, ORANGE_GLASS_PANE);
         }
 

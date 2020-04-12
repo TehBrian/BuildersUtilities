@@ -15,9 +15,9 @@ public class NoClipCommand implements CommandExecutor {
             Player player = (Player) sender;
 
             if (PlayerOptionsManager.toggleNoClip(player)) {
-                player.sendMessage(MessageUtils.getMessage("msg.noclip.enabled"));
+                player.sendMessage(MessageUtils.getMessage("msg.no_clip.enabled"));
             } else {
-                player.sendMessage(MessageUtils.getMessage("msg.noclip.disabled"));
+                player.sendMessage(MessageUtils.getMessage("msg.no_clip.disabled"));
             }
         }
         return true;

@@ -38,9 +38,9 @@ msg:
   night_vision:
     enabled: "&3BU &7› &aNight Vision enabled."
     disabled: "&3BU &7› &cNight Vision disabled."
-  noclip:
-    enabled: "&3BU &7› &aNoClip enabled."
-    disabled: "&3BU &7› &cNoClip disabled."
+  no_clip:
+    enabled: "&3BU &7› &aNo-Clip enabled."
+    disabled: "&3BU &7› &cNo-Clip disabled."
   armor_color:
     inventory_name: "&1Armor Color Creator"
     change:
@@ -84,5 +84,5 @@ msg:
     custom_slab_breaking: "&bCustom Slab Breaking"
     rotate_glazed_terracotta: "&bRotate Glazed Terracotta"
     night_vision: "&bNight Vision"
-    noclip: "&bNoClip"
+    no_clip: "&bNo-Clip"
     advanced_fly: "&bAdvanced Fly"

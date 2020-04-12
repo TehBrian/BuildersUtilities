@@ -39,7 +39,7 @@ commands:
     permission-message: *permission-message
     usage: /<command>
   noclip:
-    description: Toggles NoClip.
+    description: Toggles no-clip.
     aliases: nc
     permission: buildersutilities.noclip
     permission-message: *permission-message
