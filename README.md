@@ -59,7 +59,7 @@ use BuildTools as well.
 1. Make sure you have git and maven installed.
 2. Install and run BuildTools for 1.15.2: https://www.spigotmc.org/wiki/buildtools/,
 this should install CraftBukkit to your local maven repository.
-(**SIDENOTE**: Ever since 1.15, you have to use the flag `--compile craftbukkit` in order
+(**SIDE NOTE**: Ever since 1.15, you have to use the flag `--compile craftbukkit` in order
 to compile CraftBukkit. Make sure you use that flag!)
 3. Open up your Terminal of choice and navigate to some nice directory, like
 your desktop.
