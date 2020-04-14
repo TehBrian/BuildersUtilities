@@ -2,6 +2,8 @@ package xyz.tehbrian.buildersutilities.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.UUID;
 
@@ -74,6 +76,13 @@ public class PlayerData {
 
     public void setNightVisionEnabled(boolean nightVisionEnabled) {
         this.nightVisionEnabled = nightVisionEnabled;
+
+        Player player = getPlayer();
+        if (nightVisionEnabled) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
+        } else {
+            player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+        }
     }
 
     public boolean toggleNightVisionEnabled() {
