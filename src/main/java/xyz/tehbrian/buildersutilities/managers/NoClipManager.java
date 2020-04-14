@@ -22,7 +22,7 @@ public class NoClipManager {
 
     private void checkForBlocks() {
         for (PlayerData playerData : main.getPlayerDataManager().getPlayerDataMap().values()) {
-            if (!playerData.hasNightVisionEnabled()) continue;
+            if (!playerData.hasNoClipEnabled()) continue;
 
             Player p = playerData.getPlayer();
             if (!p.isOnline()) continue;
