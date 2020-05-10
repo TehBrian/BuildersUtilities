@@ -118,7 +118,7 @@ public class BannerInventoryListener implements Listener {
             player.closeInventory();
         }
 
-        if (slot >= 9 && slot <= 47) {
+        if (slot >= 9 && slot <= (8 + BannerUtils.getAllPatternTypes().size())) {
             BannerUtils.addPattern(oldBanner, BannerUtils.getPattern(Objects.requireNonNull(event.getCurrentItem())));
 
             if (bannerMeta.numberOfPatterns() > 16) {
