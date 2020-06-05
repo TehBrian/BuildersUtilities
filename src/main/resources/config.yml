@@ -1,0 +1,127 @@
+# |                           |
+# |       [ a fork of ]       | source code:
+# |     BuildersUtilities     | https://github.com/ItsTehBrian/BuildersUtilities
+# |                           |
+# | original plugin by        | need help? questions? suggestions?
+# | Arcaniax                  | https://tehbrian.xyz/discord
+# |                           |
+# | this fork/rewrite by      | I made this fork so if you need help
+# | TehBrian                  | you gotta go to me, okay? k bai, enjoy ;D
+# |                           |
+
+settings:
+  disable_physics: false
+
+  disable_entity_explode: true
+  disable_block_explode: true
+
+  disable_leaves_decay: true
+  disable_farmland_trample: true
+  disable_dragon_egg_teleport: true
+
+heads:
+  armor_color:
+    red: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Y0NmMzMWQ2ZWU2ZWE2MTlmNzJlNzg1MjMyY2IwNDhhYjI3MDQ2MmRiMGNiMTQ1NDUxNDQzNjI1MWMxYSJ9fX0="
+    green: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzZmNjlmN2I3NTM4YjQxZGMzNDM5ZjM2NThhYmJkNTlmYWNjYTM2NmYxOTBiY2YxZDZkMGEwMjZjOGY5NiJ9fX0="
+    blue: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgzOWUzODFkOWZlZGFiNmY4YjU5Mzk2YTI3NjQyMzhkY2ViMmY3ZWVhODU2ZGM2ZmM0NDc2N2RhMzgyZjEifX19"
+    randomize_red: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTEzMWRlOGU5NTFmZGQ3YjlhM2QyMzlkN2NjM2FhM2U4NjU1YTMzNmI5OTliOWVkYmI0ZmIzMjljYmQ4NyJ9fX0="
+    randomize_green: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWMzY2VjNjg3NjlmZTljOTcxMjkxZWRiN2VmOTZhNGUzYjYwNDYyY2ZkNWZiNWJhYTFjYmIzYTcxNTEzZTdiIn19fQ=="
+    randomize_blue: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjMyOGYzNzhmMjhhOTg3MjIyNmY1Y2UwNGQ2ZTFkZmExMTE2MTg1ODdmNDhkZmExZmU4MmQwNDMyMTZhNWNmIn19fQ=="
+  banner:
+    randomize: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19"
+
+messages:
+  commands:
+    no_permission: "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error."
+    advanced_fly:
+      enabled: "&3BU &7› &aAdvanced Fly enabled."
+      disabled: "&3BU &7› &cAdvanced Fly disabled."
+    night_vision:
+      enabled: "&3BU &7› &aNight Vision enabled."
+      disabled: "&3BU &7› &cNight Vision disabled."
+    no_clip:
+      enabled: "&3BU &7› &aNo-Clip enabled."
+      disabled: "&3BU &7› &cNo-Clip disabled."
+    reload: "&3BU &7› &bSuccessfully reloaded config!"
+
+  inventories:
+    armor_color:
+      inventory_name: "&1Armor Color Creator"
+      change:
+        - "&7"
+        - "&7Left click to increase"
+        - "&7Right click to decrease"
+        - "&7Shift click to change by 4"
+      get_helmet: "&aClick to get helmet"
+      get_chestplate: "&aClick to get chestplate"
+      get_leggings: "&aClick to get leggings"
+      get_boots: "&aClick to get boots"
+      red: "&cRed"
+      green: "&aGreen"
+      blue: "&bBlue"
+      randomize_red: "&cRandomize Red"
+      randomize_green: "&aRandomize Green"
+      randomize_blue: "&bRandomize Blue"
+
+    banner:
+      base_inventory_name: "&1Select a base.."
+      color_inventory_name: "&1Select a color.."
+      pattern_inventory_name: "&1Select a pattern.."
+      select:
+        - "&7"
+        - "&7Click to select"
+      cannot_get_banner: "&cPlease select a base color first"
+      get_banner: "&aClick to get banner"
+      randomize: "&fRandomly Select"
+
+    options:
+      inventory_name: "&1Builders Utilities Options"
+      status:
+        enabled:
+          - ""
+          - "&a&lEnabled"
+          - "&7"
+          - "&7Click to toggle"
+        no_permission:
+          - ""
+          - "&6&lNo permission"
+        disabled:
+          - ""
+          - "&c&lDisabled"
+          - "&7"
+          - "&7Click to toggle"
+      iron_trapdoor_toggle:
+        name: "&b&lIron Trapdoor Toggle"
+        description:
+          - "&3 Allows you to toggle iron"
+          - "&3trapdoors open and closed."
+          - "&7 To use, right click on an iron"
+          - "&7trapdoor while not holding anything."
+      double_slab_break:
+        name: "&b&lDouble Slab Break"
+        description:
+          - "&3 Allows you to break"
+          - "&3double slabs in half."
+          - "&7 To use, break a double slab"
+          - "&7while holding any slab."
+      glazed_terracotta_rotate:
+        name: "&b&lGlazed Terracotta Rotate"
+        description:
+          - "&3 Allows you to rotate"
+          - "&3glazed terracotta."
+          - "&7 To use, right click on a glazed"
+          - "&7terracotta while shifting."
+      night_vision:
+        name: "&b&lNight Vision"
+        description:
+          - "&3 Grants you infinite night vision."
+      no_clip:
+        name: "&b&lNo-Clip"
+        description:
+          - "&3 Intelligently toggles you between"
+          - "&3creative and spectator mode."
+      advanced_fly:
+        name: "&b&lAdvanced Fly"
+        description:
+          - "&3 Prevents you from drifting in"
+          - "&3creative mode flight."
