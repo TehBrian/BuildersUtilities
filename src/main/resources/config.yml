@@ -32,7 +32,9 @@ heads:
 
 messages:
   commands:
-    no_permission: "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error."
+    # Leave this empty to set it to default. If you're using paper,
+    # this can be changed in paper.yml, which is in your server directory.
+    no_permission:
     advanced_fly:
       enabled: "&3BU &7› &aAdvanced Fly enabled."
       disabled: "&3BU &7› &cAdvanced Fly disabled."

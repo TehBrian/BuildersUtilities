@@ -64,13 +64,25 @@ public class BuildersUtilities extends JavaPlugin {
     }
 
     /*
-        This is the best way to add custom permission messages
-        I could find. I checked a lot of methods. It was either this,
-        rolling our own permission checkers, a lot of reflection,
-        or a lot of redundancy.
+        Unfortunately, only Paper allows you to set the
+        default permission message, so to allow those who
+        still use Spigot (or till Spigot gets their stuff
+        together and allows people to customize messages)
+        this will have to do.
+
+        Side note: Since we return prematurely when the permissionMessage
+        is null or empty rather than setting it to the server default,
+        if the user would like to change the permission message *back* to
+        the default during runtime, they must reload the entire server
+        rather than just using the plugin's reload command. This can
+        be fixed if we set the permission message before we return, but
+        the issue is *how* do we get the default permission message?
      */
     public void setPermissionMessages() {
         String permissionMessage = MessageUtils.getMessage("messages.commands.no_permission");
+        if (permissionMessage == null || permissionMessage.isEmpty()) {
+            return;
+        }
 
         for (String commandName : getDescription().getCommands().keySet()) {
             PluginCommand command = getCommand(commandName);
@@ -78,10 +90,6 @@ public class BuildersUtilities extends JavaPlugin {
         }
     }
 
-    /*
-        TODO: What is the performance hit of checking if null very often?
-        Could we possibly initialize in onEnable? Would that be safe?
-     */
     public PlayerDataManager getPlayerDataManager() {
         if (playerDataManager == null) {
             playerDataManager = new PlayerDataManager();
