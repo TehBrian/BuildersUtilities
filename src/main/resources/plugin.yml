@@ -1,8 +1,7 @@
 name: ${name}
 version: ${version}
 description: ${description}
-author: ${author}
-authors: [Arcaniax]
+authors: [Arcaniax, TehBrian]
 website: ${url}
 main: ${mainClass}
 api-version: "1.16"
