@@ -90,10 +90,6 @@ public class BuildersUtilities extends JavaPlugin {
         }
     }
 
-    /*
-        TODO: What is the performance hit of checking if null very often?
-        Could we possibly initialize in onEnable? Would that be safe?
-     */
     public PlayerDataManager getPlayerDataManager() {
         if (playerDataManager == null) {
             playerDataManager = new PlayerDataManager();
