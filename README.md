@@ -1,14 +1,14 @@
 # Welcome!
 This is a fork of Arcaniax's BuildersUtilities that has been modernized and is
-now exclusively 1.15+.
+now exclusively 1.13+.
 
 ## What's different?
 I felt that some features weren't really that important, such as the WorldEdit 
-shortcuts, and there were also some features that became obsolete in 1.13+,
+shortcuts, and there were also some features that became obsolete in newer versions,
 like the secret blocks menu, so I took the executive decision to DESTROY THEM >:D
 
 Of course, there might be some people who are huge fans of those features, or
-they're just not on 1.15+ yet. In that case, please use Arcaniax's original
+they're just not on 1.13+ yet. In that case, please use Arcaniax's original
 BuildersUtilities, it's a great plugin!
 
 Other than that, actually quite a bit has been changed:
@@ -57,7 +57,7 @@ custom player heads. This means that we have to take a minor detour and
 use BuildTools as well.
 
 1. Make sure you have git and maven installed.
-2. Install and run BuildTools for 1.15.2: https://www.spigotmc.org/wiki/buildtools/,
+2. Install and run BuildTools for 1.16.4: https://www.spigotmc.org/wiki/buildtools/,
 this should install CraftBukkit to your local maven repository.
 (**SIDE NOTE**: Ever since 1.15, you have to use the flag `--compile craftbukkit` in order
 to compile CraftBukkit. Make sure you use that flag!)
