@@ -10,8 +10,7 @@ import xyz.tehbrian.buildersutilities.listeners.SettingsListener;
 import xyz.tehbrian.buildersutilities.listeners.inventory.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventory.BannerInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventory.OptionsInventoryListener;
-import xyz.tehbrian.buildersutilities.managers.NoClipManager;
-import xyz.tehbrian.buildersutilities.managers.PlayerDataManager;
+import xyz.tehbrian.buildersutilities.player.PlayerDataManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 public class BuildersUtilities extends JavaPlugin {

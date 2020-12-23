@@ -1,9 +1,9 @@
-package xyz.tehbrian.buildersutilities.managers;
+package xyz.tehbrian.buildersutilities;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.buildersutilities.player.PlayerData;
 
 /*
     TODO: Clean up this code.

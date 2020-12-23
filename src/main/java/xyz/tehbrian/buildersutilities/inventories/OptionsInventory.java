@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.managers.PlayerData;
+import xyz.tehbrian.buildersutilities.player.PlayerData;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
