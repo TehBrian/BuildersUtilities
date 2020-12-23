@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.managers;
+package xyz.tehbrian.buildersutilities.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
