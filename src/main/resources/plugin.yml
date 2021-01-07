@@ -1,10 +1,10 @@
-name: ${name}
-version: ${version}
-description: ${description}
-authors: [Arcaniax, TehBrian]
-website: ${url}
-main: ${mainClass}
-api-version: "1.16"
+name: BuildersUtilities
+version: @version@
+main: xyz.tehbrian.buildersutilities.BuildersUtilities
+api-version: 1.16
+authors: [ Arcaniax, TehBrian ]
+description: A lot of tiny features that help builders do their thing.
+website: https://github.com/ItsTehBrian/BuildersUtilities
 commands:
   advancedfly:
     description: Toggles advanced fly.
