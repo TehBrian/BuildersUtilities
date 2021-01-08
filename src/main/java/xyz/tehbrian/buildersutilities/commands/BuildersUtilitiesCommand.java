@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.inventories.OptionsInventory;
+import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
 
 public class BuildersUtilitiesCommand implements CommandExecutor {
 
@@ -13,7 +13,7 @@ public class BuildersUtilitiesCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            player.openInventory(OptionsInventory.generate(player));
+            player.openInventory(OptionsInventoryProvider.generate(player));
         }
         return true;
     }
