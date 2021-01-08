@@ -9,16 +9,16 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.List;
 import java.util.Objects;
 
-public class ArmorColorInventory {
+public class ArmorColorInventoryProvider {
 
-    private ArmorColorInventory() {
+    private ArmorColorInventoryProvider() {
     }
 
     public static Inventory generate() {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"));
 
-        for (int x = 0; x < inv.getSize(); x++) {
-            inv.setItem(x, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
+        for (int i = 0; i < inv.getSize(); i++) {
+            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
         }
 
         inv.setItem(10, ItemUtils.create(Material.LEATHER_HELMET, 1, MessageUtils.getMessage("messages.inventories.armor_color.get_helmet")));

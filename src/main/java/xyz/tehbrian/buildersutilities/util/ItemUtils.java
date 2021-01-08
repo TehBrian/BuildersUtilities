@@ -23,18 +23,17 @@ public class ItemUtils {
     public static ItemStack create(Material material, int amount, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(material);
         itemStack.setAmount(amount);
-        ItemMeta itemMeta = itemStack.getItemMeta();
 
+        ItemMeta itemMeta = itemStack.getItemMeta();
         if (name != null) {
             Objects.requireNonNull(itemMeta).setDisplayName(MessageUtils.color(name));
         }
-
         if (lore != null) {
             lore.replaceAll(MessageUtils::color);
             Objects.requireNonNull(itemMeta).setLore(lore);
         }
-
         itemStack.setItemMeta(itemMeta);
+
         return itemStack;
     }
 

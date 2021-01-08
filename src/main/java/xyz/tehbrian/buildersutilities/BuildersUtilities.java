@@ -7,9 +7,11 @@ import xyz.tehbrian.buildersutilities.commands.*;
 import xyz.tehbrian.buildersutilities.listeners.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.listeners.BuildingUtilitiesListener;
 import xyz.tehbrian.buildersutilities.listeners.SettingsListener;
-import xyz.tehbrian.buildersutilities.listeners.inventory.ArmorColorInventoryListener;
-import xyz.tehbrian.buildersutilities.listeners.inventory.BannerInventoryListener;
-import xyz.tehbrian.buildersutilities.listeners.inventory.OptionsInventoryListener;
+import xyz.tehbrian.buildersutilities.listeners.inventories.ArmorColorInventoryListener;
+import xyz.tehbrian.buildersutilities.listeners.inventories.OptionsInventoryListener;
+import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerBaseInventoryListener;
+import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorInventoryListener;
+import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
 import xyz.tehbrian.buildersutilities.player.PlayerDataManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
@@ -42,9 +44,13 @@ public class BuildersUtilities extends JavaPlugin {
     private void setupEvents() {
         PluginManager pm = getServer().getPluginManager();
 
+        pm.registerEvents(new BannerBaseInventoryListener(), this);
+        pm.registerEvents(new BannerColorInventoryListener(), this);
+        pm.registerEvents(new BannerPatternInventoryListener(), this);
+
         pm.registerEvents(new ArmorColorInventoryListener(), this);
-        pm.registerEvents(new BannerInventoryListener(), this);
         pm.registerEvents(new OptionsInventoryListener(this), this);
+
         pm.registerEvents(new AdvancedFlyListener(this), this);
         pm.registerEvents(new BuildingUtilitiesListener(this), this);
         pm.registerEvents(new SettingsListener(this), this);

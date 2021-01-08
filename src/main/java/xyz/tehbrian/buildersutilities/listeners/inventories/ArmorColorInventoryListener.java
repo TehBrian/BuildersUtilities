@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.listeners.inventory;
+package xyz.tehbrian.buildersutilities.listeners.inventories;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,7 +8,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.inventories.ArmorColorInventory;
+import xyz.tehbrian.buildersutilities.inventories.ArmorColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
@@ -70,6 +70,6 @@ public class ArmorColorInventoryListener implements Listener {
 
         inventory.setItem(slot, item);
 
-        ArmorColorInventory.update(event.getClickedInventory());
+        ArmorColorInventoryProvider.update(event.getClickedInventory());
     }
 }

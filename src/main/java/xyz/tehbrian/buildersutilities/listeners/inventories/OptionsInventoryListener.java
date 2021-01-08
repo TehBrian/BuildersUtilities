@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.listeners.inventory;
+package xyz.tehbrian.buildersutilities.listeners.inventories;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.inventories.OptionsInventory;
+import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
@@ -73,6 +73,6 @@ public class OptionsInventoryListener implements Listener {
                 return;
         }
 
-        OptionsInventory.update(event.getView().getTopInventory(), player);
+        OptionsInventoryProvider.update(event.getView().getTopInventory(), player);
     }
 }

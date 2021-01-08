@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.inventories.BannerInventory;
+import xyz.tehbrian.buildersutilities.inventories.banner.BannerBaseInventoryProvider;
 
 public class BannerCommand implements CommandExecutor {
 
@@ -13,7 +13,7 @@ public class BannerCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            player.openInventory(BannerInventory.generateBaseInventory());
+            player.openInventory(BannerBaseInventoryProvider.generate());
         }
         return true;
     }

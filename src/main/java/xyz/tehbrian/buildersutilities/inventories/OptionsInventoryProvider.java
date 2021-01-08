@@ -13,20 +13,20 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsInventory {
+public class OptionsInventoryProvider {
 
     private static final ItemStack GREEN = ItemUtils.create(Material.LIME_STAINED_GLASS_PANE, 1, "&7");
     private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, "&7");
     private static final ItemStack RED = ItemUtils.create(Material.RED_STAINED_GLASS_PANE, 1, "&7");
 
-    private OptionsInventory() {
+    private OptionsInventoryProvider() {
     }
 
     public static Inventory generate(Player player) {
         Inventory inv = Bukkit.createInventory(null, 27, MessageUtils.getMessage("messages.inventories.options.inventory_name"));
 
-        for (int x = 0; x < inv.getSize(); x++) {
-            inv.setItem(x, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
+        for (int i = 0; i < inv.getSize(); i++) {
+            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
         }
 
         update(inv, player);
