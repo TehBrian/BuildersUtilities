@@ -4,6 +4,7 @@ main: xyz.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.16
 authors: [ Arcaniax, TehBrian ]
 description: A lot of tiny features that help builders do their thing.
+softdepend: [ PlotSquared, WorldGuard ]
 website: https://github.com/ItsTehBrian/BuildersUtilities
 commands:
   advancedfly:
