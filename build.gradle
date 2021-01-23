@@ -22,12 +22,21 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
+
+    // Restrictions
+    maven { url = uri("https://maven.enginehub.org/repo/") } // WorldEdit and WorldGuard
+    maven { url = uri("https://mvn.intellectualsites.com/content/groups/public/") } // PlotSquared
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
     // To build, use BuildTools provided by Spigot.
     compileOnly 'org.bukkit:craftbukkit:1.16.4-R0.1-SNAPSHOT'
+
+    // Restrictions
+    compileOnly 'com.plotsquared:PlotSquared-Core:5.13.3' // PlotSquared Core API
+    compileOnly 'com.plotsquared:PlotSquared-Bukkit:5.13.3' // PlotSquared Bukkit API
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.4' // WorldGuard API
 }
 
 jar {
