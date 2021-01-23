@@ -8,7 +8,7 @@ website: https://github.com/ItsTehBrian/BuildersUtilities
 commands:
   advancedfly:
     description: Toggles advanced fly.
-    aliases: [advfly, af]
+    aliases: [ advfly, af ]
     permission: buildersutilities.advancedfly
     usage: /<command>
   armorcolor:
@@ -23,7 +23,7 @@ commands:
     usage: /<command>
   buildersutilities:
     description: Opens the options menu.
-    aliases: [butils, bu]
+    aliases: [ butils, bu ]
     permission: buildersutilities.buildersutilities
     usage: /<command>
   nightvision:
@@ -38,7 +38,7 @@ commands:
     usage: /<command>
   reloadbuildersutilities:
     description: Reloads the config.
-    aliases: [reloadbutils, reloadbu]
+    aliases: [ reloadbutils, reloadbu ]
     permission: buildersutilities.reloadbuildersutilities
     usage: /<command>
 permissions:
