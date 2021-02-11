@@ -13,17 +13,18 @@ import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerBaseInv
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
 import xyz.tehbrian.buildersutilities.player.PlayerDataManager;
-import xyz.tehbrian.buildersutilities.restriction.PlotSquaredValidator;
-import xyz.tehbrian.buildersutilities.restriction.RestrictionManager;
-import xyz.tehbrian.buildersutilities.restriction.WorldGuardValidator;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
+import xyz.tehbrian.restrictionhelper.DebugLogger;
+import xyz.tehbrian.restrictionhelper.RestrictionHelper;
+import xyz.tehbrian.restrictionhelper.restrictions.PlotSquaredRestriction;
+import xyz.tehbrian.restrictionhelper.restrictions.WorldGuardRestriction;
 
 public class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
 
     private PlayerDataManager playerDataManager;
-    private RestrictionManager restrictionManager;
+    private RestrictionHelper restrictionHelper;
 
     public BuildersUtilities() {
         instance = this;
@@ -74,18 +75,19 @@ public class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupRestrictions() {
-        restrictionManager = new RestrictionManager();
+        restrictionHelper = new RestrictionHelper(this.getLogger());
+        DebugLogger debugLogger = restrictionHelper.getDebugLogger();
 
         PluginManager pm = getServer().getPluginManager();
         if (pm.getPlugin("PlotSquared") != null) {
             getLogger().info("PlotSquared detected. Registering permission validator..");
-            restrictionManager.registerValidator(new PlotSquaredValidator());
+            restrictionHelper.registerRestriction(new PlotSquaredRestriction(debugLogger));
             getLogger().info("PlotSquared validator registered successfully!");
         }
 
         if (pm.getPlugin("WorldGuard") != null) {
             getLogger().info("WorldGuard detected. Registering permission validator..");
-            restrictionManager.registerValidator(new WorldGuardValidator());
+            restrictionHelper.registerRestriction(new WorldGuardRestriction(debugLogger));
             getLogger().info("WorldGuard validator registered successfully!");
         }
     }
@@ -124,7 +126,7 @@ public class BuildersUtilities extends JavaPlugin {
         return playerDataManager;
     }
 
-    public RestrictionManager getRestrictionManager() {
-        return restrictionManager;
+    public RestrictionHelper getRestrictionHelper() {
+        return restrictionHelper;
     }
 }

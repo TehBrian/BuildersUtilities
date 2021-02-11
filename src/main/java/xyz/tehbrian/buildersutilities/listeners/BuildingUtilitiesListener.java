@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.restrictionhelper.ActionType;
 
 import java.util.Objects;
 
@@ -39,7 +40,6 @@ public class BuildingUtilitiesListener implements Listener {
         if (!main.getPlayerDataManager().getPlayerData(player).hasIronTrapdoorToggleEnabled()) return;
 
         Block block = Objects.requireNonNull(event.getClickedBlock());
-        if (!main.getRestrictionManager().hasBuildPermission(player.getUniqueId(), block.getLocation())) return;
 
         if (block.getType() != Material.IRON_TRAPDOOR) return;
         if (player.getInventory().getItemInMainHand().getType() != Material.AIR) return;
@@ -47,6 +47,9 @@ public class BuildingUtilitiesListener implements Listener {
         if (event.getHand() != EquipmentSlot.HAND) return;
         if (player.getGameMode() != GameMode.CREATIVE) return;
         if (player.isSneaking()) return;
+
+        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)) return;
+        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) return;
 
         Bukkit.getScheduler().runTask(main, () -> {
             TrapDoor trapDoor = (TrapDoor) block.getBlockData();
@@ -88,7 +91,6 @@ public class BuildingUtilitiesListener implements Listener {
         if (!main.getPlayerDataManager().getPlayerData(player).hasGlazedTerracottaRotateEnabled()) return;
 
         Block block = Objects.requireNonNull(event.getClickedBlock());
-        if (!main.getRestrictionManager().hasBuildPermission(player.getUniqueId(), block.getLocation())) return;
 
         if (!block.getType().name().toLowerCase().contains("glazed")) return;
         if (player.getInventory().getItemInMainHand().getType() != Material.AIR) return;
@@ -96,6 +98,9 @@ public class BuildingUtilitiesListener implements Listener {
         if (event.getHand() != EquipmentSlot.HAND) return;
         if (player.getGameMode() != GameMode.CREATIVE) return;
         if (!player.isSneaking()) return;
+
+        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)) return;
+        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) return;
 
         Bukkit.getScheduler().runTask(main, () -> {
             Directional directional = (Directional) block.getBlockData();
