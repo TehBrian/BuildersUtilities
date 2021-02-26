@@ -31,7 +31,7 @@ dependencies {
     compileOnly 'org.bukkit:craftbukkit:1.16.5-R0.1-SNAPSHOT'
 
     // RestrictionHelper
-    compile 'xyz.tehbrian:restrictionhelper:0.1.0'
+    implementation 'xyz.tehbrian:restrictionhelper:0.1.0'
 }
 
 processResources {
