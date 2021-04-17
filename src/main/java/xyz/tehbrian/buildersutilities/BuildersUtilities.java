@@ -9,7 +9,6 @@ import xyz.tehbrian.buildersutilities.commands.BannerCommand;
 import xyz.tehbrian.buildersutilities.commands.BuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
-import xyz.tehbrian.buildersutilities.commands.ReloadBuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.listeners.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.listeners.BuildingUtilitiesListener;
 import xyz.tehbrian.buildersutilities.listeners.SettingsListener;
@@ -72,10 +71,13 @@ public final class BuildersUtilities extends JavaPlugin {
         this.getCommand("advancedfly").setExecutor(new AdvancedFlyCommand(this));
         this.getCommand("armorcolor").setExecutor(new ArmorColorCommand());
         this.getCommand("banner").setExecutor(new BannerCommand());
-        this.getCommand("buildersutilities").setExecutor(new BuildersUtilitiesCommand());
+
+        var buildersUtilitiesCommand = new BuildersUtilitiesCommand(this);
+        this.getCommand("buildersutilities").setExecutor(buildersUtilitiesCommand);
+        this.getCommand("buildersutilities").setTabCompleter(buildersUtilitiesCommand);
+
         this.getCommand("nightvision").setExecutor(new NightVisionCommand(this));
         this.getCommand("noclip").setExecutor(new NoClipCommand(this));
-        this.getCommand("reloadbuildersutilities").setExecutor(new ReloadBuildersUtilitiesCommand(this));
 
         this.setPermissionMessages();
     }
