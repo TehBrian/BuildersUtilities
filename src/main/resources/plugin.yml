@@ -1,5 +1,5 @@
 name: BuildersUtilities
-version: @version@
+version: ${version}
 main: xyz.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.16
 authors: [ Arcaniax, TehBrian ]
