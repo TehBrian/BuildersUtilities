@@ -7,20 +7,20 @@ import org.bukkit.entity.Player;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
-public class NoClipCommand implements CommandExecutor {
+public final class NoClipCommand implements CommandExecutor {
 
     private final BuildersUtilities main;
 
-    public NoClipCommand(BuildersUtilities main) {
+    public NoClipCommand(final BuildersUtilities main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (main.getPlayerDataManager().getPlayerData(player).toggleNoClipEnabled()) {
+            if (this.main.getPlayerDataManager().getPlayerData(player).toggleNoClipEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.no_clip.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.no_clip.disabled"));

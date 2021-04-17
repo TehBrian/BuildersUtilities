@@ -7,20 +7,20 @@ import org.bukkit.entity.Player;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
-public class AdvancedFlyCommand implements CommandExecutor {
+public final class AdvancedFlyCommand implements CommandExecutor {
 
     private final BuildersUtilities main;
 
-    public AdvancedFlyCommand(BuildersUtilities main) {
+    public AdvancedFlyCommand(final BuildersUtilities main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (main.getPlayerDataManager().getPlayerData(player).toggleAdvancedFlyEnabled()) {
+            if (this.main.getPlayerDataManager().getPlayerData(player).toggleAdvancedFlyEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.disabled"));

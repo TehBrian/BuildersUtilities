@@ -15,14 +15,16 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
 
-public class BannerColorInventoryListener implements Listener {
+public final class BannerColorInventoryListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())) return;
+    public void onInventoryClick(final InventoryClickEvent event) {
+        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
+                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.banner.color_inventory_name"))
+                || !(event.getWhoClicked() instanceof Player)) {
+            return;
+        }
 
-        if (!event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.banner.color_inventory_name"))) return;
-        if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();

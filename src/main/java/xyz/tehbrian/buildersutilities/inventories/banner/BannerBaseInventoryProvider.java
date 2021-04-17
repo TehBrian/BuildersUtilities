@@ -8,7 +8,7 @@ import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 // TODO: Add an undo button.
-public class BannerBaseInventoryProvider {
+public final class BannerBaseInventoryProvider {
 
     private BannerBaseInventoryProvider() {
     }
@@ -20,7 +20,10 @@ public class BannerBaseInventoryProvider {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
         }
 
-        inv.setItem(3, ItemUtils.createHead(MessageUtils.getMessage("heads.banner.randomize"), 1, MessageUtils.getMessage("messages.inventories.banner.randomize")));
+        inv.setItem(3, ItemUtils.createHead(
+                MessageUtils.getMessage("heads.banner.randomize"),
+                1,
+                MessageUtils.getMessage("messages.inventories.banner.randomize")));
         inv.setItem(5, ItemUtils.create(Material.BARRIER, 1, MessageUtils.getMessage("messages.inventories.banner.cannot_get_banner")));
 
         inv.setItem(28, createCustomBanner(Material.BLACK_BANNER));
@@ -44,7 +47,7 @@ public class BannerBaseInventoryProvider {
         return inv;
     }
 
-    private static ItemStack createCustomBanner(Material material) {
+    private static ItemStack createCustomBanner(final Material material) {
         return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 }

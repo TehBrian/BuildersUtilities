@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.listeners;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,54 +21,62 @@ import java.util.Set;
     black magic to me. If it ain't broke don't fix it, right?
  */
 @SuppressWarnings("unused")
-public class AdvancedFlyListener implements Listener {
+public final class AdvancedFlyListener implements Listener {
 
     private final BuildersUtilities main;
     private final Set<Player> slower = new HashSet<>();
     private final Set<Player> slower2 = new HashSet<>();
     private final HashMap<Player, Double> lastVelocity = new HashMap<>();
 
-    public AdvancedFlyListener(BuildersUtilities main) {
+    public AdvancedFlyListener(final BuildersUtilities main) {
         this.main = main;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onPlayerMove(PlayerMoveEvent event) {
+    public void onPlayerMove(final PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (!main.getPlayerDataManager().getPlayerData(player).hasAdvancedFlyEnabled()) return;
-        if (!player.isFlying()) return;
+        if (!this.main.getPlayerDataManager().getPlayerData(player).hasAdvancedFlyEnabled()
+                || !player.isFlying()) {
+            return;
+        }
 
-        Double speed = event.getFrom().clone().add(0, -event.getFrom().getY(), 0).distance(Objects.requireNonNull(event.getTo()).clone().add(0, -event.getTo().getY(), 0));
+        Location from = event.getFrom().clone();
+        Location to = Objects.requireNonNull(event.getTo()).clone();
 
-        if (Math.abs(event.getFrom().getYaw() - event.getTo().getYaw()) > 5) return;
-        if (Math.abs(event.getFrom().getPitch() - event.getTo().getPitch()) > 5) return;
+        Double speed = from.add(0, -event.getFrom().getY(), 0)
+                .distance(to.add(0, -event.getTo().getY(), 0));
 
-        if (lastVelocity.containsKey(player)) {
-            Double lastSpeed = lastVelocity.get(player);
+        if (Math.abs(event.getFrom().getYaw() - event.getTo().getYaw()) > 5
+                || Math.abs(event.getFrom().getPitch() - event.getTo().getPitch()) > 5) {
+            return;
+        }
+
+        if (this.lastVelocity.containsKey(player)) {
+            Double lastSpeed = this.lastVelocity.get(player);
             if (speed * 1.3 < lastSpeed) {
-                if (slower.contains(player)) {
-                    if (slower2.contains(player)) {
+                if (this.slower.contains(player)) {
+                    if (this.slower2.contains(player)) {
                         Vector v = player.getVelocity().clone();
                         v.setX(0);
                         v.setZ(0);
                         player.setVelocity(v);
-                        lastVelocity.put(player, 0.0);
-                        slower.remove(player);
-                        slower2.remove(player);
+                        this.lastVelocity.put(player, 0.0);
+                        this.slower.remove(player);
+                        this.slower2.remove(player);
                     } else {
-                        slower2.add(player);
+                        this.slower2.add(player);
                     }
                 } else {
-                    slower.add(player);
+                    this.slower.add(player);
                 }
             } else if (speed > lastSpeed) {
-                lastVelocity.put(player, speed);
-                slower.remove(player);
-                slower2.remove(player);
+                this.lastVelocity.put(player, speed);
+                this.slower.remove(player);
+                this.slower2.remove(player);
             }
         } else {
-            lastVelocity.put(player, speed);
-            slower.remove(player);
+            this.lastVelocity.put(player, speed);
+            this.slower.remove(player);
         }
     }
 }

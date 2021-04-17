@@ -18,14 +18,16 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
 
-public class BannerPatternInventoryListener implements Listener {
+public final class BannerPatternInventoryListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())) return;
+    public void onInventoryClick(final InventoryClickEvent event) {
+        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
+                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.banner.pattern_inventory_name"))
+                || !(event.getWhoClicked() instanceof Player)) {
+            return;
+        }
 
-        if (!event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.banner.pattern_inventory_name"))) return;
-        if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();
@@ -37,7 +39,9 @@ public class BannerPatternInventoryListener implements Listener {
 
         ItemMeta itemMeta = oldBanner.getItemMeta();
 
-        if (!(itemMeta instanceof BannerMeta)) return;
+        if (!(itemMeta instanceof BannerMeta)) {
+            return;
+        }
         BannerMeta bannerMeta = (BannerMeta) itemMeta;
 
         event.setCancelled(true);

@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class ItemUtils {
+public final class ItemUtils {
 
     private ItemUtils() {
     }
 
-    public static ItemStack create(Material material, int amount, String name, List<String> lore) {
+    public static ItemStack create(final Material material, final int amount, final String name, final List<String> lore) {
         ItemStack itemStack = new ItemStack(material);
         itemStack.setAmount(amount);
 
@@ -37,15 +37,15 @@ public class ItemUtils {
         return itemStack;
     }
 
-    public static ItemStack create(Material material, int amount, String name) {
+    public static ItemStack create(final Material material, final int amount, final String name) {
         return create(material, amount, name, null);
     }
 
-    public static ItemStack create(Material material, int amount, List<String> lore) {
+    public static ItemStack create(final Material material, final int amount, final List<String> lore) {
         return create(material, amount, null, lore);
     }
 
-    public static ItemStack createHead(String data, int amount, String name, List<String> lore) {
+    public static ItemStack createHead(final String data, final int amount, final String name, final List<String> lore) {
         ItemStack itemStack = create(Material.PLAYER_HEAD, amount, name, lore);
         SkullMeta itemMeta = (SkullMeta) itemStack.getItemMeta();
 
@@ -65,11 +65,11 @@ public class ItemUtils {
         return itemStack;
     }
 
-    public static ItemStack createHead(String data, int amount, String name) {
+    public static ItemStack createHead(final String data, final int amount, final String name) {
         return createHead(data, amount, name, new ArrayList<>());
     }
 
-    public static ItemStack colorLeatherArmor(ItemStack itemStack, int red, int green, int blue) {
+    public static ItemStack colorLeatherArmor(final ItemStack itemStack, final int red, final int green, final int blue) {
         LeatherArmorMeta itemMeta = (LeatherArmorMeta) itemStack.getItemMeta();
 
         Color color = Color.fromRGB(red, green, blue);
@@ -79,7 +79,7 @@ public class ItemUtils {
         return itemStack;
     }
 
-    public static ItemStack removeName(ItemStack itemStack) {
+    public static ItemStack removeName(final ItemStack itemStack) {
         ItemMeta meta = itemStack.getItemMeta();
         Objects.requireNonNull(meta).setDisplayName(null);
 

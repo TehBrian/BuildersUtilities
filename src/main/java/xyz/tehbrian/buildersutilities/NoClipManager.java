@@ -15,17 +15,21 @@ public class NoClipManager {
 
     private final BuildersUtilities main;
 
-    public NoClipManager(BuildersUtilities main) {
+    public NoClipManager(final BuildersUtilities main) {
         this.main = main;
         Bukkit.getScheduler().runTaskTimer(main, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {
-        for (PlayerData playerData : main.getPlayerDataManager().getPlayerDataMap().values()) {
-            if (!playerData.hasNoClipEnabled()) continue;
+        for (PlayerData playerData : this.main.getPlayerDataManager().getPlayerDataMap().values()) {
+            if (!playerData.hasNoClipEnabled()) {
+                continue;
+            }
 
             Player p = playerData.getPlayer();
-            if (!p.isOnline()) continue;
+            if (!p.isOnline()) {
+                continue;
+            }
 
             boolean noClip;
             boolean tp = false;
@@ -33,7 +37,7 @@ public class NoClipManager {
                 if (p.isOnGround() && p.isSneaking()) {
                     noClip = true;
                 } else {
-                    noClip = isNoClip(p);
+                    noClip = this.isNoClip(p);
                     if (p.isOnGround()) {
                         tp = true;
                     }
@@ -49,7 +53,7 @@ public class NoClipManager {
                 if (p.isOnGround()) {
                     noClip = true;
                 } else {
-                    noClip = isNoClip(p);
+                    noClip = this.isNoClip(p);
                 }
 
                 if (!noClip) {
@@ -59,7 +63,7 @@ public class NoClipManager {
         }
     }
 
-    private boolean isNoClip(Player p) {
+    private boolean isNoClip(final Player p) {
         return p.getLocation().add(+0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(-0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(0, 0, +0.4).getBlock().getType().isSolid()

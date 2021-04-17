@@ -16,14 +16,16 @@ import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings("unused")
-public class ArmorColorInventoryListener implements Listener {
+public final class ArmorColorInventoryListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())) return;
+    public void onInventoryClick(final InventoryClickEvent event) {
+        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
+                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"))
+                || !(event.getWhoClicked() instanceof Player)) {
+            return;
+        }
 
-        if (!event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"))) return;
-        if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();
