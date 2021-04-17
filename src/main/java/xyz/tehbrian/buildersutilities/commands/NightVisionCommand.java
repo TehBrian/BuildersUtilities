@@ -7,20 +7,20 @@ import org.bukkit.entity.Player;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
-public class NightVisionCommand implements CommandExecutor {
+public final class NightVisionCommand implements CommandExecutor {
 
     private final BuildersUtilities main;
 
-    public NightVisionCommand(BuildersUtilities main) {
+    public NightVisionCommand(final BuildersUtilities main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (main.getPlayerDataManager().getPlayerData(player).toggleNightVisionEnabled()) {
+            if (this.main.getPlayerDataManager().getPlayerData(player).toggleNightVisionEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.night_vision.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.night_vision.disabled"));

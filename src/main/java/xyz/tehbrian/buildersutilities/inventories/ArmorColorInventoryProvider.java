@@ -9,7 +9,7 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.List;
 import java.util.Objects;
 
-public class ArmorColorInventoryProvider {
+public final class ArmorColorInventoryProvider {
 
     private ArmorColorInventoryProvider() {
     }
@@ -40,7 +40,7 @@ public class ArmorColorInventoryProvider {
         return inv;
     }
 
-    public static void update(Inventory inv) {
+    public static void update(final Inventory inv) {
         int r = (Objects.requireNonNull(inv.getItem(31)).getAmount() - 1) * 8;
         int g = (Objects.requireNonNull(inv.getItem(32)).getAmount() - 1) * 8;
         int b = (Objects.requireNonNull(inv.getItem(33)).getAmount() - 1) * 8;

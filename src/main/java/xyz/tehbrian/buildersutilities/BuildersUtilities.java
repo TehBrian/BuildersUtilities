@@ -25,7 +25,7 @@ import xyz.tehbrian.restrictionhelper.RestrictionHelper;
 import xyz.tehbrian.restrictionhelper.restrictions.PlotSquaredRestriction;
 import xyz.tehbrian.restrictionhelper.restrictions.WorldGuardRestriction;
 
-public class BuildersUtilities extends JavaPlugin {
+public final class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
 
@@ -41,10 +41,10 @@ public class BuildersUtilities extends JavaPlugin {
     }
 
     public void onEnable() {
-        setupConfig();
-        setupEvents();
-        setupCommands();
-        setupRestrictions();
+        this.setupConfig();
+        this.setupEvents();
+        this.setupCommands();
+        this.setupRestrictions();
 
         new NoClipManager(this);
     }
@@ -54,7 +54,7 @@ public class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupEvents() {
-        PluginManager pm = getServer().getPluginManager();
+        PluginManager pm = this.getServer().getPluginManager();
 
         pm.registerEvents(new BannerBaseInventoryListener(), this);
         pm.registerEvents(new BannerColorInventoryListener(), this);
@@ -69,32 +69,32 @@ public class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupCommands() {
-        getCommand("advancedfly").setExecutor(new AdvancedFlyCommand(this));
-        getCommand("armorcolor").setExecutor(new ArmorColorCommand());
-        getCommand("banner").setExecutor(new BannerCommand());
-        getCommand("buildersutilities").setExecutor(new BuildersUtilitiesCommand());
-        getCommand("nightvision").setExecutor(new NightVisionCommand(this));
-        getCommand("noclip").setExecutor(new NoClipCommand(this));
-        getCommand("reloadbuildersutilities").setExecutor(new ReloadBuildersUtilitiesCommand(this));
+        this.getCommand("advancedfly").setExecutor(new AdvancedFlyCommand(this));
+        this.getCommand("armorcolor").setExecutor(new ArmorColorCommand());
+        this.getCommand("banner").setExecutor(new BannerCommand());
+        this.getCommand("buildersutilities").setExecutor(new BuildersUtilitiesCommand());
+        this.getCommand("nightvision").setExecutor(new NightVisionCommand(this));
+        this.getCommand("noclip").setExecutor(new NoClipCommand(this));
+        this.getCommand("reloadbuildersutilities").setExecutor(new ReloadBuildersUtilitiesCommand(this));
 
-        setPermissionMessages();
+        this.setPermissionMessages();
     }
 
     private void setupRestrictions() {
-        restrictionHelper = new RestrictionHelper(this.getLogger());
-        DebugLogger debugLogger = restrictionHelper.getDebugLogger();
+        this.restrictionHelper = new RestrictionHelper(this.getLogger());
+        DebugLogger debugLogger = this.restrictionHelper.getDebugLogger();
 
-        PluginManager pm = getServer().getPluginManager();
+        PluginManager pm = this.getServer().getPluginManager();
         if (pm.getPlugin("PlotSquared") != null) {
-            getLogger().info("PlotSquared detected. Registering permission validator..");
-            restrictionHelper.registerRestriction(new PlotSquaredRestriction(debugLogger));
-            getLogger().info("PlotSquared validator registered successfully!");
+            this.getLogger().info("PlotSquared detected. Registering permission validator..");
+            this.restrictionHelper.registerRestriction(new PlotSquaredRestriction(debugLogger));
+            this.getLogger().info("PlotSquared validator registered successfully!");
         }
 
         if (pm.getPlugin("WorldGuard") != null) {
-            getLogger().info("WorldGuard detected. Registering permission validator..");
-            restrictionHelper.registerRestriction(new WorldGuardRestriction(debugLogger));
-            getLogger().info("WorldGuard validator registered successfully!");
+            this.getLogger().info("WorldGuard detected. Registering permission validator..");
+            this.restrictionHelper.registerRestriction(new WorldGuardRestriction(debugLogger));
+            this.getLogger().info("WorldGuard validator registered successfully!");
         }
     }
 
@@ -119,20 +119,20 @@ public class BuildersUtilities extends JavaPlugin {
             return;
         }
 
-        for (String commandName : getDescription().getCommands().keySet()) {
-            PluginCommand command = getCommand(commandName);
+        for (String commandName : this.getDescription().getCommands().keySet()) {
+            PluginCommand command = this.getCommand(commandName);
             command.setPermissionMessage(permissionMessage);
         }
     }
 
     public PlayerDataManager getPlayerDataManager() {
-        if (playerDataManager == null) {
-            playerDataManager = new PlayerDataManager();
+        if (this.playerDataManager == null) {
+            this.playerDataManager = new PlayerDataManager();
         }
-        return playerDataManager;
+        return this.playerDataManager;
     }
 
     public RestrictionHelper getRestrictionHelper() {
-        return restrictionHelper;
+        return this.restrictionHelper;
     }
 }

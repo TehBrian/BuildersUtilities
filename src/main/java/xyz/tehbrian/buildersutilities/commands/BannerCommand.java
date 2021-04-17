@@ -6,10 +6,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.tehbrian.buildersutilities.inventories.banner.BannerBaseInventoryProvider;
 
-public class BannerCommand implements CommandExecutor {
+public final class BannerCommand implements CommandExecutor {
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 

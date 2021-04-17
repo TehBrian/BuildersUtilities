@@ -13,7 +13,7 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsInventoryProvider {
+public final class OptionsInventoryProvider {
 
     private static final ItemStack GREEN = ItemUtils.create(Material.LIME_STAINED_GLASS_PANE, 1, "&7");
     private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, "&7");
@@ -22,7 +22,7 @@ public class OptionsInventoryProvider {
     private OptionsInventoryProvider() {
     }
 
-    public static Inventory generate(Player player) {
+    public static Inventory generate(final Player player) {
         Inventory inv = Bukkit.createInventory(null, 27, MessageUtils.getMessage("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -34,7 +34,7 @@ public class OptionsInventoryProvider {
         return inv;
     }
 
-    public static void update(Inventory inv, Player p) {
+    public static void update(final Inventory inv, final Player p) {
         PlayerData playerData = BuildersUtilities.getInstance().getPlayerDataManager().getPlayerData(p);
 
         if (playerData.hasIronTrapdoorToggleEnabled()) {
@@ -121,7 +121,7 @@ public class OptionsInventoryProvider {
         While it's better than what we had before, ideally we shouldn't
         have magic strings, and I don't like how redundant this system still is.
      */
-    private static ItemStack createCustomItem(Material material, String optionKey, String statusKey) {
+    private static ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
         String name = MessageUtils.getMessage("messages.inventories.options." + optionKey + ".name");
 
         List<String> lore = new ArrayList<>();

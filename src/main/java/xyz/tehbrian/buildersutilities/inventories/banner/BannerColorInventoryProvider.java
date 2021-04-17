@@ -7,19 +7,22 @@ import org.bukkit.inventory.ItemStack;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
-public class BannerColorInventoryProvider {
+public final class BannerColorInventoryProvider {
 
     private BannerColorInventoryProvider() {
     }
 
-    public static Inventory generate(ItemStack oldBanner) {
+    public static Inventory generate(final ItemStack oldBanner) {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.banner.color_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
         }
 
-        inv.setItem(3, ItemUtils.createHead(MessageUtils.getMessage("heads.banner.randomize"), 1, MessageUtils.getMessage("messages.inventories.banner.randomize")));
+        inv.setItem(3, ItemUtils.createHead(
+                MessageUtils.getMessage("heads.banner.randomize"),
+                1,
+                MessageUtils.getMessage("messages.inventories.banner.randomize")));
         inv.setItem(5, oldBanner);
 
         inv.setItem(28, createCustomDye(Material.BLACK_DYE));
@@ -43,7 +46,7 @@ public class BannerColorInventoryProvider {
         return inv;
     }
 
-    private static ItemStack createCustomDye(Material material) {
+    private static ItemStack createCustomDye(final Material material) {
         return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 }

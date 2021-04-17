@@ -8,14 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /* TODO Use adventure. */
-public class MessageUtils {
+public final class MessageUtils {
 
     public static final Pattern HEX_PATTERN = Pattern.compile("&(#[A-Fa-f0-9]{6})");
 
     private MessageUtils() {
     }
 
-    public static String color(String string) {
+    public static String color(final String string) {
         return string == null ? null : replaceHex(ChatColor.translateAlternateColorCodes('&', string));
     }
 
@@ -27,11 +27,11 @@ public class MessageUtils {
         return str;
     }
 
-    public static String getMessage(String configKey) {
+    public static String getMessage(final String configKey) {
         return color(BuildersUtilities.getInstance().getConfig().getString(configKey));
     }
 
-    public static List<String> getMessageList(String configKey) {
+    public static List<String> getMessageList(final String configKey) {
         List<String> messages = BuildersUtilities.getInstance().getConfig().getStringList(configKey);
         messages.replaceAll(MessageUtils::color);
         return messages;

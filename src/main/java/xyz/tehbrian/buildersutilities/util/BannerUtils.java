@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class BannerUtils {
+public final class BannerUtils {
 
     private BannerUtils() {
     }
 
-    public static ItemStack createBanner(Material material, List<String> lore, Pattern pattern) {
+    public static ItemStack createBanner(final Material material, final List<String> lore, final Pattern pattern) {
         ItemStack item = ItemUtils.create(material, 1, lore);
 
         BannerMeta meta = (BannerMeta) item.getItemMeta();
@@ -28,7 +28,7 @@ public class BannerUtils {
         return item;
     }
 
-    public static void addPattern(ItemStack itemStack, Pattern pattern) {
+    public static void addPattern(final ItemStack itemStack, final Pattern pattern) {
         BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
 
         List<Pattern> patterns = Objects.requireNonNull(meta).getPatterns();
@@ -38,7 +38,7 @@ public class BannerUtils {
         itemStack.setItemMeta(meta);
     }
 
-    public static Material getBanner(DyeColor dyeColor) {
+    public static Material getBanner(final DyeColor dyeColor) {
         switch (dyeColor) {
             default:
             case WHITE:
@@ -76,12 +76,12 @@ public class BannerUtils {
         }
     }
 
-    public static Pattern getPattern(ItemStack itemStack) {
+    public static Pattern getPattern(final ItemStack itemStack) {
         BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
         return Objects.requireNonNull(meta).getPattern(0);
     }
 
-    public static DyeColor getDyeColor(Material material) {
+    public static DyeColor getDyeColor(final Material material) {
         switch (material) {
             default:
             case WHITE_BANNER:

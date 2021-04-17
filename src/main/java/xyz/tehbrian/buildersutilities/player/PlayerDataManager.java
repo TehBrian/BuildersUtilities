@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PlayerDataManager {
+public final class PlayerDataManager {
 
     private final Map<UUID, PlayerData> playerDataMap = new HashMap<>();
 
-    public PlayerData getPlayerData(UUID uuid) {
-        playerDataMap.computeIfAbsent(uuid, PlayerData::new);
-        return playerDataMap.get(uuid);
+    public PlayerData getPlayerData(final UUID uuid) {
+        this.playerDataMap.computeIfAbsent(uuid, PlayerData::new);
+        return this.playerDataMap.get(uuid);
     }
 
-    public PlayerData getPlayerData(Player player) {
-        return getPlayerData(player.getUniqueId());
+    public PlayerData getPlayerData(final Player player) {
+        return this.getPlayerData(player.getUniqueId());
     }
 
     public Map<UUID, PlayerData> getPlayerDataMap() {
-        return playerDataMap;
+        return this.playerDataMap;
     }
 }

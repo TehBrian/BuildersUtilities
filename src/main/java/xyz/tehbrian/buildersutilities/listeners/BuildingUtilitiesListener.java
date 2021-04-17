@@ -23,11 +23,11 @@ import xyz.tehbrian.restrictionhelper.ActionType;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public class BuildingUtilitiesListener implements Listener {
+public final class BuildingUtilitiesListener implements Listener {
 
     private final BuildersUtilities main;
 
-    public BuildingUtilitiesListener(BuildersUtilities main) {
+    public BuildingUtilitiesListener(final BuildersUtilities main) {
         this.main = main;
     }
 
@@ -38,24 +38,27 @@ public class BuildingUtilitiesListener implements Listener {
         because that's what people are used to, and change is scary.
      */
     @EventHandler(ignoreCancelled = true)
-    public void onIronTrapDoorInteract(PlayerInteractEvent event) {
+    public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!main.getPlayerDataManager().getPlayerData(player).hasIronTrapdoorToggleEnabled()) return;
+        if (!this.main.getPlayerDataManager().getPlayerData(player).hasIronTrapdoorToggleEnabled()) {
+            return;
+        }
 
         Block block = Objects.requireNonNull(event.getClickedBlock());
 
-        if (block.getType() != Material.IRON_TRAPDOOR) return;
-        if (player.getInventory().getItemInMainHand().getType() != Material.AIR) return;
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (event.getHand() != EquipmentSlot.HAND) return;
-        if (player.getGameMode() != GameMode.CREATIVE) return;
-        if (player.isSneaking()) return;
+        if (block.getType() != Material.IRON_TRAPDOOR
+                || player.getInventory().getItemInMainHand().getType() != Material.AIR
+                || event.getAction() != Action.RIGHT_CLICK_BLOCK
+                || event.getHand() != EquipmentSlot.HAND
+                || player.getGameMode() != GameMode.CREATIVE
+                || player.isSneaking()
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+            return;
+        }
 
-        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)) return;
-        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) return;
-
-        Bukkit.getScheduler().runTask(main, () -> {
+        Bukkit.getScheduler().runTask(this.main, () -> {
             TrapDoor trapDoor = (TrapDoor) block.getBlockData();
 
             trapDoor.setOpen(!trapDoor.isOpen());
@@ -66,19 +69,22 @@ public class BuildingUtilitiesListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onSlabBreak(BlockBreakEvent event) {
+    public void onSlabBreak(final BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (!main.getPlayerDataManager().getPlayerData(player).hasDoubleSlabBreakEnabled()) return;
-
-        if (!Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())) return;
-        if (player.getGameMode() != GameMode.CREATIVE) return;
-        if (!Tag.SLABS.isTagged(event.getBlock().getType())) return;
+        if (!this.main.getPlayerDataManager().getPlayerData(player).hasDoubleSlabBreakEnabled()
+                || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
+                || player.getGameMode() != GameMode.CREATIVE
+                || !Tag.SLABS.isTagged(event.getBlock().getType())) {
+            return;
+        }
 
         Slab blockData = (Slab) event.getBlock().getBlockData();
-        if (blockData.getType() != Slab.Type.DOUBLE) return;
+        if (blockData.getType() != Slab.Type.DOUBLE) {
+            return;
+        }
 
-        if (isTop(player, event.getBlock())) {
+        if (this.isTop(player, event.getBlock())) {
             blockData.setType(Slab.Type.BOTTOM);
         } else {
             blockData.setType(Slab.Type.TOP);
@@ -89,24 +95,27 @@ public class BuildingUtilitiesListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onGlazedTerracottaInteract(PlayerInteractEvent event) {
+    public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!main.getPlayerDataManager().getPlayerData(player).hasGlazedTerracottaRotateEnabled()) return;
+        if (!this.main.getPlayerDataManager().getPlayerData(player).hasGlazedTerracottaRotateEnabled()) {
+            return;
+        }
 
         Block block = Objects.requireNonNull(event.getClickedBlock());
 
-        if (!block.getType().name().toLowerCase().contains("glazed")) return;
-        if (player.getInventory().getItemInMainHand().getType() != Material.AIR) return;
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (event.getHand() != EquipmentSlot.HAND) return;
-        if (player.getGameMode() != GameMode.CREATIVE) return;
-        if (!player.isSneaking()) return;
+        if (!block.getType().name().toLowerCase().contains("glazed")
+                || player.getInventory().getItemInMainHand().getType() != Material.AIR
+                || event.getAction() != Action.RIGHT_CLICK_BLOCK
+                || event.getHand() != EquipmentSlot.HAND
+                || player.getGameMode() != GameMode.CREATIVE
+                || !player.isSneaking()
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+            return;
+        }
 
-        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)) return;
-        if (!main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) return;
-
-        Bukkit.getScheduler().runTask(main, () -> {
+        Bukkit.getScheduler().runTask(this.main, () -> {
             Directional directional = (Directional) block.getBlockData();
 
             switch (directional.getFacing()) {
@@ -122,6 +131,8 @@ public class BuildingUtilitiesListener implements Listener {
                 case WEST:
                     directional.setFacing(BlockFace.NORTH);
                     break;
+                default:
+                    break;
             }
 
             block.setBlockData(directional);
@@ -129,7 +140,7 @@ public class BuildingUtilitiesListener implements Listener {
         event.setCancelled(true);
     }
 
-    private boolean isTop(Player player, Block block) {
+    private boolean isTop(final Player player, final Block block) {
         Location start = player.getEyeLocation().clone();
         while (!start.getBlock().equals(block) && start.distance(player.getEyeLocation()) < 6.0D) {
             start.add(player.getEyeLocation().getDirection().multiply(0.05D));
