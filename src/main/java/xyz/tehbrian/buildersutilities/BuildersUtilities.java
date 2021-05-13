@@ -3,6 +3,7 @@ package xyz.tehbrian.buildersutilities;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.LoggerFactory;
 import xyz.tehbrian.buildersutilities.commands.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.commands.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.commands.BannerCommand;
@@ -19,17 +20,20 @@ import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorIn
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
 import xyz.tehbrian.buildersutilities.player.PlayerDataManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
-import xyz.tehbrian.restrictionhelper.DebugLogger;
-import xyz.tehbrian.restrictionhelper.RestrictionHelper;
-import xyz.tehbrian.restrictionhelper.restrictions.PlotSquaredRestriction;
-import xyz.tehbrian.restrictionhelper.restrictions.WorldGuardRestriction;
+import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
+import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
+import xyz.tehbrian.restrictionhelper.bukkit.restrictions.PlotSquaredRestriction;
+import xyz.tehbrian.restrictionhelper.bukkit.restrictions.WorldGuardRestriction;
+
+import java.util.Arrays;
+import java.util.List;
 
 public final class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
 
     private PlayerDataManager playerDataManager;
-    private RestrictionHelper restrictionHelper;
+    private BukkitRestrictionHelper restrictionHelper;
 
     public BuildersUtilities() {
         instance = this;
@@ -83,21 +87,15 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupRestrictions() {
-        this.restrictionHelper = new RestrictionHelper(this.getLogger());
-        DebugLogger debugLogger = this.restrictionHelper.getDebugLogger();
+        this.restrictionHelper = new BukkitRestrictionHelper();
 
         PluginManager pm = this.getServer().getPluginManager();
-        if (pm.getPlugin("PlotSquared") != null) {
-            this.getLogger().info("PlotSquared detected. Registering permission validator..");
-            this.restrictionHelper.registerRestriction(new PlotSquaredRestriction(debugLogger));
-            this.getLogger().info("PlotSquared validator registered successfully!");
-        }
 
-        if (pm.getPlugin("WorldGuard") != null) {
-            this.getLogger().info("WorldGuard detected. Registering permission validator..");
-            this.restrictionHelper.registerRestriction(new WorldGuardRestriction(debugLogger));
-            this.getLogger().info("WorldGuard validator registered successfully!");
-        }
+        var loader = new BukkitRestrictionLoader(LoggerFactory.getLogger(getLogger().getName()),
+                Arrays.asList(pm.getPlugins()),
+                List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class));
+
+        loader.load(this.restrictionHelper);
     }
 
     /*
@@ -134,7 +132,7 @@ public final class BuildersUtilities extends JavaPlugin {
         return this.playerDataManager;
     }
 
-    public RestrictionHelper getRestrictionHelper() {
+    public BukkitRestrictionHelper getRestrictionHelper() {
         return this.restrictionHelper;
     }
 }
