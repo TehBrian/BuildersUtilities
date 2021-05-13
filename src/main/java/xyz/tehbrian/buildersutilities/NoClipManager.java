@@ -27,7 +27,7 @@ public class NoClipManager {
             }
 
             Player p = user.getPlayer();
-            if (!p.isOnline()) {
+            if (p == null || !p.isOnline()) {
                 continue;
             }
 
