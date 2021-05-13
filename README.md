@@ -3,11 +3,11 @@ A fork of Arcaniax's BuildersUtilities with customizable messages and
 nicer-looking GUIs.
 
 * [Downloads](https://github.com/ItsTehBrian/BuildersUtilities/releases)
-* [Discord](https://tehbrian.xyz/discord)
+* [Discord](https://chat.tehbrian.xyz)
 
 ## What's different?
 
-- Every message is now easily configurable from the config.
+- Every message is easily configurable.
 - Both the permissions and the commands have been completely redone. (See below
   for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
@@ -29,9 +29,9 @@ A full list of commands and permissions can be found
    repository. `git clone https://github.com/ItsTehBrian/BuildersUtilities`
 3. Run `./gradlew build` in the main project directory.
 
-Congratulations! The built jar can be found in `build/libs`.
+The built jar can be found in `build/libs`.
 
 ## Contributing
 Feel free to submit a pull-request or file an issue! Even if it's just a small
 typo, all changes are welcome. If you're contributing code, please follow the
-project's code style, which is just IntelliJ's default code style.
+project's code style.
