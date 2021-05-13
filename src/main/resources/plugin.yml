@@ -1,11 +1,14 @@
 name: BuildersUtilities
+description: A lot of tiny features that help builders do their thing.
+authors: [ Arcaniax, TehBrian ]
+website: https://github.com/ItsTehBrian/BuildersUtilities
+
+softdepend: [ PlotSquared, WorldGuard ]
+
 version: ${version}
 main: xyz.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.16
-authors: [ Arcaniax, TehBrian ]
-description: A lot of tiny features that help builders do their thing.
-softdepend: [ PlotSquared, WorldGuard ]
-website: https://github.com/ItsTehBrian/BuildersUtilities
+
 commands:
   advancedfly:
     description: Toggles advanced fly.
@@ -37,6 +40,7 @@ commands:
     aliases: nc
     permission: buildersutilities.noclip
     usage: /<command>
+
 permissions:
   buildersutilities.advancedfly:
     description: Permission to use /advancedfly.
