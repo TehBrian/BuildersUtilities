@@ -18,7 +18,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.restrictionhelper.ActionType;
+import xyz.tehbrian.restrictionhelper.core.ActionType;
 
 import java.util.Objects;
 

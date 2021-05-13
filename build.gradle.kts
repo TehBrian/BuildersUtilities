@@ -34,7 +34,8 @@ dependencies {
     // To get, use BuildTools provided by Spigot.
     compileOnly("org.bukkit:craftbukkit:1.16.5-R0.1-SNAPSHOT")
 
-    implementation("xyz.tehbrian:restrictionhelper:0.1.0")
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
+    implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
 }
 
 tasks.processResources {
