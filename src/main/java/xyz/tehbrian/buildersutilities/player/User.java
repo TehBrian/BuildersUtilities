@@ -7,7 +7,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.UUID;
 
-public final class PlayerData {
+public final class User {
 
     private final UUID uuid;
 
@@ -19,7 +19,7 @@ public final class PlayerData {
     private boolean noClipEnabled = false;
     private boolean advancedFlyEnabled = false;
 
-    public PlayerData(final UUID uuid) {
+    public User(final UUID uuid) {
         this.uuid = uuid;
     }
 

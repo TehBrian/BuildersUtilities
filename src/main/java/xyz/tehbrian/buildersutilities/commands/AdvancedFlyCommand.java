@@ -20,7 +20,7 @@ public final class AdvancedFlyCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (this.main.getPlayerDataManager().getPlayerData(player).toggleAdvancedFlyEnabled()) {
+            if (this.main.getUserManager().getUserData(player).toggleAdvancedFlyEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.disabled"));

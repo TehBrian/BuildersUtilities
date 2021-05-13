@@ -18,7 +18,7 @@ import xyz.tehbrian.buildersutilities.listeners.inventories.OptionsInventoryList
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
-import xyz.tehbrian.buildersutilities.player.PlayerDataManager;
+import xyz.tehbrian.buildersutilities.player.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
@@ -32,7 +32,7 @@ public final class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
 
-    private PlayerDataManager playerDataManager;
+    private UserManager userManager;
     private BukkitRestrictionHelper restrictionHelper;
 
     public BuildersUtilities() {
@@ -125,11 +125,11 @@ public final class BuildersUtilities extends JavaPlugin {
         }
     }
 
-    public PlayerDataManager getPlayerDataManager() {
-        if (this.playerDataManager == null) {
-            this.playerDataManager = new PlayerDataManager();
+    public UserManager getUserManager() {
+        if (this.userManager == null) {
+            this.userManager = new UserManager();
         }
-        return this.playerDataManager;
+        return this.userManager;
     }
 
     public BukkitRestrictionHelper getRestrictionHelper() {

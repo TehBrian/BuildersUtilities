@@ -20,7 +20,7 @@ public final class NightVisionCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (this.main.getPlayerDataManager().getPlayerData(player).toggleNightVisionEnabled()) {
+            if (this.main.getUserManager().getUserData(player).toggleNightVisionEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.night_vision.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.night_vision.disabled"));

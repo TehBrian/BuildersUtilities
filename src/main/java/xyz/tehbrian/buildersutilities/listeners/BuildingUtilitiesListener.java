@@ -41,7 +41,7 @@ public final class BuildingUtilitiesListener implements Listener {
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getPlayerDataManager().getPlayerData(player).hasIronTrapdoorToggleEnabled()) {
+        if (!this.main.getUserManager().getUserData(player).hasIronTrapdoorToggleEnabled()) {
             return;
         }
 
@@ -72,7 +72,7 @@ public final class BuildingUtilitiesListener implements Listener {
     public void onSlabBreak(final BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getPlayerDataManager().getPlayerData(player).hasDoubleSlabBreakEnabled()
+        if (!this.main.getUserManager().getUserData(player).hasDoubleSlabBreakEnabled()
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE
                 || !Tag.SLABS.isTagged(event.getBlock().getType())) {
@@ -98,7 +98,7 @@ public final class BuildingUtilitiesListener implements Listener {
     public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getPlayerDataManager().getPlayerData(player).hasGlazedTerracottaRotateEnabled()) {
+        if (!this.main.getUserManager().getUserData(player).hasGlazedTerracottaRotateEnabled()) {
             return;
         }
 

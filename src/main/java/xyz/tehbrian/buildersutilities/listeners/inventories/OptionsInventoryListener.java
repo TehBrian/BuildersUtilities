@@ -38,37 +38,37 @@ public final class OptionsInventoryListener implements Listener {
             case 1:
             case 10:
             case 19:
-                this.main.getPlayerDataManager().getPlayerData(player).toggleIronTrapdoorToggleEnabled();
+                this.main.getUserManager().getUserData(player).toggleIronTrapdoorToggleEnabled();
                 break;
             case 2:
             case 11:
             case 20:
-                this.main.getPlayerDataManager().getPlayerData(player).toggleDoubleSlabBreakEnabled();
+                this.main.getUserManager().getUserData(player).toggleDoubleSlabBreakEnabled();
                 break;
             case 3:
             case 12:
             case 21:
-                this.main.getPlayerDataManager().getPlayerData(player).toggleGlazedTerracottaRotateEnabled();
+                this.main.getUserManager().getUserData(player).toggleGlazedTerracottaRotateEnabled();
                 break;
             case 5:
             case 14:
             case 23:
                 if (player.hasPermission("buildersutilities.nightvision")) {
-                    this.main.getPlayerDataManager().getPlayerData(player).toggleNightVisionEnabled();
+                    this.main.getUserManager().getUserData(player).toggleNightVisionEnabled();
                 }
                 break;
             case 6:
             case 15:
             case 24:
                 if (player.hasPermission("buildersutilities.noclip")) {
-                    this.main.getPlayerDataManager().getPlayerData(player).toggleNoClipEnabled();
+                    this.main.getUserManager().getUserData(player).toggleNoClipEnabled();
                 }
                 break;
             case 7:
             case 16:
             case 25:
                 if (player.hasPermission("buildersutilities.advancedfly")) {
-                    this.main.getPlayerDataManager().getPlayerData(player).toggleAdvancedFlyEnabled();
+                    this.main.getUserManager().getUserData(player).toggleAdvancedFlyEnabled();
                 }
                 break;
             default:

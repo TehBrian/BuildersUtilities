@@ -3,7 +3,7 @@ package xyz.tehbrian.buildersutilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.player.PlayerData;
+import xyz.tehbrian.buildersutilities.player.User;
 
 /*
     TODO: Clean up this code.
@@ -21,12 +21,12 @@ public class NoClipManager {
     }
 
     private void checkForBlocks() {
-        for (PlayerData playerData : this.main.getPlayerDataManager().getPlayerDataMap().values()) {
-            if (!playerData.hasNoClipEnabled()) {
+        for (User user : this.main.getUserManager().getUserMap().values()) {
+            if (!user.hasNoClipEnabled()) {
                 continue;
             }
 
-            Player p = playerData.getPlayer();
+            Player p = user.getPlayer();
             if (!p.isOnline()) {
                 continue;
             }
