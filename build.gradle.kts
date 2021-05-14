@@ -36,6 +36,8 @@ dependencies {
 
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
     implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
+
+    implementation("com.google.inject:guice:5.0.1")
 }
 
 tasks.processResources {
