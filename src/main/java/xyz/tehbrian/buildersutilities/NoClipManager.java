@@ -14,7 +14,7 @@ import xyz.tehbrian.buildersutilities.user.UserManager;
     player each tick super resource intensive?
     I feel like a lot of the code is redundant.
  */
-public class NoClipManager {
+public final class NoClipManager {
 
     private final BuildersUtilities main;
     private final UserManager userManager;
@@ -25,7 +25,10 @@ public class NoClipManager {
             final @NonNull UserManager userManager) {
         this.main = main;
         this.userManager = userManager;
-        Bukkit.getScheduler().runTaskTimer(main, this::checkForBlocks, 1L, 1L);
+    }
+
+    public void start() {
+        Bukkit.getScheduler().runTaskTimer(this.main, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {

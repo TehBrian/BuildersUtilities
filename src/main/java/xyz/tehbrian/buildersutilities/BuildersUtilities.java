@@ -68,7 +68,7 @@ public final class BuildersUtilities extends JavaPlugin {
         this.setupCommands();
         this.setupRestrictions();
 
-        this.injector.getInstance(NoClipManager.class);
+        this.injector.getInstance(NoClipManager.class).start();
     }
 
     private void setupConfig() {
