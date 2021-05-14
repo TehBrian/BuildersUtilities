@@ -48,7 +48,7 @@ public final class NoClipManager {
                 if (p.isOnGround() && p.isSneaking()) {
                     noClip = true;
                 } else {
-                    noClip = this.isNoClip(p);
+                    noClip = this.shouldNoClip(p);
                     if (p.isOnGround()) {
                         tp = true;
                     }
@@ -64,7 +64,7 @@ public final class NoClipManager {
                 if (p.isOnGround()) {
                     noClip = true;
                 } else {
-                    noClip = this.isNoClip(p);
+                    noClip = this.shouldNoClip(p);
                 }
 
                 if (!noClip) {
@@ -74,7 +74,7 @@ public final class NoClipManager {
         }
     }
 
-    private boolean isNoClip(final Player p) {
+    private boolean shouldNoClip(final Player p) {
         return p.getLocation().add(+0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(-0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(0, 0, +0.4).getBlock().getType().isSolid()
