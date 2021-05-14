@@ -20,7 +20,7 @@ import xyz.tehbrian.buildersutilities.listeners.inventories.OptionsInventoryList
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
-import xyz.tehbrian.buildersutilities.player.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
