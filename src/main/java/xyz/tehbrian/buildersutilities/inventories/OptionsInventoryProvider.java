@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
@@ -22,20 +21,20 @@ public final class OptionsInventoryProvider {
     private OptionsInventoryProvider() {
     }
 
-    public static Inventory generate(final Player player) {
+    public static Inventory generate(final User user) {
         Inventory inv = Bukkit.createInventory(null, 27, MessageUtils.getMessage("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
         }
 
-        update(inv, player);
+        update(inv, user);
 
         return inv;
     }
 
-    public static void update(final Inventory inv, final Player p) {
-        User user = BuildersUtilities.getInstance().getUserManager().getUserData(p);
+    public static void update(final Inventory inv, final User user) {
+        Player p = user.getPlayer();
 
         if (user.hasIronDoorToggleEnabled()) {
             inv.setItem(1, GREEN);

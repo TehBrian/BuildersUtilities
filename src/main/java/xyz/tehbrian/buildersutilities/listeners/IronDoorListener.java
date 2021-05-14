@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.listeners;
 
+import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -12,7 +13,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
 
 import java.util.Objects;
@@ -21,9 +25,18 @@ import java.util.Objects;
 public final class IronDoorListener implements Listener {
 
     private final BuildersUtilities main;
+    private final UserManager userManager;
+    private final BukkitRestrictionHelper restrictionHelper;
 
-    public IronDoorListener(final BuildersUtilities main) {
+    @Inject
+    public IronDoorListener(
+            final @NonNull BuildersUtilities main,
+            final @NonNull UserManager userManager,
+            final @NonNull BukkitRestrictionHelper restrictionHelper
+    ) {
         this.main = main;
+        this.userManager = userManager;
+        this.restrictionHelper = restrictionHelper;
     }
 
     /*
@@ -36,7 +49,7 @@ public final class IronDoorListener implements Listener {
     public void onIronDoorInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getUserManager().getUserData(player).hasIronDoorToggleEnabled()) {
+        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()) {
             return;
         }
 
@@ -48,8 +61,8 @@ public final class IronDoorListener implements Listener {
                 || event.getHand() != EquipmentSlot.HAND
                 || player.getGameMode() != GameMode.CREATIVE
                 || player.isSneaking()
-                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
             return;
         }
 
@@ -67,7 +80,7 @@ public final class IronDoorListener implements Listener {
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getUserManager().getUserData(player).hasIronDoorToggleEnabled()) {
+        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()) {
             return;
         }
 
@@ -79,8 +92,8 @@ public final class IronDoorListener implements Listener {
                 || event.getHand() != EquipmentSlot.HAND
                 || player.getGameMode() != GameMode.CREATIVE
                 || player.isSneaking()
-                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
             return;
         }
 

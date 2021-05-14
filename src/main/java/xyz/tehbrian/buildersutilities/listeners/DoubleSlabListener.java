@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.listeners;
 
+import com.google.inject.Inject;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Tag;
@@ -9,22 +10,26 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final UserManager userManager;
 
-    public DoubleSlabListener(final BuildersUtilities main) {
-        this.main = main;
+    @Inject
+    public DoubleSlabListener(
+            final @NonNull UserManager userManager
+    ) {
+        this.userManager = userManager;
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onDoubleSlabBreak(final BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getUserManager().getUserData(player).hasDoubleSlabBreakEnabled()
+        if (!this.userManager.getUser(player).hasDoubleSlabBreakEnabled()
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE
                 || !Tag.SLABS.isTagged(event.getBlock().getType())) {

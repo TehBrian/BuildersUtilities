@@ -1,18 +1,21 @@
 package xyz.tehbrian.buildersutilities.commands;
 
+import com.google.inject.Inject;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 public final class AdvancedFlyCommand implements CommandExecutor {
 
-    private final BuildersUtilities main;
+    private final UserManager userManager;
 
-    public AdvancedFlyCommand(final BuildersUtilities main) {
-        this.main = main;
+    @Inject
+    public AdvancedFlyCommand(final @NonNull UserManager userManager) {
+        this.userManager = userManager;
     }
 
     @Override
@@ -20,7 +23,7 @@ public final class AdvancedFlyCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (this.main.getUserManager().getUserData(player).toggleAdvancedFlyEnabled()) {
+            if (this.userManager.getUser(player).toggleAdvancedFlyEnabled()) {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.enabled"));
             } else {
                 player.sendMessage(MessageUtils.getMessage("messages.commands.advanced_fly.disabled"));

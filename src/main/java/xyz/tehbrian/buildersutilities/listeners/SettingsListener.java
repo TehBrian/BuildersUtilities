@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.listeners;
 
+import com.google.inject.Inject;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.util.Objects;
@@ -21,7 +23,8 @@ public final class SettingsListener implements Listener {
 
     private final BuildersUtilities main;
 
-    public SettingsListener(final BuildersUtilities main) {
+    @Inject
+    public SettingsListener(final @NonNull BuildersUtilities main) {
         this.main = main;
     }
 

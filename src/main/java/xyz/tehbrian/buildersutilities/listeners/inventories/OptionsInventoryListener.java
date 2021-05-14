@@ -1,12 +1,14 @@
 package xyz.tehbrian.buildersutilities.listeners.inventories;
 
+import com.google.inject.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
@@ -14,10 +16,13 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class OptionsInventoryListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final UserManager userManager;
 
-    public OptionsInventoryListener(final BuildersUtilities main) {
-        this.main = main;
+    @Inject
+    public OptionsInventoryListener(
+            final @NonNull UserManager userManager
+    ) {
+        this.userManager = userManager;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -38,43 +43,43 @@ public final class OptionsInventoryListener implements Listener {
             case 1:
             case 10:
             case 19:
-                this.main.getUserManager().getUserData(player).toggleIronDoorToggleEnabled();
+                this.userManager.getUser(player).toggleIronDoorToggleEnabled();
                 break;
             case 2:
             case 11:
             case 20:
-                this.main.getUserManager().getUserData(player).toggleDoubleSlabBreakEnabled();
+                this.userManager.getUser(player).toggleDoubleSlabBreakEnabled();
                 break;
             case 3:
             case 12:
             case 21:
-                this.main.getUserManager().getUserData(player).toggleGlazedTerracottaRotateEnabled();
+                this.userManager.getUser(player).toggleGlazedTerracottaRotateEnabled();
                 break;
             case 5:
             case 14:
             case 23:
                 if (player.hasPermission("buildersutilities.nightvision")) {
-                    this.main.getUserManager().getUserData(player).toggleNightVisionEnabled();
+                    this.userManager.getUser(player).toggleNightVisionEnabled();
                 }
                 break;
             case 6:
             case 15:
             case 24:
                 if (player.hasPermission("buildersutilities.noclip")) {
-                    this.main.getUserManager().getUserData(player).toggleNoClipEnabled();
+                    this.userManager.getUser(player).toggleNoClipEnabled();
                 }
                 break;
             case 7:
             case 16:
             case 25:
                 if (player.hasPermission("buildersutilities.advancedfly")) {
-                    this.main.getUserManager().getUserData(player).toggleAdvancedFlyEnabled();
+                    this.userManager.getUser(player).toggleAdvancedFlyEnabled();
                 }
                 break;
             default:
                 return;
         }
 
-        OptionsInventoryProvider.update(event.getView().getTopInventory(), player);
+        OptionsInventoryProvider.update(event.getView().getTopInventory(), this.userManager.getUser(player));
     }
 }

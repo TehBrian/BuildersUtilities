@@ -1,9 +1,12 @@
 package xyz.tehbrian.buildersutilities;
 
+import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.user.User;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 
 /*
     TODO: Clean up this code.
@@ -14,14 +17,19 @@ import xyz.tehbrian.buildersutilities.user.User;
 public class NoClipManager {
 
     private final BuildersUtilities main;
+    private final UserManager userManager;
 
-    public NoClipManager(final BuildersUtilities main) {
+    @Inject
+    public NoClipManager(
+            final @NonNull BuildersUtilities main,
+            final @NonNull UserManager userManager) {
         this.main = main;
+        this.userManager = userManager;
         Bukkit.getScheduler().runTaskTimer(main, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {
-        for (User user : this.main.getUserManager().getUserMap().values()) {
+        for (User user : this.userManager.getUserMap().values()) {
             if (!user.hasNoClipEnabled()) {
                 continue;
             }

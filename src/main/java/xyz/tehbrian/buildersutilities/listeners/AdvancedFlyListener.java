@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.listeners;
 
+import com.google.inject.Inject;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,7 +8,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,19 +25,23 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public final class AdvancedFlyListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final UserManager userManager;
+
     private final Set<Player> slower = new HashSet<>();
     private final Set<Player> slower2 = new HashSet<>();
     private final HashMap<Player, Double> lastVelocity = new HashMap<>();
 
-    public AdvancedFlyListener(final BuildersUtilities main) {
-        this.main = main;
+    @Inject
+    public AdvancedFlyListener(
+            final @NonNull UserManager userManager
+    ) {
+        this.userManager = userManager;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerMove(final PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (!this.main.getUserManager().getUserData(player).hasAdvancedFlyEnabled()
+        if (!this.userManager.getUser(player).hasAdvancedFlyEnabled()
                 || !player.isFlying()) {
             return;
         }

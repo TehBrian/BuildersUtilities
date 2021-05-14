@@ -1,15 +1,25 @@
 package xyz.tehbrian.buildersutilities;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Key;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slf4j.LoggerFactory;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.slf4j.Logger;
 import xyz.tehbrian.buildersutilities.commands.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.commands.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.commands.BannerCommand;
 import xyz.tehbrian.buildersutilities.commands.BuildersUtilitiesCommand;
+import xyz.tehbrian.buildersutilities.commands.EmptyTabCompleter;
 import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
+import xyz.tehbrian.buildersutilities.inject.PluginModule;
+import xyz.tehbrian.buildersutilities.inject.RestrictionHelperModule;
+import xyz.tehbrian.buildersutilities.inject.UserModule;
 import xyz.tehbrian.buildersutilities.listeners.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.listeners.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.listeners.GlazedTerracottaListener;
@@ -20,7 +30,6 @@ import xyz.tehbrian.buildersutilities.listeners.inventories.OptionsInventoryList
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.banner.BannerPatternInventoryListener;
-import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
@@ -28,14 +37,16 @@ import xyz.tehbrian.restrictionhelper.bukkit.restrictions.PlotSquaredRestriction
 import xyz.tehbrian.restrictionhelper.bukkit.restrictions.WorldGuardRestriction;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class BuildersUtilities extends JavaPlugin {
 
     private static BuildersUtilities instance;
 
-    private UserManager userManager;
-    private BukkitRestrictionHelper restrictionHelper;
+    @MonotonicNonNull
+    private Injector injector;
 
     public BuildersUtilities() {
         instance = this;
@@ -46,12 +57,18 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     public void onEnable() {
+        this.injector = Guice.createInjector(
+                new PluginModule(this),
+                new UserModule(),
+                new RestrictionHelperModule()
+        );
+
         this.setupConfig();
         this.setupEvents();
         this.setupCommands();
         this.setupRestrictions();
 
-        new NoClipManager(this);
+        this.injector.getInstance(NoClipManager.class);
     }
 
     private void setupConfig() {
@@ -59,47 +76,71 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupEvents() {
+        registerEventListeners(
+                Key.get(BannerBaseInventoryListener.class),
+                Key.get(BannerColorInventoryListener.class),
+                Key.get(BannerPatternInventoryListener.class),
+                Key.get(ArmorColorInventoryListener.class),
+                Key.get(OptionsInventoryListener.class),
+                Key.get(AdvancedFlyListener.class),
+                Key.get(DoubleSlabListener.class),
+                Key.get(GlazedTerracottaListener.class),
+                Key.get(IronDoorListener.class),
+                Key.get(SettingsListener.class)
+        );
+    }
+
+    @SafeVarargs
+    private void registerEventListeners(final Key<? extends Listener>... listeners) {
         PluginManager pm = this.getServer().getPluginManager();
 
-        pm.registerEvents(new BannerBaseInventoryListener(), this);
-        pm.registerEvents(new BannerColorInventoryListener(), this);
-        pm.registerEvents(new BannerPatternInventoryListener(), this);
-
-        pm.registerEvents(new ArmorColorInventoryListener(), this);
-        pm.registerEvents(new OptionsInventoryListener(this), this);
-
-        pm.registerEvents(new AdvancedFlyListener(this), this);
-        pm.registerEvents(new DoubleSlabListener(this), this);
-        pm.registerEvents(new GlazedTerracottaListener(this), this);
-        pm.registerEvents(new IronDoorListener(this), this);
-        pm.registerEvents(new SettingsListener(this), this);
+        for (Key<? extends Listener> listener : listeners) {
+            Listener instance = this.injector.getInstance(listener);
+            pm.registerEvents(instance, this);
+        }
     }
 
     private void setupCommands() {
-        this.getCommand("advancedfly").setExecutor(new AdvancedFlyCommand(this));
-        this.getCommand("armorcolor").setExecutor(new ArmorColorCommand());
-        this.getCommand("banner").setExecutor(new BannerCommand());
+        Map<String, Key<? extends CommandExecutor>> toRegister = new HashMap<>();
 
-        var buildersUtilitiesCommand = new BuildersUtilitiesCommand(this);
+        toRegister.put("advancedfly", Key.get(AdvancedFlyCommand.class));
+        toRegister.put("armorcolor", Key.get(ArmorColorCommand.class));
+        toRegister.put("banner", Key.get(BannerCommand.class));
+        toRegister.put("nightvision", Key.get(NightVisionCommand.class));
+        toRegister.put("noclip", Key.get(NoClipCommand.class));
+
+        this.registerCommandsWithEmptyTabCompleter(toRegister);
+
+        var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
         this.getCommand("buildersutilities").setExecutor(buildersUtilitiesCommand);
         this.getCommand("buildersutilities").setTabCompleter(buildersUtilitiesCommand);
-
-        this.getCommand("nightvision").setExecutor(new NightVisionCommand(this));
-        this.getCommand("noclip").setExecutor(new NoClipCommand(this));
 
         this.setPermissionMessages();
     }
 
+    private void registerCommandsWithEmptyTabCompleter(final Map<String, Key<? extends CommandExecutor>> commands) {
+        EmptyTabCompleter emptyTabCompleter = new EmptyTabCompleter();
+
+        for (String commandName : commands.keySet()) {
+            PluginCommand command = this.getCommand(commandName);
+
+            CommandExecutor instance = this.injector.getInstance(commands.get(commandName));
+            command.setExecutor(instance);
+            command.setTabCompleter(emptyTabCompleter);
+        }
+    }
+
     private void setupRestrictions() {
-        this.restrictionHelper = new BukkitRestrictionHelper();
+        var restrictionHelper = this.injector.getInstance(BukkitRestrictionHelper.class);
 
         PluginManager pm = this.getServer().getPluginManager();
 
-        var loader = new BukkitRestrictionLoader(LoggerFactory.getLogger(getLogger().getName()),
+        Logger logger = this.injector.getInstance(Logger.class);
+        var loader = new BukkitRestrictionLoader(logger,
                 Arrays.asList(pm.getPlugins()),
                 List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class));
 
-        loader.load(this.restrictionHelper);
+        loader.load(restrictionHelper);
     }
 
     /*
@@ -127,16 +168,5 @@ public final class BuildersUtilities extends JavaPlugin {
             PluginCommand command = this.getCommand(commandName);
             command.setPermissionMessage(permissionMessage);
         }
-    }
-
-    public UserManager getUserManager() {
-        if (this.userManager == null) {
-            this.userManager = new UserManager();
-        }
-        return this.userManager;
-    }
-
-    public BukkitRestrictionHelper getRestrictionHelper() {
-        return this.restrictionHelper;
     }
 }

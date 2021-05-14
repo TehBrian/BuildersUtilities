@@ -1,12 +1,15 @@
 package xyz.tehbrian.buildersutilities.commands;
 
+import com.google.inject.Inject;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
+import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.ArrayList;
@@ -16,9 +19,15 @@ import java.util.Locale;
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
     private final BuildersUtilities main;
+    private final UserManager userManager;
 
-    public BuildersUtilitiesCommand(final BuildersUtilities main) {
+    @Inject
+    public BuildersUtilitiesCommand(
+            final @NonNull BuildersUtilities main,
+            final @NonNull UserManager userManager
+    ) {
         this.main = main;
+        this.userManager = userManager;
     }
 
     @Override
@@ -35,7 +44,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            player.openInventory(OptionsInventoryProvider.generate(player));
+            player.openInventory(OptionsInventoryProvider.generate(this.userManager.getUser(player)));
         }
         return true;
     }
