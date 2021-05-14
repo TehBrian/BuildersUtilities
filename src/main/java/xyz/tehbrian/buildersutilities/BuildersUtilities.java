@@ -11,7 +11,9 @@ import xyz.tehbrian.buildersutilities.commands.BuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
 import xyz.tehbrian.buildersutilities.listeners.AdvancedFlyListener;
-import xyz.tehbrian.buildersutilities.listeners.BuildingUtilitiesListener;
+import xyz.tehbrian.buildersutilities.listeners.DoubleSlabListener;
+import xyz.tehbrian.buildersutilities.listeners.GlazedTerracottaListener;
+import xyz.tehbrian.buildersutilities.listeners.IronDoorListener;
 import xyz.tehbrian.buildersutilities.listeners.SettingsListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.listeners.inventories.OptionsInventoryListener;
@@ -67,7 +69,9 @@ public final class BuildersUtilities extends JavaPlugin {
         pm.registerEvents(new OptionsInventoryListener(this), this);
 
         pm.registerEvents(new AdvancedFlyListener(this), this);
-        pm.registerEvents(new BuildingUtilitiesListener(this), this);
+        pm.registerEvents(new DoubleSlabListener(this), this);
+        pm.registerEvents(new GlazedTerracottaListener(this), this);
+        pm.registerEvents(new IronDoorListener(this), this);
         pm.registerEvents(new SettingsListener(this), this);
     }
 
