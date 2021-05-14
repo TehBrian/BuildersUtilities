@@ -8,6 +8,7 @@ import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.entity.Player;
@@ -38,10 +39,41 @@ public final class BuildingUtilitiesListener implements Listener {
         because that's what people are used to, and change is scary.
      */
     @EventHandler(ignoreCancelled = true)
+    public void onIronDoorInteract(final PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+
+        if (!this.main.getUserManager().getUserData(player).hasIronDoorToggleEnabled()) {
+            return;
+        }
+
+        Block block = Objects.requireNonNull(event.getClickedBlock());
+
+        if (block.getType() != Material.IRON_DOOR
+                || player.getInventory().getItemInMainHand().getType() != Material.AIR
+                || event.getAction() != Action.RIGHT_CLICK_BLOCK
+                || event.getHand() != EquipmentSlot.HAND
+                || player.getGameMode() != GameMode.CREATIVE
+                || player.isSneaking()
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+                || !this.main.getRestrictionHelper().checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+            return;
+        }
+
+        Bukkit.getScheduler().runTask(this.main, () -> {
+            Door door = (Door) block.getBlockData();
+
+            door.setOpen(!door.isOpen());
+
+            block.setBlockData(door);
+        });
+        event.setCancelled(true);
+    }
+
+    @EventHandler(ignoreCancelled = true)
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (!this.main.getUserManager().getUserData(player).hasIronTrapdoorToggleEnabled()) {
+        if (!this.main.getUserManager().getUserData(player).hasIronDoorToggleEnabled()) {
             return;
         }
 

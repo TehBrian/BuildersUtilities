@@ -38,7 +38,7 @@ public final class OptionsInventoryListener implements Listener {
             case 1:
             case 10:
             case 19:
-                this.main.getUserManager().getUserData(player).toggleIronTrapdoorToggleEnabled();
+                this.main.getUserManager().getUserData(player).toggleIronDoorToggleEnabled();
                 break;
             case 2:
             case 11:

@@ -37,13 +37,13 @@ public final class OptionsInventoryProvider {
     public static void update(final Inventory inv, final Player p) {
         User user = BuildersUtilities.getInstance().getUserManager().getUserData(p);
 
-        if (user.hasIronTrapdoorToggleEnabled()) {
+        if (user.hasIronDoorToggleEnabled()) {
             inv.setItem(1, GREEN);
-            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_trapdoor_toggle", "enabled"));
+            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
             inv.setItem(19, GREEN);
         } else {
             inv.setItem(1, RED);
-            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_trapdoor_toggle", "disabled"));
+            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "disabled"));
             inv.setItem(19, RED);
         }
 

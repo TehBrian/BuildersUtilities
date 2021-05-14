@@ -92,13 +92,13 @@ messages:
           - "&c&lDisabled"
           - "&7"
           - "&7Click to toggle"
-      iron_trapdoor_toggle:
-        name: "&b&lIron Trapdoor Toggle"
+      iron_door_toggle:
+        name: "&b&lIron Door Toggle"
         description:
-          - "&3 Allows you to toggle iron"
-          - "&3trapdoors open and closed."
+          - "&3 Allows you to toggle iron doors"
+          - "&3and iron trapdoors open and closed."
           - "&7 To use, right click on an iron"
-          - "&7trapdoor while not holding anything."
+          - "&7door while not holding anything."
       double_slab_break:
         name: "&b&lDouble Slab Break"
         description:

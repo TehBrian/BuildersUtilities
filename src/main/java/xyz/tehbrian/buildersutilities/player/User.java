@@ -11,7 +11,7 @@ public final class User {
 
     private final UUID uuid;
 
-    private boolean ironTrapdoorToggleEnabled = true;
+    private boolean ironDoorToggleEnabled = true;
     private boolean doubleSlabBreakEnabled = true;
     private boolean glazedTerracottaRotateEnabled = true;
 
@@ -31,17 +31,17 @@ public final class User {
         return Bukkit.getPlayer(this.uuid);
     }
 
-    public boolean hasIronTrapdoorToggleEnabled() {
-        return this.ironTrapdoorToggleEnabled;
+    public boolean hasIronDoorToggleEnabled() {
+        return this.ironDoorToggleEnabled;
     }
 
-    public void setIronTrapdoorToggleEnabled(final boolean ironTrapdoorToggleEnabled) {
-        this.ironTrapdoorToggleEnabled = ironTrapdoorToggleEnabled;
+    public void setIronDoorToggleEnabled(final boolean ironDoorToggleEnabled) {
+        this.ironDoorToggleEnabled = ironDoorToggleEnabled;
     }
 
-    public boolean toggleIronTrapdoorToggleEnabled() {
-        this.setIronTrapdoorToggleEnabled(!this.hasIronTrapdoorToggleEnabled());
-        return this.hasIronTrapdoorToggleEnabled();
+    public boolean toggleIronDoorToggleEnabled() {
+        this.setIronDoorToggleEnabled(!this.hasIronDoorToggleEnabled());
+        return this.hasIronDoorToggleEnabled();
     }
 
     public boolean hasDoubleSlabBreakEnabled() {
