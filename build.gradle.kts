@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "xyz.tehbrian"
-version = "1.2.1"
+version = "1.3.0-BETA"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
