@@ -43,25 +43,25 @@ commands:
 
 permissions:
   buildersutilities.advancedfly:
-    description: Permission to use /advancedfly.
+    description: Permission to run /advancedfly.
     default: op
   buildersutilities.armorcolor:
-    description: Permission to use /armorcolor.
+    description: Permission to run /armorcolor.
     default: true
   buildersutilities.banner:
-    description: Permission to use /banner.
+    description: Permission to run /banner.
     default: true
   buildersutilities.buildersutilities:
-    description: Permission to use /buildersutilities.
+    description: Permission to run /buildersutilities.
     default: true
   buildersutilities.nightvision:
-    description: Permission to use /nightvision.
+    description: Permission to run /nightvision.
     default: true
   buildersutilities.noclip:
-    description: Permission to use /noclip.
+    description: Permission to run /noclip.
     default: op
   buildersutilities.reload:
-    description: Permission to use /buildersutilities reload.
+    description: Permission to run /buildersutilities reload.
     default: op
   buildersutilities.tpgm3:
     description: Permission to teleport while in Spectator mode.
