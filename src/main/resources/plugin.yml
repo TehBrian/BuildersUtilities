@@ -43,7 +43,7 @@ commands:
 
 permissions:
   buildersutilities.advancedfly:
-    description: Permission to run /advancedfly.
+    description: Permission to use advanced fly.
     default: op
   buildersutilities.armorcolor:
     description: Permission to run /armorcolor.
@@ -55,10 +55,10 @@ permissions:
     description: Permission to run /buildersutilities.
     default: true
   buildersutilities.nightvision:
-    description: Permission to run /nightvision.
+    description: Permission to use night vision.
     default: true
   buildersutilities.noclip:
-    description: Permission to run /noclip.
+    description: Permission to use no-clip.
     default: op
   buildersutilities.reload:
     description: Permission to run /buildersutilities reload.
