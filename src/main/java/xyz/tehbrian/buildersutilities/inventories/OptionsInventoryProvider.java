@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public final class OptionsInventoryProvider {
     public static void update(final Inventory inv, final User user) {
         Player p = user.getPlayer();
 
-        if (p.hasPermission("buildersutilities.irondoortoggle")) {
+        if (p.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             if (user.hasIronDoorToggleEnabled()) {
                 inv.setItem(1, GREEN);
                 inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
@@ -52,7 +53,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(19, ORANGE);
         }
 
-        if (p.hasPermission("buildersutilities.doubleslabbreak")) {
+        if (p.hasPermission(Permissions.DOUBLE_SLAB_BREAK)) {
             if (user.hasDoubleSlabBreakEnabled()) {
                 inv.setItem(2, GREEN);
                 inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
@@ -68,7 +69,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(20, ORANGE);
         }
 
-        if (p.hasPermission("buildersutilities.glazedterracottarotate")) {
+        if (p.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             if (user.hasGlazedTerracottaRotateEnabled()) {
                 inv.setItem(3, GREEN);
                 inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
@@ -84,7 +85,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(21, ORANGE);
         }
 
-        if (p.hasPermission("buildersutilities.nightvision")) {
+        if (p.hasPermission(Permissions.NIGHT_VISION)) {
             if (user.hasNightVisionEnabled()) {
                 inv.setItem(5, GREEN);
                 inv.setItem(14, createCustomItem(Material.ENDER_EYE, "night_vision", "enabled"));
@@ -100,7 +101,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(23, ORANGE);
         }
 
-        if (p.hasPermission("buildersutilities.noclip")) {
+        if (p.hasPermission(Permissions.NO_CLIP)) {
             if (user.hasNoClipEnabled()) {
                 inv.setItem(6, GREEN);
                 inv.setItem(15, createCustomItem(Material.COMPASS, "no_clip", "enabled"));
@@ -116,7 +117,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(24, ORANGE);
         }
 
-        if (p.hasPermission("buildersutilities.advancedfly")) {
+        if (p.hasPermission(Permissions.ADVANCED_FLY)) {
             if (user.hasAdvancedFlyEnabled()) {
                 inv.setItem(7, GREEN);
                 inv.setItem(16, createCustomItem(Material.FEATHER, "advanced_fly", "enabled"));

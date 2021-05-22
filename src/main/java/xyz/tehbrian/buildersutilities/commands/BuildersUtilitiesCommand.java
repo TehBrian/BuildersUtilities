@@ -11,6 +11,7 @@ import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
-                && sender.hasPermission("buildersutilities.reload")) {
+                && sender.hasPermission(Permissions.RELOAD)) {
             this.main.reloadConfig();
             this.main.setPermissionMessages();
             sender.sendMessage(MessageUtils.getMessage("messages.commands.reload"));
@@ -54,7 +55,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1
-                && sender.hasPermission("buildersutilities.reload")) {
+                && sender.hasPermission(Permissions.RELOAD)) {
             suggestions.add("reload");
         }
 

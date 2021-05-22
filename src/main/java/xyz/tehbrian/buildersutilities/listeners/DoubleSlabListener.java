@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
@@ -30,7 +31,7 @@ public final class DoubleSlabListener implements Listener {
         Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasDoubleSlabBreakEnabled()
-                || !player.hasPermission("buildersutilities.doubleslabbreak")
+                || !player.hasPermission(Permissions.DOUBLE_SLAB_BREAK)
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE
                 || !Tag.SLABS.isTagged(event.getBlock().getType())) {

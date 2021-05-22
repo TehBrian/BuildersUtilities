@@ -10,6 +10,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.Objects;
 
@@ -43,42 +44,42 @@ public final class OptionsInventoryListener implements Listener {
             case 1:
             case 10:
             case 19:
-                if (player.hasPermission("buildersutilities.irondoortoggle")) {
+                if (player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
                     this.userManager.getUser(player).toggleIronDoorToggleEnabled();
                 }
                 break;
             case 2:
             case 11:
             case 20:
-                if (player.hasPermission("buildersutilities.doubleslabbreak")) {
+                if (player.hasPermission(Permissions.DOUBLE_SLAB_BREAK)) {
                     this.userManager.getUser(player).toggleDoubleSlabBreakEnabled();
                 }
                 break;
             case 3:
             case 12:
             case 21:
-                if (player.hasPermission("buildersutilities.glazedterracottarotate")) {
+                if (player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
                     this.userManager.getUser(player).toggleGlazedTerracottaRotateEnabled();
                 }
                 break;
             case 5:
             case 14:
             case 23:
-                if (player.hasPermission("buildersutilities.nightvision")) {
+                if (player.hasPermission(Permissions.NIGHT_VISION)) {
                     this.userManager.getUser(player).toggleNightVisionEnabled();
                 }
                 break;
             case 6:
             case 15:
             case 24:
-                if (player.hasPermission("buildersutilities.noclip")) {
+                if (player.hasPermission(Permissions.NIGHT_VISION)) {
                     this.userManager.getUser(player).toggleNoClipEnabled();
                 }
                 break;
             case 7:
             case 16:
             case 25:
-                if (player.hasPermission("buildersutilities.advancedfly")) {
+                if (player.hasPermission(Permissions.ADVANCED_FLY)) {
                     this.userManager.getUser(player).toggleAdvancedFlyEnabled();
                 }
                 break;
