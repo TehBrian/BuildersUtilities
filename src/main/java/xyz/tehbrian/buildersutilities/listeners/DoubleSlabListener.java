@@ -30,6 +30,7 @@ public final class DoubleSlabListener implements Listener {
         Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasDoubleSlabBreakEnabled()
+                || !player.hasPermission("buildersutilities.doubleslabbreak")
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE
                 || !Tag.SLABS.isTagged(event.getBlock().getType())) {

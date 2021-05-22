@@ -43,17 +43,23 @@ public final class OptionsInventoryListener implements Listener {
             case 1:
             case 10:
             case 19:
-                this.userManager.getUser(player).toggleIronDoorToggleEnabled();
+                if (player.hasPermission("buildersutilities.irondoortoggle")) {
+                    this.userManager.getUser(player).toggleIronDoorToggleEnabled();
+                }
                 break;
             case 2:
             case 11:
             case 20:
-                this.userManager.getUser(player).toggleDoubleSlabBreakEnabled();
+                if (player.hasPermission("buildersutilities.doubleslabbreak")) {
+                    this.userManager.getUser(player).toggleDoubleSlabBreakEnabled();
+                }
                 break;
             case 3:
             case 12:
             case 21:
-                this.userManager.getUser(player).toggleGlazedTerracottaRotateEnabled();
+                if (player.hasPermission("buildersutilities.glazedterracottarotate")) {
+                    this.userManager.getUser(player).toggleGlazedTerracottaRotateEnabled();
+                }
                 break;
             case 5:
             case 14:

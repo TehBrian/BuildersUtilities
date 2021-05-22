@@ -63,6 +63,15 @@ permissions:
   buildersutilities.reload:
     description: Permission to run /buildersutilities reload.
     default: op
+  buildersutilities.irondoortoggle:
+    description: Permission to use iron door toggle.
+    default: true
+  buildersutilities.doubleslabbreak:
+    description: Permission to use double slab break.
+    default: true
+  buildersutilities.glazedterracottarotate:
+    description: Permission to use glzaed terracotta rotate.
+    default: true
   buildersutilities.tpgm3:
     description: Permission to teleport while in Spectator mode.
     default: true

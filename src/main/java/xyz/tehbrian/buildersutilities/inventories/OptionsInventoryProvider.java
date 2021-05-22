@@ -36,34 +36,52 @@ public final class OptionsInventoryProvider {
     public static void update(final Inventory inv, final User user) {
         Player p = user.getPlayer();
 
-        if (user.hasIronDoorToggleEnabled()) {
-            inv.setItem(1, GREEN);
-            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
-            inv.setItem(19, GREEN);
+        if (p.hasPermission("buildersutilities.irondoortoggle")) {
+            if (user.hasIronDoorToggleEnabled()) {
+                inv.setItem(1, GREEN);
+                inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
+                inv.setItem(19, GREEN);
+            } else {
+                inv.setItem(1, RED);
+                inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "disabled"));
+                inv.setItem(19, RED);
+            }
         } else {
-            inv.setItem(1, RED);
-            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "disabled"));
-            inv.setItem(19, RED);
+            inv.setItem(1, ORANGE);
+            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "no_permission"));
+            inv.setItem(19, ORANGE);
         }
 
-        if (user.hasDoubleSlabBreakEnabled()) {
-            inv.setItem(2, GREEN);
-            inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
-            inv.setItem(20, GREEN);
+        if (p.hasPermission("buildersutilities.doubleslabbreak")) {
+            if (user.hasDoubleSlabBreakEnabled()) {
+                inv.setItem(2, GREEN);
+                inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
+                inv.setItem(20, GREEN);
+            } else {
+                inv.setItem(2, RED);
+                inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "disabled"));
+                inv.setItem(20, RED);
+            }
         } else {
-            inv.setItem(2, RED);
-            inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "disabled"));
-            inv.setItem(20, RED);
+            inv.setItem(2, ORANGE);
+            inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "no_permission"));
+            inv.setItem(20, ORANGE);
         }
 
-        if (user.hasGlazedTerracottaRotateEnabled()) {
-            inv.setItem(3, GREEN);
-            inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
-            inv.setItem(21, GREEN);
+        if (p.hasPermission("buildersutilities.glazedterracottarotate")) {
+            if (user.hasGlazedTerracottaRotateEnabled()) {
+                inv.setItem(3, GREEN);
+                inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
+                inv.setItem(21, GREEN);
+            } else {
+                inv.setItem(3, RED);
+                inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "disabled"));
+                inv.setItem(21, RED);
+            }
         } else {
-            inv.setItem(3, RED);
-            inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "disabled"));
-            inv.setItem(21, RED);
+            inv.setItem(3, ORANGE);
+            inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "no_permission"));
+            inv.setItem(21, ORANGE);
         }
 
         if (p.hasPermission("buildersutilities.nightvision")) {
