@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.listeners.inventories.banner;
+package xyz.tehbrian.buildersutilities.banner.listener;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
@@ -7,7 +7,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.inventories.banner.BannerColorInventoryProvider;
+import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;

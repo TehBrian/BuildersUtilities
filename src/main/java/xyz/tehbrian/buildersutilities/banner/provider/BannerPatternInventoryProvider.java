@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.inventories.banner;
+package xyz.tehbrian.buildersutilities.banner.provider;
 
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;

@@ -8,7 +8,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
+import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.buildersutilities.util.Permissions;

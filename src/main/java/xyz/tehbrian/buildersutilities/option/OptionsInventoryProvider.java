@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.inventories;
+package xyz.tehbrian.buildersutilities.option;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

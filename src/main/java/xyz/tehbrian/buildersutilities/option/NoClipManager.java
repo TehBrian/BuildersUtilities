@@ -1,10 +1,11 @@
-package xyz.tehbrian.buildersutilities;
+package xyz.tehbrian.buildersutilities.option;
 
 import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.Permissions;

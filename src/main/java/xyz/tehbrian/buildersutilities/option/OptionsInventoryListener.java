@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.listeners.inventories;
+package xyz.tehbrian.buildersutilities.option;
 
 import com.google.inject.Inject;
 import org.bukkit.entity.Player;
@@ -7,7 +7,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import xyz.tehbrian.buildersutilities.inventories.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.buildersutilities.util.Permissions;

@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.listeners.inventories.banner;
+package xyz.tehbrian.buildersutilities.banner.listener;
 
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import xyz.tehbrian.buildersutilities.inventories.banner.BannerColorInventoryProvider;
+import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;

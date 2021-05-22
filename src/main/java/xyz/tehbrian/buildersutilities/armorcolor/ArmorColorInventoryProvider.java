@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.inventories;
+package xyz.tehbrian.buildersutilities.armorcolor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

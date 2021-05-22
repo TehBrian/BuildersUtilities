@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.inventories.banner.BannerBaseInventoryProvider;
+import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseInventoryProvider;
 
 public final class BannerCommand implements CommandExecutor {
 
