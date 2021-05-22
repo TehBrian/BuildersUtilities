@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 /*
     TODO: Clean up this code.
@@ -38,7 +39,7 @@ public final class NoClipManager {
             }
 
             Player p = user.getPlayer();
-            if (p == null || !p.isOnline()) {
+            if (p == null || !p.isOnline() || !p.hasPermission(Permissions.NO_CLIP)) {
                 continue;
             }
 
