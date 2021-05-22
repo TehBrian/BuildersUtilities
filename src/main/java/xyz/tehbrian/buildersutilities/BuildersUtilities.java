@@ -121,8 +121,6 @@ public final class BuildersUtilities extends JavaPlugin {
         var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
         this.getCommand("buildersutilities").setExecutor(buildersUtilitiesCommand);
         this.getCommand("buildersutilities").setTabCompleter(buildersUtilitiesCommand);
-
-        this.setPermissionMessages();
     }
 
     private void registerCommandsWithEmptyTabCompleter(final Map<String, Key<? extends CommandExecutor>> commands) {
@@ -148,32 +146,5 @@ public final class BuildersUtilities extends JavaPlugin {
                 List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class));
 
         loader.load(restrictionHelper);
-    }
-
-    /*
-        Unfortunately, only Paper allows you to set the
-        default permission message, so to allow those who
-        still use Spigot (or till Spigot gets their stuff
-        together and allows people to customize messages)
-        this will have to do.
-
-        Side note: Since we return prematurely when the permissionMessage
-        is null or empty rather than setting it to the server default,
-        if the user would like to change the permission message *back* to
-        the default during runtime, they must reload the entire server
-        rather than just using the plugin's reload command. This can
-        be fixed if we set the permission message before we return, but
-        the issue is *how* do we get the default permission message?
-     */
-    public void setPermissionMessages() {
-        String permissionMessage = MessageUtils.getMessage("messages.commands.no_permission");
-        if (permissionMessage == null || permissionMessage.isEmpty()) {
-            return;
-        }
-
-        for (String commandName : this.getDescription().getCommands().keySet()) {
-            PluginCommand command = this.getCommand(commandName);
-            command.setPermissionMessage(permissionMessage);
-        }
     }
 }
