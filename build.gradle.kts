@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
     // To get, use BuildTools provided by Spigot.
     compileOnly("org.bukkit:craftbukkit:1.16.5-R0.1-SNAPSHOT")
 
