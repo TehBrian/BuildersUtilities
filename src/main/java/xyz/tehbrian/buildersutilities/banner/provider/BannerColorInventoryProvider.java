@@ -9,10 +9,11 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 public final class BannerColorInventoryProvider {
 
-    private BannerColorInventoryProvider() {
+    private static ItemStack createCustomDye(final Material material) {
+        return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 
-    public static Inventory generate(final ItemStack oldBanner) {
+    public Inventory generate(final ItemStack oldBanner) {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.banner.color_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -44,9 +45,5 @@ public final class BannerColorInventoryProvider {
         inv.setItem(44, createCustomDye(Material.WHITE_DYE));
 
         return inv;
-    }
-
-    private static ItemStack createCustomDye(final Material material) {
-        return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 }

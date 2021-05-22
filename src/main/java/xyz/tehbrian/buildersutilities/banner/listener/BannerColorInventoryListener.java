@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.banner.listener;
 
+import com.google.inject.Inject;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
@@ -16,6 +18,15 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.Objects;
 
 public final class BannerColorInventoryListener implements Listener {
+
+    private final BannerPatternInventoryProvider bannerPatternInventoryProvider;
+
+    @Inject
+    public BannerColorInventoryListener(
+            final @NonNull BannerPatternInventoryProvider bannerPatternInventoryProvider
+    ) {
+        this.bannerPatternInventoryProvider = bannerPatternInventoryProvider;
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
@@ -38,7 +49,7 @@ public final class BannerColorInventoryListener implements Listener {
 
         if (slot == 3) {
             DyeColor dyeColor = BannerUtils.getRandomDyeColor();
-            player.openInventory(BannerPatternInventoryProvider.generate(oldBanner, dyeColor));
+            player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
 
         if (slot == 5) {
@@ -48,7 +59,7 @@ public final class BannerColorInventoryListener implements Listener {
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
             DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            player.openInventory(BannerPatternInventoryProvider.generate(oldBanner, dyeColor));
+            player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
     }
 }

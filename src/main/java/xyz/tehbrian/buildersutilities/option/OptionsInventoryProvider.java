@@ -19,10 +19,22 @@ public final class OptionsInventoryProvider {
     private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, "&7");
     private static final ItemStack RED = ItemUtils.create(Material.RED_STAINED_GLASS_PANE, 1, "&7");
 
-    private OptionsInventoryProvider() {
+    /*
+        TODO: This isn't great.
+        While it's better than what we had before, ideally we shouldn't
+        have magic strings, and I don't like how redundant this system still is.
+     */
+    private static ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
+        String name = MessageUtils.getMessage("messages.inventories.options." + optionKey + ".name");
+
+        List<String> lore = new ArrayList<>();
+        lore.addAll(MessageUtils.getMessageList("messages.inventories.options." + optionKey + ".description"));
+        lore.addAll(MessageUtils.getMessageList("messages.inventories.options.status." + statusKey));
+
+        return ItemUtils.create(material, 1, name, lore);
     }
 
-    public static Inventory generate(final User user) {
+    public Inventory generate(final User user) {
         Inventory inv = Bukkit.createInventory(null, 27, MessageUtils.getMessage("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -34,7 +46,7 @@ public final class OptionsInventoryProvider {
         return inv;
     }
 
-    public static void update(final Inventory inv, final User user) {
+    public void update(final Inventory inv, final User user) {
         Player p = user.getPlayer();
 
         if (p.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
@@ -132,20 +144,5 @@ public final class OptionsInventoryProvider {
             inv.setItem(16, createCustomItem(Material.FEATHER, "advanced_fly", "no_permission"));
             inv.setItem(25, ORANGE);
         }
-    }
-
-    /*
-        TODO: This isn't great.
-        While it's better than what we had before, ideally we shouldn't
-        have magic strings, and I don't like how redundant this system still is.
-     */
-    private static ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
-        String name = MessageUtils.getMessage("messages.inventories.options." + optionKey + ".name");
-
-        List<String> lore = new ArrayList<>();
-        lore.addAll(MessageUtils.getMessageList("messages.inventories.options." + optionKey + ".description"));
-        lore.addAll(MessageUtils.getMessageList("messages.inventories.options.status." + statusKey));
-
-        return ItemUtils.create(material, 1, name, lore);
     }
 }

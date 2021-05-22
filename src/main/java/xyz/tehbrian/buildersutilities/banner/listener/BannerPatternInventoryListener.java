@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.banner.listener;
 
+import com.google.inject.Inject;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.entity.Player;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
@@ -19,6 +21,15 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import java.util.Objects;
 
 public final class BannerPatternInventoryListener implements Listener {
+
+    private final BannerColorInventoryProvider bannerColorInventoryProvider;
+
+    @Inject
+    public BannerPatternInventoryListener(
+            final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider
+    ) {
+        this.bannerColorInventoryProvider = bannerColorInventoryProvider;
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
@@ -54,7 +65,7 @@ public final class BannerPatternInventoryListener implements Listener {
                 player.getInventory().addItem(ItemUtils.removeName(oldBanner));
                 player.closeInventory();
             } else {
-                player.openInventory(BannerColorInventoryProvider.generate(oldBanner));
+                player.openInventory(this.bannerColorInventoryProvider.generate(oldBanner));
             }
         }
 
@@ -70,7 +81,7 @@ public final class BannerPatternInventoryListener implements Listener {
                 player.getInventory().addItem(ItemUtils.removeName(oldBanner));
                 player.closeInventory();
             } else {
-                player.openInventory(BannerColorInventoryProvider.generate(oldBanner));
+                player.openInventory(this.bannerColorInventoryProvider.generate(oldBanner));
             }
         }
     }

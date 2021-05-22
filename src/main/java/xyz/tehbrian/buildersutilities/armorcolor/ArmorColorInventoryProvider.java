@@ -11,10 +11,7 @@ import java.util.Objects;
 
 public final class ArmorColorInventoryProvider {
 
-    private ArmorColorInventoryProvider() {
-    }
-
-    public static Inventory generate() {
+    public Inventory generate() {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -40,7 +37,7 @@ public final class ArmorColorInventoryProvider {
         return inv;
     }
 
-    public static void update(final Inventory inv) {
+    public void update(final Inventory inv) {
         int r = (Objects.requireNonNull(inv.getItem(31)).getAmount() - 1) * 8;
         int g = (Objects.requireNonNull(inv.getItem(32)).getAmount() - 1) * 8;
         int b = (Objects.requireNonNull(inv.getItem(33)).getAmount() - 1) * 8;

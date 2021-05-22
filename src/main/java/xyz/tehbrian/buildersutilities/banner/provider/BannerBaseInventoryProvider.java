@@ -10,10 +10,11 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 // TODO: Add an undo button.
 public final class BannerBaseInventoryProvider {
 
-    private BannerBaseInventoryProvider() {
+    private static ItemStack createCustomBanner(final Material material) {
+        return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 
-    public static Inventory generate() {
+    public Inventory generate() {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.banner.base_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -45,9 +46,5 @@ public final class BannerBaseInventoryProvider {
         inv.setItem(44, createCustomBanner(Material.WHITE_BANNER));
 
         return inv;
-    }
-
-    private static ItemStack createCustomBanner(final Material material) {
-        return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
     }
 }

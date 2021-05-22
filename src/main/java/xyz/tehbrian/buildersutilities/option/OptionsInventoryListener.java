@@ -17,12 +17,15 @@ import java.util.Objects;
 public final class OptionsInventoryListener implements Listener {
 
     private final UserManager userManager;
+    private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public OptionsInventoryListener(
-            final @NonNull UserManager userManager
+            final @NonNull UserManager userManager,
+            final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.userManager = userManager;
+        this.optionsInventoryProvider = optionsInventoryProvider;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -86,6 +89,6 @@ public final class OptionsInventoryListener implements Listener {
                 return;
         }
 
-        OptionsInventoryProvider.update(event.getView().getTopInventory(), this.userManager.getUser(player));
+        this.optionsInventoryProvider.update(event.getView().getTopInventory(), this.userManager.getUser(player));
     }
 }

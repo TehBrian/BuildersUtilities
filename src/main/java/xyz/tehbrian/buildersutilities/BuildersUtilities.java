@@ -10,6 +10,10 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.slf4j.Logger;
+import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternInventoryListener;
 import xyz.tehbrian.buildersutilities.commands.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.commands.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.commands.BannerCommand;
@@ -17,6 +21,9 @@ import xyz.tehbrian.buildersutilities.commands.BuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.commands.EmptyTabCompleter;
 import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
+import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
+import xyz.tehbrian.buildersutilities.inject.BannerModule;
+import xyz.tehbrian.buildersutilities.inject.OptionsModule;
 import xyz.tehbrian.buildersutilities.inject.PluginModule;
 import xyz.tehbrian.buildersutilities.inject.RestrictionHelperModule;
 import xyz.tehbrian.buildersutilities.inject.UserModule;
@@ -24,12 +31,8 @@ import xyz.tehbrian.buildersutilities.option.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.option.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.option.GlazedTerracottaListener;
 import xyz.tehbrian.buildersutilities.option.IronDoorListener;
-import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
-import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternInventoryListener;
 import xyz.tehbrian.buildersutilities.option.NoClipManager;
+import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
@@ -59,6 +62,9 @@ public final class BuildersUtilities extends JavaPlugin {
 
     public void onEnable() {
         this.injector = Guice.createInjector(
+                new ArmorColorModule(),
+                new BannerModule(),
+                new OptionsModule(),
                 new PluginModule(this),
                 new UserModule(),
                 new RestrictionHelperModule()

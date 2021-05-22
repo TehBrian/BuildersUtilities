@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.armorcolor;
 
+import com.google.inject.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,7 +9,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryProvider;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
@@ -17,6 +18,15 @@ import java.util.Random;
 
 @SuppressWarnings("unused")
 public final class ArmorColorInventoryListener implements Listener {
+
+    private final ArmorColorInventoryProvider armorColorInventoryProvider;
+
+    @Inject
+    public ArmorColorInventoryListener(
+            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider
+    ) {
+        this.armorColorInventoryProvider = armorColorInventoryProvider;
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
@@ -72,6 +82,6 @@ public final class ArmorColorInventoryListener implements Listener {
 
         inventory.setItem(slot, item);
 
-        ArmorColorInventoryProvider.update(event.getClickedInventory());
+        this.armorColorInventoryProvider.update(event.getClickedInventory());
     }
 }

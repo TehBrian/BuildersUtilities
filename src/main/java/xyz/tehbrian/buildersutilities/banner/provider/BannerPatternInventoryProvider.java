@@ -12,10 +12,7 @@ import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 public final class BannerPatternInventoryProvider {
 
-    private BannerPatternInventoryProvider() {
-    }
-
-    public static Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
+    public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
         Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.banner.pattern_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {

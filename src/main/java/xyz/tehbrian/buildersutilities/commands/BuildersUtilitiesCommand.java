@@ -8,6 +8,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 import xyz.tehbrian.buildersutilities.util.MessageUtils;
@@ -21,14 +22,17 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
     private final BuildersUtilities main;
     private final UserManager userManager;
+    private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager
+            final @NonNull UserManager userManager,
+            final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.main = main;
         this.userManager = userManager;
+        this.optionsInventoryProvider = optionsInventoryProvider;
     }
 
     @Override
@@ -45,7 +49,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            player.openInventory(OptionsInventoryProvider.generate(this.userManager.getUser(player)));
+            player.openInventory(this.optionsInventoryProvider.generate(this.userManager.getUser(player)));
         }
         return true;
     }
