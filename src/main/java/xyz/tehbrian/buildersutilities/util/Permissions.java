@@ -1,6 +1,6 @@
 package xyz.tehbrian.buildersutilities.util;
 
-public class Permissions {
+public final class Permissions {
 
     public static final String ADVANCED_FLY = "buildersutilities.advancedfly";
     public static final String NIGHT_VISION = "buildersutilities.nightvision";
@@ -12,4 +12,7 @@ public class Permissions {
 
     public static final String RELOAD = "buildersutilities.reload";
     public static final String TPGM3 = "buildersutilities.tpgm3";
+
+    private Permissions() {
+    }
 }
