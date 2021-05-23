@@ -39,23 +39,23 @@ public final class BannerBaseInventoryProvider {
                 this.lang.c("messages.inventories.banner.randomize")));
         inv.setItem(5, ItemUtils.create(Material.BARRIER, 1, this.lang.c("messages.inventories.banner.cannot_get_banner")));
 
-        inv.setItem(28, createCustomBanner(Material.BLACK_BANNER));
-        inv.setItem(29, createCustomBanner(Material.RED_BANNER));
-        inv.setItem(30, createCustomBanner(Material.GREEN_BANNER));
-        inv.setItem(31, createCustomBanner(Material.BROWN_BANNER));
-        inv.setItem(32, createCustomBanner(Material.BLUE_BANNER));
-        inv.setItem(33, createCustomBanner(Material.PURPLE_BANNER));
-        inv.setItem(34, createCustomBanner(Material.CYAN_BANNER));
-        inv.setItem(35, createCustomBanner(Material.LIGHT_GRAY_BANNER));
+        inv.setItem(28, this.createCustomBanner(Material.BLACK_BANNER));
+        inv.setItem(29, this.createCustomBanner(Material.RED_BANNER));
+        inv.setItem(30, this.createCustomBanner(Material.GREEN_BANNER));
+        inv.setItem(31, this.createCustomBanner(Material.BROWN_BANNER));
+        inv.setItem(32, this.createCustomBanner(Material.BLUE_BANNER));
+        inv.setItem(33, this.createCustomBanner(Material.PURPLE_BANNER));
+        inv.setItem(34, this.createCustomBanner(Material.CYAN_BANNER));
+        inv.setItem(35, this.createCustomBanner(Material.LIGHT_GRAY_BANNER));
 
-        inv.setItem(37, createCustomBanner(Material.GRAY_BANNER));
-        inv.setItem(38, createCustomBanner(Material.PINK_BANNER));
-        inv.setItem(39, createCustomBanner(Material.LIME_BANNER));
-        inv.setItem(40, createCustomBanner(Material.YELLOW_BANNER));
-        inv.setItem(41, createCustomBanner(Material.LIGHT_BLUE_BANNER));
-        inv.setItem(42, createCustomBanner(Material.MAGENTA_BANNER));
-        inv.setItem(43, createCustomBanner(Material.ORANGE_BANNER));
-        inv.setItem(44, createCustomBanner(Material.WHITE_BANNER));
+        inv.setItem(37, this.createCustomBanner(Material.GRAY_BANNER));
+        inv.setItem(38, this.createCustomBanner(Material.PINK_BANNER));
+        inv.setItem(39, this.createCustomBanner(Material.LIME_BANNER));
+        inv.setItem(40, this.createCustomBanner(Material.YELLOW_BANNER));
+        inv.setItem(41, this.createCustomBanner(Material.LIGHT_BLUE_BANNER));
+        inv.setItem(42, this.createCustomBanner(Material.MAGENTA_BANNER));
+        inv.setItem(43, this.createCustomBanner(Material.ORANGE_BANNER));
+        inv.setItem(44, this.createCustomBanner(Material.WHITE_BANNER));
 
         return inv;
     }

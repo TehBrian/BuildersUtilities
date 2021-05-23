@@ -53,7 +53,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
         }
 
-        update(inv, user);
+        this.update(inv, user);
 
         return inv;
     }
@@ -64,96 +64,96 @@ public final class OptionsInventoryProvider {
         if (p.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             if (user.hasIronDoorToggleEnabled()) {
                 inv.setItem(1, GREEN);
-                inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
+                inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
                 inv.setItem(19, GREEN);
             } else {
                 inv.setItem(1, RED);
-                inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "disabled"));
+                inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "disabled"));
                 inv.setItem(19, RED);
             }
         } else {
             inv.setItem(1, ORANGE);
-            inv.setItem(10, createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "no_permission"));
+            inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "no_permission"));
             inv.setItem(19, ORANGE);
         }
 
         if (p.hasPermission(Permissions.DOUBLE_SLAB_BREAK)) {
             if (user.hasDoubleSlabBreakEnabled()) {
                 inv.setItem(2, GREEN);
-                inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
+                inv.setItem(11, this.createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
                 inv.setItem(20, GREEN);
             } else {
                 inv.setItem(2, RED);
-                inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "disabled"));
+                inv.setItem(11, this.createCustomItem(Material.STONE_SLAB, "double_slab_break", "disabled"));
                 inv.setItem(20, RED);
             }
         } else {
             inv.setItem(2, ORANGE);
-            inv.setItem(11, createCustomItem(Material.STONE_SLAB, "double_slab_break", "no_permission"));
+            inv.setItem(11, this.createCustomItem(Material.STONE_SLAB, "double_slab_break", "no_permission"));
             inv.setItem(20, ORANGE);
         }
 
         if (p.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             if (user.hasGlazedTerracottaRotateEnabled()) {
                 inv.setItem(3, GREEN);
-                inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
+                inv.setItem(12, this.createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
                 inv.setItem(21, GREEN);
             } else {
                 inv.setItem(3, RED);
-                inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "disabled"));
+                inv.setItem(12, this.createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "disabled"));
                 inv.setItem(21, RED);
             }
         } else {
             inv.setItem(3, ORANGE);
-            inv.setItem(12, createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "no_permission"));
+            inv.setItem(12, this.createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "no_permission"));
             inv.setItem(21, ORANGE);
         }
 
         if (p.hasPermission(Permissions.NIGHT_VISION)) {
             if (user.hasNightVisionEnabled()) {
                 inv.setItem(5, GREEN);
-                inv.setItem(14, createCustomItem(Material.ENDER_EYE, "night_vision", "enabled"));
+                inv.setItem(14, this.createCustomItem(Material.ENDER_EYE, "night_vision", "enabled"));
                 inv.setItem(23, GREEN);
             } else {
                 inv.setItem(5, RED);
-                inv.setItem(14, createCustomItem(Material.ENDER_EYE, "night_vision", "disabled"));
+                inv.setItem(14, this.createCustomItem(Material.ENDER_EYE, "night_vision", "disabled"));
                 inv.setItem(23, RED);
             }
         } else {
             inv.setItem(5, ORANGE);
-            inv.setItem(14, createCustomItem(Material.ENDER_EYE, "night_vision", "no_permission"));
+            inv.setItem(14, this.createCustomItem(Material.ENDER_EYE, "night_vision", "no_permission"));
             inv.setItem(23, ORANGE);
         }
 
         if (p.hasPermission(Permissions.NO_CLIP)) {
             if (user.hasNoClipEnabled()) {
                 inv.setItem(6, GREEN);
-                inv.setItem(15, createCustomItem(Material.COMPASS, "no_clip", "enabled"));
+                inv.setItem(15, this.createCustomItem(Material.COMPASS, "no_clip", "enabled"));
                 inv.setItem(24, GREEN);
             } else {
                 inv.setItem(6, RED);
-                inv.setItem(15, createCustomItem(Material.COMPASS, "no_clip", "disabled"));
+                inv.setItem(15, this.createCustomItem(Material.COMPASS, "no_clip", "disabled"));
                 inv.setItem(24, RED);
             }
         } else {
             inv.setItem(6, ORANGE);
-            inv.setItem(15, createCustomItem(Material.COMPASS, "no_clip", "no_permission"));
+            inv.setItem(15, this.createCustomItem(Material.COMPASS, "no_clip", "no_permission"));
             inv.setItem(24, ORANGE);
         }
 
         if (p.hasPermission(Permissions.ADVANCED_FLY)) {
             if (user.hasAdvancedFlyEnabled()) {
                 inv.setItem(7, GREEN);
-                inv.setItem(16, createCustomItem(Material.FEATHER, "advanced_fly", "enabled"));
+                inv.setItem(16, this.createCustomItem(Material.FEATHER, "advanced_fly", "enabled"));
                 inv.setItem(25, GREEN);
             } else {
                 inv.setItem(7, RED);
-                inv.setItem(16, createCustomItem(Material.FEATHER, "advanced_fly", "disabled"));
+                inv.setItem(16, this.createCustomItem(Material.FEATHER, "advanced_fly", "disabled"));
                 inv.setItem(25, RED);
             }
         } else {
             inv.setItem(7, ORANGE);
-            inv.setItem(16, createCustomItem(Material.FEATHER, "advanced_fly", "no_permission"));
+            inv.setItem(16, this.createCustomItem(Material.FEATHER, "advanced_fly", "no_permission"));
             inv.setItem(25, ORANGE);
         }
     }

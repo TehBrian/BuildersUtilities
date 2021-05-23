@@ -45,7 +45,7 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(32, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.green"), 16, this.lang.c("messages.inventories.armor_color.green"), lore));
         inv.setItem(33, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.blue"), 16, this.lang.c("messages.inventories.armor_color.blue"), lore));
 
-        update(inv);
+        this.update(inv);
 
         return inv;
     }

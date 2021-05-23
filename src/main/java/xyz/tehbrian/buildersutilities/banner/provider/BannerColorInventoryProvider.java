@@ -38,23 +38,23 @@ public final class BannerColorInventoryProvider {
                 this.lang.c("messages.inventories.banner.randomize")));
         inv.setItem(5, oldBanner);
 
-        inv.setItem(28, createCustomDye(Material.BLACK_DYE));
-        inv.setItem(29, createCustomDye(Material.RED_DYE));
-        inv.setItem(30, createCustomDye(Material.GREEN_DYE));
-        inv.setItem(31, createCustomDye(Material.BROWN_DYE));
-        inv.setItem(32, createCustomDye(Material.BLUE_DYE));
-        inv.setItem(33, createCustomDye(Material.PURPLE_DYE));
-        inv.setItem(34, createCustomDye(Material.CYAN_DYE));
-        inv.setItem(35, createCustomDye(Material.LIGHT_GRAY_DYE));
+        inv.setItem(28, this.createCustomDye(Material.BLACK_DYE));
+        inv.setItem(29, this.createCustomDye(Material.RED_DYE));
+        inv.setItem(30, this.createCustomDye(Material.GREEN_DYE));
+        inv.setItem(31, this.createCustomDye(Material.BROWN_DYE));
+        inv.setItem(32, this.createCustomDye(Material.BLUE_DYE));
+        inv.setItem(33, this.createCustomDye(Material.PURPLE_DYE));
+        inv.setItem(34, this.createCustomDye(Material.CYAN_DYE));
+        inv.setItem(35, this.createCustomDye(Material.LIGHT_GRAY_DYE));
 
-        inv.setItem(37, createCustomDye(Material.GRAY_DYE));
-        inv.setItem(38, createCustomDye(Material.PINK_DYE));
-        inv.setItem(39, createCustomDye(Material.LIME_DYE));
-        inv.setItem(40, createCustomDye(Material.YELLOW_DYE));
-        inv.setItem(41, createCustomDye(Material.LIGHT_BLUE_DYE));
-        inv.setItem(42, createCustomDye(Material.MAGENTA_DYE));
-        inv.setItem(43, createCustomDye(Material.ORANGE_DYE));
-        inv.setItem(44, createCustomDye(Material.WHITE_DYE));
+        inv.setItem(37, this.createCustomDye(Material.GRAY_DYE));
+        inv.setItem(38, this.createCustomDye(Material.PINK_DYE));
+        inv.setItem(39, this.createCustomDye(Material.LIME_DYE));
+        inv.setItem(40, this.createCustomDye(Material.YELLOW_DYE));
+        inv.setItem(41, this.createCustomDye(Material.LIGHT_BLUE_DYE));
+        inv.setItem(42, this.createCustomDye(Material.MAGENTA_DYE));
+        inv.setItem(43, this.createCustomDye(Material.ORANGE_DYE));
+        inv.setItem(44, this.createCustomDye(Material.WHITE_DYE));
 
         return inv;
     }

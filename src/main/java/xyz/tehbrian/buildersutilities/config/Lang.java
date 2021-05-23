@@ -69,7 +69,7 @@ public final class Lang {
     public List<Component> cl(final String configPath) {
         List<Component> components = new ArrayList<>();
 
-        for (String string : getAndVerifyStringList(configPath)) {
+        for (String string : this.getAndVerifyStringList(configPath)) {
             components.add(MiniMessage.get().parse(string));
         }
 
