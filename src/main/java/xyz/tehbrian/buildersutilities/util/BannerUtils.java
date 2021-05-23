@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.util;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
@@ -18,7 +19,7 @@ public final class BannerUtils {
     private BannerUtils() {
     }
 
-    public static ItemStack createBanner(final Material material, final List<String> lore, final Pattern pattern) {
+    public static ItemStack createBanner(final Material material, final List<Component> lore, final Pattern pattern) {
         ItemStack item = ItemUtils.create(material, 1, lore);
 
         BannerMeta meta = (BannerMeta) item.getItemMeta();

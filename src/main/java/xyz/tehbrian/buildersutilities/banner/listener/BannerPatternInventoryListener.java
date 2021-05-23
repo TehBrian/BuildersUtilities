@@ -14,27 +14,30 @@ import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
+import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
 
 public final class BannerPatternInventoryListener implements Listener {
 
     private final BannerColorInventoryProvider bannerColorInventoryProvider;
+    private final Lang lang;
 
     @Inject
     public BannerPatternInventoryListener(
-            final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider
+            final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider,
+            final @NonNull Lang lang
     ) {
         this.bannerColorInventoryProvider = bannerColorInventoryProvider;
+        this.lang = lang;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.banner.pattern_inventory_name"))
+                || !event.getView().title().equals(this.lang.c("messages.inventories.banner.pattern_inventory_name"))
                 || !(event.getWhoClicked() instanceof Player)) {
             return;
         }

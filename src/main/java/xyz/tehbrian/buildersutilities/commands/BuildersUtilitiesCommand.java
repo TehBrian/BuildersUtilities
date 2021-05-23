@@ -11,7 +11,6 @@ import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
@@ -22,16 +21,19 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
     private final BuildersUtilities main;
     private final UserManager userManager;
+    private final Lang lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
             final @NonNull UserManager userManager,
+            final @NonNull Lang lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.main = main;
         this.userManager = userManager;
+        this.lang = lang;
         this.optionsInventoryProvider = optionsInventoryProvider;
     }
 
@@ -41,7 +43,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Permissions.RELOAD)) {
             this.main.reloadConfig();
-            sender.sendMessage(MessageUtils.getMessage("messages.commands.reload"));
+            sender.sendMessage(this.lang.c("messages.commands.reload"));
             return true;
         }
 

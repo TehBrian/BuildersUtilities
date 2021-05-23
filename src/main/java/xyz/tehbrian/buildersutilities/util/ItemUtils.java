@@ -2,12 +2,15 @@ package xyz.tehbrian.buildersutilities.util;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import xyz.tehbrian.buildersutilities.config.Lang;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -20,32 +23,34 @@ public final class ItemUtils {
     private ItemUtils() {
     }
 
-    public static ItemStack create(final Material material, final int amount, final String name, final List<String> lore) {
+    public static ItemStack create(final Material material, final int amount, final Component name, final List<Component> lore) {
         ItemStack itemStack = new ItemStack(material);
         itemStack.setAmount(amount);
 
         ItemMeta itemMeta = itemStack.getItemMeta();
+        Objects.requireNonNull(itemMeta);
+
         if (name != null) {
-            Objects.requireNonNull(itemMeta).setDisplayName(MessageUtils.color(name));
+            itemMeta.displayName(name.decoration(TextDecoration.ITALIC, false));
         }
         if (lore != null) {
-            lore.replaceAll(MessageUtils::color);
-            Objects.requireNonNull(itemMeta).setLore(lore);
+            lore.replaceAll((item) -> item.decoration(TextDecoration.ITALIC, false));
+            itemMeta.lore(lore);
         }
         itemStack.setItemMeta(itemMeta);
 
         return itemStack;
     }
 
-    public static ItemStack create(final Material material, final int amount, final String name) {
+    public static ItemStack create(final Material material, final int amount, final Component name) {
         return create(material, amount, name, null);
     }
 
-    public static ItemStack create(final Material material, final int amount, final List<String> lore) {
+    public static ItemStack create(final Material material, final int amount, final List<Component> lore) {
         return create(material, amount, null, lore);
     }
 
-    public static ItemStack createHead(final String data, final int amount, final String name, final List<String> lore) {
+    public static ItemStack createHead(final String data, final int amount, final Component name, final List<Component> lore) {
         ItemStack itemStack = create(Material.PLAYER_HEAD, amount, name, lore);
         SkullMeta itemMeta = (SkullMeta) itemStack.getItemMeta();
 
@@ -65,7 +70,7 @@ public final class ItemUtils {
         return itemStack;
     }
 
-    public static ItemStack createHead(final String data, final int amount, final String name) {
+    public static ItemStack createHead(final String data, final int amount, final Component name) {
         return createHead(data, amount, name, new ArrayList<>());
     }
 
@@ -81,7 +86,7 @@ public final class ItemUtils {
 
     public static ItemStack removeName(final ItemStack itemStack) {
         ItemMeta meta = itemStack.getItemMeta();
-        Objects.requireNonNull(meta).setDisplayName(null);
+        Objects.requireNonNull(meta).displayName(null);
 
         itemStack.setItemMeta(meta);
         return itemStack;

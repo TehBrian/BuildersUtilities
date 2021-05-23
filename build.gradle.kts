@@ -38,6 +38,8 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
 
     implementation("com.google.inject:guice:5.0.1")
+
+    implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 }
 
 tasks.processResources {

@@ -1,31 +1,43 @@
 package xyz.tehbrian.buildersutilities.banner.provider;
 
+import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 // TODO: Add an undo button.
 public final class BannerBaseInventoryProvider {
 
-    private static ItemStack createCustomBanner(final Material material) {
-        return ItemUtils.create(material, 1, MessageUtils.getMessageList("messages.inventories.banner.select"));
+    private final Lang lang;
+
+    @Inject
+    public BannerBaseInventoryProvider(
+            final @NonNull Lang lang
+    ) {
+        this.lang = lang;
+    }
+
+    private ItemStack createCustomBanner(final Material material) {
+        return ItemUtils.create(material, 1, this.lang.cl("messages.inventories.banner.select"));
     }
 
     public Inventory generate() {
-        Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.banner.base_inventory_name"));
+        Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.banner.base_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
+            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
         }
 
         inv.setItem(3, ItemUtils.createHead(
-                MessageUtils.getMessage("heads.banner.randomize"),
+                ConfigUtils.getString("heads.banner.randomize"),
                 1,
-                MessageUtils.getMessage("messages.inventories.banner.randomize")));
-        inv.setItem(5, ItemUtils.create(Material.BARRIER, 1, MessageUtils.getMessage("messages.inventories.banner.cannot_get_banner")));
+                this.lang.c("messages.inventories.banner.randomize")));
+        inv.setItem(5, ItemUtils.create(Material.BARRIER, 1, this.lang.c("messages.inventories.banner.cannot_get_banner")));
 
         inv.setItem(28, createCustomBanner(Material.BLACK_BANNER));
         inv.setItem(29, createCustomBanner(Material.RED_BANNER));

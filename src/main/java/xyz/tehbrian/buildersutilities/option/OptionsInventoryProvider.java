@@ -1,13 +1,16 @@
 package xyz.tehbrian.buildersutilities.option;
 
+import com.google.inject.Inject;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
@@ -15,30 +18,39 @@ import java.util.List;
 
 public final class OptionsInventoryProvider {
 
-    private static final ItemStack GREEN = ItemUtils.create(Material.LIME_STAINED_GLASS_PANE, 1, "&7");
-    private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, "&7");
-    private static final ItemStack RED = ItemUtils.create(Material.RED_STAINED_GLASS_PANE, 1, "&7");
+    private static final ItemStack GREEN = ItemUtils.create(Material.LIME_STAINED_GLASS_PANE, 1, Lang.EMPTY);
+    private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, Lang.EMPTY);
+    private static final ItemStack RED = ItemUtils.create(Material.RED_STAINED_GLASS_PANE, 1, Lang.EMPTY);
+
+    private final Lang lang;
+
+    @Inject
+    public OptionsInventoryProvider(
+            final @NonNull Lang lang
+    ) {
+        this.lang = lang;
+    }
 
     /*
         TODO: This isn't great.
         While it's better than what we had before, ideally we shouldn't
         have magic strings, and I don't like how redundant this system still is.
      */
-    private static ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
-        String name = MessageUtils.getMessage("messages.inventories.options." + optionKey + ".name");
+    private ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
+        Component name = this.lang.c("messages.inventories.options." + optionKey + ".name");
 
-        List<String> lore = new ArrayList<>();
-        lore.addAll(MessageUtils.getMessageList("messages.inventories.options." + optionKey + ".description"));
-        lore.addAll(MessageUtils.getMessageList("messages.inventories.options.status." + statusKey));
+        List<Component> lore = new ArrayList<>();
+        lore.addAll(this.lang.cl("messages.inventories.options." + optionKey + ".description"));
+        lore.addAll(this.lang.cl("messages.inventories.options.status." + statusKey));
 
         return ItemUtils.create(material, 1, name, lore);
     }
 
     public Inventory generate(final User user) {
-        Inventory inv = Bukkit.createInventory(null, 27, MessageUtils.getMessage("messages.inventories.options.inventory_name"));
+        Inventory inv = Bukkit.createInventory(null, 27, this.lang.c("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
+            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
         }
 
         update(inv, user);

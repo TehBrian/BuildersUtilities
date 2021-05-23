@@ -1,36 +1,49 @@
 package xyz.tehbrian.buildersutilities.armorcolor;
 
+import com.google.inject.Inject;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.List;
 import java.util.Objects;
 
 public final class ArmorColorInventoryProvider {
 
+    private final Lang lang;
+
+    @Inject
+    public ArmorColorInventoryProvider(
+            final @NonNull Lang lang
+    ) {
+        this.lang = lang;
+    }
+
     public Inventory generate() {
-        Inventory inv = Bukkit.createInventory(null, 54, MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"));
+        Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.armor_color.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "&7"));
+            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
         }
 
-        inv.setItem(10, ItemUtils.create(Material.LEATHER_HELMET, 1, MessageUtils.getMessage("messages.inventories.armor_color.get_helmet")));
-        inv.setItem(19, ItemUtils.create(Material.LEATHER_CHESTPLATE, 1, MessageUtils.getMessage("messages.inventories.armor_color.get_chestplate")));
-        inv.setItem(28, ItemUtils.create(Material.LEATHER_LEGGINGS, 1, MessageUtils.getMessage("messages.inventories.armor_color.get_leggings")));
-        inv.setItem(37, ItemUtils.create(Material.LEATHER_BOOTS, 1, MessageUtils.getMessage("messages.inventories.armor_color.get_boots")));
+        inv.setItem(10, ItemUtils.create(Material.LEATHER_HELMET, 1, this.lang.c("messages.inventories.armor_color.get_helmet")));
+        inv.setItem(19, ItemUtils.create(Material.LEATHER_CHESTPLATE, 1, this.lang.c("messages.inventories.armor_color.get_chestplate")));
+        inv.setItem(28, ItemUtils.create(Material.LEATHER_LEGGINGS, 1, this.lang.c("messages.inventories.armor_color.get_leggings")));
+        inv.setItem(37, ItemUtils.create(Material.LEATHER_BOOTS, 1, this.lang.c("messages.inventories.armor_color.get_boots")));
 
-        List<String> lore = MessageUtils.getMessageList("messages.inventories.armor_color.change");
+        List<Component> lore = this.lang.cl("messages.inventories.armor_color.change");
 
-        inv.setItem(22, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.randomize_red"), 1, MessageUtils.getMessage("messages.inventories.armor_color.randomize_red")));
-        inv.setItem(23, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.randomize_green"), 1, MessageUtils.getMessage("messages.inventories.armor_color.randomize_green")));
-        inv.setItem(24, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.randomize_blue"), 1, MessageUtils.getMessage("messages.inventories.armor_color.randomize_blue")));
-        inv.setItem(31, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.red"), 16, MessageUtils.getMessage("messages.inventories.armor_color.red"), lore));
-        inv.setItem(32, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.green"), 16, MessageUtils.getMessage("messages.inventories.armor_color.green"), lore));
-        inv.setItem(33, ItemUtils.createHead(MessageUtils.getMessage("heads.armor_color.blue"), 16, MessageUtils.getMessage("messages.inventories.armor_color.blue"), lore));
+        inv.setItem(22, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_red"), 1, this.lang.c("messages.inventories.armor_color.randomize_red")));
+        inv.setItem(23, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_green"), 1, this.lang.c("messages.inventories.armor_color.randomize_green")));
+        inv.setItem(24, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_blue"), 1, this.lang.c("messages.inventories.armor_color.randomize_blue")));
+        inv.setItem(31, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.red"), 16, this.lang.c("messages.inventories.armor_color.red"), lore));
+        inv.setItem(32, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.green"), 16, this.lang.c("messages.inventories.armor_color.green"), lore));
+        inv.setItem(33, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.blue"), 16, this.lang.c("messages.inventories.armor_color.blue"), lore));
 
         update(inv);
 

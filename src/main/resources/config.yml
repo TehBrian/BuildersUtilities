@@ -33,94 +33,94 @@ heads:
 messages:
   commands:
     advanced_fly:
-      enabled: "&3BU &7› &aAdvanced Fly enabled."
-      disabled: "&3BU &7› &cAdvanced Fly disabled."
+      enabled: "<dark_aqua>BU <gray>› <green>Advanced Fly enabled."
+      disabled: "<dark_aqua>BU <gray>› <red>Advanced Fly disabled."
     night_vision:
-      enabled: "&3BU &7› &aNight Vision enabled."
-      disabled: "&3BU &7› &cNight Vision disabled."
+      enabled: "<dark_aqua>BU <gray>› <green>Night Vision enabled."
+      disabled: "<dark_aqua>BU <gray>› <red>Night Vision disabled."
     no_clip:
-      enabled: "&3BU &7› &aNo-Clip enabled."
-      disabled: "&3BU &7› &cNo-Clip disabled."
-    reload: "&3BU &7› &bSuccessfully reloaded config!"
+      enabled: "<dark_aqua>BU <gray>› <green>No-Clip enabled."
+      disabled: "<dark_aqua>BU <gray>› <red>No-Clip disabled."
+    reload: "<dark_aqua>BU <gray>› <aqua>Successfully reloaded config!"
 
   inventories:
     armor_color:
-      inventory_name: "&1Armor Color Creator"
+      inventory_name: "<dark_blue>Armor Color Creator"
       change:
-        - "&7"
-        - "&7Left click to increase"
-        - "&7Right click to decrease"
-        - "&7Shift click to change by 4"
-      get_helmet: "&aClick to get helmet"
-      get_chestplate: "&aClick to get chestplate"
-      get_leggings: "&aClick to get leggings"
-      get_boots: "&aClick to get boots"
-      red: "&cRed"
-      green: "&aGreen"
-      blue: "&bBlue"
-      randomize_red: "&cRandomize Red"
-      randomize_green: "&aRandomize Green"
-      randomize_blue: "&bRandomize Blue"
+        - "<gray>"
+        - "<gray>Left click to increase"
+        - "<gray>Right click to decrease"
+        - "<gray>Shift click to change by 4"
+      get_helmet: "<green>Click to get helmet"
+      get_chestplate: "<green>Click to get chestplate"
+      get_leggings: "<green>Click to get leggings"
+      get_boots: "<green>Click to get boots"
+      red: "<red>Red"
+      green: "<green>Green"
+      blue: "<aqua>Blue"
+      randomize_red: "<red>Randomize Red"
+      randomize_green: "<green>Randomize Green"
+      randomize_blue: "<aqua>Randomize Blue"
 
     banner:
-      base_inventory_name: "&1Select a base.."
-      color_inventory_name: "&1Select a color.."
-      pattern_inventory_name: "&1Select a pattern.."
+      base_inventory_name: "<dark_blue>Select a base.."
+      color_inventory_name: "<dark_blue>Select a color.."
+      pattern_inventory_name: "<dark_blue>Select a pattern.."
       select:
-        - "&7"
-        - "&7Click to select"
-      cannot_get_banner: "&cPlease select a base color first"
-      get_banner: "&aClick to get banner"
-      randomize: "&fRandomly Select"
+        - "<gray>"
+        - "<gray>Click to select"
+      cannot_get_banner: "<red>Please select a base color first"
+      get_banner: "<green>Click to get banner"
+      randomize: "<white>Randomly Select"
 
     options:
-      inventory_name: "&1Builders Utilities Options"
+      inventory_name: "<dark_blue>Builders Utilities Options"
       status:
         enabled:
           - ""
-          - "&a&lEnabled"
-          - "&7"
-          - "&7Click to toggle"
+          - "<green><bold>Enabled"
+          - "<gray>"
+          - "<gray>Click to toggle"
         no_permission:
           - ""
-          - "&6&lNo permission"
+          - "<gold><bold>No permission"
         disabled:
           - ""
-          - "&c&lDisabled"
-          - "&7"
-          - "&7Click to toggle"
+          - "<red><bold>Disabled"
+          - "<gray>"
+          - "<gray>Click to toggle"
       iron_door_toggle:
-        name: "&b&lIron Door Toggle"
+        name: "<aqua><bold>Iron Door Toggle"
         description:
-          - "&3 Allows you to toggle iron doors"
-          - "&3and iron trapdoors open and closed."
-          - "&7 To use, right click on an iron"
-          - "&7door while not holding anything."
+          - "<dark_aqua> Allows you to toggle iron doors"
+          - "<dark_aqua>and iron trapdoors open and closed."
+          - "<gray> To use, right click on an iron"
+          - "<gray>door while not holding anything."
       double_slab_break:
-        name: "&b&lDouble Slab Break"
+        name: "<aqua><bold>Double Slab Break"
         description:
-          - "&3 Allows you to break"
-          - "&3double slabs in half."
-          - "&7 To use, break a double slab"
-          - "&7while holding any slab."
+          - "<dark_aqua> Allows you to break"
+          - "<dark_aqua>double slabs in half."
+          - "<gray> To use, break a double slab"
+          - "<gray>while holding any slab."
       glazed_terracotta_rotate:
-        name: "&b&lGlazed Terracotta Rotate"
+        name: "<aqua><bold>Glazed Terracotta Rotate"
         description:
-          - "&3 Allows you to rotate"
-          - "&3glazed terracotta."
-          - "&7 To use, right click on a glazed"
-          - "&7terracotta while shifting."
+          - "<dark_aqua> Allows you to rotate"
+          - "<dark_aqua>glazed terracotta."
+          - "<gray> To use, right click on a glazed"
+          - "<gray>terracotta while shifting."
       night_vision:
-        name: "&b&lNight Vision"
+        name: "<aqua><bold>Night Vision"
         description:
-          - "&3 Grants you infinite night vision."
+          - "<dark_aqua> Grants you infinite night vision."
       no_clip:
-        name: "&b&lNo-Clip"
+        name: "<aqua><bold>No-Clip"
         description:
-          - "&3 Intelligently toggles you between"
-          - "&3creative and spectator mode."
+          - "<dark_aqua> Intelligently toggles you between"
+          - "<dark_aqua>creative and spectator mode."
       advanced_fly:
-        name: "&b&lAdvanced Fly"
+        name: "<aqua><bold>Advanced Fly"
         description:
-          - "&3 Prevents you from drifting in"
-          - "&3creative mode flight."
+          - "<dark_aqua> Prevents you from drifting in"
+          - "<dark_aqua>creative mode flight."

@@ -10,8 +10,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 
 import java.util.Objects;
 import java.util.Random;
@@ -20,18 +20,21 @@ import java.util.Random;
 public final class ArmorColorInventoryListener implements Listener {
 
     private final ArmorColorInventoryProvider armorColorInventoryProvider;
+    private final Lang lang;
 
     @Inject
     public ArmorColorInventoryListener(
-            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider
+            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider,
+            final @NonNull Lang lang
     ) {
         this.armorColorInventoryProvider = armorColorInventoryProvider;
+        this.lang = lang;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.armor_color.inventory_name"))
+                || !event.getView().title().equals(this.lang.c("messages.inventories.armor_color.inventory_name"))
                 || !(event.getWhoClicked() instanceof Player)) {
             return;
         }

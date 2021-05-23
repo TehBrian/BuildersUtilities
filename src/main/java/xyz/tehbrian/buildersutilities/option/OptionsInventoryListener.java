@@ -7,8 +7,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.Objects;
@@ -18,20 +18,23 @@ public final class OptionsInventoryListener implements Listener {
 
     private final UserManager userManager;
     private final OptionsInventoryProvider optionsInventoryProvider;
+    private final Lang lang;
 
     @Inject
     public OptionsInventoryListener(
             final @NonNull UserManager userManager,
-            final @NonNull OptionsInventoryProvider optionsInventoryProvider
+            final @NonNull OptionsInventoryProvider optionsInventoryProvider,
+            final @NonNull Lang lang
     ) {
         this.userManager = userManager;
         this.optionsInventoryProvider = optionsInventoryProvider;
+        this.lang = lang;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().getTitle().equals(MessageUtils.getMessage("messages.inventories.options.inventory_name"))
+                || !event.getView().title().equals(this.lang.c("messages.inventories.options.inventory_name"))
                 || !(event.getWhoClicked() instanceof Player)) {
             return;
         }

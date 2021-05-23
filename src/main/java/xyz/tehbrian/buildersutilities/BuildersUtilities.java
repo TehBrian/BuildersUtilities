@@ -23,6 +23,7 @@ import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
 import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
 import xyz.tehbrian.buildersutilities.inject.BannerModule;
+import xyz.tehbrian.buildersutilities.inject.ConfigModule;
 import xyz.tehbrian.buildersutilities.inject.OptionsModule;
 import xyz.tehbrian.buildersutilities.inject.PluginModule;
 import xyz.tehbrian.buildersutilities.inject.RestrictionHelperModule;
@@ -34,7 +35,6 @@ import xyz.tehbrian.buildersutilities.option.IronDoorListener;
 import xyz.tehbrian.buildersutilities.option.NoClipManager;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
-import xyz.tehbrian.buildersutilities.util.MessageUtils;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
 import xyz.tehbrian.restrictionhelper.bukkit.restrictions.PlotSquaredRestriction;
@@ -64,10 +64,11 @@ public final class BuildersUtilities extends JavaPlugin {
         this.injector = Guice.createInjector(
                 new ArmorColorModule(),
                 new BannerModule(),
+                new ConfigModule(),
                 new OptionsModule(),
                 new PluginModule(this),
-                new UserModule(),
-                new RestrictionHelperModule()
+                new RestrictionHelperModule(),
+                new UserModule()
         );
 
         this.setupConfig();
