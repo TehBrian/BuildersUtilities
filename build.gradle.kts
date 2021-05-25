@@ -16,15 +16,15 @@ repositories {
     // For CraftBukkit.
     mavenLocal()
     maven {
-        name = "spigotmc-repo"
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        name = "papermc-repo"
+        url = uri("https://papermc.io/repo/repository/maven-public/")
     }
     maven {
         name = "sonatype"
         url = uri("https://oss.sonatype.org/content/groups/public/")
     }
     maven {
-        name = "sonatype"
+        name = "sonatype-s01"
         url = uri("https://s01.oss.sonatype.org/content/groups/public/")
     }
 }
