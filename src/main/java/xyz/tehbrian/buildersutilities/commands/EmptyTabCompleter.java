@@ -13,4 +13,5 @@ public final class EmptyTabCompleter implements TabCompleter {
     public List<String> onTabComplete(final CommandSender sender, final Command command, final String alias, final String[] args) {
         return Collections.emptyList();
     }
+
 }

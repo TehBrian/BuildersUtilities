@@ -59,4 +59,5 @@ public final class BannerPatternInventoryProvider {
 
         return inv;
     }
+
 }

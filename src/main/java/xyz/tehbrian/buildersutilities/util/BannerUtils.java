@@ -161,4 +161,5 @@ public final class BannerUtils {
         Random r = new Random();
         return getAllPatternTypes().get(r.nextInt(getAllPatternTypes().size()));
     }
+
 }

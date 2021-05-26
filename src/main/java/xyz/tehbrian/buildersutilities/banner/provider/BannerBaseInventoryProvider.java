@@ -59,4 +59,5 @@ public final class BannerBaseInventoryProvider {
 
         return inv;
     }
+
 }

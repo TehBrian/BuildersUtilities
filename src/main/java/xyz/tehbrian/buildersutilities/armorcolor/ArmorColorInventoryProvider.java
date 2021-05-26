@@ -72,4 +72,5 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(28, ItemUtils.colorLeatherArmor(Objects.requireNonNull(inv.getItem(28)), r, g, b));
         inv.setItem(37, ItemUtils.colorLeatherArmor(Objects.requireNonNull(inv.getItem(37)), r, g, b));
     }
+
 }

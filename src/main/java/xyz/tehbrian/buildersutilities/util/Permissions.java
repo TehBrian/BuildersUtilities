@@ -15,4 +15,5 @@ public final class Permissions {
 
     private Permissions() {
     }
+
 }

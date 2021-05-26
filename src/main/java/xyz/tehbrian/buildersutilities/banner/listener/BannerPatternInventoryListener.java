@@ -88,4 +88,5 @@ public final class BannerPatternInventoryListener implements Listener {
             }
         }
     }
+
 }

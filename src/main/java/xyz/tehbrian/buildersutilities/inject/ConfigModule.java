@@ -15,4 +15,5 @@ public class ConfigModule extends AbstractModule {
     protected void configure() {
         this.bind(Lang.class).asEagerSingleton();
     }
+
 }

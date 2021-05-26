@@ -58,4 +58,5 @@ public final class BannerColorInventoryProvider {
 
         return inv;
     }
+
 }

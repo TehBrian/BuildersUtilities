@@ -35,4 +35,5 @@ public final class AdvancedFlyCommand implements CommandExecutor {
         }
         return true;
     }
+
 }

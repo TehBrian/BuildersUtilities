@@ -28,4 +28,5 @@ public final class BannerCommand implements CommandExecutor {
         }
         return true;
     }
+
 }

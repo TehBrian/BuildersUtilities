@@ -36,4 +36,5 @@ public final class NightVisionCommand implements CommandExecutor {
         }
         return true;
     }
+
 }

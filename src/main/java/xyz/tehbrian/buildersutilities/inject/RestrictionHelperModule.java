@@ -20,4 +20,5 @@ public class RestrictionHelperModule extends AbstractModule {
     public BukkitRestrictionHelper provideRestrictionHelper() {
         return new BukkitRestrictionHelper();
     }
+
 }

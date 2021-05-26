@@ -28,4 +28,5 @@ public final class ArmorColorCommand implements CommandExecutor {
         }
         return true;
     }
+
 }

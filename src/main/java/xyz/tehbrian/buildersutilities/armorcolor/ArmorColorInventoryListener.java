@@ -87,4 +87,5 @@ public final class ArmorColorInventoryListener implements Listener {
 
         this.armorColorInventoryProvider.update(event.getClickedInventory());
     }
+
 }

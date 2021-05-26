@@ -94,4 +94,5 @@ public final class OptionsInventoryListener implements Listener {
 
         this.optionsInventoryProvider.update(event.getView().getTopInventory(), this.userManager.getUser(player));
     }
+
 }

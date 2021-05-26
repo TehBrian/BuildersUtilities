@@ -33,6 +33,22 @@
 
 <module name="Checker">
 
+    <module name="RegexpMultiline">
+        <property name="id" value="RegexpMultilineEmptyRowAfterClassStart"/>
+        <property name="format" value="^([^\r\n ]+ )*(class|interface|@interface|enum) [^{]*\{[\r]?\n[^\r\n}]"/>
+        <property name="message" value="Missing empty row after the opening curly bracket of a class/interface/@interface/enum."/>
+        <property name="severity" value="error"/>
+        <property name="fileExtensions" value="groovy,java"/>
+    </module>
+
+    <module name="RegexpMultiline">
+        <property name="id" value="RegexpMultilineEmptyRowBeforeClassEnd"/>
+        <property name="format" value="[^\r\n{][\r]?\n\}[\r]?\n"/>
+        <property name="message" value="Missing empty row before the closing curly bracket of a class/interface/@interface/enum."/>
+        <property name="severity" value="error"/>
+        <property name="fileExtensions" value="groovy,java"/>
+    </module>
+
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See

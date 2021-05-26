@@ -87,4 +87,5 @@ public final class AdvancedFlyListener implements Listener {
             this.slower.remove(player);
         }
     }
+
 }

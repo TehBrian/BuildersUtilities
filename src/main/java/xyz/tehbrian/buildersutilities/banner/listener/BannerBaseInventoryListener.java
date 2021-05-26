@@ -61,4 +61,5 @@ public final class BannerBaseInventoryListener implements Listener {
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
     }
+
 }

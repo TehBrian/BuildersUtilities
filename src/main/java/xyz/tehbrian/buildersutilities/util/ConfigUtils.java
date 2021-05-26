@@ -11,4 +11,5 @@ public final class ConfigUtils {
     public static String getString(final String configKey) {
         return BuildersUtilities.getInstance().getConfig().getString(configKey);
     }
+
 }

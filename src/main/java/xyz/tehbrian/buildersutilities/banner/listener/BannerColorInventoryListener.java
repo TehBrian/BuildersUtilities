@@ -65,4 +65,5 @@ public final class BannerColorInventoryListener implements Listener {
             player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
     }
+
 }

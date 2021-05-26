@@ -115,4 +115,5 @@ public final class User {
         this.setAdvancedFlyEnabled(!this.hasAdvancedFlyEnabled());
         return this.hasAdvancedFlyEnabled();
     }
+
 }

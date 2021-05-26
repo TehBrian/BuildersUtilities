@@ -15,4 +15,5 @@ public class OptionsModule extends AbstractModule {
     protected void configure() {
         this.bind(OptionsInventoryProvider.class).asEagerSingleton();
     }
+
 }

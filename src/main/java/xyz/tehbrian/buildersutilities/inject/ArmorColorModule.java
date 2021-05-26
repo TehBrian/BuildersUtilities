@@ -15,4 +15,5 @@ public class ArmorColorModule extends AbstractModule {
     protected void configure() {
         this.bind(ArmorColorInventoryProvider.class).asEagerSingleton();
     }
+
 }

@@ -87,4 +87,5 @@ public final class NoClipManager {
                 || p.getLocation().add(0, 1, -0.4).getBlock().getType().isSolid()
                 || p.getLocation().add(0, +1.9, 0).getBlock().getType().isSolid();
     }
+
 }

@@ -157,4 +157,5 @@ public final class OptionsInventoryProvider {
             inv.setItem(25, ORANGE);
         }
     }
+
 }

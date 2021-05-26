@@ -19,4 +19,5 @@ public class BannerModule extends AbstractModule {
         this.bind(BannerColorInventoryProvider.class).asEagerSingleton();
         this.bind(BannerPatternInventoryProvider.class).asEagerSingleton();
     }
+
 }

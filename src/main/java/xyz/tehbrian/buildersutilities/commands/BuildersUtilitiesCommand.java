@@ -66,4 +66,5 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
         return suggestions;
     }
+
 }

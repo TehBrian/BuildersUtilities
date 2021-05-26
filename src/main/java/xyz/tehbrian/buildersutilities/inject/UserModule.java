@@ -20,4 +20,5 @@ public class UserModule extends AbstractModule {
     public UserManager provideUserManager() {
         return new UserManager();
     }
+
 }
