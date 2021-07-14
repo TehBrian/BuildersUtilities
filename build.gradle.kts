@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("xyz.jpenilla.run-paper") version "1.0.3"
 }
 
 group = "xyz.tehbrian"
@@ -42,11 +43,17 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 }
 
-tasks.processResources {
-    expand("version" to project.version)
-}
+tasks {
+    processResources {
+        expand("version" to project.version)
+    }
 
-tasks.shadowJar {
-    relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.restrictionhelper")
-    archiveBaseName.set("BuildersUtilities")
+    shadowJar {
+        relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.restrictionhelper")
+        archiveBaseName.set("BuildersUtilities")
+    }
+
+    runServer {
+        minecraftVersion("1.17.1")
+    }
 }
