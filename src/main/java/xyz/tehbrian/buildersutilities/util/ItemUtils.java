@@ -1,9 +1,10 @@
 package xyz.tehbrian.buildersutilities.util;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -49,23 +49,18 @@ public final class ItemUtils {
         return create(material, amount, null, lore);
     }
 
-    public static ItemStack createHead(final String data, final int amount, final Component name, final List<Component> lore) {
+    public static ItemStack createHead(final String textures, final int amount, final Component name, final List<Component> lore) {
         ItemStack itemStack = create(Material.PLAYER_HEAD, amount, name, lore);
-        SkullMeta itemMeta = (SkullMeta) itemStack.getItemMeta();
 
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-        profile.getProperties().put("textures", new Property("textures", data));
+        SkullMeta skull = (SkullMeta) itemStack.getItemMeta();
 
-        Field profileField;
-        try {
-            profileField = Objects.requireNonNull(itemMeta).getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(itemMeta, profile);
-        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
-        }
+        final PlayerProfile profile = Bukkit.createProfile(UUID.randomUUID());
+        profile.setProperty(new ProfileProperty("textures", textures));
 
-        itemStack.setItemMeta(itemMeta);
+        skull.setPlayerProfile(profile);
+
+        itemStack.setItemMeta(skull);
+
         return itemStack;
     }
 
