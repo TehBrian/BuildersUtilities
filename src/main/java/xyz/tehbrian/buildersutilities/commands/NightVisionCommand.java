@@ -25,8 +25,7 @@ public final class NightVisionCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        if (sender instanceof Player player) {
 
             if (this.userManager.getUser(player).toggleNightVisionEnabled()) {
                 player.sendMessage(this.lang.c("messages.commands.night_vision.enabled"));

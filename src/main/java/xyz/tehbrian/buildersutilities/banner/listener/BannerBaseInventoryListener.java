@@ -34,11 +34,9 @@ public final class BannerBaseInventoryListener implements Listener {
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
                 || !event.getView().title().equals(this.lang.c("messages.inventories.banner.base_inventory_name"))
-                || !(event.getWhoClicked() instanceof Player)) {
+                || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-
-        Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();
 

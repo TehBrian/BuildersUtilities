@@ -47,8 +47,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
             return true;
         }
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        if (sender instanceof Player player) {
 
             player.openInventory(this.optionsInventoryProvider.generate(this.userManager.getUser(player)));
         }

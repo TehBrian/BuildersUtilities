@@ -21,8 +21,7 @@ public final class ArmorColorCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        if (sender instanceof Player player) {
 
             player.openInventory(this.armorColorInventoryProvider.generate());
         }

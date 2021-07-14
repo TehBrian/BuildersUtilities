@@ -38,11 +38,9 @@ public final class BannerPatternInventoryListener implements Listener {
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
                 || !event.getView().title().equals(this.lang.c("messages.inventories.banner.pattern_inventory_name"))
-                || !(event.getWhoClicked() instanceof Player)) {
+                || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-
-        Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();
 
@@ -53,10 +51,9 @@ public final class BannerPatternInventoryListener implements Listener {
 
         ItemMeta itemMeta = oldBanner.getItemMeta();
 
-        if (!(itemMeta instanceof BannerMeta)) {
+        if (!(itemMeta instanceof BannerMeta bannerMeta)) {
             return;
         }
-        BannerMeta bannerMeta = (BannerMeta) itemMeta;
 
         event.setCancelled(true);
 

@@ -35,11 +35,9 @@ public final class OptionsInventoryListener implements Listener {
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
                 || !event.getView().title().equals(this.lang.c("messages.inventories.options.inventory_name"))
-                || !(event.getWhoClicked() instanceof Player)) {
+                || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-
-        Player player = (Player) event.getWhoClicked();
 
         int slot = event.getRawSlot();
 
