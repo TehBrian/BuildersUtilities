@@ -33,24 +33,6 @@
 
 <module name="Checker">
 
-    <module name="RegexpMultiline">
-        <property name="id" value="RegexpMultilineEmptyRowAfterClassStart"/>
-        <property name="format" value="^([^\r\n ]+ )*(class|interface|@interface|enum) [^{]*\{[\r]?\n[^\r\n}]"/>
-        <property name="message"
-                  value="Missing empty row after the opening curly bracket of a class/interface/@interface/enum."/>
-        <property name="severity" value="error"/>
-        <property name="fileExtensions" value="groovy,java"/>
-    </module>
-
-    <module name="RegexpMultiline">
-        <property name="id" value="RegexpMultilineEmptyRowBeforeClassEnd"/>
-        <property name="format" value="[^\r\n{][\r]?\n\}[\r]?\n"/>
-        <property name="message"
-                  value="Missing empty row before the closing curly bracket of a class/interface/@interface/enum."/>
-        <property name="severity" value="error"/>
-        <property name="fileExtensions" value="groovy,java"/>
-    </module>
-
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
@@ -78,7 +60,7 @@
 
     <!-- Checks that a package-info.java file exists for each package. -->
     <!-- See https://checkstyle.org/config_javadoc.html#JavadocPackage -->
-    <!--<module name="JavadocPackage"/>-->
+    <module name="JavadocPackage"/>
 
     <!-- Checks whether files end with a new line.                      -->
     <!-- See https://checkstyle.org/config_misc.html#NewlineAtEndOfFile -->
@@ -120,13 +102,13 @@
 
         <!-- Checks for Javadoc comments.                   -->
         <!-- See https://checkstyle.org/config_javadoc.html -->
-        <!--<module name="InvalidJavadocPosition"/>-->
-        <!--<module name="JavadocMethod"/>-->
-        <!--<module name="JavadocType"/>-->
-        <!--<module name="JavadocStyle">-->
-        <!--    <property name="checkFirstSentence" value="false"/>-->
-        <!--</module>-->
-        <!--<module name="MissingJavadocMethod"/>-->
+        <module name="InvalidJavadocPosition"/>
+        <module name="JavadocMethod"/>
+        <module name="JavadocType"/>
+        <module name="JavadocStyle">
+            <property name="checkFirstSentence" value="false"/>
+        </module>
+        <module name="MissingJavadocMethod"/>
 
         <!-- Checks for Naming Conventions.                -->
         <!-- See https://checkstyle.org/config_naming.html -->
@@ -136,9 +118,7 @@
         <module name="MethodName"/>
         <module name="PackageName"/>
         <module name="ParameterName"/>
-        <!--<module name="StaticVariableName">-->
-        <!--    <property name="applyToPrivate" value="false"/>-->
-        <!--</module>-->
+        <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
         <!-- Checks for imports                             -->
@@ -192,9 +172,9 @@
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
-        <!--<module name="VisibilityModifier">-->
-        <!--    <property name="protectedAllowed" value="true"/>-->
-        <!--</module>-->
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
 
         <!-- Miscellaneous other checks.                 -->
         <!-- See https://checkstyle.org/config_misc.html -->
