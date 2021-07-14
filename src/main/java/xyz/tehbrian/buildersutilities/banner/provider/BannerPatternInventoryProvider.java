@@ -38,19 +38,10 @@ public final class BannerPatternInventoryProvider {
         ));
         inv.setItem(5, oldBanner);
 
-        Material base;
-        switch (dyeColor) {
-            case WHITE:
-            case LIGHT_GRAY:
-            case LIME:
-            case LIGHT_BLUE:
-            case YELLOW:
-                base = Material.BLACK_BANNER;
-                break;
-            default:
-                base = Material.WHITE_BANNER;
-                break;
-        }
+        Material base = switch (dyeColor) {
+            case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
+            default -> Material.WHITE_BANNER;
+        };
 
         for (int i = 9; i < (BannerUtils.getAllPatternTypes().size() + 9); i++) {
             inv.setItem(i, BannerUtils.createBanner(

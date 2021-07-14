@@ -40,41 +40,24 @@ public final class BannerUtils {
     }
 
     public static Material getBanner(final DyeColor dyeColor) {
-        switch (dyeColor) {
-            default:
-            case WHITE:
-                return Material.WHITE_BANNER;
-            case ORANGE:
-                return Material.ORANGE_BANNER;
-            case MAGENTA:
-                return Material.MAGENTA_BANNER;
-            case LIGHT_BLUE:
-                return Material.LIGHT_BLUE_BANNER;
-            case YELLOW:
-                return Material.YELLOW_BANNER;
-            case LIME:
-                return Material.LIME_BANNER;
-            case PINK:
-                return Material.PINK_BANNER;
-            case GRAY:
-                return Material.GRAY_BANNER;
-            case LIGHT_GRAY:
-                return Material.LIGHT_GRAY_BANNER;
-            case CYAN:
-                return Material.CYAN_BANNER;
-            case PURPLE:
-                return Material.PURPLE_BANNER;
-            case BLUE:
-                return Material.BLUE_BANNER;
-            case BROWN:
-                return Material.BROWN_BANNER;
-            case GREEN:
-                return Material.GREEN_BANNER;
-            case RED:
-                return Material.RED_BANNER;
-            case BLACK:
-                return Material.BLACK_BANNER;
-        }
+        return switch (dyeColor) {
+            case WHITE -> Material.WHITE_BANNER;
+            case ORANGE -> Material.ORANGE_BANNER;
+            case MAGENTA -> Material.MAGENTA_BANNER;
+            case LIGHT_BLUE -> Material.LIGHT_BLUE_BANNER;
+            case YELLOW -> Material.YELLOW_BANNER;
+            case LIME -> Material.LIME_BANNER;
+            case PINK -> Material.PINK_BANNER;
+            case GRAY -> Material.GRAY_BANNER;
+            case LIGHT_GRAY -> Material.LIGHT_GRAY_BANNER;
+            case CYAN -> Material.CYAN_BANNER;
+            case PURPLE -> Material.PURPLE_BANNER;
+            case BLUE -> Material.BLUE_BANNER;
+            case BROWN -> Material.BROWN_BANNER;
+            case GREEN -> Material.GREEN_BANNER;
+            case RED -> Material.RED_BANNER;
+            case BLACK -> Material.BLACK_BANNER;
+        };
     }
 
     public static Pattern getPattern(final ItemStack itemStack) {
@@ -83,57 +66,25 @@ public final class BannerUtils {
     }
 
     public static DyeColor getDyeColor(final Material material) {
-        switch (material) {
-            default:
-            case WHITE_BANNER:
-            case WHITE_DYE:
-                return DyeColor.WHITE;
-            case ORANGE_BANNER:
-            case ORANGE_DYE:
-                return DyeColor.ORANGE;
-            case MAGENTA_BANNER:
-            case MAGENTA_DYE:
-                return DyeColor.MAGENTA;
-            case LIGHT_BLUE_BANNER:
-            case LIGHT_BLUE_DYE:
-                return DyeColor.LIGHT_BLUE;
-            case YELLOW_BANNER:
-            case YELLOW_DYE:
-                return DyeColor.YELLOW;
-            case LIME_BANNER:
-            case LIME_DYE:
-                return DyeColor.LIME;
-            case PINK_BANNER:
-            case PINK_DYE:
-                return DyeColor.PINK;
-            case GRAY_BANNER:
-            case GRAY_DYE:
-                return DyeColor.GRAY;
-            case LIGHT_GRAY_BANNER:
-            case LIGHT_GRAY_DYE:
-                return DyeColor.LIGHT_GRAY;
-            case CYAN_BANNER:
-            case CYAN_DYE:
-                return DyeColor.CYAN;
-            case PURPLE_BANNER:
-            case PURPLE_DYE:
-                return DyeColor.PURPLE;
-            case BLUE_BANNER:
-            case BLUE_DYE:
-                return DyeColor.BLUE;
-            case BROWN_BANNER:
-            case BROWN_DYE:
-                return DyeColor.BROWN;
-            case GREEN_BANNER:
-            case GREEN_DYE:
-                return DyeColor.GREEN;
-            case RED_BANNER:
-            case RED_DYE:
-                return DyeColor.RED;
-            case BLACK_BANNER:
-            case BLACK_DYE:
-                return DyeColor.BLACK;
-        }
+        return switch (material) {
+            case WHITE_BANNER, WHITE_DYE -> DyeColor.WHITE;
+            case ORANGE_BANNER, ORANGE_DYE -> DyeColor.ORANGE;
+            case MAGENTA_BANNER, MAGENTA_DYE -> DyeColor.MAGENTA;
+            case LIGHT_BLUE_BANNER, LIGHT_BLUE_DYE -> DyeColor.LIGHT_BLUE;
+            case YELLOW_BANNER, YELLOW_DYE -> DyeColor.YELLOW;
+            case LIME_BANNER, LIME_DYE -> DyeColor.LIME;
+            case PINK_BANNER, PINK_DYE -> DyeColor.PINK;
+            case GRAY_BANNER, GRAY_DYE -> DyeColor.GRAY;
+            case LIGHT_GRAY_BANNER, LIGHT_GRAY_DYE -> DyeColor.LIGHT_GRAY;
+            case CYAN_BANNER, CYAN_DYE -> DyeColor.CYAN;
+            case PURPLE_BANNER, PURPLE_DYE -> DyeColor.PURPLE;
+            case BLUE_BANNER, BLUE_DYE -> DyeColor.BLUE;
+            case BROWN_BANNER, BROWN_DYE -> DyeColor.BROWN;
+            case GREEN_BANNER, GREEN_DYE -> DyeColor.GREEN;
+            case RED_BANNER, RED_DYE -> DyeColor.RED;
+            case BLACK_BANNER, BLACK_DYE -> DyeColor.BLACK;
+            default -> throw new IllegalArgumentException();
+        };
     }
 
     public static List<DyeColor> getAllDyeColors() {
