@@ -142,9 +142,11 @@ public final class BuildersUtilities extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
 
         Logger logger = this.injector.getInstance(Logger.class);
-        var loader = new BukkitRestrictionLoader(logger,
+        var loader = new BukkitRestrictionLoader(
+                logger,
                 Arrays.asList(pm.getPlugins()),
-                List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class));
+                List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class)
+        );
 
         loader.load(restrictionHelper);
     }

@@ -17,7 +17,8 @@ public final class AdvancedFlyCommand implements CommandExecutor {
     @Inject
     public AdvancedFlyCommand(
             final @NonNull UserManager userManager,
-            final @NonNull Lang lang) {
+            final @NonNull Lang lang
+    ) {
         this.userManager = userManager;
         this.lang = lang;
     }

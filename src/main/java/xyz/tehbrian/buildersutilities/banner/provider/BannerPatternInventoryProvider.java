@@ -34,7 +34,8 @@ public final class BannerPatternInventoryProvider {
         inv.setItem(3, ItemUtils.createHead(
                 ConfigUtils.getString("heads.banner.randomize"),
                 1,
-                this.lang.c("messages.inventories.banner.randomize")));
+                this.lang.c("messages.inventories.banner.randomize")
+        ));
         inv.setItem(5, oldBanner);
 
         Material base;
@@ -52,9 +53,11 @@ public final class BannerPatternInventoryProvider {
         }
 
         for (int i = 9; i < (BannerUtils.getAllPatternTypes().size() + 9); i++) {
-            inv.setItem(i, BannerUtils.createBanner(base,
+            inv.setItem(i, BannerUtils.createBanner(
+                    base,
                     this.lang.cl("messages.inventories.banner.select"),
-                    new Pattern(dyeColor, BannerUtils.getAllPatternTypes().get(i - 9))));
+                    new Pattern(dyeColor, BannerUtils.getAllPatternTypes().get(i - 9))
+            ));
         }
 
         return inv;

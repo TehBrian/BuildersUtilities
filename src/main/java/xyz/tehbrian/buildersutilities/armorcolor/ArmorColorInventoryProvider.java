@@ -38,12 +38,57 @@ public final class ArmorColorInventoryProvider {
 
         List<Component> lore = this.lang.cl("messages.inventories.armor_color.change");
 
-        inv.setItem(22, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_red"), 1, this.lang.c("messages.inventories.armor_color.randomize_red")));
-        inv.setItem(23, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_green"), 1, this.lang.c("messages.inventories.armor_color.randomize_green")));
-        inv.setItem(24, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.randomize_blue"), 1, this.lang.c("messages.inventories.armor_color.randomize_blue")));
-        inv.setItem(31, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.red"), 16, this.lang.c("messages.inventories.armor_color.red"), lore));
-        inv.setItem(32, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.green"), 16, this.lang.c("messages.inventories.armor_color.green"), lore));
-        inv.setItem(33, ItemUtils.createHead(ConfigUtils.getString("heads.armor_color.blue"), 16, this.lang.c("messages.inventories.armor_color.blue"), lore));
+        inv.setItem(
+                22,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.randomize_red"),
+                        1,
+                        this.lang.c("messages.inventories.armor_color.randomize_red")
+                )
+        );
+        inv.setItem(
+                23,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.randomize_green"),
+                        1,
+                        this.lang.c("messages.inventories.armor_color.randomize_green")
+                )
+        );
+        inv.setItem(
+                24,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.randomize_blue"),
+                        1,
+                        this.lang.c("messages.inventories.armor_color.randomize_blue")
+                )
+        );
+        inv.setItem(
+                31,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.red"),
+                        16,
+                        this.lang.c("messages.inventories.armor_color.red"),
+                        lore
+                )
+        );
+        inv.setItem(
+                32,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.green"),
+                        16,
+                        this.lang.c("messages.inventories.armor_color.green"),
+                        lore
+                )
+        );
+        inv.setItem(
+                33,
+                ItemUtils.createHead(
+                        ConfigUtils.getString("heads.armor_color.blue"),
+                        16,
+                        this.lang.c("messages.inventories.armor_color.blue"),
+                        lore
+                )
+        );
 
         this.update(inv);
 

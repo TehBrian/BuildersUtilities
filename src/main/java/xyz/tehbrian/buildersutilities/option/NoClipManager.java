@@ -24,7 +24,8 @@ public final class NoClipManager {
     @Inject
     public NoClipManager(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager) {
+            final @NonNull UserManager userManager
+    ) {
         this.main = main;
         this.userManager = userManager;
     }

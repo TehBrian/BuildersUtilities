@@ -36,7 +36,8 @@ public final class BannerBaseInventoryProvider {
         inv.setItem(3, ItemUtils.createHead(
                 ConfigUtils.getString("heads.banner.randomize"),
                 1,
-                this.lang.c("messages.inventories.banner.randomize")));
+                this.lang.c("messages.inventories.banner.randomize")
+        ));
         inv.setItem(5, ItemUtils.create(Material.BARRIER, 1, this.lang.c("messages.inventories.banner.cannot_get_banner")));
 
         inv.setItem(28, this.createCustomBanner(Material.BLACK_BANNER));

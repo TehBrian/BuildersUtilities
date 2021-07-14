@@ -49,15 +49,18 @@ public final class BannerBaseInventoryListener implements Listener {
             ItemStack newBanner = ItemUtils.create(
                     BannerUtils.getBanner(dyeColor),
                     1,
-                    this.lang.c("messages.inventories.banner.get_banner"));
+                    this.lang.c("messages.inventories.banner.get_banner")
+            );
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
             DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            ItemStack newBanner = ItemUtils.create(BannerUtils.getBanner(dyeColor),
+            ItemStack newBanner = ItemUtils.create(
+                    BannerUtils.getBanner(dyeColor),
                     1,
-                    this.lang.c("messages.inventories.banner.get_banner"));
+                    this.lang.c("messages.inventories.banner.get_banner")
+            );
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
     }
