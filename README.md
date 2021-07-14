@@ -8,28 +8,19 @@ nicer-looking GUIs.
 ## What's different?
 
 - Every message is easily configurable.
-- Both the permissions and the commands have been completely redone. (See below
-  for an updated list!)
+- Both the permissions and the commands have been completely redone. (See the
+  [plugin.yml][links] for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
 
 In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
-## Commands and Permissions
-A full list of commands and permissions can be found
-[here](https://github.com/ItsTehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml)
-.
+[plugin.yml]: https://github.com/ItsTehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml
 
 ## Building
 
-1. Run [BuildTools](https://www.spigotmc.org/wiki/buildtools/) using
-   the `--compile craftbukkit` flag. This should install CraftBukkit to your
-   local maven repository.
-2. Clone this
-   repository. `git clone https://github.com/ItsTehBrian/BuildersUtilities`
-3. Run `./gradlew build` in the main project directory.
-
-The built jar can be found in `build/libs`.
+This project uses Gradle. To build, run `./gradlew shadowJar` in the main
+project directory. The built jar can be found in `build/libs`.
 
 ## Contributing
 Feel free to submit a pull-request or file an issue! Even if it's just a small
