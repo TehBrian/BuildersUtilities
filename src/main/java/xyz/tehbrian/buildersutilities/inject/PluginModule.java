@@ -53,7 +53,7 @@ public final class PluginModule extends AbstractModule {
      */
     @Provides
     public org.slf4j.Logger provideSLF4JLogger() {
-        return LoggerFactory.getLogger(this.buildersUtilities.getLogger().getName());
+        return this.buildersUtilities.getSLF4JLogger();
     }
 
 }
