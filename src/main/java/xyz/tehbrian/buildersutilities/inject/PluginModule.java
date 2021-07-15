@@ -4,7 +4,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.slf4j.LoggerFactory;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.util.logging.Logger;
