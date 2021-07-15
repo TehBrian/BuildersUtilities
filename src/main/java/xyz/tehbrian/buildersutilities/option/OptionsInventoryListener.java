@@ -39,7 +39,7 @@ public final class OptionsInventoryListener implements Listener {
             return;
         }
 
-        int slot = event.getRawSlot();
+        final int slot = event.getRawSlot();
 
         event.setCancelled(true);
 

@@ -67,9 +67,9 @@ public final class Lang {
      * @return the components
      */
     public List<Component> cl(final String configPath) {
-        List<Component> components = new ArrayList<>();
+        final List<Component> components = new ArrayList<>();
 
-        for (String string : this.getAndVerifyStringList(configPath)) {
+        for (final String string : this.getAndVerifyStringList(configPath)) {
             components.add(MiniMessage.get().parse(string));
         }
 
@@ -81,7 +81,7 @@ public final class Lang {
      * and verifies that it is not null.
      */
     private String getAndVerifyString(final String configPath) {
-        String rawValue = this.javaPlugin.getConfig().getString(configPath);
+        final String rawValue = this.javaPlugin.getConfig().getString(configPath);
 
         if (rawValue == null) {
             this.logger.error("Attempted to get value from non-existent config path {}!", configPath);
@@ -96,7 +96,7 @@ public final class Lang {
      * and verifies that they are not null.
      */
     private List<String> getAndVerifyStringList(final String configPath) {
-        List<String> rawValues = this.javaPlugin.getConfig().getStringList(configPath);
+        final List<String> rawValues = this.javaPlugin.getConfig().getStringList(configPath);
 
         if (rawValues.isEmpty()) {
             this.logger.error("Attempted to get list of values from non-existent config path {}!", configPath);

@@ -25,7 +25,7 @@ public final class BannerPatternInventoryProvider {
     }
 
     public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
-        Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.banner.pattern_inventory_name"));
+        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.banner.pattern_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
@@ -38,7 +38,7 @@ public final class BannerPatternInventoryProvider {
         ));
         inv.setItem(5, oldBanner);
 
-        Material base = switch (dyeColor) {
+        final Material base = switch (dyeColor) {
             case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
             default -> Material.WHITE_BANNER;
         };

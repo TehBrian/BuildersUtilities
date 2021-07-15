@@ -42,14 +42,14 @@ public final class BannerPatternInventoryListener implements Listener {
             return;
         }
 
-        int slot = event.getRawSlot();
+        final int slot = event.getRawSlot();
 
-        Inventory inventory = event.getClickedInventory();
+        final Inventory inventory = event.getClickedInventory();
 
-        ItemStack oldBanner = inventory.getItem(5);
+        final ItemStack oldBanner = inventory.getItem(5);
         Objects.requireNonNull(oldBanner);
 
-        ItemMeta itemMeta = oldBanner.getItemMeta();
+        final ItemMeta itemMeta = oldBanner.getItemMeta();
 
         if (!(itemMeta instanceof BannerMeta bannerMeta)) {
             return;
@@ -58,7 +58,7 @@ public final class BannerPatternInventoryListener implements Listener {
         event.setCancelled(true);
 
         if (slot == 3) {
-            DyeColor dyeColor = BannerUtils.getPattern(Objects.requireNonNull(inventory.getItem(9))).getColor();
+            final DyeColor dyeColor = BannerUtils.getPattern(Objects.requireNonNull(inventory.getItem(9))).getColor();
             BannerUtils.addPattern(oldBanner, new Pattern(dyeColor, BannerUtils.getRandomPatternType()));
 
             if (bannerMeta.numberOfPatterns() > 16) {

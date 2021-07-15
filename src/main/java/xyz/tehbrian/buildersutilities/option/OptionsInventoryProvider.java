@@ -37,9 +37,9 @@ public final class OptionsInventoryProvider {
         have magic strings, and I don't like how redundant this system still is.
      */
     private ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
-        Component name = this.lang.c("messages.inventories.options." + optionKey + ".name");
+        final Component name = this.lang.c("messages.inventories.options." + optionKey + ".name");
 
-        List<Component> lore = new ArrayList<>();
+        final List<Component> lore = new ArrayList<>();
         lore.addAll(this.lang.cl("messages.inventories.options." + optionKey + ".description"));
         lore.addAll(this.lang.cl("messages.inventories.options.status." + statusKey));
 
@@ -47,7 +47,7 @@ public final class OptionsInventoryProvider {
     }
 
     public Inventory generate(final User user) {
-        Inventory inv = Bukkit.createInventory(null, 27, this.lang.c("messages.inventories.options.inventory_name"));
+        final Inventory inv = Bukkit.createInventory(null, 27, this.lang.c("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
@@ -59,7 +59,7 @@ public final class OptionsInventoryProvider {
     }
 
     public void update(final Inventory inv, final User user) {
-        Player p = user.getPlayer();
+        final Player p = user.getPlayer();
 
         if (p.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             if (user.hasIronDoorToggleEnabled()) {

@@ -35,17 +35,17 @@ public final class NoClipManager {
     }
 
     private void checkForBlocks() {
-        for (User user : this.userManager.getUserMap().values()) {
+        for (final User user : this.userManager.getUserMap().values()) {
             if (!user.hasNoClipEnabled()) {
                 continue;
             }
 
-            Player p = user.getPlayer();
+            final Player p = user.getPlayer();
             if (p == null || !p.isOnline() || !p.hasPermission(Permissions.NO_CLIP)) {
                 continue;
             }
 
-            boolean noClip;
+            final boolean noClip;
             boolean tp = false;
             if (p.getGameMode() == GameMode.CREATIVE) {
                 if (p.isOnGround() && p.isSneaking()) {

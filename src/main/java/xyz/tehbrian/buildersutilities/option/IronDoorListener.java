@@ -48,14 +48,14 @@ public final class IronDoorListener implements Listener {
      */
     @EventHandler(ignoreCancelled = true)
     public void onIronDoorInteract(final PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
                 || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
 
-        Block block = Objects.requireNonNull(event.getClickedBlock());
+        final Block block = Objects.requireNonNull(event.getClickedBlock());
 
         if (block.getType() != Material.IRON_DOOR
                 || player.getInventory().getItemInMainHand().getType() != Material.AIR
@@ -69,7 +69,7 @@ public final class IronDoorListener implements Listener {
         }
 
         Bukkit.getScheduler().runTask(this.main, () -> {
-            Door door = (Door) block.getBlockData();
+            final Door door = (Door) block.getBlockData();
 
             door.setOpen(!door.isOpen());
 
@@ -80,14 +80,14 @@ public final class IronDoorListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
                 || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
 
-        Block block = Objects.requireNonNull(event.getClickedBlock());
+        final Block block = Objects.requireNonNull(event.getClickedBlock());
 
         if (block.getType() != Material.IRON_TRAPDOOR
                 || player.getInventory().getItemInMainHand().getType() != Material.AIR
@@ -101,7 +101,7 @@ public final class IronDoorListener implements Listener {
         }
 
         Bukkit.getScheduler().runTask(this.main, () -> {
-            TrapDoor trapDoor = (TrapDoor) block.getBlockData();
+            final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
 
             trapDoor.setOpen(!trapDoor.isOpen());
 

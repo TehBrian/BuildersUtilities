@@ -77,7 +77,7 @@ public final class User {
     public void setNightVisionEnabled(final boolean nightVisionEnabled) {
         this.nightVisionEnabled = nightVisionEnabled;
 
-        Player player = this.getPlayer();
+        final Player player = this.getPlayer();
         if (nightVisionEnabled) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
         } else {
