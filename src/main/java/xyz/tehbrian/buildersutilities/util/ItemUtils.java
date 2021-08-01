@@ -78,6 +78,15 @@ public final class ItemUtils {
         return itemStack;
     }
 
+    public static ItemStack colorLeatherArmor(final ItemStack itemStack, final Color color) {
+        final LeatherArmorMeta itemMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+
+        Objects.requireNonNull(itemMeta).setColor(color);
+
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
     public static ItemStack removeName(final ItemStack itemStack) {
         final ItemMeta meta = itemStack.getItemMeta();
         Objects.requireNonNull(meta).displayName(null);

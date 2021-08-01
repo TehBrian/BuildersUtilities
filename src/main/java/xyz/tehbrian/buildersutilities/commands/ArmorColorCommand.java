@@ -6,24 +6,25 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryProvider;
+import org.incendo.interfaces.paper.PlayerViewer;
+import org.jetbrains.annotations.NotNull;
+import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInterfaceProvider;
 
 public final class ArmorColorCommand implements CommandExecutor {
 
-    private final ArmorColorInventoryProvider armorColorInventoryProvider;
+    private final ArmorColorInterfaceProvider armorColorInterfaceProvider;
 
     @Inject
     public ArmorColorCommand(
-            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider
+            final @NonNull ArmorColorInterfaceProvider armorColorInterfaceProvider
     ) {
-        this.armorColorInventoryProvider = armorColorInventoryProvider;
+        this.armorColorInterfaceProvider = armorColorInterfaceProvider;
     }
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
         if (sender instanceof Player player) {
-
-            player.openInventory(this.armorColorInventoryProvider.generate());
+            this.armorColorInterfaceProvider.generate().open(PlayerViewer.of(player));
         }
         return true;
     }
