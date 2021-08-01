@@ -15,29 +15,23 @@ java {
 repositories {
     mavenCentral()
     mavenLocal()
-    maven {
-        name = "papermc-repo"
-        url = uri("https://papermc.io/repo/repository/maven-public/")
-    }
-    maven {
-        name = "sonatype"
-        url = uri("https://oss.sonatype.org/content/groups/public/")
-    }
-    maven {
-        name = "sonatype-s01"
-        url = uri("https://s01.oss.sonatype.org/content/groups/public/")
-    }
+
+    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://oss.sonatype.org/content/groups/public/")
+    maven("https://s01.oss.sonatype.org/content/groups/public/")
+
+    maven("https://repo.incendo.org/content/repositories/snapshots/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
     implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
-
     implementation("com.google.inject:guice:5.0.1")
 
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+    implementation("org.incendo.interfaces:interfaces-paper:1.0.0-SNAPSHOT")
 }
 
 tasks {
