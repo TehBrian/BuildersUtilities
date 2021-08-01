@@ -100,16 +100,16 @@ public final class BuildersUtilities extends JavaPlugin {
 
     @SafeVarargs
     private void registerEventListeners(final Key<? extends Listener>... listeners) {
-        PluginManager pm = this.getServer().getPluginManager();
+        final PluginManager pm = this.getServer().getPluginManager();
 
-        for (Key<? extends Listener> listener : listeners) {
-            Listener instance = this.injector.getInstance(listener);
+        for (final Key<? extends Listener> listener : listeners) {
+            final Listener instance = this.injector.getInstance(listener);
             pm.registerEvents(instance, this);
         }
     }
 
     private void setupCommands() {
-        Map<String, Key<? extends CommandExecutor>> toRegister = new HashMap<>();
+        final Map<String, Key<? extends CommandExecutor>> toRegister = new HashMap<>();
 
         toRegister.put("advancedfly", Key.get(AdvancedFlyCommand.class));
         toRegister.put("armorcolor", Key.get(ArmorColorCommand.class));
@@ -119,30 +119,30 @@ public final class BuildersUtilities extends JavaPlugin {
 
         this.registerCommandsWithEmptyTabCompleter(toRegister);
 
-        var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
+        final var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
         this.getCommand("buildersutilities").setExecutor(buildersUtilitiesCommand);
         this.getCommand("buildersutilities").setTabCompleter(buildersUtilitiesCommand);
     }
 
     private void registerCommandsWithEmptyTabCompleter(final Map<String, Key<? extends CommandExecutor>> commands) {
-        EmptyTabCompleter emptyTabCompleter = new EmptyTabCompleter();
+        final EmptyTabCompleter emptyTabCompleter = new EmptyTabCompleter();
 
-        for (String commandName : commands.keySet()) {
-            PluginCommand command = this.getCommand(commandName);
+        for (final String commandName : commands.keySet()) {
+            final PluginCommand command = this.getCommand(commandName);
 
-            CommandExecutor instance = this.injector.getInstance(commands.get(commandName));
+            final CommandExecutor instance = this.injector.getInstance(commands.get(commandName));
             command.setExecutor(instance);
             command.setTabCompleter(emptyTabCompleter);
         }
     }
 
     private void setupRestrictions() {
-        var restrictionHelper = this.injector.getInstance(BukkitRestrictionHelper.class);
+        final var restrictionHelper = this.injector.getInstance(BukkitRestrictionHelper.class);
 
-        PluginManager pm = this.getServer().getPluginManager();
+        final PluginManager pm = this.getServer().getPluginManager();
 
-        Logger logger = this.injector.getInstance(Logger.class);
-        var loader = new BukkitRestrictionLoader(
+        final Logger logger = this.injector.getInstance(Logger.class);
+        final var loader = new BukkitRestrictionLoader(
                 logger,
                 Arrays.asList(pm.getPlugins()),
                 List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class)

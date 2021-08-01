@@ -23,10 +23,10 @@ public final class ItemUtils {
     }
 
     public static ItemStack create(final Material material, final int amount, final Component name, final List<Component> lore) {
-        ItemStack itemStack = new ItemStack(material);
+        final ItemStack itemStack = new ItemStack(material);
         itemStack.setAmount(amount);
 
-        ItemMeta itemMeta = itemStack.getItemMeta();
+        final ItemMeta itemMeta = itemStack.getItemMeta();
         Objects.requireNonNull(itemMeta);
 
         if (name != null) {
@@ -50,9 +50,9 @@ public final class ItemUtils {
     }
 
     public static ItemStack createHead(final String textures, final int amount, final Component name, final List<Component> lore) {
-        ItemStack itemStack = create(Material.PLAYER_HEAD, amount, name, lore);
+        final ItemStack itemStack = create(Material.PLAYER_HEAD, amount, name, lore);
 
-        SkullMeta skull = (SkullMeta) itemStack.getItemMeta();
+        final SkullMeta skull = (SkullMeta) itemStack.getItemMeta();
 
         final PlayerProfile profile = Bukkit.createProfile(UUID.randomUUID());
         profile.setProperty(new ProfileProperty("textures", textures));
@@ -69,9 +69,9 @@ public final class ItemUtils {
     }
 
     public static ItemStack colorLeatherArmor(final ItemStack itemStack, final int red, final int green, final int blue) {
-        LeatherArmorMeta itemMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+        final LeatherArmorMeta itemMeta = (LeatherArmorMeta) itemStack.getItemMeta();
 
-        Color color = Color.fromRGB(red, green, blue);
+        final Color color = Color.fromRGB(red, green, blue);
         Objects.requireNonNull(itemMeta).setColor(color);
 
         itemStack.setItemMeta(itemMeta);
@@ -79,7 +79,7 @@ public final class ItemUtils {
     }
 
     public static ItemStack removeName(final ItemStack itemStack) {
-        ItemMeta meta = itemStack.getItemMeta();
+        final ItemMeta meta = itemStack.getItemMeta();
         Objects.requireNonNull(meta).displayName(null);
 
         itemStack.setItemMeta(meta);

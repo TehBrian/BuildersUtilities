@@ -41,17 +41,17 @@ public final class AdvancedFlyListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerMove(final PlayerMoveEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
         if (!this.userManager.getUser(player).hasAdvancedFlyEnabled()
                 || !player.hasPermission(Permissions.ADVANCED_FLY)
                 || !player.isFlying()) {
             return;
         }
 
-        Location from = event.getFrom().clone();
-        Location to = Objects.requireNonNull(event.getTo()).clone();
+        final Location from = event.getFrom().clone();
+        final Location to = Objects.requireNonNull(event.getTo()).clone();
 
-        Double speed = from.add(0, -event.getFrom().getY(), 0)
+        final Double speed = from.add(0, -event.getFrom().getY(), 0)
                 .distance(to.add(0, -event.getTo().getY(), 0));
 
         if (Math.abs(event.getFrom().getYaw() - event.getTo().getYaw()) > 5
@@ -60,11 +60,11 @@ public final class AdvancedFlyListener implements Listener {
         }
 
         if (this.lastVelocity.containsKey(player)) {
-            Double lastSpeed = this.lastVelocity.get(player);
+            final Double lastSpeed = this.lastVelocity.get(player);
             if (speed * 1.3 < lastSpeed) {
                 if (this.slower.contains(player)) {
                     if (this.slower2.contains(player)) {
-                        Vector v = player.getVelocity().clone();
+                        final Vector v = player.getVelocity().clone();
                         v.setX(0);
                         v.setZ(0);
                         player.setVelocity(v);

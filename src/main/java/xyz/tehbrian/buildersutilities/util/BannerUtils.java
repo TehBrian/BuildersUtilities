@@ -20,9 +20,9 @@ public final class BannerUtils {
     }
 
     public static ItemStack createBanner(final Material material, final List<Component> lore, final Pattern pattern) {
-        ItemStack item = ItemUtils.create(material, 1, lore);
+        final ItemStack item = ItemUtils.create(material, 1, lore);
 
-        BannerMeta meta = (BannerMeta) item.getItemMeta();
+        final BannerMeta meta = (BannerMeta) item.getItemMeta();
         Objects.requireNonNull(meta).addPattern(pattern);
 
         item.setItemMeta(meta);
@@ -30,9 +30,9 @@ public final class BannerUtils {
     }
 
     public static void addPattern(final ItemStack itemStack, final Pattern pattern) {
-        BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
+        final BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
 
-        List<Pattern> patterns = Objects.requireNonNull(meta).getPatterns();
+        final List<Pattern> patterns = Objects.requireNonNull(meta).getPatterns();
         patterns.add(pattern);
         meta.setPatterns(patterns);
 
@@ -61,7 +61,7 @@ public final class BannerUtils {
     }
 
     public static Pattern getPattern(final ItemStack itemStack) {
-        BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
+        final BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
         return Objects.requireNonNull(meta).getPattern(0);
     }
 
@@ -92,9 +92,9 @@ public final class BannerUtils {
     }
 
     public static List<PatternType> getAllPatternTypes() {
-        List<PatternType> allPatternTypes = new ArrayList<>();
+        final List<PatternType> allPatternTypes = new ArrayList<>();
 
-        for (PatternType patternType : PatternType.values()) {
+        for (final PatternType patternType : PatternType.values()) {
             if (patternType != PatternType.BASE) {
                 allPatternTypes.add(patternType);
             }
@@ -104,12 +104,12 @@ public final class BannerUtils {
     }
 
     public static DyeColor getRandomDyeColor() {
-        Random r = new Random();
+        final Random r = new Random();
         return getAllDyeColors().get(r.nextInt(getAllDyeColors().size()));
     }
 
     public static PatternType getRandomPatternType() {
-        Random r = new Random();
+        final Random r = new Random();
         return getAllPatternTypes().get(r.nextInt(getAllPatternTypes().size()));
     }
 

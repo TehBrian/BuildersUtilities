@@ -56,7 +56,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
     @Override
     public List<String> onTabComplete(final CommandSender sender, final Command command, final String alias, final String[] args) {
-        List<String> suggestions = new ArrayList<>();
+        final List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1
                 && sender.hasPermission(Permissions.RELOAD)) {

@@ -38,13 +38,13 @@ public final class BannerBaseInventoryListener implements Listener {
             return;
         }
 
-        int slot = event.getRawSlot();
+        final int slot = event.getRawSlot();
 
         event.setCancelled(true);
 
         if (slot == 3) {
-            DyeColor dyeColor = BannerUtils.getRandomDyeColor();
-            ItemStack newBanner = ItemUtils.create(
+            final DyeColor dyeColor = BannerUtils.getRandomDyeColor();
+            final ItemStack newBanner = ItemUtils.create(
                     BannerUtils.getBanner(dyeColor),
                     1,
                     this.lang.c("messages.inventories.banner.get_banner")
@@ -53,8 +53,8 @@ public final class BannerBaseInventoryListener implements Listener {
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            ItemStack newBanner = ItemUtils.create(
+            final DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+            final ItemStack newBanner = ItemUtils.create(
                     BannerUtils.getBanner(dyeColor),
                     1,
                     this.lang.c("messages.inventories.banner.get_banner")

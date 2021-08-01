@@ -39,17 +39,17 @@ public final class BannerColorInventoryListener implements Listener {
             return;
         }
 
-        int slot = event.getRawSlot();
+        final int slot = event.getRawSlot();
 
-        Inventory inventory = event.getClickedInventory();
+        final Inventory inventory = event.getClickedInventory();
 
-        ItemStack oldBanner = inventory.getItem(5);
+        final ItemStack oldBanner = inventory.getItem(5);
         Objects.requireNonNull(oldBanner);
 
         event.setCancelled(true);
 
         if (slot == 3) {
-            DyeColor dyeColor = BannerUtils.getRandomDyeColor();
+            final DyeColor dyeColor = BannerUtils.getRandomDyeColor();
             player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
 
@@ -59,7 +59,7 @@ public final class BannerColorInventoryListener implements Listener {
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+            final DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
             player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
     }

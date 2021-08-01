@@ -25,7 +25,7 @@ public final class ArmorColorInventoryProvider {
     }
 
     public Inventory generate() {
-        Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.armor_color.inventory_name"));
+        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.armor_color.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
@@ -36,7 +36,7 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(28, ItemUtils.create(Material.LEATHER_LEGGINGS, 1, this.lang.c("messages.inventories.armor_color.get_leggings")));
         inv.setItem(37, ItemUtils.create(Material.LEATHER_BOOTS, 1, this.lang.c("messages.inventories.armor_color.get_boots")));
 
-        List<Component> lore = this.lang.cl("messages.inventories.armor_color.change");
+        final List<Component> lore = this.lang.cl("messages.inventories.armor_color.change");
 
         inv.setItem(
                 22,

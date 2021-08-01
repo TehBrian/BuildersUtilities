@@ -42,14 +42,14 @@ public final class GlazedTerracottaListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasGlazedTerracottaRotateEnabled()
                 || !player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             return;
         }
 
-        Block block = Objects.requireNonNull(event.getClickedBlock());
+        final Block block = Objects.requireNonNull(event.getClickedBlock());
 
         if (!block.getType().name().toLowerCase().contains("glazed")
                 || player.getInventory().getItemInMainHand().getType() != Material.AIR
@@ -63,7 +63,7 @@ public final class GlazedTerracottaListener implements Listener {
         }
 
         Bukkit.getScheduler().runTask(this.main, () -> {
-            Directional directional = (Directional) block.getBlockData();
+            final Directional directional = (Directional) block.getBlockData();
 
             switch (directional.getFacing()) {
                 case NORTH:

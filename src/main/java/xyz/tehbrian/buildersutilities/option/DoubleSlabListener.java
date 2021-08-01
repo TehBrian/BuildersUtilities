@@ -28,7 +28,7 @@ public final class DoubleSlabListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onDoubleSlabBreak(final BlockBreakEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasDoubleSlabBreakEnabled()
                 || !player.hasPermission(Permissions.DOUBLE_SLAB_BREAK)
@@ -38,7 +38,7 @@ public final class DoubleSlabListener implements Listener {
             return;
         }
 
-        Slab blockData = (Slab) event.getBlock().getBlockData();
+        final Slab blockData = (Slab) event.getBlock().getBlockData();
         if (blockData.getType() != Slab.Type.DOUBLE) {
             return;
         }
@@ -54,7 +54,7 @@ public final class DoubleSlabListener implements Listener {
     }
 
     private boolean isTop(final Player player, final Block block) {
-        Location start = player.getEyeLocation().clone();
+        final Location start = player.getEyeLocation().clone();
         while (!start.getBlock().equals(block) && start.distance(player.getEyeLocation()) < 6.0D) {
             start.add(player.getEyeLocation().getDirection().multiply(0.05D));
         }

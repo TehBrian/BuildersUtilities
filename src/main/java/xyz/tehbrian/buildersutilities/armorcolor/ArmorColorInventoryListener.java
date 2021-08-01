@@ -39,11 +39,11 @@ public final class ArmorColorInventoryListener implements Listener {
             return;
         }
 
-        int slot = event.getRawSlot();
+        final int slot = event.getRawSlot();
 
-        Inventory inventory = event.getClickedInventory();
+        final Inventory inventory = event.getClickedInventory();
 
-        ItemStack item = inventory.getItem(slot);
+        final ItemStack item = inventory.getItem(slot);
         Objects.requireNonNull(item);
 
         event.setCancelled(true);
