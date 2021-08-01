@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.incendo.interfaces.paper.PaperInterfaceListeners;
 import org.slf4j.Logger;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
@@ -77,6 +78,8 @@ public final class BuildersUtilities extends JavaPlugin {
         this.setupRestrictions();
 
         this.injector.getInstance(NoClipManager.class).start();
+
+        PaperInterfaceListeners.install(this);
     }
 
     private void setupConfig() {
