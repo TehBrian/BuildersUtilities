@@ -1,6 +1,8 @@
 package xyz.tehbrian.buildersutilities.commands;
 
 import com.google.inject.Inject;
+import org.bukkit.Chunk;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,9 +15,7 @@ import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
@@ -47,6 +47,23 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
             return true;
         }
 
+        if (args.length >= 1
+                && "reloadchunks".equals(args[0].toLowerCase(Locale.ROOT))
+                && sender instanceof Player player) {
+
+            final Collection<Chunk> chunksToReload = this.around(player.getLocation().getChunk(), player.getClientViewDistance());
+
+            /*
+            PlayerConnection playerConnection = ((CraftPlayer) player).getHandle().playerConnection;
+            for (Chunk chunk : chunksToReload) {
+                PacketPlayOutMapChunk packet = new PacketPlayOutMapChunk(((CraftChunk) chunk).getHandle(), 65535);
+                playerConnection.sendPacket(packet);
+            }
+             */
+
+            return true;
+        }
+
         if (sender instanceof Player player) {
 
             player.openInventory(this.optionsInventoryProvider.generate(this.userManager.getUser(player)));
@@ -64,6 +81,24 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         }
 
         return suggestions;
+    }
+
+    // From https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
+    public Collection<Chunk> around(final Chunk origin, final int radius) {
+        final World world = origin.getWorld();
+
+        final int length = (radius * 2) + 1;
+        final Set<Chunk> chunks = new HashSet<>(length * length);
+
+        final int cX = origin.getX();
+        final int cZ = origin.getZ();
+
+        for (int x = -radius; x <= radius; x++) {
+            for (int z = -radius; z <= radius; z++) {
+                chunks.add(world.getChunkAt(cX + x, cZ + z));
+            }
+        }
+        return chunks;
     }
 
 }
