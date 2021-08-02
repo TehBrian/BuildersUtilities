@@ -1,45 +1,25 @@
 package xyz.tehbrian.buildersutilities.util;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BannerMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Various utilities relating to banner items.
+ */
 public final class BannerUtils {
+
+    public static final Random RANDOM = new Random();
 
     private BannerUtils() {
     }
 
-    public static ItemStack createBanner(final Material material, final List<Component> lore, final Pattern pattern) {
-        final ItemStack item = ItemUtils.create(material, 1, lore);
-
-        final BannerMeta meta = (BannerMeta) item.getItemMeta();
-        Objects.requireNonNull(meta).addPattern(pattern);
-
-        item.setItemMeta(meta);
-        return item;
-    }
-
-    public static void addPattern(final ItemStack itemStack, final Pattern pattern) {
-        final BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
-
-        final List<Pattern> patterns = Objects.requireNonNull(meta).getPatterns();
-        patterns.add(pattern);
-        meta.setPatterns(patterns);
-
-        itemStack.setItemMeta(meta);
-    }
-
-    public static Material getBanner(final DyeColor dyeColor) {
+    public static Material colorToBanner(final DyeColor dyeColor) {
         return switch (dyeColor) {
             case WHITE -> Material.WHITE_BANNER;
             case ORANGE -> Material.ORANGE_BANNER;
@@ -60,12 +40,7 @@ public final class BannerUtils {
         };
     }
 
-    public static Pattern getPattern(final ItemStack itemStack) {
-        final BannerMeta meta = (BannerMeta) itemStack.getItemMeta();
-        return Objects.requireNonNull(meta).getPattern(0);
-    }
-
-    public static DyeColor getDyeColor(final Material material) {
+    public static DyeColor bannerToColor(final Material material) {
         return switch (material) {
             case WHITE_BANNER, WHITE_DYE -> DyeColor.WHITE;
             case ORANGE_BANNER, ORANGE_DYE -> DyeColor.ORANGE;
@@ -87,11 +62,11 @@ public final class BannerUtils {
         };
     }
 
-    public static List<DyeColor> getAllDyeColors() {
+    public static List<DyeColor> dyeColors() {
         return Arrays.asList(DyeColor.values());
     }
 
-    public static List<PatternType> getAllPatternTypes() {
+    public static List<PatternType> patternTypes() {
         final List<PatternType> allPatternTypes = new ArrayList<>();
 
         for (final PatternType patternType : PatternType.values()) {
@@ -103,14 +78,12 @@ public final class BannerUtils {
         return allPatternTypes;
     }
 
-    public static DyeColor getRandomDyeColor() {
-        final Random r = new Random();
-        return getAllDyeColors().get(r.nextInt(getAllDyeColors().size()));
+    public static DyeColor randomDyeColor() {
+        return dyeColors().get(RANDOM.nextInt(dyeColors().size()));
     }
 
-    public static PatternType getRandomPatternType() {
-        final Random r = new Random();
-        return getAllPatternTypes().get(r.nextInt(getAllPatternTypes().size()));
+    public static PatternType randomPatternType() {
+        return patternTypes().get(RANDOM.nextInt(patternTypes().size()));
     }
 
 }

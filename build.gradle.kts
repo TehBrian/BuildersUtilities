@@ -38,6 +38,9 @@ dependencies {
     implementation("com.google.inject:guice:5.0.1")
 
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+
+    // must be built on the "itemlib" branch
+    implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
 }
 
 tasks {

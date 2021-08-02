@@ -9,8 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public final class AdvancedFlyListener implements Listener {
     public void onPlayerMove(final PlayerMoveEvent event) {
         final Player player = event.getPlayer();
         if (!this.userManager.getUser(player).hasAdvancedFlyEnabled()
-                || !player.hasPermission(Permissions.ADVANCED_FLY)
+                || !player.hasPermission(Constants.Permissions.ADVANCED_FLY)
                 || !player.isFlying()) {
             return;
         }

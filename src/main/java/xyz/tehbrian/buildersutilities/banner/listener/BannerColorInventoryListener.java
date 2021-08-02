@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.banner.listener;
 
+import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
@@ -13,7 +14,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternInventoryProvider;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
 
 import java.util.Objects;
 
@@ -45,21 +45,22 @@ public final class BannerColorInventoryListener implements Listener {
 
         final ItemStack oldBanner = inventory.getItem(5);
         Objects.requireNonNull(oldBanner);
+        final PaperItemBuilder oldBannerBuilder = PaperItemBuilder.of(oldBanner);
 
         event.setCancelled(true);
 
         if (slot == 3) {
-            final DyeColor dyeColor = BannerUtils.getRandomDyeColor();
+            final DyeColor dyeColor = BannerUtils.randomDyeColor();
             player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
 
         if (slot == 5) {
-            player.getInventory().addItem(ItemUtils.removeName(oldBanner));
+            player.getInventory().addItem(oldBannerBuilder.name(null).build());
             player.closeInventory();
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            final DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+            final DyeColor dyeColor = BannerUtils.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
             player.openInventory(this.bannerPatternInventoryProvider.generate(oldBanner, dyeColor));
         }
     }

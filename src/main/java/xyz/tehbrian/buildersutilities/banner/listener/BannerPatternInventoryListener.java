@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.banner.listener;
 
+import broccolai.corn.paper.item.special.BannerBuilder;
 import com.google.inject.Inject;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
@@ -9,14 +10,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BannerMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
 
 import java.util.Objects;
 
@@ -46,42 +43,42 @@ public final class BannerPatternInventoryListener implements Listener {
 
         final Inventory inventory = event.getClickedInventory();
 
-        final ItemStack oldBanner = inventory.getItem(5);
-        Objects.requireNonNull(oldBanner);
-
-        final ItemMeta itemMeta = oldBanner.getItemMeta();
-
-        if (!(itemMeta instanceof BannerMeta bannerMeta)) {
-            return;
-        }
+        final BannerBuilder oldBannerBuilder = BannerBuilder.of(Objects.requireNonNull(inventory.getItem(5)));
 
         event.setCancelled(true);
 
-        if (slot == 3) {
-            final DyeColor dyeColor = BannerUtils.getPattern(Objects.requireNonNull(inventory.getItem(9))).getColor();
-            BannerUtils.addPattern(oldBanner, new Pattern(dyeColor, BannerUtils.getRandomPatternType()));
+        // The get banner button.
+        if (slot == 5) {
+            player.getInventory().addItem(oldBannerBuilder.name(null).build());
+            player.closeInventory();
+            return;
+        }
 
-            if (bannerMeta.numberOfPatterns() > 16) {
-                player.getInventory().addItem(ItemUtils.removeName(oldBanner));
+        // The random button.
+        if (slot == 3) {
+            final DyeColor currentColor = BannerBuilder.of(Objects.requireNonNull(inventory.getItem(9))).getPattern(0).getColor();
+
+            final var newBannerBuilder = oldBannerBuilder
+                    .addPattern(new Pattern(currentColor, BannerUtils.randomPatternType()));
+
+            if (newBannerBuilder.patterns().size() >= 16) {
+                player.getInventory().addItem(newBannerBuilder.name(null).build());
                 player.closeInventory();
             } else {
-                player.openInventory(this.bannerColorInventoryProvider.generate(oldBanner));
+                player.openInventory(this.bannerColorInventoryProvider.generate(newBannerBuilder.build()));
             }
         }
 
-        if (slot == 5) {
-            player.getInventory().addItem(ItemUtils.removeName(oldBanner));
-            player.closeInventory();
-        }
+        // The various banner buttons.
+        if (slot >= 9 && slot <= (8 + BannerUtils.patternTypes().size())) {
+            final var newBannerBuilder = oldBannerBuilder
+                    .addPattern(BannerBuilder.of(Objects.requireNonNull(event.getCurrentItem())).getPattern(0));
 
-        if (slot >= 9 && slot <= (8 + BannerUtils.getAllPatternTypes().size())) {
-            BannerUtils.addPattern(oldBanner, BannerUtils.getPattern(Objects.requireNonNull(event.getCurrentItem())));
-
-            if (bannerMeta.numberOfPatterns() > 16) {
-                player.getInventory().addItem(ItemUtils.removeName(oldBanner));
+            if (newBannerBuilder.patterns().size() >= 16) {
+                player.getInventory().addItem(newBannerBuilder.name(null).build());
                 player.closeInventory();
             } else {
-                player.openInventory(this.bannerColorInventoryProvider.generate(oldBanner));
+                player.openInventory(this.bannerColorInventoryProvider.generate(newBannerBuilder.build()));
             }
         }
     }

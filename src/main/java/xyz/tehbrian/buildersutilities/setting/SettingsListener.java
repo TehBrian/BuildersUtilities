@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.util.Permissions;
+import xyz.tehbrian.buildersutilities.Constants;
 
 import java.util.Objects;
 
@@ -32,7 +32,7 @@ public final class SettingsListener implements Listener {
     @EventHandler
     public void onSpectatorTeleport(final PlayerTeleportEvent event) {
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE) {
-            if (!event.getPlayer().hasPermission(Permissions.TPGM3)) {
+            if (!event.getPlayer().hasPermission(Constants.Permissions.TPGM3)) {
                 event.setCancelled(true);
             }
         }

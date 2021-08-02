@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.buildersutilities.util.Permissions;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
 
@@ -45,7 +45,7 @@ public final class GlazedTerracottaListener implements Listener {
         final Player player = event.getPlayer();
 
         if (!this.userManager.getUser(player).hasGlazedTerracottaRotateEnabled()
-                || !player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
+                || !player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             return;
         }
 

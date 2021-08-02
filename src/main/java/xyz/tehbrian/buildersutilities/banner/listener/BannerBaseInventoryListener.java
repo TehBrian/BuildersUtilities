@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.banner.listener;
 
+import broccolai.corn.paper.item.special.BannerBuilder;
 import com.google.inject.Inject;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
@@ -12,7 +13,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
 
 import java.util.Objects;
 
@@ -43,22 +43,18 @@ public final class BannerBaseInventoryListener implements Listener {
         event.setCancelled(true);
 
         if (slot == 3) {
-            final DyeColor dyeColor = BannerUtils.getRandomDyeColor();
-            final ItemStack newBanner = ItemUtils.create(
-                    BannerUtils.getBanner(dyeColor),
-                    1,
-                    this.lang.c("messages.inventories.banner.get_banner")
-            );
+            final DyeColor dyeColor = BannerUtils.randomDyeColor();
+            final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
+                    .name(this.lang.c("messages.inventories.banner.get_banner"))
+                    .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            final DyeColor dyeColor = BannerUtils.getDyeColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            final ItemStack newBanner = ItemUtils.create(
-                    BannerUtils.getBanner(dyeColor),
-                    1,
-                    this.lang.c("messages.inventories.banner.get_banner")
-            );
+            final DyeColor dyeColor = BannerUtils.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+            final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
+                    .name(this.lang.c("messages.inventories.banner.get_banner"))
+                    .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
     }
