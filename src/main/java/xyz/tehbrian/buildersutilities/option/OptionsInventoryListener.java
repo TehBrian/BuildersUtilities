@@ -9,20 +9,20 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class OptionsInventoryListener implements Listener {
 
-    private final UserManager userManager;
+    private final UserService userManager;
     private final OptionsInventoryProvider optionsInventoryProvider;
     private final Lang lang;
 
     @Inject
     public OptionsInventoryListener(
-            final @NonNull UserManager userManager,
+            final @NonNull UserService userManager,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider,
             final @NonNull Lang lang
     ) {

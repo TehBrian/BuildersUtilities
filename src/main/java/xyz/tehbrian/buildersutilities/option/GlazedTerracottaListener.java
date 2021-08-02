@@ -16,7 +16,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
 
@@ -26,13 +26,13 @@ import java.util.Objects;
 public final class GlazedTerracottaListener implements Listener {
 
     private final BuildersUtilities main;
-    private final UserManager userManager;
+    private final UserService userManager;
     private final BukkitRestrictionHelper restrictionHelper;
 
     @Inject
     public GlazedTerracottaListener(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager,
+            final @NonNull UserService userManager,
             final @NonNull BukkitRestrictionHelper restrictionHelper
     ) {
         this.main = main;

@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.user;
 
+import dev.tehbrian.tehlib.paper.user.PaperUser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -7,9 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.UUID;
 
-public final class User {
-
-    private final UUID uuid;
+public final class User extends PaperUser {
 
     private boolean ironDoorToggleEnabled = true;
     private boolean doubleSlabBreakEnabled = true;
@@ -20,11 +19,7 @@ public final class User {
     private boolean advancedFlyEnabled = false;
 
     public User(final UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getUuid() {
-        return this.uuid;
+        super(uuid);
     }
 
     public Player getPlayer() {

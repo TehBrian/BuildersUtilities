@@ -11,7 +11,7 @@ import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +20,14 @@ import java.util.Locale;
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
     private final BuildersUtilities main;
-    private final UserManager userManager;
+    private final UserService userManager;
     private final Lang lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager,
+            final @NonNull UserService userManager,
             final @NonNull Lang lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {

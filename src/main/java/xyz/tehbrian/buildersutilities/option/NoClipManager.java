@@ -8,7 +8,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.User;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 /*
     TODO: Clean up this code.
@@ -19,12 +19,12 @@ import xyz.tehbrian.buildersutilities.user.UserManager;
 public final class NoClipManager {
 
     private final BuildersUtilities main;
-    private final UserManager userManager;
+    private final UserService userManager;
 
     @Inject
     public NoClipManager(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager
+            final @NonNull UserService userManager
     ) {
         this.main = main;
         this.userManager = userManager;

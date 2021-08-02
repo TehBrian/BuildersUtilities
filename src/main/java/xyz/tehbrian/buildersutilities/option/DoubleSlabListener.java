@@ -12,16 +12,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
 
-    private final UserManager userManager;
+    private final UserService userManager;
 
     @Inject
     public DoubleSlabListener(
-            final @NonNull UserManager userManager
+            final @NonNull UserService userManager
     ) {
         this.userManager = userManager;
     }

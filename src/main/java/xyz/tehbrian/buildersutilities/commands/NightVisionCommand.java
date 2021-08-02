@@ -7,16 +7,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.config.Lang;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 public final class NightVisionCommand implements CommandExecutor {
 
-    private final UserManager userManager;
+    private final UserService userManager;
     private final Lang lang;
 
     @Inject
     public NightVisionCommand(
-            final @NonNull UserManager userManager,
+            final @NonNull UserService userManager,
             final @NonNull Lang lang
     ) {
         this.userManager = userManager;
