@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.option;
 
+import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -8,19 +9,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.user.User;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
-import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class OptionsInventoryProvider {
 
-    private static final ItemStack GREEN = ItemUtils.create(Material.LIME_STAINED_GLASS_PANE, 1, Lang.EMPTY);
-    private static final ItemStack ORANGE = ItemUtils.create(Material.ORANGE_STAINED_GLASS_PANE, 1, Lang.EMPTY);
-    private static final ItemStack RED = ItemUtils.create(Material.RED_STAINED_GLASS_PANE, 1, Lang.EMPTY);
+    private static final ItemStack GREEN = PaperItemBuilder.ofType(Material.LIME_STAINED_GLASS_PANE).name(Lang.EMPTY).build();
+    private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(Lang.EMPTY).build();
+    private static final ItemStack RED = PaperItemBuilder.ofType(Material.RED_STAINED_GLASS_PANE).name(Lang.EMPTY).build();
 
     private final Lang lang;
 
@@ -43,14 +43,17 @@ public final class OptionsInventoryProvider {
         lore.addAll(this.lang.cl("messages.inventories.options." + optionKey + ".description"));
         lore.addAll(this.lang.cl("messages.inventories.options.status." + statusKey));
 
-        return ItemUtils.create(material, 1, name, lore);
+        return PaperItemBuilder.ofType(material)
+                .name(name)
+                .lore(lore)
+                .build();
     }
 
     public Inventory generate(final User user) {
         final Inventory inv = Bukkit.createInventory(null, 27, this.lang.c("messages.inventories.options.inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
+            inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
         }
 
         this.update(inv, user);
@@ -61,7 +64,7 @@ public final class OptionsInventoryProvider {
     public void update(final Inventory inv, final User user) {
         final Player p = user.getPlayer();
 
-        if (p.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
+        if (p.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             if (user.hasIronDoorToggleEnabled()) {
                 inv.setItem(1, GREEN);
                 inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
@@ -77,7 +80,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(19, ORANGE);
         }
 
-        if (p.hasPermission(Permissions.DOUBLE_SLAB_BREAK)) {
+        if (p.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)) {
             if (user.hasDoubleSlabBreakEnabled()) {
                 inv.setItem(2, GREEN);
                 inv.setItem(11, this.createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
@@ -93,7 +96,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(20, ORANGE);
         }
 
-        if (p.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
+        if (p.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             if (user.hasGlazedTerracottaRotateEnabled()) {
                 inv.setItem(3, GREEN);
                 inv.setItem(12, this.createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
@@ -109,7 +112,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(21, ORANGE);
         }
 
-        if (p.hasPermission(Permissions.NIGHT_VISION)) {
+        if (p.hasPermission(Constants.Permissions.NIGHT_VISION)) {
             if (user.hasNightVisionEnabled()) {
                 inv.setItem(5, GREEN);
                 inv.setItem(14, this.createCustomItem(Material.ENDER_EYE, "night_vision", "enabled"));
@@ -125,7 +128,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(23, ORANGE);
         }
 
-        if (p.hasPermission(Permissions.NO_CLIP)) {
+        if (p.hasPermission(Constants.Permissions.NO_CLIP)) {
             if (user.hasNoClipEnabled()) {
                 inv.setItem(6, GREEN);
                 inv.setItem(15, this.createCustomItem(Material.COMPASS, "no_clip", "enabled"));
@@ -141,7 +144,7 @@ public final class OptionsInventoryProvider {
             inv.setItem(24, ORANGE);
         }
 
-        if (p.hasPermission(Permissions.ADVANCED_FLY)) {
+        if (p.hasPermission(Constants.Permissions.ADVANCED_FLY)) {
             if (user.hasAdvancedFlyEnabled()) {
                 inv.setItem(7, GREEN);
                 inv.setItem(16, this.createCustomItem(Material.FEATHER, "advanced_fly", "enabled"));

@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.armorcolor;
 
+import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,8 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.config.Lang;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -53,7 +54,11 @@ public final class ArmorColorInventoryListener implements Listener {
             case 19:
             case 28:
             case 37:
-                player.getInventory().addItem(ItemUtils.removeName(Objects.requireNonNull(event.getCurrentItem()).clone()));
+                player.getInventory().addItem(PaperItemBuilder
+                        .of(Objects.requireNonNull(event.getCurrentItem()).clone())
+                        .name(null)
+                        .lore(List.of())
+                        .build());
                 break;
             case 31:
             case 33:

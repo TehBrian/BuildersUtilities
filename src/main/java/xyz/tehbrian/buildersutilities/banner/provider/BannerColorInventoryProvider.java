@@ -1,14 +1,16 @@
 package xyz.tehbrian.buildersutilities.banner.provider;
 
+import broccolai.corn.paper.item.PaperItemBuilder;
+import broccolai.corn.paper.item.special.SkullBuilder;
 import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.util.ConfigUtils;
-import xyz.tehbrian.buildersutilities.util.ItemUtils;
 
 public final class BannerColorInventoryProvider {
 
@@ -22,21 +24,20 @@ public final class BannerColorInventoryProvider {
     }
 
     private ItemStack createCustomDye(final Material material) {
-        return ItemUtils.create(material, 1, this.lang.cl("messages.inventories.banner.select"));
+        return PaperItemBuilder.ofType(material).lore(this.lang.cl("messages.inventories.banner.select")).build();
     }
 
     public Inventory generate(final ItemStack oldBanner) {
         final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.banner.color_inventory_name"));
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, ItemUtils.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, Lang.EMPTY));
+            inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
         }
 
-        inv.setItem(3, ItemUtils.createHead(
-                ConfigUtils.getString("heads.banner.randomize"),
-                1,
-                this.lang.c("messages.inventories.banner.randomize")
-        ));
+        inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
+                .name(this.lang.c("messages.inventories.banner.randomize"))
+                .textures(ConfigUtils.getString("heads.banner.randomize"))
+                .build());
         inv.setItem(5, oldBanner);
 
         inv.setItem(28, this.createCustomDye(Material.BLACK_DYE));

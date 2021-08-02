@@ -8,10 +8,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
+import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
-                && sender.hasPermission(Permissions.RELOAD)) {
+                && sender.hasPermission(Constants.Permissions.RELOAD)) {
             this.main.reloadConfig();
             sender.sendMessage(this.lang.c("messages.commands.reload"));
             return true;
@@ -59,7 +59,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         final List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1
-                && sender.hasPermission(Permissions.RELOAD)) {
+                && sender.hasPermission(Constants.Permissions.RELOAD)) {
             suggestions.add("reload");
         }
 
