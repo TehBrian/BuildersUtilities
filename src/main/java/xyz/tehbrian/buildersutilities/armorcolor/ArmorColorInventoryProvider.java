@@ -3,16 +3,12 @@ package xyz.tehbrian.buildersutilities.armorcolor;
 import broccolai.corn.paper.item.PaperItemBuilder;
 import broccolai.corn.paper.item.special.LeatherArmorBuilder;
 import broccolai.corn.paper.item.special.SkullBuilder;
-import com.destroystokyo.paper.profile.PlayerProfile;
-import com.destroystokyo.paper.profile.ProfileProperty;
 import com.google.inject.Inject;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.Lang;
@@ -20,7 +16,6 @@ import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public final class ArmorColorInventoryProvider {
 
