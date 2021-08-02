@@ -15,6 +15,7 @@ java {
 repositories {
     mavenCentral()
     mavenLocal()
+
     maven {
         name = "papermc-repo"
         url = uri("https://papermc.io/repo/repository/maven-public/")
@@ -41,6 +42,7 @@ dependencies {
 
     // must be built on the "itemlib" branch
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
+    implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
 }
 
 tasks {
