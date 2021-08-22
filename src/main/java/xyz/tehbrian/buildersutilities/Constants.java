@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import xyz.tehbrian.buildersutilities.config.Lang;
 
 /**
- * Constant values used in the plugin.
+ * Constant values.
  */
 public final class Constants {
 
