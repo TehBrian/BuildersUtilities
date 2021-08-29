@@ -17,8 +17,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
-import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 import java.util.Objects;
 

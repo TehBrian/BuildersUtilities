@@ -16,6 +16,7 @@ import xyz.tehbrian.buildersutilities.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class OptionsInventoryProvider {
 
@@ -65,7 +66,7 @@ public final class OptionsInventoryProvider {
     public void update(final Inventory inv, final User user) {
         final Player p = user.getPlayer();
 
-        if (p.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
+        if (Objects.requireNonNull(p).hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             if (user.ironDoorToggleEnabled()) {
                 inv.setItem(1, GREEN);
                 inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));

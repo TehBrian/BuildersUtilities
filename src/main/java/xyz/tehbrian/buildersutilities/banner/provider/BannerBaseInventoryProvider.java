@@ -30,7 +30,11 @@ public final class BannerBaseInventoryProvider {
     }
 
     public Inventory generate() {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c(NodePath.path("messages.inventories.banner.base_inventory_name")));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("messages.inventories.banner.base_inventory_name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
@@ -43,7 +47,10 @@ public final class BannerBaseInventoryProvider {
         );
         inv.setItem(
                 5,
-                PaperItemBuilder.ofType(Material.BARRIER).name(this.lang.c(NodePath.path("messages.inventories.banner.cannot_get_banner"))).build()
+                PaperItemBuilder
+                        .ofType(Material.BARRIER)
+                        .name(this.lang.c(NodePath.path("messages.inventories.banner.cannot_get_banner")))
+                        .build()
         );
 
         inv.setItem(28, this.createCustomBanner(Material.BLACK_BANNER));

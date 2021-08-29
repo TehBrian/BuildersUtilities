@@ -28,7 +28,11 @@ public final class BannerPatternInventoryProvider {
     }
 
     public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c(NodePath.path("messages.inventories.banner.pattern_inventory_name")));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("messages.inventories.banner.pattern_inventory_name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);

@@ -30,7 +30,11 @@ public final class ArmorColorInventoryProvider {
     }
 
     public Inventory generate() {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c(NodePath.path("messages.inventories.armor_color.inventory_name")));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("messages.inventories.armor_color.inventory_name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);

@@ -29,7 +29,11 @@ public final class BannerColorInventoryProvider {
     }
 
     public Inventory generate(final ItemStack oldBanner) {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c(NodePath.path("messages.inventories.banner.color_inventory_name")));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("messages.inventories.banner.color_inventory_name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);

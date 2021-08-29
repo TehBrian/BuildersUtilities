@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseInventoryProvider;
 
 public final class BannerCommand implements CommandExecutor {
@@ -20,7 +21,7 @@ public final class BannerCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
         if (sender instanceof Player player) {
 
             player.openInventory(this.bannerBaseInventoryProvider.generate());
