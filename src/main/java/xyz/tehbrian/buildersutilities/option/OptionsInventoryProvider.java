@@ -65,7 +65,7 @@ public final class OptionsInventoryProvider {
         final Player p = user.getPlayer();
 
         if (p.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
-            if (user.hasIronDoorToggleEnabled()) {
+            if (user.ironDoorToggleEnabled()) {
                 inv.setItem(1, GREEN);
                 inv.setItem(10, this.createCustomItem(Material.IRON_TRAPDOOR, "iron_door_toggle", "enabled"));
                 inv.setItem(19, GREEN);
@@ -81,7 +81,7 @@ public final class OptionsInventoryProvider {
         }
 
         if (p.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)) {
-            if (user.hasDoubleSlabBreakEnabled()) {
+            if (user.doubleSlabBreakEnabled()) {
                 inv.setItem(2, GREEN);
                 inv.setItem(11, this.createCustomItem(Material.STONE_SLAB, "double_slab_break", "enabled"));
                 inv.setItem(20, GREEN);
@@ -97,7 +97,7 @@ public final class OptionsInventoryProvider {
         }
 
         if (p.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
-            if (user.hasGlazedTerracottaRotateEnabled()) {
+            if (user.glazedTerracottaRotateEnabled()) {
                 inv.setItem(3, GREEN);
                 inv.setItem(12, this.createCustomItem(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, "glazed_terracotta_rotate", "enabled"));
                 inv.setItem(21, GREEN);
@@ -113,7 +113,7 @@ public final class OptionsInventoryProvider {
         }
 
         if (p.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-            if (user.hasNightVisionEnabled()) {
+            if (user.nightVisionEnabled()) {
                 inv.setItem(5, GREEN);
                 inv.setItem(14, this.createCustomItem(Material.ENDER_EYE, "night_vision", "enabled"));
                 inv.setItem(23, GREEN);
@@ -129,7 +129,7 @@ public final class OptionsInventoryProvider {
         }
 
         if (p.hasPermission(Constants.Permissions.NO_CLIP)) {
-            if (user.hasNoClipEnabled()) {
+            if (user.noClipEnabled()) {
                 inv.setItem(6, GREEN);
                 inv.setItem(15, this.createCustomItem(Material.COMPASS, "no_clip", "enabled"));
                 inv.setItem(24, GREEN);
@@ -145,7 +145,7 @@ public final class OptionsInventoryProvider {
         }
 
         if (p.hasPermission(Constants.Permissions.ADVANCED_FLY)) {
-            if (user.hasAdvancedFlyEnabled()) {
+            if (user.advancedFlyEnabled()) {
                 inv.setItem(7, GREEN);
                 inv.setItem(16, this.createCustomItem(Material.FEATHER, "advanced_fly", "enabled"));
                 inv.setItem(25, GREEN);

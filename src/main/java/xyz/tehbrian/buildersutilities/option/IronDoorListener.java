@@ -50,7 +50,7 @@ public final class IronDoorListener implements Listener {
     public void onIronDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
+        if (!this.userManager.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
@@ -82,7 +82,7 @@ public final class IronDoorListener implements Listener {
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
+        if (!this.userManager.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }

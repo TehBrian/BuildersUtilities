@@ -44,7 +44,7 @@ public final class GlazedTerracottaListener implements Listener {
     public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasGlazedTerracottaRotateEnabled()
+        if (!this.userManager.getUser(player).glazedTerracottaRotateEnabled()
                 || !player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             return;
         }

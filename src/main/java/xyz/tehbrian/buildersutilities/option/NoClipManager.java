@@ -36,7 +36,7 @@ public final class NoClipManager {
 
     private void checkForBlocks() {
         for (final User user : this.userManager.getUserMap().values()) {
-            if (!user.hasNoClipEnabled()) {
+            if (!user.noClipEnabled()) {
                 continue;
             }
 

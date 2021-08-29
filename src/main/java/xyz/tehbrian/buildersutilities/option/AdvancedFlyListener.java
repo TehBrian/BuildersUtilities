@@ -42,7 +42,7 @@ public final class AdvancedFlyListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerMove(final PlayerMoveEvent event) {
         final Player player = event.getPlayer();
-        if (!this.userManager.getUser(player).hasAdvancedFlyEnabled()
+        if (!this.userManager.getUser(player).advancedFlyEnabled()
                 || !player.hasPermission(Constants.Permissions.ADVANCED_FLY)
                 || !player.isFlying()) {
             return;
