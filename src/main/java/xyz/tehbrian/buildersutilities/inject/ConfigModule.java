@@ -1,7 +1,7 @@
 package xyz.tehbrian.buildersutilities.inject;
 
 import com.google.inject.AbstractModule;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 
 /**
  * Guice module which provides the various configs.
@@ -9,11 +9,11 @@ import xyz.tehbrian.buildersutilities.config.Lang;
 public class ConfigModule extends AbstractModule {
 
     /**
-     * Binds {@link Lang}.
+     * Binds {@link LangConfig}.
      */
     @Override
     protected void configure() {
-        this.bind(Lang.class).asEagerSingleton();
+        this.bind(LangConfig.class).asEagerSingleton();
     }
 
 }

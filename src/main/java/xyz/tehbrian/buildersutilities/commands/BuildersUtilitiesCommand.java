@@ -7,9 +7,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
@@ -21,14 +22,14 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
     private final BuildersUtilities main;
     private final UserService userManager;
-    private final Lang lang;
+    private final LangConfig lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
             final @NonNull UserService userManager,
-            final @NonNull Lang lang,
+            final @NonNull LangConfig lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.main = main;
@@ -43,7 +44,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
             this.main.reloadConfig();
-            sender.sendMessage(this.lang.c("messages.commands.reload"));
+            sender.sendMessage(this.lang.c(NodePath.path("messages.commands.reload")));
             return true;
         }
 

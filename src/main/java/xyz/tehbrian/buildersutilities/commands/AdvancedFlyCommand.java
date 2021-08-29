@@ -6,18 +6,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import org.spongepowered.configurate.NodePath;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
 public final class AdvancedFlyCommand implements CommandExecutor {
 
     private final UserService userManager;
-    private final Lang lang;
+    private final LangConfig lang;
 
     @Inject
     public AdvancedFlyCommand(
             final @NonNull UserService userManager,
-            final @NonNull Lang lang
+            final @NonNull LangConfig lang
     ) {
         this.userManager = userManager;
         this.lang = lang;
@@ -28,9 +29,9 @@ public final class AdvancedFlyCommand implements CommandExecutor {
         if (sender instanceof Player player) {
 
             if (this.userManager.getUser(player).toggleAdvancedFlyEnabled()) {
-                player.sendMessage(this.lang.c("messages.commands.advanced_fly.enabled"));
+                player.sendMessage(this.lang.c(NodePath.path("messages.commands.advanced_fly.enabled")));
             } else {
-                player.sendMessage(this.lang.c("messages.commands.advanced_fly.disabled"));
+                player.sendMessage(this.lang.c(NodePath.path("messages.commands.advanced_fly.disabled")));
             }
         }
         return true;

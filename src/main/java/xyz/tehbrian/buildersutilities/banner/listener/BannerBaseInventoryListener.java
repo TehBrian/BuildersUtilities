@@ -10,8 +10,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 
 import java.util.Objects;
@@ -19,12 +20,12 @@ import java.util.Objects;
 public final class BannerBaseInventoryListener implements Listener {
 
     private final BannerColorInventoryProvider bannerColorInventoryProvider;
-    private final Lang lang;
+    private final LangConfig lang;
 
     @Inject
     public BannerBaseInventoryListener(
             final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider,
-            final @NonNull Lang lang
+            final @NonNull LangConfig lang
     ) {
         this.bannerColorInventoryProvider = bannerColorInventoryProvider;
         this.lang = lang;
@@ -33,7 +34,7 @@ public final class BannerBaseInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c("messages.inventories.banner.base_inventory_name"))
+                || !event.getView().title().equals(this.lang.c(NodePath.path("messages.inventories.banner.base_inventory_name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
@@ -45,7 +46,7 @@ public final class BannerBaseInventoryListener implements Listener {
         if (slot == 3) {
             final DyeColor dyeColor = BannerUtils.randomDyeColor();
             final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
-                    .name(this.lang.c("messages.inventories.banner.get_banner"))
+                    .name(this.lang.c(NodePath.path("messages.inventories.banner.get_banner")))
                     .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
@@ -53,7 +54,7 @@ public final class BannerBaseInventoryListener implements Listener {
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
             final DyeColor dyeColor = BannerUtils.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
             final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
-                    .name(this.lang.c("messages.inventories.banner.get_banner"))
+                    .name(this.lang.c(NodePath.path("messages.inventories.banner.get_banner")))
                     .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }

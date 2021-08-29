@@ -11,8 +11,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternInventoryProvider;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
 
 import java.util.Objects;
@@ -20,12 +21,12 @@ import java.util.Objects;
 public final class BannerColorInventoryListener implements Listener {
 
     private final BannerPatternInventoryProvider bannerPatternInventoryProvider;
-    private final Lang lang;
+    private final LangConfig lang;
 
     @Inject
     public BannerColorInventoryListener(
             final @NonNull BannerPatternInventoryProvider bannerPatternInventoryProvider,
-            final @NonNull Lang lang
+            final @NonNull LangConfig lang
     ) {
         this.bannerPatternInventoryProvider = bannerPatternInventoryProvider;
         this.lang = lang;
@@ -34,7 +35,7 @@ public final class BannerColorInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c("messages.inventories.banner.color_inventory_name"))
+                || !event.getView().title().equals(this.lang.c(NodePath.path("messages.inventories.banner.color_inventory_name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
