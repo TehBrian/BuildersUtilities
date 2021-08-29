@@ -17,7 +17,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
 
 import java.util.Objects;
@@ -27,13 +27,13 @@ public final class IronDoorListener implements Listener {
 
     private final BuildersUtilities main;
     private final UserService userService;
-    private final BukkitRestrictionHelper restrictionHelper;
+    private final SpigotRestrictionHelper restrictionHelper;
 
     @Inject
     public IronDoorListener(
             final @NonNull BuildersUtilities main,
             final @NonNull UserService userService,
-            final @NonNull BukkitRestrictionHelper restrictionHelper
+            final @NonNull SpigotRestrictionHelper restrictionHelper
     ) {
         this.main = main;
         this.userService = userService;

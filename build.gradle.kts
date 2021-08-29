@@ -35,8 +35,7 @@ dependencies {
 
     implementation("com.google.inject:guice:5.0.1")
 
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
-    implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0")
 
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 

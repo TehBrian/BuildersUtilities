@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import org.slf4j.Logger;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
@@ -35,10 +34,10 @@ import xyz.tehbrian.buildersutilities.option.IronDoorListener;
 import xyz.tehbrian.buildersutilities.option.NoClipManager;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
-import xyz.tehbrian.restrictionhelper.bukkit.restrictions.PlotSquaredRestriction;
-import xyz.tehbrian.restrictionhelper.bukkit.restrictions.WorldGuardRestriction;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.PlotSquaredRestriction;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.WorldGuardRestriction;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -137,13 +136,12 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupRestrictions() {
-        final var restrictionHelper = this.injector.getInstance(BukkitRestrictionHelper.class);
+        final var restrictionHelper = this.injector.getInstance(SpigotRestrictionHelper.class);
 
         final PluginManager pm = this.getServer().getPluginManager();
 
-        final Logger logger = this.injector.getInstance(Logger.class);
-        final var loader = new BukkitRestrictionLoader(
-                logger,
+        final var loader = new SpigotRestrictionLoader(
+                this.getLog4JLogger(),
                 Arrays.asList(pm.getPlugins()),
                 List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class)
         );
