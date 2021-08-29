@@ -33,16 +33,19 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 
+    implementation("com.google.inject:guice:5.0.1")
+
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-bukkit:0.2.0")
     implementation("org.slf4j:slf4j-api:2.0.0-alpha1")
 
-    implementation("com.google.inject:guice:5.0.1")
-
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+
+    implementation("org.spongepowered:configurate-yaml:4.1.2")
+
+    implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
 
     // must be built on the "itemlib" branch
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
-    implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
 }
 
 tasks {
