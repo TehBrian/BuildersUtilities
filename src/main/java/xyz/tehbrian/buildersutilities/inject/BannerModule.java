@@ -11,7 +11,7 @@ import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternInventoryProv
 public class BannerModule extends AbstractModule {
 
     /**
-     * Binds the inventory providers for the banner creator.
+     * Binds the banner creator inventory providers as eager singletons.
      */
     @Override
     protected void configure() {

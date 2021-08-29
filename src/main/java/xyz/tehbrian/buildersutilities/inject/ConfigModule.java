@@ -9,7 +9,7 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 public class ConfigModule extends AbstractModule {
 
     /**
-     * Binds {@link LangConfig}.
+     * Binds {@link LangConfig} as an eager singleton.
      */
     @Override
     protected void configure() {

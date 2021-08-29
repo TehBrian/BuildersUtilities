@@ -9,7 +9,7 @@ import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryProvider;
 public class ArmorColorModule extends AbstractModule {
 
     /**
-     * Binds the inventory provider for the armor color creator.
+     * Binds {@link ArmorColorInventoryProvider} as an eager singleton.
      */
     @Override
     protected void configure() {

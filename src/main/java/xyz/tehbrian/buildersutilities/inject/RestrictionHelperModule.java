@@ -3,6 +3,7 @@ package xyz.tehbrian.buildersutilities.inject;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 /**
@@ -11,14 +12,11 @@ import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 public class RestrictionHelperModule extends AbstractModule {
 
     /**
-     * Provides the {@code RestrictionHelper} instance.
-     *
-     * @return the {code RestrictionHelper} instance
+     * Binds {@link SpigotRestrictionHelper} as an eager singleton.
      */
-    @Provides
-    @Singleton
-    public SpigotRestrictionHelper provideRestrictionHelper() {
-        return new SpigotRestrictionHelper();
+    @Override
+    protected void configure() {
+        this.bind(SpigotRestrictionHelper.class).asEagerSingleton();
     }
 
 }
