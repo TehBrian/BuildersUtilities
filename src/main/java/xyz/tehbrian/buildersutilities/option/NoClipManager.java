@@ -10,24 +10,19 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
-/*
-    TODO: Clean up this code.
-    Isn't checking like 10 blocks per player
-    player each tick super resource intensive?
-    I feel like a lot of the code is redundant.
- */
+@SuppressWarnings("deprecation") // no alternative to Player#isOnGround
 public final class NoClipManager {
 
     private final BuildersUtilities main;
-    private final UserService userManager;
+    private final UserService userService;
 
     @Inject
     public NoClipManager(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserService userManager
+            final @NonNull UserService userService
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
     }
 
     public void start() {
@@ -35,7 +30,7 @@ public final class NoClipManager {
     }
 
     private void checkForBlocks() {
-        for (final User user : this.userManager.getUserMap().values()) {
+        for (final User user : this.userService.getUserMap().values()) {
             if (!user.noClipEnabled()) {
                 continue;
             }

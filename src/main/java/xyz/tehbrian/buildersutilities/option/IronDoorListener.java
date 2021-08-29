@@ -26,17 +26,17 @@ import java.util.Objects;
 public final class IronDoorListener implements Listener {
 
     private final BuildersUtilities main;
-    private final UserService userManager;
+    private final UserService userService;
     private final BukkitRestrictionHelper restrictionHelper;
 
     @Inject
     public IronDoorListener(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserService userManager,
+            final @NonNull UserService userService,
             final @NonNull BukkitRestrictionHelper restrictionHelper
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
         this.restrictionHelper = restrictionHelper;
     }
 
@@ -50,7 +50,7 @@ public final class IronDoorListener implements Listener {
     public void onIronDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).ironDoorToggleEnabled()
+        if (!this.userService.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
@@ -82,7 +82,7 @@ public final class IronDoorListener implements Listener {
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).ironDoorToggleEnabled()
+        if (!this.userService.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }

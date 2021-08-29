@@ -17,17 +17,17 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class OptionsInventoryListener implements Listener {
 
-    private final UserService userManager;
+    private final UserService userService;
     private final OptionsInventoryProvider optionsInventoryProvider;
     private final LangConfig lang;
 
     @Inject
     public OptionsInventoryListener(
-            final @NonNull UserService userManager,
+            final @NonNull UserService userService,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider,
             final @NonNull LangConfig lang
     ) {
-        this.userManager = userManager;
+        this.userService = userService;
         this.optionsInventoryProvider = optionsInventoryProvider;
         this.lang = lang;
     }
@@ -49,49 +49,49 @@ public final class OptionsInventoryListener implements Listener {
             case 10:
             case 19:
                 if (player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
-                    this.userManager.getUser(player).toggleIronDoorToggleEnabled();
+                    this.userService.getUser(player).toggleIronDoorToggleEnabled();
                 }
                 break;
             case 2:
             case 11:
             case 20:
                 if (player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)) {
-                    this.userManager.getUser(player).toggleDoubleSlabBreakEnabled();
+                    this.userService.getUser(player).toggleDoubleSlabBreakEnabled();
                 }
                 break;
             case 3:
             case 12:
             case 21:
                 if (player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
-                    this.userManager.getUser(player).toggleGlazedTerracottaRotateEnabled();
+                    this.userService.getUser(player).toggleGlazedTerracottaRotateEnabled();
                 }
                 break;
             case 5:
             case 14:
             case 23:
                 if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-                    this.userManager.getUser(player).toggleNightVisionEnabled();
+                    this.userService.getUser(player).toggleNightVisionEnabled();
                 }
                 break;
             case 6:
             case 15:
             case 24:
                 if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-                    this.userManager.getUser(player).toggleNoClipEnabled();
+                    this.userService.getUser(player).toggleNoClipEnabled();
                 }
                 break;
             case 7:
             case 16:
             case 25:
                 if (player.hasPermission(Constants.Permissions.ADVANCED_FLY)) {
-                    this.userManager.getUser(player).toggleAdvancedFlyEnabled();
+                    this.userService.getUser(player).toggleAdvancedFlyEnabled();
                 }
                 break;
             default:
                 return;
         }
 
-        this.optionsInventoryProvider.update(event.getView().getTopInventory(), this.userManager.getUser(player));
+        this.optionsInventoryProvider.update(event.getView().getTopInventory(), this.userService.getUser(player));
     }
 
 }

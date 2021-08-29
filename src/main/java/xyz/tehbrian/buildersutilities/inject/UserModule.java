@@ -11,13 +11,13 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 public class UserModule extends AbstractModule {
 
     /**
-     * Provides the {@code UserManager} instance.
+     * Provides the {@code UserService} instance.
      *
-     * @return the {@code UserManager}
+     * @return the {@code UserService}
      */
     @Provides
     @Singleton
-    public UserService provideUserManager() {
+    public UserService provideUserService() {
         return new UserService();
     }
 

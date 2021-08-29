@@ -12,15 +12,15 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 
 public final class NightVisionCommand implements CommandExecutor {
 
-    private final UserService userManager;
+    private final UserService userService;
     private final LangConfig lang;
 
     @Inject
     public NightVisionCommand(
-            final @NonNull UserService userManager,
+            final @NonNull UserService userService,
             final @NonNull LangConfig lang
     ) {
-        this.userManager = userManager;
+        this.userService = userService;
         this.lang = lang;
     }
 
@@ -28,7 +28,7 @@ public final class NightVisionCommand implements CommandExecutor {
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (sender instanceof Player player) {
 
-            if (this.userManager.getUser(player).toggleNightVisionEnabled()) {
+            if (this.userService.getUser(player).toggleNightVisionEnabled()) {
                 player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.enabled")));
             } else {
                 player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.disabled")));

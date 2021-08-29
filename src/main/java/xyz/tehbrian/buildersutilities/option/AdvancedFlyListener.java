@@ -26,7 +26,7 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public final class AdvancedFlyListener implements Listener {
 
-    private final UserService userManager;
+    private final UserService userService;
 
     private final Set<Player> slower = new HashSet<>();
     private final Set<Player> slower2 = new HashSet<>();
@@ -34,15 +34,15 @@ public final class AdvancedFlyListener implements Listener {
 
     @Inject
     public AdvancedFlyListener(
-            final @NonNull UserService userManager
+            final @NonNull UserService userService
     ) {
-        this.userManager = userManager;
+        this.userService = userService;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerMove(final PlayerMoveEvent event) {
         final Player player = event.getPlayer();
-        if (!this.userManager.getUser(player).advancedFlyEnabled()
+        if (!this.userService.getUser(player).advancedFlyEnabled()
                 || !player.hasPermission(Constants.Permissions.ADVANCED_FLY)
                 || !player.isFlying()) {
             return;

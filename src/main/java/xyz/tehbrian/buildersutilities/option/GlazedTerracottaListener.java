@@ -26,17 +26,17 @@ import java.util.Objects;
 public final class GlazedTerracottaListener implements Listener {
 
     private final BuildersUtilities main;
-    private final UserService userManager;
+    private final UserService userService;
     private final BukkitRestrictionHelper restrictionHelper;
 
     @Inject
     public GlazedTerracottaListener(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserService userManager,
+            final @NonNull UserService userService,
             final @NonNull BukkitRestrictionHelper restrictionHelper
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
         this.restrictionHelper = restrictionHelper;
     }
 
@@ -44,7 +44,7 @@ public final class GlazedTerracottaListener implements Listener {
     public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).glazedTerracottaRotateEnabled()
+        if (!this.userService.getUser(player).glazedTerracottaRotateEnabled()
                 || !player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
             return;
         }

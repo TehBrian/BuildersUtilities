@@ -17,20 +17,20 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
 
-    private final UserService userManager;
+    private final UserService userService;
 
     @Inject
     public DoubleSlabListener(
-            final @NonNull UserService userManager
+            final @NonNull UserService userService
     ) {
-        this.userManager = userManager;
+        this.userService = userService;
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onDoubleSlabBreak(final BlockBreakEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).doubleSlabBreakEnabled()
+        if (!this.userService.getUser(player).doubleSlabBreakEnabled()
                 || !player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE

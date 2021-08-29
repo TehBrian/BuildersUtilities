@@ -21,19 +21,19 @@ import java.util.Locale;
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
     private final BuildersUtilities main;
-    private final UserService userManager;
+    private final UserService userService;
     private final LangConfig lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserService userManager,
+            final @NonNull UserService userService,
             final @NonNull LangConfig lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
         this.lang = lang;
         this.optionsInventoryProvider = optionsInventoryProvider;
     }
@@ -50,7 +50,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
         if (sender instanceof Player player) {
 
-            player.openInventory(this.optionsInventoryProvider.generate(this.userManager.getUser(player)));
+            player.openInventory(this.optionsInventoryProvider.generate(this.userService.getUser(player)));
         }
         return true;
     }
