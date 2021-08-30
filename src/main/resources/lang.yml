@@ -1,0 +1,97 @@
+# Language configuration for all messages sent by BuildersUtilities.
+# Message formatting syntax is MiniMessage, which you can read up on here:
+# https://docs.adventure.kyori.net/minimessage.html
+
+commands:
+  advanced_fly:
+    enabled: "<dark_aqua>BU <gray>› <green>Advanced Fly enabled."
+    disabled: "<dark_aqua>BU <gray>› <red>Advanced Fly disabled."
+  night_vision:
+    enabled: "<dark_aqua>BU <gray>› <green>Night Vision enabled."
+    disabled: "<dark_aqua>BU <gray>› <red>Night Vision disabled."
+  no_clip:
+    enabled: "<dark_aqua>BU <gray>› <green>No-Clip enabled."
+    disabled: "<dark_aqua>BU <gray>› <red>No-Clip disabled."
+  reload: "<dark_aqua>BU <gray>› <aqua>Successfully reloaded config!"
+
+inventories:
+  armor_color:
+    inventory_name: "<dark_blue>Armor Color Creator"
+    change:
+      - "<gray>"
+      - "<gray>Left click to increase"
+      - "<gray>Right click to decrease"
+      - "<gray>Shift click to change by 4"
+    get_helmet: "<green>Click to get helmet"
+    get_chestplate: "<green>Click to get chestplate"
+    get_leggings: "<green>Click to get leggings"
+    get_boots: "<green>Click to get boots"
+    red: "<red>Red"
+    green: "<green>Green"
+    blue: "<aqua>Blue"
+    randomize_red: "<red>Randomize Red"
+    randomize_green: "<green>Randomize Green"
+    randomize_blue: "<aqua>Randomize Blue"
+
+  banner:
+    base_inventory_name: "<dark_blue>Select a base.."
+    color_inventory_name: "<dark_blue>Select a color.."
+    pattern_inventory_name: "<dark_blue>Select a pattern.."
+    select:
+      - "<gray>"
+      - "<gray>Click to select"
+    cannot_get_banner: "<red>Please select a base color first"
+    get_banner: "<green>Click to get banner"
+    randomize: "<white>Randomly Select"
+
+  options:
+    inventory_name: "<dark_blue>Builders Utilities Options"
+    status:
+      enabled:
+        - ""
+        - "<green><bold>Enabled"
+        - "<gray>"
+        - "<gray>Click to toggle"
+      no_permission:
+        - ""
+        - "<gold><bold>No permission"
+      disabled:
+        - ""
+        - "<red><bold>Disabled"
+        - "<gray>"
+        - "<gray>Click to toggle"
+    iron_door_toggle:
+      name: "<aqua><bold>Iron Door Toggle"
+      description:
+        - "<dark_aqua> Allows you to toggle iron doors"
+        - "<dark_aqua>and iron trapdoors open and closed."
+        - "<gray> To use, right click on an iron"
+        - "<gray>door while not holding anything."
+    double_slab_break:
+      name: "<aqua><bold>Double Slab Break"
+      description:
+        - "<dark_aqua> Allows you to break"
+        - "<dark_aqua>double slabs in half."
+        - "<gray> To use, break a double slab"
+        - "<gray>while holding any slab."
+    glazed_terracotta_rotate:
+      name: "<aqua><bold>Glazed Terracotta Rotate"
+      description:
+        - "<dark_aqua> Allows you to rotate"
+        - "<dark_aqua>glazed terracotta."
+        - "<gray> To use, right click on a glazed"
+        - "<gray>terracotta while shifting."
+    night_vision:
+      name: "<aqua><bold>Night Vision"
+      description:
+        - "<dark_aqua> Grants you infinite night vision."
+    no_clip:
+      name: "<aqua><bold>No-Clip"
+      description:
+        - "<dark_aqua> Intelligently toggles you between"
+        - "<dark_aqua>creative and spectator mode."
+    advanced_fly:
+      name: "<aqua><bold>Advanced Fly"
+      description:
+        - "<dark_aqua> Prevents you from drifting in"
+        - "<dark_aqua>creative mode flight."
