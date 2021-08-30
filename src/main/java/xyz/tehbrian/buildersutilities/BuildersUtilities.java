@@ -43,6 +43,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public final class BuildersUtilities extends JavaPlugin {
 
@@ -60,18 +61,27 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     public void onEnable() {
-        this.injector = Guice.createInjector(
-                new ArmorColorModule(),
-                new BannerModule(),
-                new ConfigModule(),
-                new OptionsModule(),
-                new PluginModule(this),
-                new RestrictionHelperModule(),
-                new UserModule()
-        );
+        try {
+            this.injector = Guice.createInjector(
+                    new ArmorColorModule(),
+                    new BannerModule(),
+                    new ConfigModule(),
+                    new OptionsModule(),
+                    new PluginModule(this),
+                    new RestrictionHelperModule(),
+                    new UserModule()
+            );
+        } catch (final Exception e) {
+            this.getLogger().severe("Something went wrong while creating the Guice injector.");
+            this.getLogger().severe("Disabling plugin.");
+            this.getLogger().severe("Printing stack trace, please send this to the developers:");
+            this.getLogger().log(Level.SEVERE, e.getMessage(), e);
+            this.disableSelf();
+            return;
+        }
 
         this.setupConfig();
-        this.setupEvents();
+        this.setupListeners();
         this.setupCommands();
         this.setupRestrictions();
 
@@ -82,7 +92,7 @@ public final class BuildersUtilities extends JavaPlugin {
         this.saveDefaultConfig();
     }
 
-    private void setupEvents() {
+    private void setupListeners() {
         registerEventListeners(
                 Key.get(BannerBaseInventoryListener.class),
                 Key.get(BannerColorInventoryListener.class),
@@ -147,6 +157,13 @@ public final class BuildersUtilities extends JavaPlugin {
         );
 
         loader.load(restrictionHelper);
+    }
+
+    /**
+     * Disables this plugin.
+     */
+    public void disableSelf() {
+        this.getServer().getPluginManager().disablePlugin(this);
     }
 
 }
