@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.commands;
+package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
 import org.bukkit.command.Command;
@@ -40,7 +40,12 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
     }
 
     @Override
-    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
+    public boolean onCommand(
+            final @NotNull CommandSender sender,
+            final @NotNull Command cmd,
+            final @NotNull String label,
+            final String[] args
+    ) {
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
@@ -50,14 +55,18 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         }
 
         if (sender instanceof Player player) {
-
             player.openInventory(this.optionsInventoryProvider.generate(this.userService.getUser(player)));
         }
         return true;
     }
 
     @Override
-    public List<String> onTabComplete(final @NotNull CommandSender sender, final @NotNull Command command, final @NotNull String alias, final String[] args) {
+    public List<String> onTabComplete(
+            final @NotNull CommandSender sender,
+            final @NotNull Command command,
+            final @NotNull String alias,
+            final String[] args
+    ) {
         final List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1

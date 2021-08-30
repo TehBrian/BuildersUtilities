@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.commands;
+package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
 import org.bukkit.command.Command;
@@ -21,9 +21,13 @@ public final class BannerCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
+    public boolean onCommand(
+            final @NotNull CommandSender sender,
+            final @NotNull Command cmd,
+            final @NotNull String label,
+            final String[] args
+    ) {
         if (sender instanceof Player player) {
-
             player.openInventory(this.bannerBaseInventoryProvider.generate());
         }
         return true;

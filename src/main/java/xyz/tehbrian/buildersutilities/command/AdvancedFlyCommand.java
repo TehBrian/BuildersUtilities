@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.commands;
+package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
 import org.bukkit.command.Command;
@@ -26,9 +26,13 @@ public final class AdvancedFlyCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
+    public boolean onCommand(
+            final @NotNull CommandSender sender,
+            final @NotNull Command cmd,
+            final @NotNull String label,
+            final String[] args
+    ) {
         if (sender instanceof Player player) {
-
             if (this.userService.getUser(player).toggleAdvancedFlyEnabled()) {
                 player.sendMessage(this.lang.c(NodePath.path("messages.commands.advanced_fly.enabled")));
             } else {

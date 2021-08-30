@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.commands;
+package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
 import org.bukkit.command.Command;
@@ -11,13 +11,13 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
-public final class NoClipCommand implements CommandExecutor {
+public final class NightVisionCommand implements CommandExecutor {
 
     private final UserService userService;
     private final LangConfig lang;
 
     @Inject
-    public NoClipCommand(
+    public NightVisionCommand(
             final @NonNull UserService userService,
             final @NonNull LangConfig lang
     ) {
@@ -26,13 +26,17 @@ public final class NoClipCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(final @NotNull CommandSender sender, final @NotNull Command cmd, final @NotNull String label, final String[] args) {
+    public boolean onCommand(
+            final @NotNull CommandSender sender,
+            final @NotNull Command cmd,
+            final @NotNull String label,
+            final String[] args
+    ) {
         if (sender instanceof Player player) {
-
-            if (this.userService.getUser(player).toggleNoClipEnabled()) {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.no_clip.enabled")));
+            if (this.userService.getUser(player).toggleNightVisionEnabled()) {
+                player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.enabled")));
             } else {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.no_clip.disabled")));
+                player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.disabled")));
             }
         }
         return true;
