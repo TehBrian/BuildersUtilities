@@ -34,9 +34,9 @@ public final class AdvancedFlyCommand implements CommandExecutor {
     ) {
         if (sender instanceof Player player) {
             if (this.userService.getUser(player).toggleAdvancedFlyEnabled()) {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.advanced_fly.enabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "advanced_fly", "enabled")));
             } else {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.advanced_fly.disabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "advanced_fly", "disabled")));
             }
         }
         return true;

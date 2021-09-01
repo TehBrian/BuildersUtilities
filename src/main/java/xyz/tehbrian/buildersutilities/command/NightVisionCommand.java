@@ -34,9 +34,9 @@ public final class NightVisionCommand implements CommandExecutor {
     ) {
         if (sender instanceof Player player) {
             if (this.userService.getUser(player).toggleNightVisionEnabled()) {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.enabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "night_vision", "enabled")));
             } else {
-                player.sendMessage(this.lang.c(NodePath.path("messages.commands.night_vision.disabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "night_vision", "disabled")));
             }
         }
         return true;

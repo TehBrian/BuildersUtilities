@@ -26,14 +26,14 @@ public final class BannerBaseInventoryProvider {
     }
 
     private ItemStack createCustomBanner(final Material material) {
-        return PaperItemBuilder.ofType(material).lore(this.lang.cl(NodePath.path("messages.inventories.banner.select"))).build();
+        return PaperItemBuilder.ofType(material).lore(this.lang.cl(NodePath.path("inventories", "banner", "select"))).build();
     }
 
     public Inventory generate() {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("messages.inventories.banner.base_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "base_inventory_name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -41,7 +41,7 @@ public final class BannerBaseInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.lang.c(NodePath.path("messages.inventories.banner.randomize")))
+                .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
                 .textures(ConfigUtils.getString("heads.banner.randomize"))
                 .build()
         );
@@ -49,7 +49,7 @@ public final class BannerBaseInventoryProvider {
                 5,
                 PaperItemBuilder
                         .ofType(Material.BARRIER)
-                        .name(this.lang.c(NodePath.path("messages.inventories.banner.cannot_get_banner")))
+                        .name(this.lang.c(NodePath.path("inventories", "banner", "cannot_get_banner")))
                         .build()
         );
 

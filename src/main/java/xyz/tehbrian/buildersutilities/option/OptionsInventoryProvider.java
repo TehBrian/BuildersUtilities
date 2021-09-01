@@ -39,11 +39,11 @@ public final class OptionsInventoryProvider {
         have magic strings, and I don't like how redundant this system still is.
      */
     private ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
-        final Component name = this.lang.c(NodePath.path("messages.inventories.options." + optionKey + ".name"));
+        final Component name = this.lang.c(NodePath.path("inventories", "options", optionKey, "name"));
 
         final List<Component> lore = new ArrayList<>();
-        lore.addAll(this.lang.cl(NodePath.path("messages.inventories.options." + optionKey + ".description")));
-        lore.addAll(this.lang.cl(NodePath.path("messages.inventories.options.status." + statusKey)));
+        lore.addAll(this.lang.cl(NodePath.path("inventories", "options", optionKey, "description")));
+        lore.addAll(this.lang.cl(NodePath.path("inventories", "options", "status", statusKey)));
 
         return PaperItemBuilder.ofType(material)
                 .name(name)
@@ -52,7 +52,7 @@ public final class OptionsInventoryProvider {
     }
 
     public Inventory generate(final User user) {
-        final Inventory inv = Bukkit.createInventory(null, 27, this.lang.c(NodePath.path("messages.inventories.options.inventory_name")));
+        final Inventory inv = Bukkit.createInventory(null, 27, this.lang.c(NodePath.path("inventories", "options", "inventory_name")));
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);

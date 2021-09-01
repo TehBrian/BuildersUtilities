@@ -31,7 +31,7 @@ public final class BannerPatternInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("messages.inventories.banner.pattern_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "pattern_inventory_name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -39,7 +39,7 @@ public final class BannerPatternInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.lang.c(NodePath.path("messages.inventories.banner.randomize")))
+                .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
                 .textures(ConfigUtils.getString("heads.banner.randomize"))
                 .build()
         );
@@ -52,7 +52,7 @@ public final class BannerPatternInventoryProvider {
 
         for (int i = 9; i < (BannerUtils.patternTypes().size() + 9); i++) {
             inv.setItem(i, BannerBuilder.ofType(base)
-                    .lore(this.lang.cl(NodePath.path("messages.inventories.banner.select")))
+                    .lore(this.lang.cl(NodePath.path("inventories", "banner", "select")))
                     .addPattern(new Pattern(dyeColor, BannerUtils.patternTypes().get(i - 9)))
                     .build()
             );

@@ -25,14 +25,14 @@ public final class BannerColorInventoryProvider {
     }
 
     private ItemStack createCustomDye(final Material material) {
-        return PaperItemBuilder.ofType(material).lore(this.lang.cl(NodePath.path("messages.inventories.banner.select"))).build();
+        return PaperItemBuilder.ofType(material).lore(this.lang.cl(NodePath.path("inventories", "banner", "select"))).build();
     }
 
     public Inventory generate(final ItemStack oldBanner) {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("messages.inventories.banner.color_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "color_inventory_name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -40,7 +40,7 @@ public final class BannerColorInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.lang.c(NodePath.path("messages.inventories.banner.randomize")))
+                .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
                 .textures(ConfigUtils.getString("heads.banner.randomize"))
                 .build());
         inv.setItem(5, oldBanner);

@@ -35,7 +35,7 @@ public final class BannerPatternInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c(NodePath.path("messages.inventories.banner.pattern_inventory_name")))
+                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "banner", "pattern_inventory_name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

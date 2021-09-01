@@ -20,6 +20,8 @@ import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.command.EmptyTabCompleter;
 import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.command.NoClipCommand;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
 import xyz.tehbrian.buildersutilities.inject.BannerModule;
 import xyz.tehbrian.buildersutilities.inject.ConfigModule;
@@ -89,7 +91,11 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupConfig() {
-        this.saveDefaultConfig();
+        this.saveResource("config.yml", false);
+        this.saveResource("lang.yml", false);
+
+        this.injector.getInstance(ConfigConfig.class).load();
+        this.injector.getInstance(LangConfig.class).load();
     }
 
     private void setupListeners() {
