@@ -12,19 +12,22 @@ import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtils;
-import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 
 public final class BannerPatternInventoryProvider {
 
     private final LangConfig lang;
+    private final ConfigConfig config;
 
     @Inject
     public BannerPatternInventoryProvider(
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig lang,
+            final @NonNull ConfigConfig config
     ) {
         this.lang = lang;
+        this.config = config;
     }
 
     public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
@@ -40,7 +43,7 @@ public final class BannerPatternInventoryProvider {
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
                 .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
-                .textures(ConfigUtils.getString("heads.banner.randomize"))
+                .textures(this.config.heads().banner().randomize())
                 .build()
         );
         inv.setItem(5, oldBanner);

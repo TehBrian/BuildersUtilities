@@ -10,19 +10,22 @@ import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 
 // TODO: Add an undo button.
 public final class BannerBaseInventoryProvider {
 
     private final LangConfig lang;
+    private final ConfigConfig config;
 
     @Inject
     public BannerBaseInventoryProvider(
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig lang,
+            final @NonNull ConfigConfig config
     ) {
         this.lang = lang;
+        this.config = config;
     }
 
     private ItemStack createCustomBanner(final Material material) {
@@ -42,7 +45,7 @@ public final class BannerBaseInventoryProvider {
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
                 .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
-                .textures(ConfigUtils.getString("heads.banner.randomize"))
+                .textures(this.config.heads().banner().randomize())
                 .build()
         );
         inv.setItem(

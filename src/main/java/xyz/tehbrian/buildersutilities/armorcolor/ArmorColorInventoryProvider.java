@@ -12,8 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.ConfigUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,12 +21,15 @@ import java.util.Objects;
 public final class ArmorColorInventoryProvider {
 
     private final LangConfig lang;
+    private final ConfigConfig config;
 
     @Inject
     public ArmorColorInventoryProvider(
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig lang,
+            final @NonNull ConfigConfig config
     ) {
         this.lang = lang;
+        this.config = config;
     }
 
     public Inventory generate() {
@@ -71,21 +74,21 @@ public final class ArmorColorInventoryProvider {
                 22,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "randomize_red")))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_red"))
+                        .textures(this.config.heads().armorColor().randomizeRed())
                         .build()
         );
         inv.setItem(
                 23,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "randomize_green")))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_green"))
+                        .textures(this.config.heads().armorColor().randomizeGreen())
                         .build()
         );
         inv.setItem(
                 24,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "randomize_blue")))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_blue"))
+                        .textures(this.config.heads().armorColor().randomizeBlue())
                         .build()
         );
         inv.setItem(
@@ -93,7 +96,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "red")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.red"))
+                        .textures(this.config.heads().armorColor().red())
                         .build()
         );
         inv.setItem(
@@ -101,7 +104,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "green")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.green"))
+                        .textures(this.config.heads().armorColor().green())
                         .build()
         );
         inv.setItem(
@@ -109,7 +112,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.lang.c(NodePath.path("inventories", "armor_color", "blue")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.blue"))
+                        .textures(this.config.heads().armorColor().blue())
                         .build()
         );
 

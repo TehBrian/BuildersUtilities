@@ -4,29 +4,23 @@ import com.google.inject.Inject;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockExplodeEvent;
-import org.bukkit.event.block.BlockFromToEvent;
-import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
-
-import java.util.Objects;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 
 @SuppressWarnings("unused")
 public final class SettingsListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final ConfigConfig config;
 
     @Inject
-    public SettingsListener(final @NonNull BuildersUtilities main) {
-        this.main = main;
+    public SettingsListener(final @NonNull ConfigConfig config) {
+        this.config = config;
     }
 
     @EventHandler
@@ -40,21 +34,21 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onBlockPhysics(final BlockPhysicsEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_physics")) {
+        if (this.config.settings().disablePhysics()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityExplode(final EntityExplodeEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_entity_explode")) {
+        if (this.config.settings().disableEntityExplode()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityDamageByEntityExplode(final EntityDamageEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_entity_explode")) {
+        if (this.config.settings().disableEntityExplode()) {
             if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
                 event.setCancelled(true);
             }
@@ -63,14 +57,14 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onBlockExplode(final BlockExplodeEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_block_explode")) {
+        if (this.config.settings().disableBlockExplode()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityDamageByBlockExplode(final EntityDamageEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_block_explode")) {
+        if (this.config.settings().disableBlockExplode()) {
             if (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
                 event.setCancelled(true);
             }
@@ -79,14 +73,14 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onLeavesDecay(final LeavesDecayEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_leaves_decay")) {
+        if (this.config.settings().disableLeavesDecay()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onFarmlandTrample(final PlayerInteractEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_farmland_trample")) {
+        if (this.config.settings().disableFarmlandTrample()) {
             if (event.getAction() == Action.PHYSICAL) {
                 if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.FARMLAND) {
                     event.setCancelled(true);
@@ -97,7 +91,7 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onDragonEggTeleport(final BlockFromToEvent event) {
-        if (this.main.getConfig().getBoolean("settings.disable_dragon_egg_teleport")) {
+        if (this.config.settings().disableDragonEggTeleport()) {
             if (event.getBlock().getType() == Material.DRAGON_EGG) {
                 event.setCancelled(true);
             }

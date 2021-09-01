@@ -49,18 +49,8 @@ import java.util.logging.Level;
 
 public final class BuildersUtilities extends JavaPlugin {
 
-    private static BuildersUtilities instance;
-
     @MonotonicNonNull
     private Injector injector;
-
-    public BuildersUtilities() {
-        instance = this;
-    }
-
-    public static BuildersUtilities getInstance() {
-        return instance;
-    }
 
     public void onEnable() {
         try {
