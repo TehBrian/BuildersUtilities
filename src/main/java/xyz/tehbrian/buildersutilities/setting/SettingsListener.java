@@ -88,7 +88,7 @@ public final class SettingsListener implements Listener {
     public void onFarmlandTrample(final PlayerInteractEvent event) {
         if (this.main.getConfig().getBoolean("settings.disable_farmland_trample")) {
             if (event.getAction() == Action.PHYSICAL) {
-                if (Objects.requireNonNull(event.getClickedBlock()).getType() == Material.FARMLAND) {
+                if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.FARMLAND) {
                     event.setCancelled(true);
                 }
             }
