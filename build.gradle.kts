@@ -16,17 +16,17 @@ repositories {
     mavenCentral()
     mavenLocal()
 
-    maven {
+    maven("https://papermc.io/repo/repository/maven-public/") {
         name = "papermc-repo"
-        url = uri("https://papermc.io/repo/repository/maven-public/")
     }
-    maven {
+    maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
-        url = uri("https://oss.sonatype.org/content/groups/public/")
     }
-    maven {
+    maven("https://s01.oss.sonatype.org/content/groups/public/") {
         name = "sonatype-s01"
-        url = uri("https://s01.oss.sonatype.org/content/groups/public/")
+    }
+    maven("https://repo.broccol.ai/snapshots/") {
+        name = "broccolai-snapshots"
     }
 }
 
@@ -35,15 +35,11 @@ dependencies {
 
     implementation("com.google.inject:guice:5.0.1")
 
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0")
-
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
-
     implementation("org.spongepowered:configurate-yaml:4.1.2")
 
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0")
     implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
-
-    // must be built on the "itemlib" branch
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
 }
 
