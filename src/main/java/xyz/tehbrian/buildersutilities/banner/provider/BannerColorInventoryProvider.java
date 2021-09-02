@@ -35,7 +35,7 @@ public final class BannerColorInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("inventories", "banner", "color_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "color-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {

@@ -66,13 +66,12 @@ public final class BuildersUtilities extends JavaPlugin {
         } catch (final Exception e) {
             this.getLogger().severe("Something went wrong while creating the Guice injector.");
             this.getLogger().severe("Disabling plugin.");
-            this.getLogger().severe("Printing stack trace, please send this to the developers:");
-            this.getLogger().log(Level.SEVERE, e.getMessage(), e);
+            this.getLogger().log(Level.SEVERE, "Printing stack trace, please send this to the developers:", e);
             this.disableSelf();
             return;
         }
 
-        this.setupConfig();
+        this.loadConfigs();
         this.setupListeners();
         this.setupCommands();
         this.setupRestrictions();
@@ -80,7 +79,7 @@ public final class BuildersUtilities extends JavaPlugin {
         this.injector.getInstance(NoClipManager.class).start();
     }
 
-    private void setupConfig() {
+    public void loadConfigs() {
         this.saveResource("config.yml", false);
         this.saveResource("lang.yml", false);
 

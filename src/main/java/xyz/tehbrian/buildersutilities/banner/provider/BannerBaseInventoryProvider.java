@@ -36,7 +36,7 @@ public final class BannerBaseInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("inventories", "banner", "base_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "base-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -52,7 +52,7 @@ public final class BannerBaseInventoryProvider {
                 5,
                 PaperItemBuilder
                         .ofType(Material.BARRIER)
-                        .name(this.lang.c(NodePath.path("inventories", "banner", "cannot_get_banner")))
+                        .name(this.lang.c(NodePath.path("inventories", "banner", "cannot-get-banner")))
                         .build()
         );
 

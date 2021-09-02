@@ -36,7 +36,7 @@ public final class ArmorColorInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "armor_color", "inventory_name")))
+                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "armor-color", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

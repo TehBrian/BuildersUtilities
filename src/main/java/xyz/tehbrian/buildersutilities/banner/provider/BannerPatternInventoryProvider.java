@@ -34,7 +34,7 @@ public final class BannerPatternInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("inventories", "banner", "pattern_inventory_name"))
+                this.lang.c(NodePath.path("inventories", "banner", "pattern-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {

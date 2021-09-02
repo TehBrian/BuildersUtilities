@@ -48,8 +48,7 @@ public final class ConfigConfig extends AbstractConfig<YamlConfigurateWrapper> {
         } catch (final SerializationException e) {
             this.logger.warn("Exception caught during configuration deserialization for config.yml.");
             this.logger.warn("The plugin will not work correctly. Please check your config.yml config file.");
-            this.logger.warn("Printing stack trace.");
-            this.logger.warn(e.getMessage(), e);
+            this.logger.warn("Printing stack trace:", e);
             return;
         }
 
@@ -65,15 +64,15 @@ public final class ConfigConfig extends AbstractConfig<YamlConfigurateWrapper> {
     /**
      * @return the settings
      */
-    public Settings settings() {
-        return settings;
+    public @Nullable Settings settings() {
+        return this.settings;
     }
 
     /**
      * @return the heads
      */
-    public Heads heads() {
-        return heads;
+    public @Nullable Heads heads() {
+        return this.heads;
     }
 
     @ConfigSerializable

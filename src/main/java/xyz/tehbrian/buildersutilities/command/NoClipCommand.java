@@ -34,9 +34,9 @@ public final class NoClipCommand implements CommandExecutor {
     ) {
         if (sender instanceof Player player) {
             if (this.userService.getUser(player).toggleNoClipEnabled()) {
-                player.sendMessage(this.lang.c(NodePath.path("commands", "no_clip", "enabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "no-clip", "enabled")));
             } else {
-                player.sendMessage(this.lang.c(NodePath.path("commands", "no_clip", "disabled")));
+                player.sendMessage(this.lang.c(NodePath.path("commands", "no-clip", "disabled")));
             }
         }
         return true;

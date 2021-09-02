@@ -49,7 +49,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
-            this.main.reloadConfig();
+            this.main.loadConfigs();
             sender.sendMessage(this.lang.c(NodePath.path("commands", "reload")));
             return true;
         }
