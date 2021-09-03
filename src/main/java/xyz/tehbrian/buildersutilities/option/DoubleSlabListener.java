@@ -12,25 +12,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
 
-    private final UserManager userManager;
+    private final UserService userService;
 
     @Inject
     public DoubleSlabListener(
-            final @NonNull UserManager userManager
+            final @NonNull UserService userService
     ) {
-        this.userManager = userManager;
+        this.userService = userService;
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onDoubleSlabBreak(final BlockBreakEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasDoubleSlabBreakEnabled()
+        if (!this.userService.getUser(player).doubleSlabBreakEnabled()
                 || !player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE

@@ -9,18 +9,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import org.slf4j.Logger;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternInventoryListener;
-import xyz.tehbrian.buildersutilities.commands.AdvancedFlyCommand;
-import xyz.tehbrian.buildersutilities.commands.ArmorColorCommand;
-import xyz.tehbrian.buildersutilities.commands.BannerCommand;
-import xyz.tehbrian.buildersutilities.commands.BuildersUtilitiesCommand;
-import xyz.tehbrian.buildersutilities.commands.EmptyTabCompleter;
-import xyz.tehbrian.buildersutilities.commands.NightVisionCommand;
-import xyz.tehbrian.buildersutilities.commands.NoClipCommand;
+import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
+import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
+import xyz.tehbrian.buildersutilities.command.BannerCommand;
+import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
+import xyz.tehbrian.buildersutilities.command.EmptyTabCompleter;
+import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
+import xyz.tehbrian.buildersutilities.command.NoClipCommand;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
 import xyz.tehbrian.buildersutilities.inject.BannerModule;
 import xyz.tehbrian.buildersutilities.inject.ConfigModule;
@@ -35,55 +36,58 @@ import xyz.tehbrian.buildersutilities.option.IronDoorListener;
 import xyz.tehbrian.buildersutilities.option.NoClipManager;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionLoader;
-import xyz.tehbrian.restrictionhelper.bukkit.restrictions.PlotSquaredRestriction;
-import xyz.tehbrian.restrictionhelper.bukkit.restrictions.WorldGuardRestriction;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.PlotSquaredRestriction;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.WorldGuardRestriction;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public final class BuildersUtilities extends JavaPlugin {
-
-    private static BuildersUtilities instance;
 
     @MonotonicNonNull
     private Injector injector;
 
-    public BuildersUtilities() {
-        instance = this;
-    }
-
-    public static BuildersUtilities getInstance() {
-        return instance;
-    }
-
     public void onEnable() {
-        this.injector = Guice.createInjector(
-                new ArmorColorModule(),
-                new BannerModule(),
-                new ConfigModule(),
-                new OptionsModule(),
-                new PluginModule(this),
-                new RestrictionHelperModule(),
-                new UserModule()
-        );
+        try {
+            this.injector = Guice.createInjector(
+                    new ArmorColorModule(),
+                    new BannerModule(),
+                    new ConfigModule(),
+                    new OptionsModule(),
+                    new PluginModule(this),
+                    new RestrictionHelperModule(),
+                    new UserModule()
+            );
+        } catch (final Exception e) {
+            this.getLogger().severe("Something went wrong while creating the Guice injector.");
+            this.getLogger().severe("Disabling plugin.");
+            this.getLogger().log(Level.SEVERE, "Printing stack trace, please send this to the developers:", e);
+            this.disableSelf();
+            return;
+        }
 
-        this.setupConfig();
-        this.setupEvents();
+        this.loadConfigs();
+        this.setupListeners();
         this.setupCommands();
         this.setupRestrictions();
 
         this.injector.getInstance(NoClipManager.class).start();
     }
 
-    private void setupConfig() {
-        this.saveDefaultConfig();
+    public void loadConfigs() {
+        this.saveResource("config.yml", false);
+        this.saveResource("lang.yml", false);
+
+        this.injector.getInstance(ConfigConfig.class).load();
+        this.injector.getInstance(LangConfig.class).load();
     }
 
-    private void setupEvents() {
+    private void setupListeners() {
         registerEventListeners(
                 Key.get(BannerBaseInventoryListener.class),
                 Key.get(BannerColorInventoryListener.class),
@@ -137,18 +141,24 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupRestrictions() {
-        final var restrictionHelper = this.injector.getInstance(BukkitRestrictionHelper.class);
+        final var restrictionHelper = this.injector.getInstance(SpigotRestrictionHelper.class);
 
         final PluginManager pm = this.getServer().getPluginManager();
 
-        final Logger logger = this.injector.getInstance(Logger.class);
-        final var loader = new BukkitRestrictionLoader(
-                logger,
+        final var loader = new SpigotRestrictionLoader(
+                this.getLog4JLogger(),
                 Arrays.asList(pm.getPlugins()),
                 List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class)
         );
 
         loader.load(restrictionHelper);
+    }
+
+    /**
+     * Disables this plugin.
+     */
+    public void disableSelf() {
+        this.getServer().getPluginManager().disablePlugin(this);
     }
 
 }

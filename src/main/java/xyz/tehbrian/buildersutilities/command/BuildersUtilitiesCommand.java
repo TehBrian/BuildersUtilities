@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.commands;
+package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
 import org.bukkit.Chunk;
@@ -9,41 +9,48 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
-import xyz.tehbrian.buildersutilities.user.UserManager;
+import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.*;
 
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
     private final BuildersUtilities main;
-    private final UserManager userManager;
-    private final Lang lang;
+    private final UserService userService;
+    private final LangConfig lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager,
-            final @NonNull Lang lang,
+            final @NonNull UserService userService,
+            final @NonNull LangConfig lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
         this.lang = lang;
         this.optionsInventoryProvider = optionsInventoryProvider;
     }
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(
+            final @NotNull CommandSender sender,
+            final @NotNull Command cmd,
+            final @NotNull String label,
+            final String[] args
+    ) {
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
-            this.main.reloadConfig();
-            sender.sendMessage(this.lang.c("messages.commands.reload"));
+            this.main.loadConfigs();
+            sender.sendMessage(this.lang.c(NodePath.path("commands", "reload")));
             return true;
         }
 
@@ -65,14 +72,18 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         }
 
         if (sender instanceof Player player) {
-
-            player.openInventory(this.optionsInventoryProvider.generate(this.userManager.getUser(player)));
+            player.openInventory(this.optionsInventoryProvider.generate(this.userService.getUser(player)));
         }
         return true;
     }
 
     @Override
-    public List<String> onTabComplete(final CommandSender sender, final Command command, final String alias, final String[] args) {
+    public List<String> onTabComplete(
+            final @NotNull CommandSender sender,
+            final @NotNull Command command,
+            final @NotNull String alias,
+            final String[] args
+    ) {
         final List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1

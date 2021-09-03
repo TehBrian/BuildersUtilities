@@ -4,12 +4,12 @@ import com.google.inject.AbstractModule;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 
 /**
- * Guice module which binds the inventory provider for the options menu.
+ * Guice module which provides bindings for the options menu inventory provider.
  */
 public class OptionsModule extends AbstractModule {
 
     /**
-     * Binds the inventory provider for the options menu.
+     * Binds the options menu inventory provider as an eager singleton.
      */
     @Override
     protected void configure() {

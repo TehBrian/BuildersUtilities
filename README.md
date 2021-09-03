@@ -9,7 +9,7 @@ nicer-looking GUIs.
 
 - Every message is easily configurable.
 - Both the permissions and the commands have been completely redone. (See the
-  [plugin.yml][links] for an updated list!)
+  [plugin.yml][plugin.yml] for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
 
 In addition to that, everything has been polished and reviewed, rigorously, by

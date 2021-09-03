@@ -10,26 +10,34 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.config.Lang;
-import xyz.tehbrian.buildersutilities.util.ConfigUtils;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 
 import java.util.List;
 import java.util.Objects;
 
 public final class ArmorColorInventoryProvider {
 
-    private final Lang lang;
+    private final LangConfig lang;
+    private final ConfigConfig config;
 
     @Inject
     public ArmorColorInventoryProvider(
-            final @NonNull Lang lang
+            final @NonNull LangConfig lang,
+            final @NonNull ConfigConfig config
     ) {
         this.lang = lang;
+        this.config = config;
     }
 
     public Inventory generate() {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.armor_color.inventory_name"));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("inventories", "armor-color", "inventory-name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
@@ -38,73 +46,73 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(
                 10,
                 PaperItemBuilder.ofType(Material.LEATHER_HELMET)
-                        .lore(this.lang.c("messages.inventories.armor_color.get_helmet"))
+                        .lore(this.lang.c(NodePath.path("inventories", "armor-color", "get-helmet")))
                         .build()
         );
         inv.setItem(
                 19,
                 PaperItemBuilder.ofType(Material.LEATHER_CHESTPLATE)
-                        .lore(this.lang.c("messages.inventories.armor_color.get_chestplate"))
+                        .lore(this.lang.c(NodePath.path("inventories", "armor-color", "get-chestplate")))
                         .build()
         );
         inv.setItem(
                 28,
                 PaperItemBuilder.ofType(Material.LEATHER_LEGGINGS)
-                        .lore(this.lang.c("messages.inventories.armor_color.get_leggings"))
+                        .lore(this.lang.c(NodePath.path("inventories", "armor-color", "get-leggings")))
                         .build()
         );
         inv.setItem(
                 37,
                 PaperItemBuilder.ofType(Material.LEATHER_BOOTS)
-                        .lore(this.lang.c("messages.inventories.armor_color.get_boots"))
+                        .lore(this.lang.c(NodePath.path("inventories", "armor-color", "get-boots")))
                         .build()
         );
 
-        final List<Component> lore = this.lang.cl("messages.inventories.armor_color.change");
+        final List<Component> lore = this.lang.cl(NodePath.path("inventories", "armor-color", "change"));
 
         inv.setItem(
                 22,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.lang.c("messages.inventories.armor_color.randomize_red"))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_red"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "randomize-red")))
+                        .textures(this.config.heads().armorColor().randomizeRed())
                         .build()
         );
         inv.setItem(
                 23,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.lang.c("messages.inventories.armor_color.randomize_green"))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_green"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "randomize-green")))
+                        .textures(this.config.heads().armorColor().randomizeGreen())
                         .build()
         );
         inv.setItem(
                 24,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.lang.c("messages.inventories.armor_color.randomize_blue"))
-                        .textures(ConfigUtils.getString("heads.armor_color.randomize_blue"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "randomize-blue")))
+                        .textures(this.config.heads().armorColor().randomizeBlue())
                         .build()
         );
         inv.setItem(
                 31,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.lang.c("messages.inventories.armor_color.red"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "red")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.red"))
+                        .textures(this.config.heads().armorColor().red())
                         .build()
         );
         inv.setItem(
                 32,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.lang.c("messages.inventories.armor_color.green"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "green")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.green"))
+                        .textures(this.config.heads().armorColor().green())
                         .build()
         );
         inv.setItem(
                 33,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.lang.c("messages.inventories.armor_color.blue"))
+                        .name(this.lang.c(NodePath.path("inventories", "armor-color", "blue")))
                         .lore(lore)
-                        .textures(ConfigUtils.getString("heads.armor_color.blue"))
+                        .textures(this.config.heads().armorColor().blue())
                         .build()
         );
 

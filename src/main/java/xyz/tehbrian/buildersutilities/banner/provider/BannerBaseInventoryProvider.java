@@ -8,41 +8,52 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.config.Lang;
-import xyz.tehbrian.buildersutilities.util.ConfigUtils;
+import xyz.tehbrian.buildersutilities.config.ConfigConfig;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 
 // TODO: Add an undo button.
 public final class BannerBaseInventoryProvider {
 
-    private final Lang lang;
+    private final LangConfig lang;
+    private final ConfigConfig config;
 
     @Inject
     public BannerBaseInventoryProvider(
-            final @NonNull Lang lang
+            final @NonNull LangConfig lang,
+            final @NonNull ConfigConfig config
     ) {
         this.lang = lang;
+        this.config = config;
     }
 
     private ItemStack createCustomBanner(final Material material) {
-        return PaperItemBuilder.ofType(material).lore(this.lang.cl("messages.inventories.banner.select")).build();
+        return PaperItemBuilder.ofType(material).lore(this.lang.cl(NodePath.path("inventories", "banner", "select"))).build();
     }
 
     public Inventory generate() {
-        final Inventory inv = Bukkit.createInventory(null, 54, this.lang.c("messages.inventories.banner.base_inventory_name"));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                54,
+                this.lang.c(NodePath.path("inventories", "banner", "base-inventory-name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.lang.c("messages.inventories.banner.randomize"))
-                .textures(ConfigUtils.getString("heads.banner.randomize"))
+                .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
+                .textures(this.config.heads().banner().randomize())
                 .build()
         );
         inv.setItem(
                 5,
-                PaperItemBuilder.ofType(Material.BARRIER).name(this.lang.c("messages.inventories.banner.cannot_get_banner")).build()
+                PaperItemBuilder
+                        .ofType(Material.BARRIER)
+                        .name(this.lang.c(NodePath.path("inventories", "banner", "cannot-get-banner")))
+                        .build()
         );
 
         inv.setItem(28, this.createCustomBanner(Material.BLACK_BANNER));

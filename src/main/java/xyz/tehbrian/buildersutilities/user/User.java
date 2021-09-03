@@ -1,15 +1,16 @@
 package xyz.tehbrian.buildersutilities.user;
 
+import dev.tehbrian.tehlib.paper.user.PaperUser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.UUID;
 
-public final class User {
-
-    private final UUID uuid;
+public final class User extends PaperUser {
 
     private boolean ironDoorToggleEnabled = true;
     private boolean doubleSlabBreakEnabled = true;
@@ -19,65 +20,65 @@ public final class User {
     private boolean noClipEnabled = false;
     private boolean advancedFlyEnabled = false;
 
-    public User(final UUID uuid) {
-        this.uuid = uuid;
+    public User(final @NonNull UUID uuid) {
+        super(uuid);
     }
 
-    public UUID getUuid() {
-        return this.uuid;
-    }
-
-    public Player getPlayer() {
+    public @Nullable Player getPlayer() {
         return Bukkit.getPlayer(this.uuid);
     }
 
-    public boolean hasIronDoorToggleEnabled() {
+    public boolean ironDoorToggleEnabled() {
         return this.ironDoorToggleEnabled;
     }
 
-    public void setIronDoorToggleEnabled(final boolean ironDoorToggleEnabled) {
+    public void ironDoorToggleEnabled(final boolean ironDoorToggleEnabled) {
         this.ironDoorToggleEnabled = ironDoorToggleEnabled;
     }
 
     public boolean toggleIronDoorToggleEnabled() {
-        this.setIronDoorToggleEnabled(!this.hasIronDoorToggleEnabled());
-        return this.hasIronDoorToggleEnabled();
+        this.ironDoorToggleEnabled(!this.ironDoorToggleEnabled());
+        return this.ironDoorToggleEnabled();
     }
 
-    public boolean hasDoubleSlabBreakEnabled() {
+    public boolean doubleSlabBreakEnabled() {
         return this.doubleSlabBreakEnabled;
     }
 
-    public void setDoubleSlabBreakEnabled(final boolean doubleSlabBreakEnabled) {
+    public void doubleSlabBreakEnabled(final boolean doubleSlabBreakEnabled) {
         this.doubleSlabBreakEnabled = doubleSlabBreakEnabled;
     }
 
     public boolean toggleDoubleSlabBreakEnabled() {
-        this.setDoubleSlabBreakEnabled(!this.hasDoubleSlabBreakEnabled());
-        return this.hasDoubleSlabBreakEnabled();
+        this.doubleSlabBreakEnabled(!this.doubleSlabBreakEnabled());
+        return this.doubleSlabBreakEnabled();
     }
 
-    public boolean hasGlazedTerracottaRotateEnabled() {
+    public boolean glazedTerracottaRotateEnabled() {
         return this.glazedTerracottaRotateEnabled;
     }
 
-    public void setGlazedTerracottaRotateEnabled(final boolean glazedTerracottaRotateEnabled) {
+    public void glazedTerracottaRotateEnabled(final boolean glazedTerracottaRotateEnabled) {
         this.glazedTerracottaRotateEnabled = glazedTerracottaRotateEnabled;
     }
 
     public boolean toggleGlazedTerracottaRotateEnabled() {
-        this.setGlazedTerracottaRotateEnabled(!this.hasGlazedTerracottaRotateEnabled());
-        return this.hasGlazedTerracottaRotateEnabled();
+        this.glazedTerracottaRotateEnabled(!this.glazedTerracottaRotateEnabled());
+        return this.glazedTerracottaRotateEnabled();
     }
 
-    public boolean hasNightVisionEnabled() {
+    public boolean nightVisionEnabled() {
         return this.nightVisionEnabled;
     }
 
-    public void setNightVisionEnabled(final boolean nightVisionEnabled) {
+    public void nightVisionEnabled(final boolean nightVisionEnabled) {
         this.nightVisionEnabled = nightVisionEnabled;
 
-        final Player player = this.getPlayer();
+        final @Nullable Player player = this.getPlayer();
+        if (player == null) {
+            return;
+        }
+
         if (nightVisionEnabled) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
         } else {
@@ -86,34 +87,34 @@ public final class User {
     }
 
     public boolean toggleNightVisionEnabled() {
-        this.setNightVisionEnabled(!this.hasNightVisionEnabled());
-        return this.hasNightVisionEnabled();
+        this.nightVisionEnabled(!this.nightVisionEnabled());
+        return this.nightVisionEnabled();
     }
 
-    public boolean hasNoClipEnabled() {
+    public boolean noClipEnabled() {
         return this.noClipEnabled;
     }
 
-    public void setNoClipEnabled(final boolean noClipEnabled) {
+    public void noClipEnabled(final boolean noClipEnabled) {
         this.noClipEnabled = noClipEnabled;
     }
 
     public boolean toggleNoClipEnabled() {
-        this.setNoClipEnabled(!this.hasNoClipEnabled());
-        return this.hasNoClipEnabled();
+        this.noClipEnabled(!this.noClipEnabled());
+        return this.noClipEnabled();
     }
 
-    public boolean hasAdvancedFlyEnabled() {
+    public boolean advancedFlyEnabled() {
         return this.advancedFlyEnabled;
     }
 
-    public void setAdvancedFlyEnabled(final boolean advancedFlyEnabled) {
+    public void advancedFlyEnabled(final boolean advancedFlyEnabled) {
         this.advancedFlyEnabled = advancedFlyEnabled;
     }
 
     public boolean toggleAdvancedFlyEnabled() {
-        this.setAdvancedFlyEnabled(!this.hasAdvancedFlyEnabled());
-        return this.hasAdvancedFlyEnabled();
+        this.advancedFlyEnabled(!this.advancedFlyEnabled());
+        return this.advancedFlyEnabled();
     }
 
 }

@@ -16,9 +16,9 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.user.UserManager;
-import xyz.tehbrian.restrictionhelper.bukkit.BukkitRestrictionHelper;
+import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
+import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 import java.util.Objects;
 
@@ -26,17 +26,17 @@ import java.util.Objects;
 public final class IronDoorListener implements Listener {
 
     private final BuildersUtilities main;
-    private final UserManager userManager;
-    private final BukkitRestrictionHelper restrictionHelper;
+    private final UserService userService;
+    private final SpigotRestrictionHelper restrictionHelper;
 
     @Inject
     public IronDoorListener(
             final @NonNull BuildersUtilities main,
-            final @NonNull UserManager userManager,
-            final @NonNull BukkitRestrictionHelper restrictionHelper
+            final @NonNull UserService userService,
+            final @NonNull SpigotRestrictionHelper restrictionHelper
     ) {
         this.main = main;
-        this.userManager = userManager;
+        this.userService = userService;
         this.restrictionHelper = restrictionHelper;
     }
 
@@ -50,7 +50,7 @@ public final class IronDoorListener implements Listener {
     public void onIronDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
+        if (!this.userService.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
@@ -82,7 +82,7 @@ public final class IronDoorListener implements Listener {
     public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
-        if (!this.userManager.getUser(player).hasIronDoorToggleEnabled()
+        if (!this.userService.getUser(player).ironDoorToggleEnabled()
                 || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }

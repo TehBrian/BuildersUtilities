@@ -3,10 +3,10 @@ package xyz.tehbrian.buildersutilities;
 import broccolai.corn.paper.item.PaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.config.Lang;
+import xyz.tehbrian.buildersutilities.config.LangConfig;
 
 /**
- * Constant values used in the plugin.
+ * Constant values.
  */
 public final class Constants {
 
@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final ItemStack INTERFACE_BACKGROUND = PaperItemBuilder
                 .ofType(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
-                .name(Lang.EMPTY)
+                .name(LangConfig.EMPTY)
                 .build();
 
         private Items() {
