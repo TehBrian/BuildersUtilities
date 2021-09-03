@@ -21,21 +21,21 @@ import java.util.Objects;
 public final class BannerPatternInventoryListener implements Listener {
 
     private final BannerColorInventoryProvider bannerColorInventoryProvider;
-    private final LangConfig lang;
+    private final LangConfig langConfig;
 
     @Inject
     public BannerPatternInventoryListener(
             final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider,
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig langConfig
     ) {
         this.bannerColorInventoryProvider = bannerColorInventoryProvider;
-        this.lang = lang;
+        this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "banner", "pattern-inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "banner", "pattern-inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

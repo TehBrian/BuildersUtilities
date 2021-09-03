@@ -19,23 +19,23 @@ public final class OptionsInventoryListener implements Listener {
 
     private final UserService userService;
     private final OptionsInventoryProvider optionsInventoryProvider;
-    private final LangConfig lang;
+    private final LangConfig langConfig;
 
     @Inject
     public OptionsInventoryListener(
             final @NonNull UserService userService,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider,
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig langConfig
     ) {
         this.userService = userService;
         this.optionsInventoryProvider = optionsInventoryProvider;
-        this.lang = lang;
+        this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "options", "inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "options", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

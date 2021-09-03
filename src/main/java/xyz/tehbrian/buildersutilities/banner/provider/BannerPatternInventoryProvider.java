@@ -18,23 +18,23 @@ import xyz.tehbrian.buildersutilities.util.BannerUtils;
 
 public final class BannerPatternInventoryProvider {
 
-    private final LangConfig lang;
-    private final ConfigConfig config;
+    private final LangConfig langConfig;
+    private final ConfigConfig configConfig;
 
     @Inject
     public BannerPatternInventoryProvider(
-            final @NonNull LangConfig lang,
-            final @NonNull ConfigConfig config
+            final @NonNull LangConfig langConfig,
+            final @NonNull ConfigConfig configConfig
     ) {
-        this.lang = lang;
-        this.config = config;
+        this.langConfig = langConfig;
+        this.configConfig = configConfig;
     }
 
     public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.lang.c(NodePath.path("inventories", "banner", "pattern-inventory-name"))
+                this.langConfig.c(NodePath.path("inventories", "banner", "pattern-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -42,8 +42,8 @@ public final class BannerPatternInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.lang.c(NodePath.path("inventories", "banner", "randomize")))
-                .textures(this.config.heads().banner().randomize())
+                .name(this.langConfig.c(NodePath.path("inventories", "banner", "randomize")))
+                .textures(this.configConfig.heads().banner().randomize())
                 .build()
         );
         inv.setItem(5, oldBanner);
@@ -55,7 +55,7 @@ public final class BannerPatternInventoryProvider {
 
         for (int i = 9; i < (BannerUtils.patternTypes().size() + 9); i++) {
             inv.setItem(i, BannerBuilder.ofType(base)
-                    .lore(this.lang.cl(NodePath.path("inventories", "banner", "select")))
+                    .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
                     .addPattern(new Pattern(dyeColor, BannerUtils.patternTypes().get(i - 9)))
                     .build()
             );

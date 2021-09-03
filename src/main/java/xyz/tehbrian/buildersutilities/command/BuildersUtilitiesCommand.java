@@ -21,25 +21,30 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
     private final BuildersUtilities buildersUtilities;
     private final UserService userService;
-    private final LangConfig lang;
+    private final LangConfig langConfig;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
-            final @NonNull LangConfig lang,
+            final @NonNull LangConfig langConfig,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
         this.buildersUtilities = buildersUtilities;
         this.userService = userService;
-        this.lang = lang;
+        this.langConfig = langConfig;
         this.optionsInventoryProvider = optionsInventoryProvider;
     }
 
@@ -54,7 +59,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
             this.buildersUtilities.loadConfigs();
-            sender.sendMessage(this.lang.c(NodePath.path("commands", "reload")));
+            sender.sendMessage(this.langConfig.c(NodePath.path("commands", "reload")));
             return true;
         }
 
@@ -70,7 +75,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
                 playerConnection.sendPacket(packet);
             }
 
-            sender.sendMessage(this.lang.c(NodePath.path("commands", "rc")));
+            sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));
             return true;
         }
 

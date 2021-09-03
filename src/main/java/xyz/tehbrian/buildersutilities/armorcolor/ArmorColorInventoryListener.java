@@ -22,21 +22,21 @@ import java.util.Random;
 public final class ArmorColorInventoryListener implements Listener {
 
     private final ArmorColorInventoryProvider armorColorInventoryProvider;
-    private final LangConfig lang;
+    private final LangConfig langConfig;
 
     @Inject
     public ArmorColorInventoryListener(
             final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider,
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig langConfig
     ) {
         this.armorColorInventoryProvider = armorColorInventoryProvider;
-        this.lang = lang;
+        this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.lang.c(NodePath.path("inventories", "armor-color", "inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "armor-color", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

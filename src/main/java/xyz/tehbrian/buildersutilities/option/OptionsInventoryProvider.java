@@ -24,13 +24,13 @@ public final class OptionsInventoryProvider {
     private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(LangConfig.EMPTY).build();
     private static final ItemStack RED = PaperItemBuilder.ofType(Material.RED_STAINED_GLASS_PANE).name(LangConfig.EMPTY).build();
 
-    private final LangConfig lang;
+    private final LangConfig langConfig;
 
     @Inject
     public OptionsInventoryProvider(
-            final @NonNull LangConfig lang
+            final @NonNull LangConfig langConfig
     ) {
-        this.lang = lang;
+        this.langConfig = langConfig;
     }
 
     /*
@@ -39,11 +39,11 @@ public final class OptionsInventoryProvider {
         have magic strings, and I don't like how redundant this system still is.
      */
     private ItemStack createCustomItem(final Material material, final String optionKey, final String statusKey) {
-        final Component name = this.lang.c(NodePath.path("inventories", "options", optionKey, "name"));
+        final Component name = this.langConfig.c(NodePath.path("inventories", "options", optionKey, "name"));
 
         final List<Component> lore = new ArrayList<>();
-        lore.addAll(this.lang.cl(NodePath.path("inventories", "options", optionKey, "description")));
-        lore.addAll(this.lang.cl(NodePath.path("inventories", "options", "status", statusKey)));
+        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", optionKey, "description")));
+        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", "status", statusKey)));
 
         return PaperItemBuilder.ofType(material)
                 .name(name)
@@ -52,7 +52,11 @@ public final class OptionsInventoryProvider {
     }
 
     public Inventory generate(final User user) {
-        final Inventory inv = Bukkit.createInventory(null, 27, this.lang.c(NodePath.path("inventories", "options", "inventory-name")));
+        final Inventory inv = Bukkit.createInventory(
+                null,
+                27,
+                this.langConfig.c(NodePath.path("inventories", "options", "inventory-name"))
+        );
 
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
