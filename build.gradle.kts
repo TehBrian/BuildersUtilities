@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper:1.17.1-R0.1-SNAPSHOT")
 
     implementation("com.google.inject:guice:5.0.1")
 

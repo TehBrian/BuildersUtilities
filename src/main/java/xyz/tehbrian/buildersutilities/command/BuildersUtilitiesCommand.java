@@ -1,12 +1,16 @@
 package xyz.tehbrian.buildersutilities.command;
 
 import com.google.inject.Inject;
+import net.minecraft.network.protocol.game.PacketPlayOutMapChunk;
+import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.craftbukkit.v1_17_R1.CraftChunk;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -55,18 +59,15 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         }
 
         if (args.length >= 1
-                && "reloadchunks".equals(args[0].toLowerCase(Locale.ROOT))
+                && "rc".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender instanceof Player player) {
-
             final Collection<Chunk> chunksToReload = this.around(player.getLocation().getChunk(), player.getClientViewDistance());
 
-            /*
-            PlayerConnection playerConnection = ((CraftPlayer) player).getHandle().playerConnection;
-            for (Chunk chunk : chunksToReload) {
-                PacketPlayOutMapChunk packet = new PacketPlayOutMapChunk(((CraftChunk) chunk).getHandle(), 65535);
+            final PlayerConnection playerConnection = ((CraftPlayer) player).getHandle().b;
+            for (final Chunk chunk : chunksToReload) {
+                final PacketPlayOutMapChunk packet = new PacketPlayOutMapChunk(((CraftChunk) chunk).getHandle(), false);
                 playerConnection.sendPacket(packet);
             }
-             */
 
             return true;
         }
@@ -94,7 +95,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         return suggestions;
     }
 
-    // From https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
+    // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
     public Collection<Chunk> around(final Chunk origin, final int radius) {
         final World world = origin.getWorld();
 
