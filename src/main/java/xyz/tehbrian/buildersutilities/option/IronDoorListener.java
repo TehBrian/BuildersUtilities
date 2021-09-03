@@ -25,17 +25,17 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class IronDoorListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final BuildersUtilities buildersUtilities;
     private final UserService userService;
     private final SpigotRestrictionHelper restrictionHelper;
 
     @Inject
     public IronDoorListener(
-            final @NonNull BuildersUtilities main,
+            final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
             final @NonNull SpigotRestrictionHelper restrictionHelper
     ) {
-        this.main = main;
+        this.buildersUtilities = buildersUtilities;
         this.userService = userService;
         this.restrictionHelper = restrictionHelper;
     }
@@ -68,7 +68,7 @@ public final class IronDoorListener implements Listener {
             return;
         }
 
-        Bukkit.getScheduler().runTask(this.main, () -> {
+        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final Door door = (Door) block.getBlockData();
 
             door.setOpen(!door.isOpen());
@@ -100,7 +100,7 @@ public final class IronDoorListener implements Listener {
             return;
         }
 
-        Bukkit.getScheduler().runTask(this.main, () -> {
+        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
 
             trapDoor.setOpen(!trapDoor.isOpen());

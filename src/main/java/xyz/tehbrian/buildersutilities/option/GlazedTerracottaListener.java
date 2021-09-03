@@ -25,17 +25,17 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class GlazedTerracottaListener implements Listener {
 
-    private final BuildersUtilities main;
+    private final BuildersUtilities buildersUtilities;
     private final UserService userService;
     private final SpigotRestrictionHelper restrictionHelper;
 
     @Inject
     public GlazedTerracottaListener(
-            final @NonNull BuildersUtilities main,
+            final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
             final @NonNull SpigotRestrictionHelper restrictionHelper
     ) {
-        this.main = main;
+        this.buildersUtilities = buildersUtilities;
         this.userService = userService;
         this.restrictionHelper = restrictionHelper;
     }
@@ -62,7 +62,7 @@ public final class GlazedTerracottaListener implements Listener {
             return;
         }
 
-        Bukkit.getScheduler().runTask(this.main, () -> {
+        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final Directional directional = (Directional) block.getBlockData();
 
             switch (directional.getFacing()) {

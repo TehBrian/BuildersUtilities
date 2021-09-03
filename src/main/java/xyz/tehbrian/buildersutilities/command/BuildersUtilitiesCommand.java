@@ -21,19 +21,19 @@ import java.util.*;
 
 public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompleter {
 
-    private final BuildersUtilities main;
+    private final BuildersUtilities buildersUtilities;
     private final UserService userService;
     private final LangConfig lang;
     private final OptionsInventoryProvider optionsInventoryProvider;
 
     @Inject
     public BuildersUtilitiesCommand(
-            final @NonNull BuildersUtilities main,
+            final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
             final @NonNull LangConfig lang,
             final @NonNull OptionsInventoryProvider optionsInventoryProvider
     ) {
-        this.main = main;
+        this.buildersUtilities = buildersUtilities;
         this.userService = userService;
         this.lang = lang;
         this.optionsInventoryProvider = optionsInventoryProvider;
@@ -49,7 +49,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
         if (args.length >= 1
                 && "reload".equals(args[0].toLowerCase(Locale.ROOT))
                 && sender.hasPermission(Constants.Permissions.RELOAD)) {
-            this.main.loadConfigs();
+            this.buildersUtilities.loadConfigs();
             sender.sendMessage(this.lang.c(NodePath.path("commands", "reload")));
             return true;
         }

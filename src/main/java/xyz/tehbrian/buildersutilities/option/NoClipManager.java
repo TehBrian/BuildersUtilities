@@ -13,20 +13,20 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 @SuppressWarnings("deprecation") // no alternative to Player#isOnGround
 public final class NoClipManager {
 
-    private final BuildersUtilities main;
+    private final BuildersUtilities buildersUtilities;
     private final UserService userService;
 
     @Inject
     public NoClipManager(
-            final @NonNull BuildersUtilities main,
+            final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService
     ) {
-        this.main = main;
+        this.buildersUtilities = buildersUtilities;
         this.userService = userService;
     }
 
     public void start() {
-        Bukkit.getScheduler().runTaskTimer(this.main, this::checkForBlocks, 1L, 1L);
+        Bukkit.getScheduler().runTaskTimer(this.buildersUtilities, this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {
