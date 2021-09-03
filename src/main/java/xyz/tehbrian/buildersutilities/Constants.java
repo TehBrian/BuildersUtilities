@@ -41,6 +41,7 @@ public final class Constants {
         public static final String DOUBLE_SLAB_BREAK = "buildersutilities.doubleslabbreak";
         public static final String GLAZED_TERRACOTTA_ROTATE = "buildersutilities.glazedterracottarotate";
 
+        public static final String RC = "buildersutilities.rc";
         public static final String RELOAD = "buildersutilities.reload";
         public static final String TPGM3 = "buildersutilities.tpgm3";
 

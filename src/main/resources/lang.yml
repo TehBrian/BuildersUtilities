@@ -12,7 +12,8 @@ commands:
   no-clip:
     enabled: "<dark_aqua>BU <gray>› <green>No-Clip enabled."
     disabled: "<dark_aqua>BU <gray>› <red>No-Clip disabled."
-  reload: "<dark_aqua>BU <gray>› <aqua>Successfully reloaded config!"
+  rc: "<dark_aqua>BU <gray>› <aqua>Reloaded chunks in your view distance."
+  reload: "<dark_aqua>BU <gray>› <aqua>Reloaded config."
 
 inventories:
   armor-color:

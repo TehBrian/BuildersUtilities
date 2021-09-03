@@ -60,6 +60,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
 
         if (args.length >= 1
                 && "rc".equals(args[0].toLowerCase(Locale.ROOT))
+                && sender.hasPermission(Constants.Permissions.RC)
                 && sender instanceof Player player) {
             final Collection<Chunk> chunksToReload = this.around(player.getLocation().getChunk(), player.getClientViewDistance());
 
@@ -69,6 +70,7 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
                 playerConnection.sendPacket(packet);
             }
 
+            sender.sendMessage(this.lang.c(NodePath.path("commands", "rc")));
             return true;
         }
 
@@ -87,9 +89,14 @@ public final class BuildersUtilitiesCommand implements CommandExecutor, TabCompl
     ) {
         final List<String> suggestions = new ArrayList<>();
 
-        if (args.length == 1
-                && sender.hasPermission(Constants.Permissions.RELOAD)) {
-            suggestions.add("reload");
+        if (args.length == 1) {
+            if (sender.hasPermission(Constants.Permissions.RC)) {
+                suggestions.add("rc");
+            }
+
+            if (sender.hasPermission(Constants.Permissions.RELOAD)) {
+                suggestions.add("reload");
+            }
         }
 
         return suggestions;
