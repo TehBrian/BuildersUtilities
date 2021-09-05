@@ -47,11 +47,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+/**
+ * The main class for the BuildersUtilities plugin.
+ */
 public final class BuildersUtilities extends JavaPlugin {
 
-    @MonotonicNonNull
-    private Injector injector;
+    /**
+     * The Guice injector.
+     */
+    private @MonotonicNonNull Injector injector;
 
+    /**
+     * Called when the plugin is enabled.
+     */
     public void onEnable() {
         try {
             this.injector = Guice.createInjector(
@@ -79,6 +87,9 @@ public final class BuildersUtilities extends JavaPlugin {
         this.injector.getInstance(NoClipManager.class).start();
     }
 
+    /**
+     * Loads the various plugin config files.
+     */
     public void loadConfigs() {
         this.saveResource("config.yml", false);
         this.saveResource("lang.yml", false);
@@ -88,7 +99,7 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupListeners() {
-        registerEventListeners(
+        registerListeners(
                 Key.get(BannerBaseInventoryListener.class),
                 Key.get(BannerColorInventoryListener.class),
                 Key.get(BannerPatternInventoryListener.class),
@@ -103,7 +114,7 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     @SafeVarargs
-    private void registerEventListeners(final Key<? extends Listener>... listeners) {
+    private void registerListeners(final Key<? extends Listener>... listeners) {
         final PluginManager pm = this.getServer().getPluginManager();
 
         for (final Key<? extends Listener> listener : listeners) {
