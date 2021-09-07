@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /*
-    TODO: Clean up this code.
+    TODO: clean up/refactor this
     I'm going to be honest here, I don't have a clue
     on how to make this better. It looks like some kind of
     black magic to me. If it ain't broke don't fix it, right?

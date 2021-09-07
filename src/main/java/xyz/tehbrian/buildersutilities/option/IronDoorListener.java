@@ -41,8 +41,8 @@ public final class IronDoorListener implements Listener {
     }
 
     /*
-        TODO: Possibly change this behavior?
-        Perhaps we should make it more similar to how wooden trapdoors work.
+        TODO: maybe change this behavior?
+        Perhaps we could make it more similar to how wooden trapdoors work.
         For now I'm keeping it like how it is in the original BuildersUtilities
         because that's what people are used to, and change is scary.
      */

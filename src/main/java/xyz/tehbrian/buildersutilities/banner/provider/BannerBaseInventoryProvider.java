@@ -13,7 +13,7 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 
-// TODO: Add an undo button.
+// TODO: add an undo button
 public final class BannerBaseInventoryProvider {
 
     private final LangConfig langConfig;
