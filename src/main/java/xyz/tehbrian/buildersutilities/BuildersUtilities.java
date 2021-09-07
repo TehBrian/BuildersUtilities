@@ -13,33 +13,16 @@ import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternInventoryListener;
-import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
-import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
-import xyz.tehbrian.buildersutilities.command.BannerCommand;
-import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
-import xyz.tehbrian.buildersutilities.command.EmptyTabCompleter;
-import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
-import xyz.tehbrian.buildersutilities.command.NoClipCommand;
+import xyz.tehbrian.buildersutilities.command.*;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
-import xyz.tehbrian.buildersutilities.inject.BannerModule;
-import xyz.tehbrian.buildersutilities.inject.ConfigModule;
-import xyz.tehbrian.buildersutilities.inject.OptionsModule;
-import xyz.tehbrian.buildersutilities.inject.PluginModule;
-import xyz.tehbrian.buildersutilities.inject.RestrictionHelperModule;
-import xyz.tehbrian.buildersutilities.inject.UserModule;
-import xyz.tehbrian.buildersutilities.option.AdvancedFlyListener;
-import xyz.tehbrian.buildersutilities.option.DoubleSlabListener;
-import xyz.tehbrian.buildersutilities.option.GlazedTerracottaListener;
-import xyz.tehbrian.buildersutilities.option.IronDoorListener;
-import xyz.tehbrian.buildersutilities.option.NoClipManager;
-import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
+import xyz.tehbrian.buildersutilities.inject.*;
+import xyz.tehbrian.buildersutilities.option.*;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
-import xyz.tehbrian.restrictionhelper.spigot.restrictions.PlotSquaredRestriction;
-import xyz.tehbrian.restrictionhelper.spigot.restrictions.WorldGuardRestriction;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_5_13;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7_0_4;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -60,6 +43,7 @@ public final class BuildersUtilities extends JavaPlugin {
     /**
      * Called when the plugin is enabled.
      */
+    @Override
     public void onEnable() {
         try {
             this.injector = Guice.createInjector(
@@ -159,7 +143,7 @@ public final class BuildersUtilities extends JavaPlugin {
         final var loader = new SpigotRestrictionLoader(
                 this.getLog4JLogger(),
                 Arrays.asList(pm.getPlugins()),
-                List.of(PlotSquaredRestriction.class, WorldGuardRestriction.class)
+                List.of(R_PlotSquared_5_13.class, R_WorldGuard_7_0_4.class)
         );
 
         loader.load(restrictionHelper);
