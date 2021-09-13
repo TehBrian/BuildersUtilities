@@ -38,8 +38,8 @@ import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
-import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_5_13;
-import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7_0_4;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6_1;
+import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7_0;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -160,7 +160,7 @@ public final class BuildersUtilities extends JavaPlugin {
         final var loader = new SpigotRestrictionLoader(
                 this.getLog4JLogger(),
                 Arrays.asList(pm.getPlugins()),
-                List.of(R_PlotSquared_5_13.class, R_WorldGuard_7_0_4.class)
+                List.of(R_PlotSquared_6_1.class, R_WorldGuard_7_0.class)
         );
 
         loader.load(restrictionHelper);
