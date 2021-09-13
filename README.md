@@ -1,11 +1,13 @@
 # BuildersUtilities
 A curated bundle of tiny features that help builders do their thing.
 
-A fork of Arcaniax's BuildersUtilities with customizable messages and
-nicer-looking GUIs.
+This is a fork of [Arcaniax's BuildersUtilities][arcaniax-bu] with customizable
+messages and nicer-looking GUIs.
 
 * [Downloads](https://github.com/TehBrian/BuildersUtilities/releases)
 * [Discord](https://chat.tehbrian.xyz)
+
+[arcaniax-bu]: https://github.com/Arcaniax-Development/Builders-Utilities
 
 ## What's different?
 
@@ -24,5 +26,5 @@ This project uses Gradle. To build, run `./gradlew shadowJar` in the main
 project directory. The built jar can be found in `build/libs`.
 
 ## Contributing
-Feel free to submit a pull-request or file an issue! All changes are welcome.
-If you're contributing code, please follow the project's code style.
+Feel free to submit a pull-request or file an issue! All changes are welcome. If
+you're contributing code, please follow the project's code style.
