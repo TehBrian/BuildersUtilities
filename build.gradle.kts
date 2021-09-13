@@ -39,7 +39,7 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
 
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0")
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0-SNAPSHOT")
     implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
 }
