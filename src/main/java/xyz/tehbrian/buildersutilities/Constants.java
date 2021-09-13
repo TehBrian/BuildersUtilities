@@ -43,7 +43,9 @@ public final class Constants {
 
         public static final String RC = "buildersutilities.rc";
         public static final String RELOAD = "buildersutilities.reload";
-        public static final String TPGM3 = "buildersutilities.tpgm3";
+        public static final String SPECTATE_TELEPORT = "buildersutilities.spectate.teleport";
+        public static final String SPECTATE_ENTITY = "buildersutilities.spectate.entity";
+        public static final String SPECTATE_PLAYER = "buildersutilities.spectate.player";
 
         private Permissions() {
         }

@@ -1,7 +1,9 @@
 package xyz.tehbrian.buildersutilities.setting;
 
+import com.destroystokyo.paper.event.player.PlayerStartSpectatingEntityEvent;
 import com.google.inject.Inject;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -30,8 +32,21 @@ public final class SettingsListener implements Listener {
     @EventHandler
     public void onSpectatorTeleport(final PlayerTeleportEvent event) {
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE
-                && !event.getPlayer().hasPermission(Constants.Permissions.TPGM3)) {
+                && !event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_TELEPORT)) {
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onSpectate(final PlayerStartSpectatingEntityEvent event) {
+        if (event.getNewSpectatorTarget().getType() == EntityType.PLAYER) {
+            if (!event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_PLAYER)) {
+                event.setCancelled(true);
+            }
+        } else {
+            if (!event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_ENTITY)) {
+                event.setCancelled(true);
+            }
         }
     }
 

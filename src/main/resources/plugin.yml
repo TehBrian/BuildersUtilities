@@ -75,6 +75,14 @@ permissions:
   buildersutilities.glazedterracottarotate:
     description: Permission to use glzaed terracotta rotate.
     default: true
-  buildersutilities.tpgm3:
-    description: Permission to teleport while in Spectator mode.
+  buildersutilities.spectate.teleport:
+    description: Permission to teleport to players via the spectator menu.
+    default: true
+  buildersutilities.spectate.entity:
+    description: Permission to spectate entities (including players).
+    default: true
+    children:
+      buildersutilities.spectate.player: true
+  buildersutilities.spectate.player:
+    description: Permission to spectate players.
     default: true
