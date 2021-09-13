@@ -29,10 +29,9 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onSpectatorTeleport(final PlayerTeleportEvent event) {
-        if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE) {
-            if (!event.getPlayer().hasPermission(Constants.Permissions.TPGM3)) {
-                event.setCancelled(true);
-            }
+        if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE
+                && !event.getPlayer().hasPermission(Constants.Permissions.TPGM3)) {
+            event.setCancelled(true);
         }
     }
 
@@ -68,10 +67,9 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByBlockExplode(final EntityDamageEvent event) {
-        if (this.configConfig.settings().disableBlockExplode()) {
-            if (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
-                event.setCancelled(true);
-            }
+        if (this.configConfig.settings().disableBlockExplode()
+                && event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+            event.setCancelled(true);
         }
     }
 
@@ -84,21 +82,18 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onFarmlandTrample(final PlayerInteractEvent event) {
-        if (this.configConfig.settings().disableFarmlandTrample()) {
-            if (event.getAction() == Action.PHYSICAL) {
-                if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.FARMLAND) {
-                    event.setCancelled(true);
-                }
-            }
+        if (this.configConfig.settings().disableFarmlandTrample()
+                && event.getAction() == Action.PHYSICAL && event.getClickedBlock() != null
+                && event.getClickedBlock().getType() == Material.FARMLAND) {
+            event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onDragonEggTeleport(final BlockFromToEvent event) {
-        if (this.configConfig.settings().disableDragonEggTeleport()) {
-            if (event.getBlock().getType() == Material.DRAGON_EGG) {
-                event.setCancelled(true);
-            }
+        if (this.configConfig.settings().disableDragonEggTeleport()
+                && event.getBlock().getType() == Material.DRAGON_EGG) {
+            event.setCancelled(true);
         }
     }
 
