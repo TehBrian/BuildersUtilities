@@ -1,8 +1,10 @@
 # BuildersUtilities
+A curated bundle of tiny features that help builders do their thing.
+
 A fork of Arcaniax's BuildersUtilities with customizable messages and
 nicer-looking GUIs.
 
-* [Downloads](https://github.com/ItsTehBrian/BuildersUtilities/releases)
+* [Downloads](https://github.com/TehBrian/BuildersUtilities/releases)
 * [Discord](https://chat.tehbrian.xyz)
 
 ## What's different?
@@ -15,14 +17,12 @@ nicer-looking GUIs.
 In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
-[plugin.yml]: https://github.com/ItsTehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml
+[plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml
 
 ## Building
-
 This project uses Gradle. To build, run `./gradlew shadowJar` in the main
 project directory. The built jar can be found in `build/libs`.
 
 ## Contributing
-Feel free to submit a pull-request or file an issue! Even if it's just a small
-typo, all changes are welcome. If you're contributing code, please follow the
-project's code style.
+Feel free to submit a pull-request or file an issue! All changes are welcome.
+If you're contributing code, please follow the project's code style.
