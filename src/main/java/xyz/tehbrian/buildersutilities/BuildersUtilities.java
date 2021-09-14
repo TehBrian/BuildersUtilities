@@ -68,7 +68,7 @@ public final class BuildersUtilities extends TehPlugin {
             this.getLogger().severe("Something went wrong while creating the Guice injector.");
             this.getLogger().severe("Disabling plugin.");
             this.getLogger().log(Level.SEVERE, "Printing stack trace, please send this to the developers:", e);
-            this.disableSelf();
+            this.setEnabled(false);
             return;
         }
 
