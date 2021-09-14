@@ -2,12 +2,7 @@ package xyz.tehbrian.buildersutilities;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Key;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
+import dev.tehbrian.tehlib.paper.TehPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
@@ -17,7 +12,6 @@ import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.command.BannerCommand;
 import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
-import xyz.tehbrian.buildersutilities.command.EmptyTabCompleter;
 import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.command.NoClipCommand;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
@@ -42,15 +36,13 @@ import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6_1;
 import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7_0;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 /**
  * The main class for the BuildersUtilities plugin.
  */
-public final class BuildersUtilities extends JavaPlugin {
+public final class BuildersUtilities extends TehPlugin {
 
     /**
      * The Guice injector.
@@ -100,77 +92,39 @@ public final class BuildersUtilities extends JavaPlugin {
     }
 
     private void setupListeners() {
-        registerListeners(
-                Key.get(BannerBaseInventoryListener.class),
-                Key.get(BannerColorInventoryListener.class),
-                Key.get(BannerPatternInventoryListener.class),
-                Key.get(ArmorColorInventoryListener.class),
-                Key.get(OptionsInventoryListener.class),
-                Key.get(AdvancedFlyListener.class),
-                Key.get(DoubleSlabListener.class),
-                Key.get(GlazedTerracottaListener.class),
-                Key.get(IronDoorListener.class),
-                Key.get(SettingsListener.class)
+        this.registerListeners(
+                this.injector.getInstance(BannerBaseInventoryListener.class),
+                this.injector.getInstance(BannerColorInventoryListener.class),
+                this.injector.getInstance(BannerPatternInventoryListener.class),
+                this.injector.getInstance(ArmorColorInventoryListener.class),
+                this.injector.getInstance(OptionsInventoryListener.class),
+                this.injector.getInstance(AdvancedFlyListener.class),
+                this.injector.getInstance(DoubleSlabListener.class),
+                this.injector.getInstance(GlazedTerracottaListener.class),
+                this.injector.getInstance(IronDoorListener.class),
+                this.injector.getInstance(SettingsListener.class)
         );
-    }
-
-    @SafeVarargs
-    private void registerListeners(final Key<? extends Listener>... listeners) {
-        final PluginManager pm = this.getServer().getPluginManager();
-
-        for (final Key<? extends Listener> listener : listeners) {
-            final Listener instance = this.injector.getInstance(listener);
-            pm.registerEvents(instance, this);
-        }
     }
 
     private void setupCommands() {
-        final Map<String, Key<? extends CommandExecutor>> toRegister = new HashMap<>();
-
-        toRegister.put("advancedfly", Key.get(AdvancedFlyCommand.class));
-        toRegister.put("armorcolor", Key.get(ArmorColorCommand.class));
-        toRegister.put("banner", Key.get(BannerCommand.class));
-        toRegister.put("nightvision", Key.get(NightVisionCommand.class));
-        toRegister.put("noclip", Key.get(NoClipCommand.class));
-
-        this.registerCommandsWithEmptyTabCompleter(toRegister);
+        this.registerCommand("advancedfly", this.injector.getInstance(AdvancedFlyCommand.class));
+        this.registerCommand("armorcolor", this.injector.getInstance(ArmorColorCommand.class));
+        this.registerCommand("banner", this.injector.getInstance(BannerCommand.class));
+        this.registerCommand("nightvision", this.injector.getInstance(NightVisionCommand.class));
+        this.registerCommand("noclip", this.injector.getInstance(NoClipCommand.class));
 
         final var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
-        this.getCommand("buildersutilities").setExecutor(buildersUtilitiesCommand);
-        this.getCommand("buildersutilities").setTabCompleter(buildersUtilitiesCommand);
-    }
-
-    private void registerCommandsWithEmptyTabCompleter(final Map<String, Key<? extends CommandExecutor>> commands) {
-        final EmptyTabCompleter emptyTabCompleter = new EmptyTabCompleter();
-
-        for (final String commandName : commands.keySet()) {
-            final PluginCommand command = this.getCommand(commandName);
-
-            final CommandExecutor instance = this.injector.getInstance(commands.get(commandName));
-            command.setExecutor(instance);
-            command.setTabCompleter(emptyTabCompleter);
-        }
+        this.registerCommand("buildersutilities", buildersUtilitiesCommand, buildersUtilitiesCommand);
     }
 
     private void setupRestrictions() {
-        final var restrictionHelper = this.injector.getInstance(SpigotRestrictionHelper.class);
-
-        final PluginManager pm = this.getServer().getPluginManager();
-
         final var loader = new SpigotRestrictionLoader(
                 this.getLog4JLogger(),
-                Arrays.asList(pm.getPlugins()),
+                Arrays.asList(this.getServer().getPluginManager().getPlugins()),
                 List.of(R_PlotSquared_6_1.class, R_WorldGuard_7_0.class)
         );
 
-        loader.load(restrictionHelper);
-    }
-
-    /**
-     * Disables this plugin.
-     */
-    public void disableSelf() {
-        this.getServer().getPluginManager().disablePlugin(this);
+        loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
     }
 
 }
