@@ -13,7 +13,6 @@ import java.nio.file.Path;
 public class LangConfig extends Lang<YamlConfigurateWrapper> {
 
     public static final Component EMPTY = MiniMessage.get().parse("<gray>");
-    public static final Component RESET = MiniMessage.get().parse("<reset>");
 
     /**
      * @param logger     the logger

@@ -44,7 +44,7 @@ public final class BannerColorInventoryProvider {
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
                 .name(this.langConfig.c(NodePath.path("inventories", "banner", "randomize")))
-                .textures(this.configConfig.heads().banner().randomize())
+                .textures(this.configConfig.data().heads().banner().randomize())
                 .build());
         inv.setItem(5, oldBanner);
 

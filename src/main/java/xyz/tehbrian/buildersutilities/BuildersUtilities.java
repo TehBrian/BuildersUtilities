@@ -37,7 +37,6 @@ import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7_0;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * The main class for the BuildersUtilities plugin.
@@ -65,10 +64,10 @@ public final class BuildersUtilities extends TehPlugin {
                     new UserModule()
             );
         } catch (final Exception e) {
-            this.getLogger().severe("Something went wrong while creating the Guice injector.");
-            this.getLogger().severe("Disabling plugin.");
-            this.getLogger().log(Level.SEVERE, "Printing stack trace, please send this to the developers:", e);
-            this.setEnabled(false);
+            this.getLog4JLogger().error("Something went wrong while creating the Guice injector.");
+            this.getLog4JLogger().error("Disabling plugin.");
+            this.disableSelf();
+            this.getLog4JLogger().error("Printing stack trace, please send this to the developers:", e);
             return;
         }
 
@@ -84,8 +83,8 @@ public final class BuildersUtilities extends TehPlugin {
      * Loads the various plugin config files.
      */
     public void loadConfigs() {
-        this.saveResource("config.yml", false);
-        this.saveResource("lang.yml", false);
+        this.saveResourceSilently("config.yml");
+        this.saveResourceSilently("lang.yml");
 
         this.injector.getInstance(ConfigConfig.class).load();
         this.injector.getInstance(LangConfig.class).load();

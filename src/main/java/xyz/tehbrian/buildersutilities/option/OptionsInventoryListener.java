@@ -10,6 +10,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
+import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.Objects;
@@ -44,42 +45,43 @@ public final class OptionsInventoryListener implements Listener {
 
         event.setCancelled(true);
 
+        final User user = this.userService.getUser(player);
         switch (slot) {
             case 1, 10, 19 -> {
                 if (player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
-                    this.userService.getUser(player).toggleIronDoorToggleEnabled();
+                    user.toggleIronDoorToggleEnabled();
                 }
             }
             case 2, 11, 20 -> {
                 if (player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)) {
-                    this.userService.getUser(player).toggleDoubleSlabBreakEnabled();
+                    user.toggleDoubleSlabBreakEnabled();
                 }
             }
             case 3, 12, 21 -> {
                 if (player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
-                    this.userService.getUser(player).toggleGlazedTerracottaRotateEnabled();
+                    user.toggleGlazedTerracottaRotateEnabled();
                 }
             }
             case 5, 14, 23 -> {
                 if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-                    this.userService.getUser(player).toggleNightVisionEnabled();
+                    user.toggleNightVisionEnabled();
                 }
             }
             case 6, 15, 24 -> {
                 if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-                    this.userService.getUser(player).toggleNoClipEnabled();
+                    user.toggleNoClipEnabled();
                 }
             }
             case 7, 16, 25 -> {
                 if (player.hasPermission(Constants.Permissions.ADVANCED_FLY)) {
-                    this.userService.getUser(player).toggleAdvancedFlyEnabled();
+                    user.toggleAdvancedFlyEnabled();
                 }
             }
             default -> {
             }
         }
 
-        this.optionsInventoryProvider.update(event.getView().getTopInventory(), this.userService.getUser(player));
+        this.optionsInventoryProvider.update(event.getView().getTopInventory(), user);
     }
 
 }

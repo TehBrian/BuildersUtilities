@@ -74,21 +74,21 @@ public final class ArmorColorInventoryProvider {
                 22,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-red")))
-                        .textures(this.configConfig.heads().armorColor().randomizeRed())
+                        .textures(this.configConfig.data().heads().armorColor().randomizeRed())
                         .build()
         );
         inv.setItem(
                 23,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-green")))
-                        .textures(this.configConfig.heads().armorColor().randomizeGreen())
+                        .textures(this.configConfig.data().heads().armorColor().randomizeGreen())
                         .build()
         );
         inv.setItem(
                 24,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-blue")))
-                        .textures(this.configConfig.heads().armorColor().randomizeBlue())
+                        .textures(this.configConfig.data().heads().armorColor().randomizeBlue())
                         .build()
         );
         inv.setItem(
@@ -96,7 +96,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "red")))
                         .lore(lore)
-                        .textures(this.configConfig.heads().armorColor().red())
+                        .textures(this.configConfig.data().heads().armorColor().red())
                         .build()
         );
         inv.setItem(
@@ -104,7 +104,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "green")))
                         .lore(lore)
-                        .textures(this.configConfig.heads().armorColor().green())
+                        .textures(this.configConfig.data().heads().armorColor().green())
                         .build()
         );
         inv.setItem(
@@ -112,7 +112,7 @@ public final class ArmorColorInventoryProvider {
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
                         .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "blue")))
                         .lore(lore)
-                        .textures(this.configConfig.heads().armorColor().blue())
+                        .textures(this.configConfig.data().heads().armorColor().blue())
                         .build()
         );
 

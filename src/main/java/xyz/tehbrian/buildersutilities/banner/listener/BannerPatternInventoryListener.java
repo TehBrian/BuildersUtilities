@@ -48,14 +48,14 @@ public final class BannerPatternInventoryListener implements Listener {
 
         event.setCancelled(true);
 
-        // The get banner button.
+        // the get banner button
         if (slot == 5) {
             player.getInventory().addItem(oldBannerBuilder.name(null).build());
             player.closeInventory();
             return;
         }
 
-        // The random button.
+        // the random button
         if (slot == 3) {
             final DyeColor currentColor = BannerBuilder.of(Objects.requireNonNull(inventory.getItem(9))).getPattern(0).getColor();
 
@@ -70,7 +70,7 @@ public final class BannerPatternInventoryListener implements Listener {
             }
         }
 
-        // The various banner buttons.
+        // the various banner buttons
         if (slot >= 9 && slot <= (8 + BannerUtils.patternTypes().size())) {
             final var newBannerBuilder = oldBannerBuilder
                     .addPattern(BannerBuilder.of(Objects.requireNonNull(event.getCurrentItem())).getPattern(0));

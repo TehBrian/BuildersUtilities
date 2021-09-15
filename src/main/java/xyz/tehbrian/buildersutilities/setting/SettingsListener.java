@@ -52,21 +52,21 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onBlockPhysics(final BlockPhysicsEvent event) {
-        if (this.configConfig.settings().disablePhysics()) {
+        if (this.configConfig.data().settings().disablePhysics()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityExplode(final EntityExplodeEvent event) {
-        if (this.configConfig.settings().disableEntityExplode()) {
+        if (this.configConfig.data().settings().disableEntityExplode()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityDamageByEntityExplode(final EntityDamageEvent event) {
-        if (this.configConfig.settings().disableEntityExplode()) {
+        if (this.configConfig.data().settings().disableEntityExplode()) {
             if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
                 event.setCancelled(true);
             }
@@ -75,14 +75,14 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onBlockExplode(final BlockExplodeEvent event) {
-        if (this.configConfig.settings().disableBlockExplode()) {
+        if (this.configConfig.data().settings().disableBlockExplode()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onEntityDamageByBlockExplode(final EntityDamageEvent event) {
-        if (this.configConfig.settings().disableBlockExplode()
+        if (this.configConfig.data().settings().disableBlockExplode()
                 && event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
             event.setCancelled(true);
         }
@@ -90,14 +90,14 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onLeavesDecay(final LeavesDecayEvent event) {
-        if (this.configConfig.settings().disableLeavesDecay()) {
+        if (this.configConfig.data().settings().disableLeavesDecay()) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onFarmlandTrample(final PlayerInteractEvent event) {
-        if (this.configConfig.settings().disableFarmlandTrample()
+        if (this.configConfig.data().settings().disableFarmlandTrample()
                 && event.getAction() == Action.PHYSICAL && event.getClickedBlock() != null
                 && event.getClickedBlock().getType() == Material.FARMLAND) {
             event.setCancelled(true);
@@ -106,7 +106,7 @@ public final class SettingsListener implements Listener {
 
     @EventHandler
     public void onDragonEggTeleport(final BlockFromToEvent event) {
-        if (this.configConfig.settings().disableDragonEggTeleport()
+        if (this.configConfig.data().settings().disableDragonEggTeleport()
                 && event.getBlock().getType() == Material.DRAGON_EGG) {
             event.setCancelled(true);
         }
