@@ -46,8 +46,8 @@ public final class ConfigConfig extends AbstractConfig<YamlConfigurateWrapper> {
         try {
             this.data = rootNode.get(Data.class);
         } catch (final SerializationException e) {
-            this.logger.warn("Exception caught during configuration deserialization for {}.", fileName);
-            this.logger.warn("Disabling plugin. Please check your {}.", fileName);
+            this.logger.warn("Exception caught during configuration deserialization for {}", fileName);
+            this.logger.warn("Disabling plugin. Please check your {}", fileName);
             this.buildersUtilities.disableSelf();
             this.logger.warn("Printing stack trace:", e);
             return;
@@ -55,12 +55,12 @@ public final class ConfigConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
         if (this.data == null) {
             this.logger.warn("The deserialized configuration for {} was null.", fileName);
-            this.logger.warn("Disabling plugin. Please check your {}.", fileName);
+            this.logger.warn("Disabling plugin. Please check your {}", fileName);
             this.buildersUtilities.disableSelf();
             return;
         }
 
-        this.logger.info("Successfully loaded configuration file {}.", fileName);
+        this.logger.info("Successfully loaded configuration file {}", fileName);
     }
 
     /**
