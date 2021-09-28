@@ -3,7 +3,10 @@ package xyz.tehbrian.buildersutilities;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import dev.tehbrian.tehlib.paper.TehPlugin;
+import org.bukkit.command.CommandSender;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
 import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
@@ -12,6 +15,7 @@ import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.command.BannerCommand;
 import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
+import xyz.tehbrian.buildersutilities.command.CommandService;
 import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.command.NoClipCommand;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
@@ -106,14 +110,23 @@ public final class BuildersUtilities extends TehPlugin {
     }
 
     private void setupCommands() {
-        this.registerCommand("advancedfly", this.injector.getInstance(AdvancedFlyCommand.class));
-        this.registerCommand("armorcolor", this.injector.getInstance(ArmorColorCommand.class));
-        this.registerCommand("banner", this.injector.getInstance(BannerCommand.class));
-        this.registerCommand("nightvision", this.injector.getInstance(NightVisionCommand.class));
-        this.registerCommand("noclip", this.injector.getInstance(NoClipCommand.class));
+        final @NonNull CommandService commandService = this.injector.getInstance(CommandService.class);
+        commandService.init();
 
-        final var buildersUtilitiesCommand = this.injector.getInstance(BuildersUtilitiesCommand.class);
-        this.registerCommand("buildersutilities", buildersUtilitiesCommand, buildersUtilitiesCommand);
+        final cloud.commandframework.paper.@Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
+        if (commandManager == null) {
+            this.getLog4JLogger().error("The CommandService was null after initialization!");
+            this.getLog4JLogger().error("Disabling plugin.");
+            this.disableSelf();
+            return;
+        }
+
+        this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
+        this.injector.getInstance(ArmorColorCommand.class).register(commandManager);
+        this.injector.getInstance(BannerCommand.class).register(commandManager);
+        this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
+        this.injector.getInstance(NightVisionCommand.class).register(commandManager);
+        this.injector.getInstance(NoClipCommand.class).register(commandManager);
     }
 
     private void setupRestrictions() {

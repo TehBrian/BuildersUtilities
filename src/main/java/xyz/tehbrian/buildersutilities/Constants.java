@@ -35,6 +35,10 @@ public final class Constants {
 
         public static final String ROOT = "buildersutilities";
 
+        public static final String BANNER = ROOT + ".banner";
+        public static final String ARMOR_COLOR = ROOT + ".armorcolor";
+        public static final String BUILDERS_UTILITIES = ROOT + ".buildersutilities";
+
         public static final String ADVANCED_FLY = ROOT + ".advancedfly";
         public static final String NIGHT_VISION = ROOT + ".nightvision";
         public static final String NO_CLIP = ROOT + ".noclip";

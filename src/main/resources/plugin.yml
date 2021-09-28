@@ -9,38 +9,6 @@ version: ${version}
 main: xyz.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.17
 
-commands:
-  advancedfly:
-    description: Toggles advanced fly.
-    aliases: [ advfly, af ]
-    permission: buildersutilities.advancedfly
-    usage: /<command>
-  armorcolor:
-    description: Opens the armor color creator.
-    aliases: acc
-    permission: buildersutilities.armorcolor
-    usage: /<command>
-  banner:
-    description: Opens the banner creator.
-    aliases: bc
-    permission: buildersutilities.banner
-    usage: /<command>
-  buildersutilities:
-    description: Opens the options menu.
-    aliases: [ butils, bu ]
-    permission: buildersutilities.buildersutilities
-    usage: /<command> [rc|reload]
-  nightvision:
-    description: Toggles night vision.
-    aliases: nv
-    permission: buildersutilities.nightvision
-    usage: /<command>
-  noclip:
-    description: Toggles no-clip.
-    aliases: nc
-    permission: buildersutilities.noclip
-    usage: /<command>
-
 permissions:
   buildersutilities.advancedfly:
     description: Permission to use advanced fly.
