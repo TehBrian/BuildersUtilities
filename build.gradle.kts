@@ -14,7 +14,7 @@ java {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    mavenLocal() // required for paper dependency
 
     maven("https://papermc.io/repo/repository/maven-public/") {
         name = "papermc"
@@ -28,6 +28,9 @@ repositories {
     maven("https://repo.broccol.ai/snapshots/") {
         name = "broccolai-snapshots"
     }
+    maven("https://repo.thbn.me/snapshots/") {
+        name = "thbn-snapshots"
+    }
 }
 
 dependencies {
@@ -36,7 +39,7 @@ dependencies {
 
     implementation("com.google.inject:guice:5.0.1")
 
-    implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+    implementation("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
 
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0-SNAPSHOT")
