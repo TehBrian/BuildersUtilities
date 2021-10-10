@@ -32,7 +32,7 @@ public final class AdvancedFlyCommand extends PaperCloudCommand<CommandSender> {
      * @param commandManager the command manager
      */
     @Override
-    public void register(@NonNull final PaperCommandManager<CommandSender> commandManager) {
+    public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
         final var main = commandManager.commandBuilder("advancedfly", "advfly", "af")
                 .meta(CommandMeta.DESCRIPTION, "Toggles advanced fly.")
                 .permission(Constants.Permissions.ADVANCED_FLY)

@@ -82,10 +82,11 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
         final var reload = main.literal("reload", ArgumentDescription.of("Reloads the config."))
                 .permission(Constants.Permissions.RELOAD)
                 .handler(c -> {
-                    final var sender = c.getSender();
-
-                    this.buildersUtilities.loadConfigs();
-                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "reload")));
+                    if (this.buildersUtilities.loadConfiguration()) {
+                        c.getSender().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "successful")));
+                    } else {
+                        c.getSender().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "unsuccessful")));
+                    }
                 });
 
         commandManager.command(main);

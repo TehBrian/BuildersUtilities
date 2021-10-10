@@ -8,7 +8,7 @@ import java.util.UUID;
 public final class UserService extends PaperUserService<User> {
 
     @Override
-    public @NonNull User getUser(@NonNull final UUID uuid) {
+    public @NonNull User getUser(final @NonNull UUID uuid) {
         return this.userMap.computeIfAbsent(uuid, User::new);
     }
 

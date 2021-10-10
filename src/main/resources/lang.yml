@@ -13,7 +13,9 @@ commands:
     enabled: "<dark_aqua>BU <gray>› <green>No-Clip enabled."
     disabled: "<dark_aqua>BU <gray>› <red>No-Clip disabled."
   rc: "<dark_aqua>BU <gray>› <aqua>Reloaded the chunks in your view distance."
-  reload: "<dark_aqua>BU <gray>› <aqua>Reloaded plugin configuration."
+  reload:
+    successful: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
+    unsuccessful: "<dark_aqua>BU <gray>› <red>Failed to load configuration, please check the console."
 
 inventories:
   armor-color:

@@ -27,7 +27,7 @@ public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
      * @param commandManager the command manager
      */
     @Override
-    public void register(@NonNull final PaperCommandManager<CommandSender> commandManager) {
+    public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
         final var main = commandManager.commandBuilder("armorcolor", "acc")
                 .meta(CommandMeta.DESCRIPTION, "Opens the armor color creator.")
                 .permission(Constants.Permissions.ARMOR_COLOR)
