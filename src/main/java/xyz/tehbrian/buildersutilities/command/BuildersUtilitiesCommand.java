@@ -51,8 +51,10 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
      * @param commandManager the command manager
      */
     @Override
-    public void register(@NonNull final PaperCommandManager<CommandSender> commandManager) {
-        final var main = commandManager.commandBuilder("buildersutilities", "butils", "bu")
+    public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+        final var main = commandManager.commandBuilder("buildersutilities", "butils", "bu");
+
+        final var menu = main
                 .meta(CommandMeta.DESCRIPTION, "Opens the options menu.")
                 .permission(Constants.Permissions.BUILDERS_UTILITIES)
                 .senderType(Player.class)
@@ -89,7 +91,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     }
                 });
 
-        commandManager.command(main);
+        commandManager.command(menu);
         commandManager.command(rc);
         commandManager.command(reload);
     }
