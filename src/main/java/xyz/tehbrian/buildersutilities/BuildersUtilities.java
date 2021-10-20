@@ -78,6 +78,7 @@ public final class BuildersUtilities extends TehPlugin {
         }
 
         if (!this.loadConfiguration()) {
+            this.disableSelf();
             return;
         }
         this.setupListeners();
@@ -107,8 +108,7 @@ public final class BuildersUtilities extends TehPlugin {
                 config.load();
             } catch (final ConfigurateException e) {
                 this.getLog4JLogger().error("Exception caught during config load for {}", config.configurateWrapper().filePath());
-                this.getLog4JLogger().error("Disabling plugin. Please check your config.");
-                this.disableSelf();
+                this.getLog4JLogger().error("Please check your config.");
                 this.getLog4JLogger().error("Printing stack trace:", e);
                 return false;
             }
