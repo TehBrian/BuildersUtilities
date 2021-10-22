@@ -49,6 +49,7 @@ public final class Constants {
 
         public static final String RC = ROOT + ".rc";
         public static final String RELOAD = ROOT + ".reload";
+        public static final String SPECIAL = ROOT + ".special";
 
         public static final String SPECTATE_TELEPORT = ROOT + ".spectate.teleport";
         public static final String SPECTATE_ENTITY = ROOT + ".spectate.entity";

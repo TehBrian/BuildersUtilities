@@ -5,14 +5,19 @@ import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
+import net.kyori.adventure.text.Component;
 import net.minecraft.network.protocol.game.PacketPlayOutMapChunk;
 import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_17_R1.CraftChunk;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
@@ -91,9 +96,36 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     }
                 });
 
+        final var special = main.literal("special", ArgumentDescription.of("Gives you special items."))
+                .permission(Constants.Permissions.SPECIAL)
+                .senderType(Player.class)
+                .handler(c -> {
+                    final var sender = (Player) c.getSender();
+
+                    final Inventory inventory = sender.getServer().createInventory(
+                            null,
+                            InventoryType.CHEST,
+                            Component.text("Special Items")
+                    );
+
+                    inventory.addItem(
+                            new ItemStack(Material.DEBUG_STICK),
+                            new ItemStack(Material.BARRIER),
+                            new ItemStack(Material.LIGHT),
+                            new ItemStack(Material.END_PORTAL),
+                            new ItemStack(Material.NETHER_PORTAL),
+                            new ItemStack(Material.COMMAND_BLOCK),
+                            new ItemStack(Material.REPEATING_COMMAND_BLOCK),
+                            new ItemStack(Material.CHAIN_COMMAND_BLOCK)
+                    );
+
+                    sender.openInventory(inventory);
+                });
+
         commandManager.command(menu);
         commandManager.command(rc);
         commandManager.command(reload);
+        commandManager.command(special);
     }
 
     // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
