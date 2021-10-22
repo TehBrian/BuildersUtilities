@@ -112,11 +112,16 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                             new ItemStack(Material.DEBUG_STICK),
                             new ItemStack(Material.BARRIER),
                             new ItemStack(Material.LIGHT),
-                            new ItemStack(Material.END_PORTAL),
-                            new ItemStack(Material.NETHER_PORTAL),
                             new ItemStack(Material.COMMAND_BLOCK),
                             new ItemStack(Material.REPEATING_COMMAND_BLOCK),
-                            new ItemStack(Material.CHAIN_COMMAND_BLOCK)
+                            new ItemStack(Material.CHAIN_COMMAND_BLOCK),
+                            new ItemStack(Material.COMMAND_BLOCK_MINECART),
+                            new ItemStack(Material.STRUCTURE_BLOCK),
+                            new ItemStack(Material.STRUCTURE_VOID),
+                            new ItemStack(Material.DRAGON_EGG),
+                            new ItemStack(Material.KNOWLEDGE_BOOK),
+                            new ItemStack(Material.JIGSAW),
+                            new ItemStack(Material.SUSPICIOUS_STEW)
                     );
 
                     sender.openInventory(inventory);
