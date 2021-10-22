@@ -34,6 +34,9 @@ permissions:
   buildersutilities.reload:
     description: Permission to run /buildersutilities reload.
     default: op
+  buildersutilities.special:
+    description: Permission to run /buildersutilities special.
+    default: true
   buildersutilities.irondoortoggle:
     description: Permission to use iron door toggle.
     default: true
