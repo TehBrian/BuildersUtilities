@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.option;
 
+import com.destroystokyo.paper.MaterialTags;
 import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -51,7 +52,7 @@ public final class GlazedTerracottaListener implements Listener {
 
         final Block block = Objects.requireNonNull(event.getClickedBlock());
 
-        if (!block.getType().name().toLowerCase().contains("glazed")
+        if (!MaterialTags.GLAZED_TERRACOTTA.isTagged(block)
                 || player.getInventory().getItemInMainHand().getType() != Material.AIR
                 || event.getAction() != Action.RIGHT_CLICK_BLOCK
                 || event.getHand() != EquipmentSlot.HAND
