@@ -54,6 +54,7 @@ tasks {
 
     shadowJar {
         archiveBaseName.set("BuildersUtilities")
+        archiveClassifier.set("")
 
         relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.restrictionhelper")
     }
