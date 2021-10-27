@@ -4,7 +4,7 @@ A curated bundle of tiny features that help builders do their thing.
 This is a fork of [Arcaniax's BuildersUtilities][arcaniax-bu] with customizable
 messages and nicer-looking GUIs.
 
-* [Downloads](https://github.com/TehBrian/BuildersUtilities/releases)
+* [Downloads](https://github.com/TehBrian/BuildersUtilities/releases/latest)
 * [Discord](https://chat.tehbrian.xyz)
 
 [arcaniax-bu]: https://github.com/Arcaniax-Development/Builders-Utilities
