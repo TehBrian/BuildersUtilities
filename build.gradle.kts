@@ -56,7 +56,12 @@ tasks {
         archiveBaseName.set("BuildersUtilities")
         archiveClassifier.set("")
 
-        relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.restrictionhelper")
+        relocate("com.google.inject", "xyz.tehbrian.buildersutilities.libs.guice")
+        relocate("net.kyori.adventure.text.minimessage", "xyz.tehbrian.buildersutilities.libs.minimessage")
+        relocate("org.spongepowered.configurate.yaml", "xyz.tehbrian.buildersutilities.libs.configurate.yaml")
+        relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.libs.restrictionhelper")
+        relocate("dev.tehbrian.tehlib.paper", "xyz.tehbrian.buildersutilities.libs.tehlib.paper")
+        relocate("broccolai.corn", "xyz.tehbrian.buildersutilities.libs.corn")
     }
 
     runServer {
