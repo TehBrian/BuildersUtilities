@@ -60,8 +60,9 @@ tasks {
         relocate("net.kyori.adventure.text.minimessage", "xyz.tehbrian.buildersutilities.libs.minimessage")
         relocate("org.spongepowered.configurate.yaml", "xyz.tehbrian.buildersutilities.libs.configurate.yaml")
         relocate("xyz.tehbrian.restrictionhelper", "xyz.tehbrian.buildersutilities.libs.restrictionhelper")
-        relocate("dev.tehbrian.tehlib.paper", "xyz.tehbrian.buildersutilities.libs.tehlib.paper")
+        relocate("dev.tehbrian.tehlib", "xyz.tehbrian.buildersutilities.libs.tehlib")
         relocate("broccolai.corn", "xyz.tehbrian.buildersutilities.libs.corn")
+        relocate("cloud.commandframework", "xyz.tehbrian.buildersutilities.libs.cloud")
     }
 
     runServer {
