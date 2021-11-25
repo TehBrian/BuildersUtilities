@@ -1,17 +1,18 @@
 # BuildersUtilities
 A curated bundle of tiny features that help builders do their thing.
 
-This is a fork of [Arcaniax's BuildersUtilities][arcaniax-bu] with customizable
-messages and nicer-looking GUIs.
+This is a **fork** of [Arcaniax's Builder's Utilities][arcaniax-bu] with customizable
+messages and nicer-looking GUIs. Be aware that the two plugins do not function
+exactly the same; they differ greatly in some areas.
 
 * [Downloads](https://github.com/TehBrian/BuildersUtilities/releases/latest)
 * [Discord](https://chat.tehbrian.xyz)
 
-[arcaniax-bu]: https://github.com/Arcaniax-Development/Builders-Utilities
+[arcaniax-bu]: https://www.spigotmc.org/resources/builders-utilities.42361/
 
 ## What's different?
 
-- Every message is easily configurable.
+- Every message is easily configurable, using [MiniMessage](https://docs.adventure.kyori.net/minimessage.html) syntax.
 - Both the permissions and the commands have been completely redone. (See the
   [plugin.yml][plugin.yml] for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
