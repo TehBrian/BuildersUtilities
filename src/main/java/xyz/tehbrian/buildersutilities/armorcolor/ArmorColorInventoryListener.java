@@ -51,40 +51,28 @@ public final class ArmorColorInventoryListener implements Listener {
         event.setCancelled(true);
 
         switch (slot) {
-            case 10:
-            case 19:
-            case 28:
-            case 37:
-                player.getInventory().addItem(PaperItemBuilder
-                        .of(Objects.requireNonNull(event.getCurrentItem()).clone())
-                        .name(null)
-                        .lore(List.of())
-                        .build());
-                break;
-            case 31:
-            case 33:
-            case 32:
-                if (event.getClick() == ClickType.LEFT && item.getAmount() < 33) {
+            case 10, 19, 28, 37 -> player.getInventory().addItem(PaperItemBuilder
+                    .of(Objects.requireNonNull(event.getCurrentItem()).clone())
+                    .name(null)
+                    .lore(List.of())
+                    .build());
+            case 31, 33, 32 -> {
+                final ClickType clickType = event.getClick();
+                if (clickType == ClickType.LEFT && item.getAmount() < 33) {
                     item.setAmount(item.getAmount() + 1);
-                } else if (event.getClick() == ClickType.RIGHT && item.getAmount() > 1) {
+                } else if (clickType == ClickType.RIGHT && item.getAmount() > 1) {
                     item.setAmount(item.getAmount() - 1);
-                } else if (event.getClick() == ClickType.SHIFT_LEFT && item.getAmount() < 30) {
+                } else if (clickType == ClickType.SHIFT_LEFT && item.getAmount() < 30) {
                     item.setAmount(item.getAmount() + 4);
-                } else if (event.getClick() == ClickType.SHIFT_LEFT) {
+                } else if (clickType == ClickType.SHIFT_LEFT) {
                     item.setAmount(33);
-                } else if (event.getClick() == ClickType.SHIFT_RIGHT && item.getAmount() > 4) {
+                } else if (clickType == ClickType.SHIFT_RIGHT && item.getAmount() > 4) {
                     item.setAmount(item.getAmount() - 4);
-                } else if (event.getClick() == ClickType.SHIFT_RIGHT) {
+                } else if (clickType == ClickType.SHIFT_RIGHT) {
                     item.setAmount(1);
                 }
-                break;
-            case 22:
-            case 23:
-            case 24:
-                Objects.requireNonNull(inventory.getItem(slot + 9)).setAmount(new Random().nextInt(33) + 1);
-                break;
-            default:
-                return;
+            }
+            case 22, 23, 24 -> Objects.requireNonNull(inventory.getItem(slot + 9)).setAmount(new Random().nextInt(33) + 1);
         }
 
         inventory.setItem(slot, item);
