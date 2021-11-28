@@ -9,7 +9,6 @@ import net.kyori.adventure.text.Component;
 import net.minecraft.network.protocol.game.PacketPlayOutMapChunk;
 import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Chunk;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_17_R1.CraftChunk;
@@ -23,6 +22,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
+import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
@@ -36,18 +36,21 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     private final UserService userService;
     private final LangConfig langConfig;
     private final OptionsInventoryProvider optionsInventoryProvider;
+    private final SpecialConfig specialConfig;
 
     @Inject
     public BuildersUtilitiesCommand(
             final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
             final @NonNull LangConfig langConfig,
-            final @NonNull OptionsInventoryProvider optionsInventoryProvider
+            final @NonNull OptionsInventoryProvider optionsInventoryProvider,
+            final @NonNull SpecialConfig specialConfig
     ) {
         this.buildersUtilities = buildersUtilities;
         this.userService = userService;
         this.langConfig = langConfig;
         this.optionsInventoryProvider = optionsInventoryProvider;
+        this.specialConfig = specialConfig;
     }
 
     /**
@@ -108,21 +111,9 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                             Component.text("Special Items")
                     );
 
-                    inventory.addItem(
-                            new ItemStack(Material.DEBUG_STICK),
-                            new ItemStack(Material.BARRIER),
-                            new ItemStack(Material.LIGHT),
-                            new ItemStack(Material.COMMAND_BLOCK),
-                            new ItemStack(Material.REPEATING_COMMAND_BLOCK),
-                            new ItemStack(Material.CHAIN_COMMAND_BLOCK),
-                            new ItemStack(Material.COMMAND_BLOCK_MINECART),
-                            new ItemStack(Material.STRUCTURE_BLOCK),
-                            new ItemStack(Material.STRUCTURE_VOID),
-                            new ItemStack(Material.DRAGON_EGG),
-                            new ItemStack(Material.KNOWLEDGE_BOOK),
-                            new ItemStack(Material.JIGSAW),
-                            new ItemStack(Material.SUSPICIOUS_STEW)
-                    );
+                    for (final ItemStack item : this.specialConfig.items()) {
+                        inventory.addItem(item);
+                    }
 
                     sender.openInventory(inventory);
                 });

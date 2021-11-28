@@ -1,0 +1,22 @@
+# This is a list of items that will be shown in /bu special.
+
+# To update this list to the recommended configuration,
+# delete this file and restart your server.
+
+# A list of valid values can be found here:
+# https://papermc.io/javadocs/paper/1.17/org/bukkit/Material.html
+
+items:
+  - DEBUG_STICK
+  - BARRIER
+  - LIGHT
+  - COMMAND_BLOCK
+  - REPEATING_COMMAND_BLOCK
+  - CHAIN_COMMAND_BLOCK
+  - COMMAND_BLOCK_MINECART
+  - STRUCTURE_BLOCK
+  - STRUCTURE_VOID
+  - DRAGON_EGG
+  - KNOWLEDGE_BOOK
+  - JIGSAW
+  - SUSPICIOUS_STEW

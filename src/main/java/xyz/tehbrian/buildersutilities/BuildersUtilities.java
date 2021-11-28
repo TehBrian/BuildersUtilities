@@ -22,8 +22,9 @@ import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.command.NoClipCommand;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.inject.SingletonModule;
+import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.inject.PluginModule;
+import xyz.tehbrian.buildersutilities.inject.SingletonModule;
 import xyz.tehbrian.buildersutilities.option.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.option.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.option.GlazedTerracottaListener;
@@ -87,10 +88,12 @@ public final class BuildersUtilities extends TehPlugin {
     public boolean loadConfiguration() {
         this.saveResourceSilently("config.yml");
         this.saveResourceSilently("lang.yml");
+        this.saveResourceSilently("special.yml");
 
         final List<Config> configsToLoad = List.of(
                 this.injector.getInstance(ConfigConfig.class),
-                this.injector.getInstance(LangConfig.class)
+                this.injector.getInstance(LangConfig.class),
+                this.injector.getInstance(SpecialConfig.class)
         );
 
         for (final Config config : configsToLoad) {
