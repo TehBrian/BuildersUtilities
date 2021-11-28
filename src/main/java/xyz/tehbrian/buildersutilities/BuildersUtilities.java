@@ -22,13 +22,8 @@ import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
 import xyz.tehbrian.buildersutilities.command.NoClipCommand;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.inject.ArmorColorModule;
-import xyz.tehbrian.buildersutilities.inject.BannerModule;
-import xyz.tehbrian.buildersutilities.inject.ConfigModule;
-import xyz.tehbrian.buildersutilities.inject.OptionsModule;
+import xyz.tehbrian.buildersutilities.inject.SingletonModule;
 import xyz.tehbrian.buildersutilities.inject.PluginModule;
-import xyz.tehbrian.buildersutilities.inject.RestrictionHelperModule;
-import xyz.tehbrian.buildersutilities.inject.UserModule;
 import xyz.tehbrian.buildersutilities.option.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.option.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.option.GlazedTerracottaListener;
@@ -61,13 +56,8 @@ public final class BuildersUtilities extends TehPlugin {
     public void onEnable() {
         try {
             this.injector = Guice.createInjector(
-                    new ArmorColorModule(),
-                    new BannerModule(),
-                    new ConfigModule(),
-                    new OptionsModule(),
-                    new PluginModule(this),
-                    new RestrictionHelperModule(),
-                    new UserModule()
+                    new SingletonModule(),
+                    new PluginModule(this)
             );
         } catch (final Exception e) {
             this.getLog4JLogger().error("Something went wrong while creating the Guice injector.");

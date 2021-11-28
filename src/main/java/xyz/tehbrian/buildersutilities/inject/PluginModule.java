@@ -10,16 +10,10 @@ import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.nio.file.Path;
 
-/**
- * Guice module which provides bindings for the plugin's instances.
- */
 public final class PluginModule extends AbstractModule {
 
     private final BuildersUtilities buildersUtilities;
 
-    /**
-     * @param buildersUtilities BuildersUtilities reference
-     */
     public PluginModule(final @NonNull BuildersUtilities buildersUtilities) {
         this.buildersUtilities = buildersUtilities;
     }
@@ -31,8 +25,6 @@ public final class PluginModule extends AbstractModule {
     }
 
     /**
-     * Provides the plugin's Log4J logger.
-     *
      * @return the plugin's Log4J logger
      */
     @Provides
@@ -41,8 +33,6 @@ public final class PluginModule extends AbstractModule {
     }
 
     /**
-     * Provides the plugin's data folder.
-     *
      * @return the data folder
      */
     @Provides
