@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.1"
-    id("xyz.jpenilla.run-paper") version "1.0.4"
+    id("xyz.jpenilla.run-paper") version "1.0.6"
 }
 
 group = "xyz.tehbrian"
