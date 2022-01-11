@@ -7,6 +7,7 @@ plugins {
 
 group = "xyz.tehbrian"
 version = "1.3.2"
+description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -49,7 +50,7 @@ tasks {
     }
 
     processResources {
-        expand("version" to project.version)
+        expand("version" to project.version, "description" to project.description)
     }
 
     shadowJar {
