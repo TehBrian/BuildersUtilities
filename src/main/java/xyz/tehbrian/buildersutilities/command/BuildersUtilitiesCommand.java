@@ -6,13 +6,13 @@ import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import net.kyori.adventure.text.Component;
-import net.minecraft.network.protocol.game.PacketPlayOutMapChunk;
-import net.minecraft.server.network.PlayerConnection;
+import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
+import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_17_R1.CraftChunk;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.CraftChunk;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -80,10 +80,15 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
 
                     final Collection<Chunk> chunksToReload = this.around(sender.getLocation().getChunk(), sender.getClientViewDistance());
 
-                    final PlayerConnection playerConnection = ((CraftPlayer) sender).getHandle().b;
+                    // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.18.1
+                    final ServerPlayer nmsPlayer = ((CraftPlayer) sender).getHandle();
                     for (final Chunk chunk : chunksToReload) {
-                        final PacketPlayOutMapChunk packet = new PacketPlayOutMapChunk(((CraftChunk) chunk).getHandle(), false);
-                        playerConnection.sendPacket(packet);
+                        final var nmsChunk = ((CraftChunk) chunk).getHandle();
+                        final var packet = new ClientboundLevelChunkWithLightPacket(
+                                nmsChunk, nmsChunk.getLevel().getLightEngine(),
+                                null, null, true, false
+                        );
+                        nmsPlayer.trackChunk(nmsChunk.getPos(), packet);
                     }
 
                     sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));
@@ -125,7 +130,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     }
 
     // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
-    public Collection<Chunk> around(final Chunk origin, final int radius) {
+    private Collection<Chunk> around(final Chunk origin, final int radius) {
         final World world = origin.getWorld();
 
         final int length = (radius * 2) + 1;

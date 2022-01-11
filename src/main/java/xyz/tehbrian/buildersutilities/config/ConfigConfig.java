@@ -28,35 +28,35 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
     }
 
     @ConfigSerializable
-    public static record Data(@NonNull Settings settings,
-                              @NonNull Heads heads) {
+    public record Data(@NonNull Settings settings,
+                       @NonNull Heads heads) {
 
         @ConfigSerializable
-        public static record Settings(boolean disablePhysics,
-                                      boolean disableEntityExplode,
-                                      boolean disableBlockExplode,
-                                      boolean disableLeavesDecay,
-                                      boolean disableFarmlandTrample,
-                                      boolean disableDragonEggTeleport) {
+        public record Settings(boolean disablePhysics,
+                               boolean disableEntityExplode,
+                               boolean disableBlockExplode,
+                               boolean disableLeavesDecay,
+                               boolean disableFarmlandTrample,
+                               boolean disableDragonEggTeleport) {
 
         }
 
         @ConfigSerializable
-        public static record Heads(@NonNull ArmorColor armorColor,
-                                   @NonNull Banner banner) {
+        public record Heads(@NonNull ArmorColor armorColor,
+                            @NonNull Banner banner) {
 
             @ConfigSerializable
-            public static record ArmorColor(@NonNull String red,
-                                            @NonNull String green,
-                                            @NonNull String blue,
-                                            @NonNull String randomizeRed,
-                                            @NonNull String randomizeGreen,
-                                            @NonNull String randomizeBlue) {
+            public record ArmorColor(@NonNull String red,
+                                     @NonNull String green,
+                                     @NonNull String blue,
+                                     @NonNull String randomizeRed,
+                                     @NonNull String randomizeGreen,
+                                     @NonNull String randomizeBlue) {
 
             }
 
             @ConfigSerializable
-            public static record Banner(@NonNull String randomize) {
+            public record Banner(@NonNull String randomize) {
 
             }
 
