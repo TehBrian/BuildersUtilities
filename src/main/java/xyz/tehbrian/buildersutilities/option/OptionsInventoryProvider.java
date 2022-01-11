@@ -110,14 +110,12 @@ public final class OptionsInventoryProvider {
     }
 
     private ItemStack createOptionItem(final Material material, final String optionKey, final String statusKey) {
-        final Component name = this.langConfig.c(NodePath.path("inventories", "options", optionKey, "name"));
-
         final List<Component> lore = new ArrayList<>();
         lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", optionKey, "description")));
         lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", "status", statusKey)));
 
         return PaperItemBuilder.ofType(material)
-                .name(name)
+                .name(this.langConfig.c(NodePath.path("inventories", "options", optionKey, "name")))
                 .lore(lore)
                 .build();
     }

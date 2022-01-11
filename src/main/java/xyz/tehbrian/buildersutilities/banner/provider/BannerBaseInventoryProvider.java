@@ -28,7 +28,9 @@ public final class BannerBaseInventoryProvider {
     }
 
     private ItemStack createCustomBanner(final Material material) {
-        return PaperItemBuilder.ofType(material).lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select"))).build();
+        return PaperItemBuilder.ofType(material)
+                .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
+                .build();
     }
 
     public Inventory generate() {
