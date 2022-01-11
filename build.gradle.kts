@@ -36,8 +36,6 @@ dependencies {
     paperDevBundle("1.18.1-R0.1-SNAPSHOT")
 
     implementation("com.google.inject:guice:5.0.1")
-
-    implementation("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
 
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0-SNAPSHOT")
