@@ -23,7 +23,7 @@ me, over a couple sleepless nights. Now *that's* what I call quality code.
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml
 
 ## Building
-This project uses Gradle. To build, run `./gradlew shadowJar` in the main
+This project uses Gradle. To build, run `./gradlew reobfJar` in the main
 project directory. The built jar can be found in `build/libs`.
 
 ## Contributing
