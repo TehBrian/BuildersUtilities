@@ -7,12 +7,14 @@ exactly the same; they differ greatly in some areas.
 
 * [Downloads](https://github.com/TehBrian/BuildersUtilities/releases/latest)
 * [Discord](https://chat.tehbrian.xyz)
+* [Donate](https://github.com/sponsors/TehBrian) <3
 
 [arcaniax-bu]: https://www.spigotmc.org/resources/builders-utilities.42361/
 
 ## What's different?
 
 - Every message is easily configurable, using [MiniMessage](https://docs.adventure.kyori.net/minimessage.html) syntax.
+- World interactions respect PlotSquared and WorldGuard restrictions.
 - Both the permissions and the commands have been completely redone. (See the
   [plugin.yml][plugin.yml] for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
