@@ -1,9 +1,9 @@
 package xyz.tehbrian.buildersutilities;
 
 import broccolai.corn.paper.item.PaperItemBuilder;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import xyz.tehbrian.buildersutilities.config.LangConfig;
 
 /**
  * Constant values.
@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final ItemStack INTERFACE_BACKGROUND = PaperItemBuilder
                 .ofType(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
-                .name(LangConfig.EMPTY)
+                .name(Component.empty())
                 .build();
 
         private Items() {

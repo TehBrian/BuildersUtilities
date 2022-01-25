@@ -21,9 +21,9 @@ import java.util.Objects;
 
 public final class OptionsInventoryProvider {
 
-    private static final ItemStack GREEN = PaperItemBuilder.ofType(Material.LIME_STAINED_GLASS_PANE).name(LangConfig.EMPTY).build();
-    private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(LangConfig.EMPTY).build();
-    private static final ItemStack RED = PaperItemBuilder.ofType(Material.RED_STAINED_GLASS_PANE).name(LangConfig.EMPTY).build();
+    private static final ItemStack GREEN = PaperItemBuilder.ofType(Material.LIME_STAINED_GLASS_PANE).name(Component.empty()).build();
+    private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(Component.empty()).build();
+    private static final ItemStack RED = PaperItemBuilder.ofType(Material.RED_STAINED_GLASS_PANE).name(Component.empty()).build();
 
     private final LangConfig langConfig;
 

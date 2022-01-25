@@ -15,8 +15,6 @@ import java.util.List;
 
 public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
 
-    public static final Component EMPTY = MiniMessage.miniMessage().parse("<gray>");
-
     /**
      * @param dataFolder the data folder
      * @param logger     the logger
@@ -27,8 +25,6 @@ public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
     }
 
     /**
-     *
-     *
      * Splits the input string by line and parses each line individually.
      * Since the lore of an ItemStack requires a list of components rather than
      * components with newlines, this method is useful for that, but it shouldn't
