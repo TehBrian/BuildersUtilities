@@ -11,8 +11,8 @@ import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_18_R1.CraftChunk;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R2.CraftChunk;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -80,7 +80,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
 
                     final Collection<Chunk> chunksToReload = this.around(sender.getLocation().getChunk(), sender.getClientViewDistance());
 
-                    // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.18.1
+                    // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.18
                     final ServerPlayer nmsPlayer = ((CraftPlayer) sender).getHandle();
                     for (final Chunk chunk : chunksToReload) {
                         final var nmsChunk = ((CraftChunk) chunk).getHandle();
