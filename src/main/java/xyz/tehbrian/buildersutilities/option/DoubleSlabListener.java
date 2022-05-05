@@ -13,6 +13,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.buildersutilities.util.BlockUtil;
+import xyz.tehbrian.buildersutilities.util.Half;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
@@ -44,7 +45,7 @@ public final class DoubleSlabListener implements Listener {
             return;
         }
 
-        if (BlockUtil.isTop(player, block)) {
+        if (BlockUtil.getHalfPlayerFacing(player, block) == Half.TOP) {
             blockData.setType(Slab.Type.BOTTOM);
         } else {
             blockData.setType(Slab.Type.TOP);
