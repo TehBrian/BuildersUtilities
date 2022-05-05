@@ -12,11 +12,14 @@ public class BlockUtil {
     private static final double MAX_REACH_SQUARED = Math.pow(MAX_REACH, 2);
 
     public static boolean isTop(final Player player, final Block block) {
-        final Location ray = player.getEyeLocation().clone();
-        final Vector march = player.getEyeLocation().getDirection().multiply(MARCH_AMOUNT);
-        while (!ray.getBlock().equals(block) && ray.distanceSquared(player.getEyeLocation()) < MAX_REACH_SQUARED) {
+        final Location eyeLoc = player.getEyeLocation();
+        final Location ray = eyeLoc.clone();
+        final Vector march = eyeLoc.getDirection().multiply(MARCH_AMOUNT);
+
+        while (!ray.getBlock().equals(block) && ray.distanceSquared(eyeLoc) < MAX_REACH_SQUARED) {
             ray.add(march);
         }
+
         return ray.getY() % 1.0D > 0.5D;
     }
 
