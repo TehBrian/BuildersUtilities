@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.util.Vector;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
@@ -29,36 +30,38 @@ public final class DoubleSlabListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onDoubleSlabBreak(final BlockBreakEvent event) {
         final Player player = event.getPlayer();
+        final Block block = event.getBlock();
 
         if (!this.userService.getUser(player).doubleSlabBreakEnabled()
                 || !player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)
                 || !Tag.SLABS.isTagged(player.getInventory().getItemInMainHand().getType())
                 || player.getGameMode() != GameMode.CREATIVE
-                || !Tag.SLABS.isTagged(event.getBlock().getType())) {
+                || !Tag.SLABS.isTagged(block.getType())) {
             return;
         }
 
-        final Slab blockData = (Slab) event.getBlock().getBlockData();
+        final Slab blockData = (Slab) block.getBlockData();
         if (blockData.getType() != Slab.Type.DOUBLE) {
             return;
         }
 
-        if (this.isTop(player, event.getBlock())) {
+        if (this.isTop(player, block)) {
             blockData.setType(Slab.Type.BOTTOM);
         } else {
             blockData.setType(Slab.Type.TOP);
         }
 
-        event.getBlock().setBlockData(blockData, true);
+        block.setBlockData(blockData, true);
         event.setCancelled(true);
     }
 
     private boolean isTop(final Player player, final Block block) {
-        final Location start = player.getEyeLocation().clone();
-        while (!start.getBlock().equals(block) && start.distance(player.getEyeLocation()) < 6.0D) {
-            start.add(player.getEyeLocation().getDirection().multiply(0.05D));
+        final Location ray = player.getEyeLocation().clone();
+        final Vector marchAmount = player.getEyeLocation().getDirection().multiply(0.05D);
+        while (!ray.getBlock().equals(block) && ray.distance(player.getEyeLocation()) < 6.0D) {
+            ray.add(marchAmount);
         }
-        return start.getY() % 1.0D > 0.5D;
+        return ray.getY() % 1.0D > 0.5D;
     }
 
 }
