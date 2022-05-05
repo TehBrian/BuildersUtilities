@@ -20,17 +20,8 @@ public class BlockUtil {
             ray.add(march);
         }
 
-        return ray.getY() % 1.0D > 0.5D;
+        final double y = ray.getY();
+        return Math.round(y) > y;
     }
 
-    /*
-     final double y = ray.getY();
-     final double internalY = Math.abs(y % 1.0D);
-
-     if (y > 0) {
-     return internalY > 0.5D;
-     } else {
-     return internalY < 0.5D;
-     }
-     */
 }
