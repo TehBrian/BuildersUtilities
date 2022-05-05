@@ -14,7 +14,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.BannerUtils;
+import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 import java.util.Objects;
 
@@ -60,7 +60,7 @@ public final class BannerPatternInventoryListener implements Listener {
             final DyeColor currentColor = BannerBuilder.of(Objects.requireNonNull(inventory.getItem(9))).getPattern(0).getColor();
 
             final var newBannerBuilder = oldBannerBuilder
-                    .addPattern(new Pattern(currentColor, BannerUtils.randomPatternType()));
+                    .addPattern(new Pattern(currentColor, BannerUtil.randomPatternType()));
 
             if (newBannerBuilder.patterns().size() >= 16) {
                 player.getInventory().addItem(newBannerBuilder.name(null).build());
@@ -71,7 +71,7 @@ public final class BannerPatternInventoryListener implements Listener {
         }
 
         // the various banner buttons
-        if (slot >= 9 && slot <= (8 + BannerUtils.patternTypes().size())) {
+        if (slot >= 9 && slot <= (8 + BannerUtil.patternTypes().size())) {
             final var newBannerBuilder = oldBannerBuilder
                     .addPattern(BannerBuilder.of(Objects.requireNonNull(event.getCurrentItem())).getPattern(0));
 

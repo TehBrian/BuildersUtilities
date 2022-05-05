@@ -14,7 +14,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.BannerUtils;
+import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 public final class BannerPatternInventoryProvider {
 
@@ -53,10 +53,10 @@ public final class BannerPatternInventoryProvider {
             default -> Material.WHITE_BANNER;
         };
 
-        for (int i = 9; i < (BannerUtils.patternTypes().size() + 9); i++) {
+        for (int i = 9; i < (BannerUtil.patternTypes().size() + 9); i++) {
             inv.setItem(i, BannerBuilder.ofType(base)
                     .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
-                    .addPattern(new Pattern(dyeColor, BannerUtils.patternTypes().get(i - 9)))
+                    .addPattern(new Pattern(dyeColor, BannerUtil.patternTypes().get(i - 9)))
                     .build()
             );
         }

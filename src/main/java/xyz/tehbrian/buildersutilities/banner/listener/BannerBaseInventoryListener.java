@@ -13,7 +13,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.BannerUtils;
+import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 import java.util.Objects;
 
@@ -44,16 +44,16 @@ public final class BannerBaseInventoryListener implements Listener {
         event.setCancelled(true);
 
         if (slot == 3) {
-            final DyeColor dyeColor = BannerUtils.randomDyeColor();
-            final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
+            final DyeColor dyeColor = BannerUtil.randomDyeColor();
+            final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
                     .name(this.langConfig.c(NodePath.path("inventories", "banner", "get-banner")))
                     .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));
         }
 
         if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            final DyeColor dyeColor = BannerUtils.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            final ItemStack newBanner = BannerBuilder.ofType(BannerUtils.colorToBanner(dyeColor))
+            final DyeColor dyeColor = BannerUtil.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+            final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
                     .name(this.langConfig.c(NodePath.path("inventories", "banner", "get-banner")))
                     .build();
             player.openInventory(this.bannerColorInventoryProvider.generate(newBanner));

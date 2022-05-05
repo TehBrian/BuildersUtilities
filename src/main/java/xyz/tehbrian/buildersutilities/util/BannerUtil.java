@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Various utilities relating to banner items.
+ * Various utilities relating to banners.
  */
-public final class BannerUtils {
+public final class BannerUtil {
 
     public static final Random RANDOM = new Random();
 
-    private BannerUtils() {
+    private BannerUtil() {
     }
 
     public static Material colorToBanner(final DyeColor dyeColor) {

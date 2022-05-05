@@ -2,7 +2,6 @@ package xyz.tehbrian.buildersutilities.option;
 
 import com.google.inject.Inject;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Slab;
@@ -10,10 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.util.Vector;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.BlockUtil;
 
 @SuppressWarnings("unused")
 public final class DoubleSlabListener implements Listener {
@@ -45,7 +44,7 @@ public final class DoubleSlabListener implements Listener {
             return;
         }
 
-        if (this.isTop(player, block)) {
+        if (BlockUtil.isTop(player, block)) {
             blockData.setType(Slab.Type.BOTTOM);
         } else {
             blockData.setType(Slab.Type.TOP);
@@ -53,15 +52,6 @@ public final class DoubleSlabListener implements Listener {
 
         block.setBlockData(blockData, true);
         event.setCancelled(true);
-    }
-
-    private boolean isTop(final Player player, final Block block) {
-        final Location ray = player.getEyeLocation().clone();
-        final Vector marchAmount = player.getEyeLocation().getDirection().multiply(0.05D);
-        while (!ray.getBlock().equals(block) && ray.distance(player.getEyeLocation()) < 6.0D) {
-            ray.add(marchAmount);
-        }
-        return ray.getY() % 1.0D > 0.5D;
     }
 
 }
