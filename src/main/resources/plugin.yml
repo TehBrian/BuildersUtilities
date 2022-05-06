@@ -14,13 +14,13 @@ permissions:
     description: Permission to use advanced fly.
     default: op
   buildersutilities.armorcolor:
-    description: Permission to run /armorcolor.
+    description: Permission to open the armor color creator menu.
     default: true
   buildersutilities.banner:
-    description: Permission to run /banner.
+    description: Permission to open the banner creator menu.
     default: true
   buildersutilities.buildersutilities:
-    description: Permission to run /buildersutilities.
+    description: Permission to open the abilities menu.
     default: true
   buildersutilities.nightvision:
     description: Permission to use night vision.
