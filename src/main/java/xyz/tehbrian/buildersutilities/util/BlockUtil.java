@@ -22,7 +22,7 @@ public class BlockUtil {
      * @param block  the block
      * @return the half of the block
      */
-    public static @NonNull Half getHalfPlayerFacing(final Player player, final Block block) {
+    public static @NonNull Half getBlockHalfPlayerFacing(final Player player, final Block block) {
         final Location eyeLoc = player.getEyeLocation();
         final Location ray = eyeLoc.clone();
         final Vector march = eyeLoc.getDirection().multiply(MARCH_AMOUNT);

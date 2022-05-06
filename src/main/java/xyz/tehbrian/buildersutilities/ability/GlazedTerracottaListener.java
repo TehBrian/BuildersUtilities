@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.option;
+package xyz.tehbrian.buildersutilities.ability;
 
 import com.destroystokyo.paper.MaterialTags;
 import com.google.inject.Inject;

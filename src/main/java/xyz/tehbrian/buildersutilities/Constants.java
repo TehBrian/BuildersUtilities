@@ -5,17 +5,11 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Constant values.
- */
 public final class Constants {
 
     private Constants() {
     }
 
-    /**
-     * Items.
-     */
     public static final class Items {
 
         public static final ItemStack INTERFACE_BACKGROUND = PaperItemBuilder
@@ -28,16 +22,13 @@ public final class Constants {
 
     }
 
-    /**
-     * Permissions.
-     */
     public static final class Permissions {
 
         public static final String ROOT = "buildersutilities";
 
         public static final String BANNER = ROOT + ".banner";
         public static final String ARMOR_COLOR = ROOT + ".armorcolor";
-        public static final String BUILDERS_UTILITIES = ROOT + ".buildersutilities";
+        public static final String ABILITY = ROOT + ".ability";
 
         public static final String ADVANCED_FLY = ROOT + ".advancedfly";
         public static final String NIGHT_VISION = ROOT + ".nightvision";

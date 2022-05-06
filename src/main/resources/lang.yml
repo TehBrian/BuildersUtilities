@@ -47,8 +47,8 @@ inventories:
     get-banner: "<green>Click to get banner"
     randomize: "<white>Randomly Select"
 
-  options:
-    inventory-name: "<dark_blue>Builders Utilities Options"
+  ability:
+    inventory-name: "<dark_blue>Ability Menu"
     status:
       enabled: |-
 

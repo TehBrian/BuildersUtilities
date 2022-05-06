@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.option;
+package xyz.tehbrian.buildersutilities.ability;
 
 import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class OptionsInventoryProvider {
+public final class AbilityInventoryProvider {
 
     private static final ItemStack GREEN = PaperItemBuilder.ofType(Material.LIME_STAINED_GLASS_PANE).name(Component.empty()).build();
     private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(Component.empty()).build();
@@ -28,7 +28,7 @@ public final class OptionsInventoryProvider {
     private final LangConfig langConfig;
 
     @Inject
-    public OptionsInventoryProvider(
+    public AbilityInventoryProvider(
             final @NonNull LangConfig langConfig
     ) {
         this.langConfig = langConfig;
@@ -38,7 +38,7 @@ public final class OptionsInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 27,
-                this.langConfig.c(NodePath.path("inventories", "options", "inventory-name"))
+                this.langConfig.c(NodePath.path("inventories", "ability", "inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -54,7 +54,7 @@ public final class OptionsInventoryProvider {
         final @Nullable Player p = user.getPlayer();
         Objects.requireNonNull(p);
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 1,
                 Material.IRON_TRAPDOOR,
@@ -63,7 +63,7 @@ public final class OptionsInventoryProvider {
                 user.ironDoorToggleEnabled()
         );
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 2,
                 Material.STONE_SLAB,
@@ -72,7 +72,7 @@ public final class OptionsInventoryProvider {
                 user.doubleSlabBreakEnabled()
         );
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 3,
                 Material.LIGHT_BLUE_GLAZED_TERRACOTTA,
@@ -81,7 +81,7 @@ public final class OptionsInventoryProvider {
                 user.glazedTerracottaRotateEnabled()
         );
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 5,
                 Material.ENDER_EYE,
@@ -90,7 +90,7 @@ public final class OptionsInventoryProvider {
                 user.nightVisionEnabled()
         );
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 6,
                 Material.COMPASS,
@@ -99,7 +99,7 @@ public final class OptionsInventoryProvider {
                 user.noClipEnabled()
         );
 
-        this.drawOption(
+        this.drawAbility(
                 inv,
                 7,
                 Material.FEATHER,
@@ -109,39 +109,39 @@ public final class OptionsInventoryProvider {
         );
     }
 
-    private ItemStack createOptionItem(final Material material, final String optionKey, final String statusKey) {
+    private ItemStack createAbilityItem(final Material material, final String abilityKey, final String statusKey) {
         final List<Component> lore = new ArrayList<>();
-        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", optionKey, "description")));
-        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "options", "status", statusKey)));
+        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "ability", abilityKey, "description")));
+        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "ability", "status", statusKey)));
 
         return PaperItemBuilder.ofType(material)
-                .name(this.langConfig.c(NodePath.path("inventories", "options", optionKey, "name")))
+                .name(this.langConfig.c(NodePath.path("inventories", "ability", abilityKey, "name")))
                 .lore(lore)
                 .build();
     }
 
-    private void drawOption(
+    private void drawAbility(
             final Inventory inv,
             final int row,
             final Material material,
-            final String optionKey,
+            final String abilityKey,
             final boolean hasPermission,
             final boolean isEnabled
     ) {
         if (!hasPermission) {
             inv.setItem(row, ORANGE);
-            inv.setItem(row + 9, this.createOptionItem(material, optionKey, "no-permission"));
+            inv.setItem(row + 9, this.createAbilityItem(material, abilityKey, "no-permission"));
             inv.setItem(row + 18, ORANGE);
             return;
         }
 
         if (isEnabled) {
             inv.setItem(row, GREEN);
-            inv.setItem(row + 9, this.createOptionItem(material, optionKey, "enabled"));
+            inv.setItem(row + 9, this.createAbilityItem(material, abilityKey, "enabled"));
             inv.setItem(row + 18, GREEN);
         } else {
             inv.setItem(row, RED);
-            inv.setItem(row + 9, this.createOptionItem(material, optionKey, "disabled"));
+            inv.setItem(row + 9, this.createAbilityItem(material, abilityKey, "disabled"));
             inv.setItem(row + 18, RED);
         }
     }

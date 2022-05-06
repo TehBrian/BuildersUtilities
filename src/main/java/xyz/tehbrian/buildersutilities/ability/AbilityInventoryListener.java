@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.option;
+package xyz.tehbrian.buildersutilities.ability;
 
 import com.google.inject.Inject;
 import org.bukkit.entity.Player;
@@ -16,27 +16,27 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public final class OptionsInventoryListener implements Listener {
+public final class AbilityInventoryListener implements Listener {
 
     private final UserService userService;
-    private final OptionsInventoryProvider optionsInventoryProvider;
+    private final AbilityInventoryProvider abilityInventoryProvider;
     private final LangConfig langConfig;
 
     @Inject
-    public OptionsInventoryListener(
+    public AbilityInventoryListener(
             final @NonNull UserService userService,
-            final @NonNull OptionsInventoryProvider optionsInventoryProvider,
+            final @NonNull AbilityInventoryProvider abilityInventoryProvider,
             final @NonNull LangConfig langConfig
     ) {
         this.userService = userService;
-        this.optionsInventoryProvider = optionsInventoryProvider;
+        this.abilityInventoryProvider = abilityInventoryProvider;
         this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "options", "inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "ability", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
@@ -81,7 +81,7 @@ public final class OptionsInventoryListener implements Listener {
             }
         }
 
-        this.optionsInventoryProvider.update(event.getView().getTopInventory(), user);
+        this.abilityInventoryProvider.update(event.getView().getTopInventory(), user);
     }
 
 }

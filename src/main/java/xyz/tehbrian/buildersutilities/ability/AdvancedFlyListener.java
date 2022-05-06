@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.option;
+package xyz.tehbrian.buildersutilities.ability;
 
 import com.google.inject.Inject;
 import org.bukkit.Location;

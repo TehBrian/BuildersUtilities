@@ -25,12 +25,12 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.inject.PluginModule;
 import xyz.tehbrian.buildersutilities.inject.SingletonModule;
-import xyz.tehbrian.buildersutilities.option.AdvancedFlyListener;
-import xyz.tehbrian.buildersutilities.option.DoubleSlabListener;
-import xyz.tehbrian.buildersutilities.option.GlazedTerracottaListener;
-import xyz.tehbrian.buildersutilities.option.IronDoorListener;
-import xyz.tehbrian.buildersutilities.option.NoClipManager;
-import xyz.tehbrian.buildersutilities.option.OptionsInventoryListener;
+import xyz.tehbrian.buildersutilities.ability.AdvancedFlyListener;
+import xyz.tehbrian.buildersutilities.ability.DoubleSlabListener;
+import xyz.tehbrian.buildersutilities.ability.GlazedTerracottaListener;
+import xyz.tehbrian.buildersutilities.ability.IronDoorListener;
+import xyz.tehbrian.buildersutilities.ability.NoClipManager;
+import xyz.tehbrian.buildersutilities.ability.AbilityInventoryListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
@@ -117,7 +117,7 @@ public final class BuildersUtilities extends TehPlugin {
                 this.injector.getInstance(BannerColorInventoryListener.class),
                 this.injector.getInstance(BannerPatternInventoryListener.class),
                 this.injector.getInstance(ArmorColorInventoryListener.class),
-                this.injector.getInstance(OptionsInventoryListener.class),
+                this.injector.getInstance(AbilityInventoryListener.class),
                 this.injector.getInstance(AdvancedFlyListener.class),
                 this.injector.getInstance(DoubleSlabListener.class),
                 this.injector.getInstance(GlazedTerracottaListener.class),

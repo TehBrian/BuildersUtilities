@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.option;
+package xyz.tehbrian.buildersutilities.ability;
 
 import com.google.inject.Inject;
 import org.bukkit.GameMode;
@@ -45,7 +45,7 @@ public final class DoubleSlabListener implements Listener {
             return;
         }
 
-        if (BlockUtil.getHalfPlayerFacing(player, block) == Half.TOP) {
+        if (BlockUtil.getBlockHalfPlayerFacing(player, block) == Half.TOP) {
             blockData.setType(Slab.Type.BOTTOM);
         } else {
             blockData.setType(Slab.Type.TOP);

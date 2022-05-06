@@ -8,7 +8,7 @@ import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternInventoryProv
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
-import xyz.tehbrian.buildersutilities.option.OptionsInventoryProvider;
+import xyz.tehbrian.buildersutilities.ability.AbilityInventoryProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
@@ -24,7 +24,7 @@ public class SingletonModule extends AbstractModule {
         this.bind(SpecialConfig.class).asEagerSingleton();
 
         this.bind(ArmorColorInventoryProvider.class).asEagerSingleton();
-        this.bind(OptionsInventoryProvider.class).asEagerSingleton();
+        this.bind(AbilityInventoryProvider.class).asEagerSingleton();
         this.bind(BannerBaseInventoryProvider.class).asEagerSingleton();
         this.bind(BannerColorInventoryProvider.class).asEagerSingleton();
         this.bind(BannerPatternInventoryProvider.class).asEagerSingleton();

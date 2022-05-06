@@ -19,8 +19,8 @@ permissions:
   buildersutilities.banner:
     description: Permission to open the banner creator menu.
     default: true
-  buildersutilities.buildersutilities:
-    description: Permission to open the abilities menu.
+  buildersutilities.ability:
+    description: Permission to open the ability menu.
     default: true
   buildersutilities.nightvision:
     description: Permission to use night vision.
