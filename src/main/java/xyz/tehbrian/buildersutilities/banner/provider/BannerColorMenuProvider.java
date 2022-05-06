@@ -13,13 +13,13 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 
-public final class BannerColorInventoryProvider {
+public final class BannerColorMenuProvider {
 
     private final LangConfig langConfig;
     private final ConfigConfig configConfig;
 
     @Inject
-    public BannerColorInventoryProvider(
+    public BannerColorMenuProvider(
             final @NonNull LangConfig langConfig,
             final @NonNull ConfigConfig configConfig
     ) {
@@ -29,7 +29,7 @@ public final class BannerColorInventoryProvider {
 
     private ItemStack createCustomDye(final Material material) {
         return PaperItemBuilder.ofType(material)
-                .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
+                .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
                 .build();
     }
 
@@ -37,7 +37,7 @@ public final class BannerColorInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.langConfig.c(NodePath.path("inventories", "banner", "color-inventory-name"))
+                this.langConfig.c(NodePath.path("menus", "banner", "color-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -45,7 +45,7 @@ public final class BannerColorInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.langConfig.c(NodePath.path("inventories", "banner", "randomize")))
+                .name(this.langConfig.c(NodePath.path("menus", "banner", "randomize")))
                 .textures(this.configConfig.data().heads().banner().randomize())
                 .build());
         inv.setItem(5, oldBanner);

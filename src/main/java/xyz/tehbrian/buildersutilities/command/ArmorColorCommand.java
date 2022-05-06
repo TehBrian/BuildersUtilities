@@ -8,17 +8,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryProvider;
+import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorMenuProvider;
 
 public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
 
-    private final ArmorColorInventoryProvider armorColorInventoryProvider;
+    private final ArmorColorMenuProvider armorColorMenuProvider;
 
     @Inject
     public ArmorColorCommand(
-            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider
+            final @NonNull ArmorColorMenuProvider armorColorMenuProvider
     ) {
-        this.armorColorInventoryProvider = armorColorInventoryProvider;
+        this.armorColorMenuProvider = armorColorMenuProvider;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
 
-                    sender.openInventory(this.armorColorInventoryProvider.generate());
+                    sender.openInventory(this.armorColorMenuProvider.generate());
                 });
 
         commandManager.command(main);

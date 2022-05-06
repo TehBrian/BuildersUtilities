@@ -23,7 +23,7 @@ import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
-import xyz.tehbrian.buildersutilities.ability.AbilityInventoryProvider;
+import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.Collection;
@@ -35,7 +35,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     private final BuildersUtilities buildersUtilities;
     private final UserService userService;
     private final LangConfig langConfig;
-    private final AbilityInventoryProvider abilityInventoryProvider;
+    private final AbilityMenuProvider abilityMenuProvider;
     private final SpecialConfig specialConfig;
 
     @Inject
@@ -43,13 +43,13 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
             final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService,
             final @NonNull LangConfig langConfig,
-            final @NonNull AbilityInventoryProvider abilityInventoryProvider,
+            final @NonNull AbilityMenuProvider abilityMenuProvider,
             final @NonNull SpecialConfig specialConfig
     ) {
         this.buildersUtilities = buildersUtilities;
         this.userService = userService;
         this.langConfig = langConfig;
-        this.abilityInventoryProvider = abilityInventoryProvider;
+        this.abilityMenuProvider = abilityMenuProvider;
         this.specialConfig = specialConfig;
     }
 
@@ -69,7 +69,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
 
-                    sender.openInventory(this.abilityInventoryProvider.generate(this.userService.getUser(sender)));
+                    sender.openInventory(this.abilityMenuProvider.generate(this.userService.getUser(sender)));
                 });
 
         final var rc = root.literal("rc", ArgumentDescription.of("Reloads the chunks around you."))
@@ -104,7 +104,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     }
                 });
 
-        final var special = root.literal("special", ArgumentDescription.of("Gives you special items."))
+        final var special = root.literal("special", ArgumentDescription.of("Opens the special item menu."))
                 .permission(Constants.Permissions.SPECIAL)
                 .senderType(Player.class)
                 .handler(c -> {

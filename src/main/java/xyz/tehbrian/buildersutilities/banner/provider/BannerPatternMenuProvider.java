@@ -16,13 +16,13 @@ import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
-public final class BannerPatternInventoryProvider {
+public final class BannerPatternMenuProvider {
 
     private final LangConfig langConfig;
     private final ConfigConfig configConfig;
 
     @Inject
-    public BannerPatternInventoryProvider(
+    public BannerPatternMenuProvider(
             final @NonNull LangConfig langConfig,
             final @NonNull ConfigConfig configConfig
     ) {
@@ -34,7 +34,7 @@ public final class BannerPatternInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.langConfig.c(NodePath.path("inventories", "banner", "pattern-inventory-name"))
+                this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -42,7 +42,7 @@ public final class BannerPatternInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.langConfig.c(NodePath.path("inventories", "banner", "randomize")))
+                .name(this.langConfig.c(NodePath.path("menus", "banner", "randomize")))
                 .textures(this.configConfig.data().heads().banner().randomize())
                 .build()
         );
@@ -55,7 +55,7 @@ public final class BannerPatternInventoryProvider {
 
         for (int i = 9; i < (BannerUtil.patternTypes().size() + 9); i++) {
             inv.setItem(i, BannerBuilder.ofType(base)
-                    .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
+                    .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
                     .addPattern(new Pattern(dyeColor, BannerUtil.patternTypes().get(i - 9)))
                     .build()
             );

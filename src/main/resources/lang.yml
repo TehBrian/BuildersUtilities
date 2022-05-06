@@ -17,7 +17,7 @@ commands:
     successful: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
     unsuccessful: "<dark_aqua>BU <gray>› <red>Failed to load configuration, please check the console."
 
-inventories:
+menus:
   armor-color:
     inventory-name: "<dark_blue>Armor Color Creator"
     change: |-

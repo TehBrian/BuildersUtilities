@@ -12,30 +12,30 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerColorInventoryProvider;
+import xyz.tehbrian.buildersutilities.banner.provider.BannerColorMenuProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 import java.util.Objects;
 
-public final class BannerPatternInventoryListener implements Listener {
+public final class BannerPatternMenuListener implements Listener {
 
-    private final BannerColorInventoryProvider bannerColorInventoryProvider;
+    private final BannerColorMenuProvider bannerColorMenuProvider;
     private final LangConfig langConfig;
 
     @Inject
-    public BannerPatternInventoryListener(
-            final @NonNull BannerColorInventoryProvider bannerColorInventoryProvider,
+    public BannerPatternMenuListener(
+            final @NonNull BannerColorMenuProvider bannerColorMenuProvider,
             final @NonNull LangConfig langConfig
     ) {
-        this.bannerColorInventoryProvider = bannerColorInventoryProvider;
+        this.bannerColorMenuProvider = bannerColorMenuProvider;
         this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "banner", "pattern-inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
@@ -66,7 +66,7 @@ public final class BannerPatternInventoryListener implements Listener {
                 player.getInventory().addItem(newBannerBuilder.name(null).build());
                 player.closeInventory();
             } else {
-                player.openInventory(this.bannerColorInventoryProvider.generate(newBannerBuilder.build()));
+                player.openInventory(this.bannerColorMenuProvider.generate(newBannerBuilder.build()));
             }
         }
 
@@ -79,7 +79,7 @@ public final class BannerPatternInventoryListener implements Listener {
                 player.getInventory().addItem(newBannerBuilder.name(null).build());
                 player.closeInventory();
             } else {
-                player.openInventory(this.bannerColorInventoryProvider.generate(newBannerBuilder.build()));
+                player.openInventory(this.bannerColorMenuProvider.generate(newBannerBuilder.build()));
             }
         }
     }

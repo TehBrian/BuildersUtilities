@@ -8,17 +8,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.Constants;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseInventoryProvider;
+import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseMenuProvider;
 
 public final class BannerCommand extends PaperCloudCommand<CommandSender> {
 
-    private final BannerBaseInventoryProvider bannerBaseInventoryProvider;
+    private final BannerBaseMenuProvider bannerBaseMenuProvider;
 
     @Inject
     public BannerCommand(
-            final @NonNull BannerBaseInventoryProvider bannerBaseInventoryProvider
+            final @NonNull BannerBaseMenuProvider bannerBaseMenuProvider
     ) {
-        this.bannerBaseInventoryProvider = bannerBaseInventoryProvider;
+        this.bannerBaseMenuProvider = bannerBaseMenuProvider;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
 
-                    sender.openInventory(this.bannerBaseInventoryProvider.generate());
+                    sender.openInventory(this.bannerBaseMenuProvider.generate());
                 });
 
         commandManager.command(main);

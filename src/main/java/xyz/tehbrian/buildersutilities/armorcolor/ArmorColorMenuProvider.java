@@ -18,13 +18,13 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import java.util.List;
 import java.util.Objects;
 
-public final class ArmorColorInventoryProvider {
+public final class ArmorColorMenuProvider {
 
     private final LangConfig langConfig;
     private final ConfigConfig configConfig;
 
     @Inject
-    public ArmorColorInventoryProvider(
+    public ArmorColorMenuProvider(
             final @NonNull LangConfig langConfig,
             final @NonNull ConfigConfig configConfig
     ) {
@@ -36,7 +36,7 @@ public final class ArmorColorInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.langConfig.c(NodePath.path("inventories", "armor-color", "inventory-name"))
+                this.langConfig.c(NodePath.path("menus", "armor-color", "inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -46,55 +46,55 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(
                 10,
                 PaperItemBuilder.ofType(Material.LEATHER_HELMET)
-                        .lore(this.langConfig.cl(NodePath.path("inventories", "armor-color", "get-helmet")))
+                        .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-helmet")))
                         .build()
         );
         inv.setItem(
                 19,
                 PaperItemBuilder.ofType(Material.LEATHER_CHESTPLATE)
-                        .lore(this.langConfig.cl(NodePath.path("inventories", "armor-color", "get-chestplate")))
+                        .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-chestplate")))
                         .build()
         );
         inv.setItem(
                 28,
                 PaperItemBuilder.ofType(Material.LEATHER_LEGGINGS)
-                        .lore(this.langConfig.cl(NodePath.path("inventories", "armor-color", "get-leggings")))
+                        .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-leggings")))
                         .build()
         );
         inv.setItem(
                 37,
                 PaperItemBuilder.ofType(Material.LEATHER_BOOTS)
-                        .lore(this.langConfig.cl(NodePath.path("inventories", "armor-color", "get-boots")))
+                        .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-boots")))
                         .build()
         );
 
-        final List<Component> lore = this.langConfig.cl(NodePath.path("inventories", "armor-color", "change"));
+        final List<Component> lore = this.langConfig.cl(NodePath.path("menus", "armor-color", "change"));
 
         inv.setItem(
                 22,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-red")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-red")))
                         .textures(this.configConfig.data().heads().armorColor().randomizeRed())
                         .build()
         );
         inv.setItem(
                 23,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-green")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-green")))
                         .textures(this.configConfig.data().heads().armorColor().randomizeGreen())
                         .build()
         );
         inv.setItem(
                 24,
                 SkullBuilder.ofType(Material.PLAYER_HEAD)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "randomize-blue")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-blue")))
                         .textures(this.configConfig.data().heads().armorColor().randomizeBlue())
                         .build()
         );
         inv.setItem(
                 31,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "red")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "red")))
                         .lore(lore)
                         .textures(this.configConfig.data().heads().armorColor().red())
                         .build()
@@ -102,7 +102,7 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(
                 32,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "green")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "green")))
                         .lore(lore)
                         .textures(this.configConfig.data().heads().armorColor().green())
                         .build()
@@ -110,7 +110,7 @@ public final class ArmorColorInventoryProvider {
         inv.setItem(
                 33,
                 SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
-                        .name(this.langConfig.c(NodePath.path("inventories", "armor-color", "blue")))
+                        .name(this.langConfig.c(NodePath.path("menus", "armor-color", "blue")))
                         .lore(lore)
                         .textures(this.configConfig.data().heads().armorColor().blue())
                         .build()

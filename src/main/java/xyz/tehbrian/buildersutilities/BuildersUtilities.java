@@ -9,10 +9,10 @@ import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.ConfigurateException;
-import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerColorInventoryListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternInventoryListener;
+import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorMenuListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseMenuListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerColorMenuListener;
+import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternMenuListener;
 import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.command.BannerCommand;
@@ -30,7 +30,7 @@ import xyz.tehbrian.buildersutilities.ability.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.ability.GlazedTerracottaListener;
 import xyz.tehbrian.buildersutilities.ability.IronDoorListener;
 import xyz.tehbrian.buildersutilities.ability.NoClipManager;
-import xyz.tehbrian.buildersutilities.ability.AbilityInventoryListener;
+import xyz.tehbrian.buildersutilities.ability.AbilityMenuListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
@@ -83,7 +83,7 @@ public final class BuildersUtilities extends TehPlugin {
      * Loads the plugin's configuration. If an exception is caught, logs the
      * error and returns false.
      *
-     * @return whether or not the loading was successful
+     * @return whether the loading was successful
      */
     public boolean loadConfiguration() {
         this.saveResourceSilently("config.yml");
@@ -113,11 +113,12 @@ public final class BuildersUtilities extends TehPlugin {
 
     private void setupListeners() {
         this.registerListeners(
-                this.injector.getInstance(BannerBaseInventoryListener.class),
-                this.injector.getInstance(BannerColorInventoryListener.class),
-                this.injector.getInstance(BannerPatternInventoryListener.class),
-                this.injector.getInstance(ArmorColorInventoryListener.class),
-                this.injector.getInstance(AbilityInventoryListener.class),
+                this.injector.getInstance(AbilityMenuListener.class),
+                this.injector.getInstance(ArmorColorMenuListener.class),
+                this.injector.getInstance(BannerBaseMenuListener.class),
+                this.injector.getInstance(BannerColorMenuListener.class),
+                this.injector.getInstance(BannerPatternMenuListener.class),
+
                 this.injector.getInstance(AdvancedFlyListener.class),
                 this.injector.getInstance(DoubleSlabListener.class),
                 this.injector.getInstance(GlazedTerracottaListener.class),

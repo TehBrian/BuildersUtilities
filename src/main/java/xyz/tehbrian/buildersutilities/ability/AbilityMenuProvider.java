@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class AbilityInventoryProvider {
+public final class AbilityMenuProvider {
 
     private static final ItemStack GREEN = PaperItemBuilder.ofType(Material.LIME_STAINED_GLASS_PANE).name(Component.empty()).build();
     private static final ItemStack ORANGE = PaperItemBuilder.ofType(Material.ORANGE_STAINED_GLASS_PANE).name(Component.empty()).build();
@@ -28,7 +28,7 @@ public final class AbilityInventoryProvider {
     private final LangConfig langConfig;
 
     @Inject
-    public AbilityInventoryProvider(
+    public AbilityMenuProvider(
             final @NonNull LangConfig langConfig
     ) {
         this.langConfig = langConfig;
@@ -38,7 +38,7 @@ public final class AbilityInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 27,
-                this.langConfig.c(NodePath.path("inventories", "ability", "inventory-name"))
+                this.langConfig.c(NodePath.path("menus", "ability", "inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -111,11 +111,11 @@ public final class AbilityInventoryProvider {
 
     private ItemStack createAbilityItem(final Material material, final String abilityKey, final String statusKey) {
         final List<Component> lore = new ArrayList<>();
-        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "ability", abilityKey, "description")));
-        lore.addAll(this.langConfig.cl(NodePath.path("inventories", "ability", "status", statusKey)));
+        lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", abilityKey, "description")));
+        lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", "status", statusKey)));
 
         return PaperItemBuilder.ofType(material)
-                .name(this.langConfig.c(NodePath.path("inventories", "ability", abilityKey, "name")))
+                .name(this.langConfig.c(NodePath.path("menus", "ability", abilityKey, "name")))
                 .lore(lore)
                 .build();
     }

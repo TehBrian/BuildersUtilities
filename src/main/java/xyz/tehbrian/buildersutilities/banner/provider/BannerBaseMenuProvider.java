@@ -13,13 +13,13 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 
-public final class BannerBaseInventoryProvider {
+public final class BannerBaseMenuProvider {
 
     private final LangConfig langConfig;
     private final ConfigConfig configConfig;
 
     @Inject
-    public BannerBaseInventoryProvider(
+    public BannerBaseMenuProvider(
             final @NonNull LangConfig langConfig,
             final @NonNull ConfigConfig configConfig
     ) {
@@ -29,7 +29,7 @@ public final class BannerBaseInventoryProvider {
 
     private ItemStack createCustomBanner(final Material material) {
         return PaperItemBuilder.ofType(material)
-                .lore(this.langConfig.cl(NodePath.path("inventories", "banner", "select")))
+                .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
                 .build();
     }
 
@@ -37,7 +37,7 @@ public final class BannerBaseInventoryProvider {
         final Inventory inv = Bukkit.createInventory(
                 null,
                 54,
-                this.langConfig.c(NodePath.path("inventories", "banner", "base-inventory-name"))
+                this.langConfig.c(NodePath.path("menus", "banner", "base-inventory-name"))
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
@@ -45,7 +45,7 @@ public final class BannerBaseInventoryProvider {
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-                .name(this.langConfig.c(NodePath.path("inventories", "banner", "randomize")))
+                .name(this.langConfig.c(NodePath.path("menus", "banner", "randomize")))
                 .textures(this.configConfig.data().heads().banner().randomize())
                 .build()
         );
@@ -53,7 +53,7 @@ public final class BannerBaseInventoryProvider {
                 5,
                 PaperItemBuilder
                         .ofType(Material.BARRIER)
-                        .name(this.langConfig.c(NodePath.path("inventories", "banner", "cannot-get-banner")))
+                        .name(this.langConfig.c(NodePath.path("menus", "banner", "cannot-get-banner")))
                         .build()
         );
 

@@ -19,14 +19,14 @@ import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings("unused")
-public final class ArmorColorInventoryListener implements Listener {
+public final class ArmorColorMenuListener implements Listener {
 
-    private final ArmorColorInventoryProvider armorColorInventoryProvider;
+    private final ArmorColorMenuProvider armorColorInventoryProvider;
     private final LangConfig langConfig;
 
     @Inject
-    public ArmorColorInventoryListener(
-            final @NonNull ArmorColorInventoryProvider armorColorInventoryProvider,
+    public ArmorColorMenuListener(
+            final @NonNull ArmorColorMenuProvider armorColorInventoryProvider,
             final @NonNull LangConfig langConfig
     ) {
         this.armorColorInventoryProvider = armorColorInventoryProvider;
@@ -36,7 +36,7 @@ public final class ArmorColorInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "armor-color", "inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "armor-color", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }

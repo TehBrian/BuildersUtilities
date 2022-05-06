@@ -16,27 +16,27 @@ import xyz.tehbrian.buildersutilities.user.UserService;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public final class AbilityInventoryListener implements Listener {
+public final class AbilityMenuListener implements Listener {
 
     private final UserService userService;
-    private final AbilityInventoryProvider abilityInventoryProvider;
+    private final AbilityMenuProvider abilityMenuProvider;
     private final LangConfig langConfig;
 
     @Inject
-    public AbilityInventoryListener(
+    public AbilityMenuListener(
             final @NonNull UserService userService,
-            final @NonNull AbilityInventoryProvider abilityInventoryProvider,
+            final @NonNull AbilityMenuProvider abilityMenuProvider,
             final @NonNull LangConfig langConfig
     ) {
         this.userService = userService;
-        this.abilityInventoryProvider = abilityInventoryProvider;
+        this.abilityMenuProvider = abilityMenuProvider;
         this.langConfig = langConfig;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onInventoryClick(final InventoryClickEvent event) {
         if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.langConfig.c(NodePath.path("inventories", "ability", "inventory-name")))
+                || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "ability", "inventory-name")))
                 || !(event.getWhoClicked() instanceof Player player)) {
             return;
         }
@@ -81,7 +81,7 @@ public final class AbilityInventoryListener implements Listener {
             }
         }
 
-        this.abilityInventoryProvider.update(event.getView().getTopInventory(), user);
+        this.abilityMenuProvider.update(event.getView().getTopInventory(), user);
     }
 
 }
