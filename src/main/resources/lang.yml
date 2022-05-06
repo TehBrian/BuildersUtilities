@@ -9,9 +9,9 @@ commands:
   night-vision:
     enabled: "<dark_aqua>BU <gray>› <green>Night Vision enabled."
     disabled: "<dark_aqua>BU <gray>› <red>Night Vision disabled."
-  no-clip:
-    enabled: "<dark_aqua>BU <gray>› <green>No-Clip enabled."
-    disabled: "<dark_aqua>BU <gray>› <red>No-Clip disabled."
+  noclip:
+    enabled: "<dark_aqua>BU <gray>› <green>Noclip enabled."
+    disabled: "<dark_aqua>BU <gray>› <red>Noclip disabled."
   rc: "<dark_aqua>BU <gray>› <aqua>Reloaded the chunks in your view distance."
   reload:
     successful: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
@@ -88,8 +88,8 @@ menus:
       name: "<aqua><bold>Night Vision"
       description: |-
         <dark_aqua> Grants you infinite night vision.
-    no-clip:
-      name: "<aqua><bold>No-Clip"
+    noclip:
+      name: "<aqua><bold>Noclip"
       description: |-
         <dark_aqua> Intelligently toggles you between
         <dark_aqua>creative and spectator mode.

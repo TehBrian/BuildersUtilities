@@ -69,7 +69,7 @@ public final class AbilityMenuListener implements Listener {
             }
             case 6, 15, 24 -> {
                 if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
-                    user.toggleNoClipEnabled();
+                    user.toggleNoclipEnabled();
                 }
             }
             case 7, 16, 25 -> {

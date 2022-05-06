@@ -17,7 +17,7 @@ public final class User extends PaperUser {
     private boolean glazedTerracottaRotateEnabled = true;
 
     private boolean nightVisionEnabled = false;
-    private boolean noClipEnabled = false;
+    private boolean noclipEnabled = false;
     private boolean advancedFlyEnabled = false;
 
     public User(final @NonNull UUID uuid) {
@@ -91,17 +91,17 @@ public final class User extends PaperUser {
         return this.nightVisionEnabled();
     }
 
-    public boolean noClipEnabled() {
-        return this.noClipEnabled;
+    public boolean noclipEnabled() {
+        return this.noclipEnabled;
     }
 
-    public void noClipEnabled(final boolean noClipEnabled) {
-        this.noClipEnabled = noClipEnabled;
+    public void noclipEnabled(final boolean noclipEnabled) {
+        this.noclipEnabled = noclipEnabled;
     }
 
-    public boolean toggleNoClipEnabled() {
-        this.noClipEnabled(!this.noClipEnabled());
-        return this.noClipEnabled();
+    public boolean toggleNoclipEnabled() {
+        this.noclipEnabled(!this.noclipEnabled());
+        return this.noclipEnabled();
     }
 
     public boolean advancedFlyEnabled() {

@@ -11,13 +11,13 @@ import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
 @SuppressWarnings("deprecation") // no alternative to Player#isOnGround
-public final class NoClipManager {
+public final class NoclipManager {
 
     private final BuildersUtilities buildersUtilities;
     private final UserService userService;
 
     @Inject
-    public NoClipManager(
+    public NoclipManager(
             final @NonNull BuildersUtilities buildersUtilities,
             final @NonNull UserService userService
     ) {
@@ -31,28 +31,28 @@ public final class NoClipManager {
 
     private void checkForBlocks() {
         for (final User user : this.userService.getUserMap().values()) {
-            if (!user.noClipEnabled()) {
+            if (!user.noclipEnabled()) {
                 continue;
             }
 
             final Player p = user.getPlayer();
-            if (p == null || !p.isOnline() || !p.hasPermission(Constants.Permissions.NO_CLIP)) {
+            if (p == null || !p.isOnline() || !p.hasPermission(Constants.Permissions.NOCLIP)) {
                 continue;
             }
 
-            final boolean noClip;
+            final boolean noclip;
             boolean tp = false;
             if (p.getGameMode() == GameMode.CREATIVE) {
                 if (p.isOnGround() && p.isSneaking()) {
-                    noClip = true;
+                    noclip = true;
                 } else {
-                    noClip = this.shouldNoClip(p);
+                    noclip = this.shouldNoclip(p);
                     if (p.isOnGround()) {
                         tp = true;
                     }
                 }
 
-                if (noClip) {
+                if (noclip) {
                     p.setGameMode(GameMode.SPECTATOR);
                     if (tp) {
                         p.teleport(p.getLocation());
@@ -60,19 +60,19 @@ public final class NoClipManager {
                 }
             } else if (p.getGameMode() == GameMode.SPECTATOR) {
                 if (p.isOnGround()) {
-                    noClip = true;
+                    noclip = true;
                 } else {
-                    noClip = this.shouldNoClip(p);
+                    noclip = this.shouldNoclip(p);
                 }
 
-                if (!noClip) {
+                if (!noclip) {
                     p.setGameMode(GameMode.CREATIVE);
                 }
             }
         }
     }
 
-    private boolean shouldNoClip(final Player p) {
+    private boolean shouldNoclip(final Player p) {
         return p.getLocation().add(+0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(-0.4, 0, 0).getBlock().getType().isSolid()
                 || p.getLocation().add(0, 0, +0.4).getBlock().getType().isSolid()

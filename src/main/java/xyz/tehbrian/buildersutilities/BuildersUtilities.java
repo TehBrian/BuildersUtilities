@@ -19,7 +19,7 @@ import xyz.tehbrian.buildersutilities.command.BannerCommand;
 import xyz.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
 import xyz.tehbrian.buildersutilities.command.CommandService;
 import xyz.tehbrian.buildersutilities.command.NightVisionCommand;
-import xyz.tehbrian.buildersutilities.command.NoClipCommand;
+import xyz.tehbrian.buildersutilities.command.NoclipCommand;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
@@ -29,7 +29,7 @@ import xyz.tehbrian.buildersutilities.ability.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.ability.DoubleSlabListener;
 import xyz.tehbrian.buildersutilities.ability.GlazedTerracottaListener;
 import xyz.tehbrian.buildersutilities.ability.IronDoorListener;
-import xyz.tehbrian.buildersutilities.ability.NoClipManager;
+import xyz.tehbrian.buildersutilities.ability.NoclipManager;
 import xyz.tehbrian.buildersutilities.ability.AbilityMenuListener;
 import xyz.tehbrian.buildersutilities.setting.SettingsListener;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
@@ -76,7 +76,7 @@ public final class BuildersUtilities extends TehPlugin {
         this.setupCommands();
         this.setupRestrictions();
 
-        this.injector.getInstance(NoClipManager.class).start();
+        this.injector.getInstance(NoclipManager.class).start();
     }
 
     /**
@@ -144,7 +144,7 @@ public final class BuildersUtilities extends TehPlugin {
         this.injector.getInstance(BannerCommand.class).register(commandManager);
         this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
         this.injector.getInstance(NightVisionCommand.class).register(commandManager);
-        this.injector.getInstance(NoClipCommand.class).register(commandManager);
+        this.injector.getInstance(NoclipCommand.class).register(commandManager);
     }
 
     private void setupRestrictions() {

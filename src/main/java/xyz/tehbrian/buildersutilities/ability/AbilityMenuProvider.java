@@ -94,9 +94,9 @@ public final class AbilityMenuProvider {
                 inv,
                 6,
                 Material.COMPASS,
-                "no-clip",
-                p.hasPermission(Constants.Permissions.NO_CLIP),
-                user.noClipEnabled()
+                "noclip",
+                p.hasPermission(Constants.Permissions.NOCLIP),
+                user.noclipEnabled()
         );
 
         this.drawAbility(

@@ -32,7 +32,7 @@ public final class Constants {
 
         public static final String ADVANCED_FLY = ROOT + ".advancedfly";
         public static final String NIGHT_VISION = ROOT + ".nightvision";
-        public static final String NO_CLIP = ROOT + ".noclip";
+        public static final String NOCLIP = ROOT + ".noclip";
 
         public static final String IRON_DOOR_TOGGLE = ROOT + ".irondoortoggle";
         public static final String DOUBLE_SLAB_BREAK = ROOT + ".doubleslabbreak";

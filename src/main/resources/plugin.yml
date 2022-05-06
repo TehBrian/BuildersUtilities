@@ -26,7 +26,7 @@ permissions:
     description: Permission to use night vision.
     default: true
   buildersutilities.noclip:
-    description: Permission to use no-clip.
+    description: Permission to use noclip.
     default: op
   buildersutilities.rc:
     description: Permission to run /buildersutilities rc.

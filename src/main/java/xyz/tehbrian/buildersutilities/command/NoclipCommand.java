@@ -12,13 +12,13 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
-public final class NoClipCommand extends PaperCloudCommand<CommandSender> {
+public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
 
     private final UserService userService;
     private final LangConfig langConfig;
 
     @Inject
-    public NoClipCommand(
+    public NoclipCommand(
             final @NonNull UserService userService,
             final @NonNull LangConfig langConfig
     ) {
@@ -34,16 +34,16 @@ public final class NoClipCommand extends PaperCloudCommand<CommandSender> {
     @Override
     public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
         final var main = commandManager.commandBuilder("noclip", "nc")
-                .meta(CommandMeta.DESCRIPTION, "Toggles no-clip.")
-                .permission(Constants.Permissions.NO_CLIP)
+                .meta(CommandMeta.DESCRIPTION, "Toggles noclip.")
+                .permission(Constants.Permissions.NOCLIP)
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
 
-                    if (this.userService.getUser(sender).toggleNoClipEnabled()) {
-                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "no-clip", "enabled")));
+                    if (this.userService.getUser(sender).toggleNoclipEnabled()) {
+                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "noclip", "enabled")));
                     } else {
-                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "no-clip", "disabled")));
+                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "noclip", "disabled")));
                     }
                 });
 
