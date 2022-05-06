@@ -10,6 +10,9 @@ main: xyz.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.18
 
 permissions:
+  buildersutilities.ability:
+    description: Permission to open the ability menu.
+    default: true
   buildersutilities.advancedfly:
     description: Permission to use advanced fly.
     default: op
@@ -19,8 +22,14 @@ permissions:
   buildersutilities.banner:
     description: Permission to open the banner creator menu.
     default: true
-  buildersutilities.ability:
-    description: Permission to open the ability menu.
+  buildersutilities.doubleslabbreak:
+    description: Permission to use double slab break.
+    default: true
+  buildersutilities.glazedterracottarotate:
+    description: Permission to use glzaed terracotta rotate.
+    default: true
+  buildersutilities.irondoortoggle:
+    description: Permission to use iron door toggle.
     default: true
   buildersutilities.nightvision:
     description: Permission to use night vision.
@@ -37,18 +46,6 @@ permissions:
   buildersutilities.special:
     description: Permission to run /buildersutilities special.
     default: true
-  buildersutilities.irondoortoggle:
-    description: Permission to use iron door toggle.
-    default: true
-  buildersutilities.doubleslabbreak:
-    description: Permission to use double slab break.
-    default: true
-  buildersutilities.glazedterracottarotate:
-    description: Permission to use glzaed terracotta rotate.
-    default: true
-  buildersutilities.spectate.teleport:
-    description: Permission to teleport to players via the spectator menu.
-    default: true
   buildersutilities.spectate.entity:
     description: Permission to spectate entities (including players).
     default: true
@@ -56,4 +53,7 @@ permissions:
       buildersutilities.spectate.player: true
   buildersutilities.spectate.player:
     description: Permission to spectate players.
+    default: true
+  buildersutilities.spectate.teleport:
+    description: Permission to teleport to players via the spectator menu.
     default: true
