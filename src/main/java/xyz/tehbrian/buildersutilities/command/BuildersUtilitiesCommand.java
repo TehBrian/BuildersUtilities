@@ -21,9 +21,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.Constants;
+import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
-import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.user.UserService;
 
 import java.util.Collection;
