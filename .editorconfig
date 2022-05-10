@@ -56,6 +56,7 @@ ij_css_value_alignment = do_not_align
 
 [*.java]
 max_line_length = 140
+
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = false
 ij_java_align_group_field_declarations = false
