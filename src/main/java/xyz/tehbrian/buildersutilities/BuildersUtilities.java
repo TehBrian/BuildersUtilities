@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities;
 
+import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import dev.tehbrian.tehlib.core.configurate.Config;
@@ -50,15 +51,12 @@ public final class BuildersUtilities extends TehPlugin {
      */
     private @MonotonicNonNull Injector injector;
 
-    /**
-     * Called when the plugin is enabled.
-     */
     @Override
     public void onEnable() {
         try {
             this.injector = Guice.createInjector(
-                    new SingletonModule(),
-                    new PluginModule(this)
+                    new PluginModule(this),
+                    new SingletonModule()
             );
         } catch (final Exception e) {
             this.getLog4JLogger().error("Something went wrong while creating the Guice injector.");
@@ -72,8 +70,11 @@ public final class BuildersUtilities extends TehPlugin {
             this.disableSelf();
             return;
         }
+        if (!this.setupCommands()) {
+            this.disableSelf();
+            return;
+        }
         this.setupListeners();
-        this.setupCommands();
         this.setupRestrictions();
 
         this.injector.getInstance(NoclipManager.class).start();
@@ -83,7 +84,7 @@ public final class BuildersUtilities extends TehPlugin {
      * Loads the plugin's configuration. If an exception is caught, logs the
      * error and returns false.
      *
-     * @return whether the loading was successful
+     * @return whether it was successful
      */
     public boolean loadConfiguration() {
         this.saveResourceSilently("config.yml");
@@ -127,16 +128,23 @@ public final class BuildersUtilities extends TehPlugin {
         );
     }
 
-    private void setupCommands() {
+    /**
+     * @return whether it was successful
+     */
+    private boolean setupCommands() {
         final @NonNull CommandService commandService = this.injector.getInstance(CommandService.class);
-        commandService.init();
+        try {
+            commandService.init();
+        } catch (final Exception e) {
+            this.getLog4JLogger().error("Failed to create the CommandManager.");
+            this.getLog4JLogger().error("Printing stack trace, please send this to the developers:", e);
+            return false;
+        }
 
-        final cloud.commandframework.paper.@Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
+        final @Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
         if (commandManager == null) {
             this.getLog4JLogger().error("The CommandService was null after initialization!");
-            this.getLog4JLogger().error("Disabling plugin.");
-            this.disableSelf();
-            return;
+            return false;
         }
 
         this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
@@ -145,6 +153,8 @@ public final class BuildersUtilities extends TehPlugin {
         this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
         this.injector.getInstance(NightVisionCommand.class).register(commandManager);
         this.injector.getInstance(NoclipCommand.class).register(commandManager);
+
+        return true;
     }
 
     private void setupRestrictions() {

@@ -33,7 +33,7 @@ public final class PluginModule extends AbstractModule {
     }
 
     /**
-     * @return the data folder
+     * @return the plugin's data folder
      */
     @Provides
     @Named("dataFolder")
