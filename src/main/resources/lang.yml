@@ -14,8 +14,8 @@ commands:
     disabled: "<dark_aqua>BU <gray>› <red>Noclip disabled."
   rc: "<dark_aqua>BU <gray>› <aqua>Reloaded the chunks in your view distance."
   reload:
-    successful: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
-    unsuccessful: "<dark_aqua>BU <gray>› <red>Failed to load configuration, please check the console."
+    success: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
+    failure: "<dark_aqua>BU <gray>› <red>Failed to load configuration, please check the console."
 
 menus:
   armor-color:
