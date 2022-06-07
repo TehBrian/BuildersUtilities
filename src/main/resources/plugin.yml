@@ -26,7 +26,7 @@ permissions:
     description: Permission to use double slab break.
     default: true
   buildersutilities.glazedterracottarotate:
-    description: Permission to use glzaed terracotta rotate.
+    description: Permission to use glazed terracotta rotate.
     default: true
   buildersutilities.irondoortoggle:
     description: Permission to use iron door toggle.
