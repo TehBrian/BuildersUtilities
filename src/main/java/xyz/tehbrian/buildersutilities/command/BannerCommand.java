@@ -21,11 +21,6 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
         this.bannerBaseMenuProvider = bannerBaseMenuProvider;
     }
 
-    /**
-     * Register the command.
-     *
-     * @param commandManager the command manager
-     */
     @Override
     public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
         final var main = commandManager.commandBuilder("banner", "bc")
