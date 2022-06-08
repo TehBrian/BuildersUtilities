@@ -44,6 +44,7 @@ public final class ArmorColorMenuListener implements Listener {
         final int slot = event.getRawSlot();
 
         final Inventory inventory = event.getClickedInventory();
+        Objects.requireNonNull(inventory);
 
         final ItemStack item = inventory.getItem(slot);
         Objects.requireNonNull(item);
