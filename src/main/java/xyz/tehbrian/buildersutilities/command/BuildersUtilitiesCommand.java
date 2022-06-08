@@ -99,7 +99,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     }
                 });
 
-        final var special = root.literal("special", ArgumentDescription.of("Opens the special item menu."))
+        final var special = root.literal("special", ArgumentDescription.of("Opens the special items menu."))
                 .permission(Constants.Permissions.SPECIAL)
                 .senderType(Player.class)
                 .handler(c -> {

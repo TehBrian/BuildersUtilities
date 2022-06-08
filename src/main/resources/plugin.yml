@@ -44,7 +44,7 @@ permissions:
     description: Permission to run /buildersutilities reload.
     default: op
   buildersutilities.special:
-    description: Permission to run /buildersutilities special.
+    description: Permission to open the special items menu.
     default: true
   buildersutilities.spectate.entity:
     description: Permission to spectate entities (including players).
