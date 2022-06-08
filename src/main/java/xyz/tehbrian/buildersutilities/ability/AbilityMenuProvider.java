@@ -14,6 +14,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.User;
+import xyz.tehbrian.buildersutilities.util.ChestSize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public final class AbilityMenuProvider {
     public Inventory generate(final User user) {
         final Inventory inv = Bukkit.createInventory(
                 null,
-                27,
+                ChestSize.SINGLE,
                 this.langConfig.c(NodePath.path("menus", "ability", "inventory-name"))
         );
 

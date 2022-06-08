@@ -12,6 +12,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
+import xyz.tehbrian.buildersutilities.util.ChestSize;
 
 public final class BannerBaseMenuProvider {
 
@@ -36,7 +37,7 @@ public final class BannerBaseMenuProvider {
     public Inventory generate() {
         final Inventory inv = Bukkit.createInventory(
                 null,
-                54,
+                ChestSize.DOUBLE,
                 this.langConfig.c(NodePath.path("menus", "banner", "base-inventory-name"))
         );
 

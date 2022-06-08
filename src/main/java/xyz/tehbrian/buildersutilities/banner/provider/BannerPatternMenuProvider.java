@@ -15,6 +15,7 @@ import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtil;
+import xyz.tehbrian.buildersutilities.util.ChestSize;
 
 public final class BannerPatternMenuProvider {
 
@@ -33,7 +34,7 @@ public final class BannerPatternMenuProvider {
     public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
         final Inventory inv = Bukkit.createInventory(
                 null,
-                54,
+                ChestSize.DOUBLE,
                 this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name"))
         );
 

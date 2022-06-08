@@ -8,6 +8,7 @@ import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import net.kyori.adventure.text.Component;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.server.level.ServerPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -25,6 +26,7 @@ import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.ChestSize;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -105,17 +107,17 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
 
-                    final Inventory inventory = sender.getServer().createInventory(
+                    final Inventory inv = Bukkit.createInventory(
                             null,
-                            InventoryType.CHEST,
+                            ChestSize.SINGLE,
                             Component.text("Special Items")
                     );
 
                     for (final ItemStack item : this.specialConfig.items()) {
-                        inventory.addItem(item);
+                        inv.addItem(item);
                     }
 
-                    sender.openInventory(inventory);
+                    sender.openInventory(inv);
                 });
 
         commandManager.command(ability);
