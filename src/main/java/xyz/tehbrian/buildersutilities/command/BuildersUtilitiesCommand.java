@@ -110,7 +110,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     final Inventory inv = Bukkit.createInventory(
                             null,
                             ChestSize.SINGLE,
-                            Component.text("Special Items")
+                            this.langConfig.c(NodePath.path("menus", "special", "inventory-name"))
                     );
 
                     for (final ItemStack item : this.specialConfig.items()) {

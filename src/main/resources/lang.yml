@@ -47,6 +47,9 @@ menus:
     get-banner: "<green>Click to get banner"
     randomize: "<white>Randomly Select"
 
+  special:
+    inventory-name: "<dark_blue>Special Items Menu"
+
   ability:
     inventory-name: "<dark_blue>Ability Menu"
     status:
