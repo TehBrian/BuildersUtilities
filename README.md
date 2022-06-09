@@ -5,8 +5,8 @@ This is a **fork** of [Arcaniax's Builder's Utilities][arcaniax-bu] with customi
 messages and nicer-looking GUIs. Be aware that the two plugins do not function
 exactly the same; they differ greatly in some areas.
 
-* [Downloads](https://github.com/TehBrian/BuildersUtilities/releases/latest)
-* [Discord](https://chat.tehbrian.xyz)
+* [Download](https://github.com/TehBrian/BuildersUtilities/releases/latest)
+* [Discord](https://thbn.me/discord)
 * [Donate](https://github.com/sponsors/TehBrian) <3
 
 [arcaniax-bu]: https://www.spigotmc.org/resources/builders-utilities.42361/
@@ -22,7 +22,7 @@ exactly the same; they differ greatly in some areas.
 In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
-[plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/master/src/main/resources/plugin.yml
+[plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
 ## Building
 This project uses Gradle. To build, run `./gradlew reobfJar` in the main
