@@ -55,7 +55,7 @@ tasks {
 
         val libsPackage = "xyz.tehbrian.buildersutilities.libs"
         relocate("com.google.inject", "$libsPackage.guice")
-        relocate("org.spongepowered.configurate.yaml", "$libsPackage.configurate.yaml")
+        relocate("org.spongepowered.configurate", "$libsPackage.configurate")
         relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
         relocate("dev.tehbrian.tehlib", "$libsPackage.tehlib")
         relocate("broccolai.corn", "$libsPackage.corn")
