@@ -1,15 +1,21 @@
 package xyz.tehbrian.buildersutilities;
 
+import cloud.commandframework.minecraft.extras.AudienceProvider;
+import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import dev.tehbrian.tehlib.core.configurate.Config;
 import dev.tehbrian.tehlib.paper.TehPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.ConfigurateException;
+import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.ability.AbilityMenuListener;
 import xyz.tehbrian.buildersutilities.ability.AdvancedFlyListener;
 import xyz.tehbrian.buildersutilities.ability.DoubleSlabListener;
@@ -40,6 +46,7 @@ import xyz.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * The main class for the BuildersUtilities plugin.
@@ -146,6 +153,25 @@ public final class BuildersUtilities extends TehPlugin {
             this.getSLF4JLogger().error("The CommandService was null after initialization!");
             return false;
         }
+
+        final @NonNull Function<@NonNull Exception, @NonNull Component> noPermissionHandler;
+
+        final @NonNull Component configNoPermissionMessage = this.injector.getInstance(LangConfig.class)
+                .c(NodePath.path("commands", "no-permission"));
+
+        if (PlainTextComponentSerializer.plainText().serialize(configNoPermissionMessage).isEmpty()) {
+            noPermissionHandler = e -> LegacyComponentSerializer.legacySection().deserialize(this.getServer().getPermissionMessage());
+        } else {
+            noPermissionHandler = e -> configNoPermissionMessage;
+        }
+
+        new MinecraftExceptionHandler<CommandSender>()
+                .withArgumentParsingHandler()
+                .withInvalidSenderHandler()
+                .withInvalidSyntaxHandler()
+                .withHandler(MinecraftExceptionHandler.ExceptionType.NO_PERMISSION, noPermissionHandler)
+                .withCommandExecutionHandler()
+                .apply(commandManager, AudienceProvider.nativeAudience());
 
         this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
         this.injector.getInstance(ArmorColorCommand.class).register(commandManager);
