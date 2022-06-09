@@ -34,6 +34,7 @@ dependencies {
 
     implementation("com.google.inject:guice:5.1.0")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
+    implementation("cloud.commandframework:cloud-minecraft-extras:1.6.2")
 
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.0")
     implementation("dev.tehbrian:tehlib-paper:0.2.0")
