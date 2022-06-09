@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-public class BlockUtil {
+public final class BlockUtil {
 
     private static final double MARCH_AMOUNT = 0.05D;
     private static final double MAX_REACH = 6.0D;

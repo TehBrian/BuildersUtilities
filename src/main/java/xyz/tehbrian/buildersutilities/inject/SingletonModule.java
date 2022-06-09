@@ -12,7 +12,7 @@ import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
-public class SingletonModule extends AbstractModule {
+public final class SingletonModule extends AbstractModule {
 
     @Override
     protected void configure() {

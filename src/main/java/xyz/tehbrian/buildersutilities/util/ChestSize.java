@@ -1,6 +1,6 @@
 package xyz.tehbrian.buildersutilities.util;
 
-public class ChestSize {
+public final class ChestSize {
 
     private ChestSize() {
     }
