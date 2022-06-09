@@ -37,7 +37,7 @@ dependencies {
     implementation("cloud.commandframework:cloud-minecraft-extras:1.6.2")
 
     implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.0")
-    implementation("dev.tehbrian:tehlib-paper:0.2.0")
+    implementation("dev.tehbrian:tehlib-paper:0.3.0")
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
 }
 
