@@ -21,6 +21,9 @@ repositories {
     maven("https://repo.broccol.ai/snapshots/") {
         name = "broccolai-snapshots"
     }
+    maven("https://repo.thbn.me/releases/") {
+        name = "thbn"
+    }
     maven("https://repo.thbn.me/snapshots/") {
         name = "thbn-snapshots"
     }
@@ -32,8 +35,8 @@ dependencies {
     implementation("com.google.inject:guice:5.1.0")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
 
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.2.0-SNAPSHOT")
-    implementation("dev.tehbrian:tehlib-paper:0.1.0-SNAPSHOT")
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.0")
+    implementation("dev.tehbrian:tehlib-paper:0.2.0")
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
 }
 

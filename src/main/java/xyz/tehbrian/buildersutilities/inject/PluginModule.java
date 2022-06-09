@@ -3,9 +3,9 @@ package xyz.tehbrian.buildersutilities.inject;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Named;
-import org.apache.logging.log4j.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.slf4j.Logger;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.nio.file.Path;
@@ -25,11 +25,11 @@ public final class PluginModule extends AbstractModule {
     }
 
     /**
-     * @return the plugin's Log4J logger
+     * @return the plugin's SLF4J logger
      */
     @Provides
-    public @NonNull Logger provideLog4JLogger() {
-        return this.buildersUtilities.getLog4JLogger();
+    public @NonNull Logger provideSLF4JLogger() {
+        return this.buildersUtilities.getSLF4JLogger();
     }
 
     /**
