@@ -8,10 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.Objects;
 
@@ -48,32 +48,32 @@ public final class AbilityMenuListener implements Listener {
         final User user = this.userService.getUser(player);
         switch (slot) {
             case 1, 10, 19 -> {
-                if (player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
+                if (player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
                     user.toggleIronDoorToggleEnabled();
                 }
             }
             case 2, 11, 20 -> {
-                if (player.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK)) {
+                if (player.hasPermission(Permissions.DOUBLE_SLAB_BREAK)) {
                     user.toggleDoubleSlabBreakEnabled();
                 }
             }
             case 3, 12, 21 -> {
-                if (player.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE)) {
+                if (player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
                     user.toggleGlazedTerracottaRotateEnabled();
                 }
             }
             case 5, 14, 23 -> {
-                if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
+                if (player.hasPermission(Permissions.NIGHT_VISION)) {
                     user.toggleNightVisionEnabled();
                 }
             }
             case 6, 15, 24 -> {
-                if (player.hasPermission(Constants.Permissions.NIGHT_VISION)) {
+                if (player.hasPermission(Permissions.NIGHT_VISION)) {
                     user.toggleNoclipEnabled();
                 }
             }
             case 7, 16, 25 -> {
-                if (player.hasPermission(Constants.Permissions.ADVANCED_FLY)) {
+                if (player.hasPermission(Permissions.ADVANCED_FLY)) {
                     user.toggleAdvancedFlyEnabled();
                 }
             }

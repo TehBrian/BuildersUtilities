@@ -11,11 +11,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.BannerUtil;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
+import xyz.tehbrian.buildersutilities.util.Items;
 
 public final class BannerPatternMenuProvider {
 
@@ -39,7 +39,7 @@ public final class BannerPatternMenuProvider {
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
+            inv.setItem(i, Items.INTERFACE_BACKGROUND);
         }
 
         inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)

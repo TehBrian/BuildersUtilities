@@ -11,10 +11,11 @@ import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.NodePath;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
+import xyz.tehbrian.buildersutilities.util.Items;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public final class AbilityMenuProvider {
         );
 
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, Constants.Items.INTERFACE_BACKGROUND);
+            inv.setItem(i, Items.INTERFACE_BACKGROUND);
         }
 
         this.update(inv, user);
@@ -60,7 +61,7 @@ public final class AbilityMenuProvider {
                 1,
                 Material.IRON_TRAPDOOR,
                 "iron-door-toggle",
-                p.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE),
+                p.hasPermission(Permissions.IRON_DOOR_TOGGLE),
                 user.ironDoorToggleEnabled()
         );
 
@@ -69,7 +70,7 @@ public final class AbilityMenuProvider {
                 2,
                 Material.STONE_SLAB,
                 "double-slab-break",
-                p.hasPermission(Constants.Permissions.DOUBLE_SLAB_BREAK),
+                p.hasPermission(Permissions.DOUBLE_SLAB_BREAK),
                 user.doubleSlabBreakEnabled()
         );
 
@@ -78,7 +79,7 @@ public final class AbilityMenuProvider {
                 3,
                 Material.LIGHT_BLUE_GLAZED_TERRACOTTA,
                 "glazed-terracotta-rotate",
-                p.hasPermission(Constants.Permissions.GLAZED_TERRACOTTA_ROTATE),
+                p.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE),
                 user.glazedTerracottaRotateEnabled()
         );
 
@@ -87,7 +88,7 @@ public final class AbilityMenuProvider {
                 5,
                 Material.ENDER_EYE,
                 "night-vision",
-                p.hasPermission(Constants.Permissions.NIGHT_VISION),
+                p.hasPermission(Permissions.NIGHT_VISION),
                 user.nightVisionEnabled()
         );
 
@@ -96,7 +97,7 @@ public final class AbilityMenuProvider {
                 6,
                 Material.COMPASS,
                 "noclip",
-                p.hasPermission(Constants.Permissions.NOCLIP),
+                p.hasPermission(Permissions.NOCLIP),
                 user.noclipEnabled()
         );
 
@@ -105,7 +106,7 @@ public final class AbilityMenuProvider {
                 7,
                 Material.FEATHER,
                 "advanced-fly",
-                p.hasPermission(Constants.Permissions.ADVANCED_FLY),
+                p.hasPermission(Permissions.ADVANCED_FLY),
                 user.advancedFlyEnabled()
         );
     }

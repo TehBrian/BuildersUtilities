@@ -16,8 +16,8 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 @SuppressWarnings("unused")
 public final class SettingsListener implements Listener {
@@ -32,7 +32,7 @@ public final class SettingsListener implements Listener {
     @EventHandler
     public void onSpectatorTeleport(final PlayerTeleportEvent event) {
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE
-                && !event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_TELEPORT)) {
+                && !event.getPlayer().hasPermission(Permissions.SPECTATE_TELEPORT)) {
             event.setCancelled(true);
         }
     }
@@ -40,11 +40,11 @@ public final class SettingsListener implements Listener {
     @EventHandler
     public void onSpectate(final PlayerStartSpectatingEntityEvent event) {
         if (event.getNewSpectatorTarget().getType() == EntityType.PLAYER) {
-            if (!event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_PLAYER)) {
+            if (!event.getPlayer().hasPermission(Permissions.SPECTATE_PLAYER)) {
                 event.setCancelled(true);
             }
         } else {
-            if (!event.getPlayer().hasPermission(Constants.Permissions.SPECTATE_ENTITY)) {
+            if (!event.getPlayer().hasPermission(Permissions.SPECTATE_ENTITY)) {
                 event.setCancelled(true);
             }
         }

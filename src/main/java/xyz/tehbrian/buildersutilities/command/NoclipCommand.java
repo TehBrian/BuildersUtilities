@@ -8,9 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
 
@@ -30,7 +30,7 @@ public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
     public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
         final var main = commandManager.commandBuilder("noclip", "nc")
                 .meta(CommandMeta.DESCRIPTION, "Toggles noclip.")
-                .permission(Constants.Permissions.NOCLIP)
+                .permission(Permissions.NOCLIP)
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();

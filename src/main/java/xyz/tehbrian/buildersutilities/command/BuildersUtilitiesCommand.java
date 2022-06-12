@@ -5,7 +5,6 @@ import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
-import net.kyori.adventure.text.Component;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
@@ -15,18 +14,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_18_R2.CraftChunk;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -61,7 +59,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
 
         final var ability = root
                 .meta(CommandMeta.DESCRIPTION, "Opens the ability menu.")
-                .permission(Constants.Permissions.ABILITY)
+                .permission(Permissions.ABILITY)
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
@@ -70,7 +68,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 });
 
         final var rc = root.literal("rc", ArgumentDescription.of("Reloads the chunks around you."))
-                .permission(Constants.Permissions.RC)
+                .permission(Permissions.RC)
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
@@ -92,7 +90,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 });
 
         final var reload = root.literal("reload", ArgumentDescription.of("Reloads the config."))
-                .permission(Constants.Permissions.RELOAD)
+                .permission(Permissions.RELOAD)
                 .handler(c -> {
                     if (this.buildersUtilities.loadConfiguration()) {
                         c.getSender().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "success")));
@@ -102,7 +100,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 });
 
         final var special = root.literal("special", ArgumentDescription.of("Opens the special items menu."))
-                .permission(Constants.Permissions.SPECIAL)
+                .permission(Permissions.SPECIAL)
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();

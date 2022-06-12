@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 import xyz.tehbrian.restrictionhelper.core.ActionType;
 import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
@@ -41,7 +41,7 @@ public final class IronDoorListener implements Listener {
     }
 
     /*
-        TODO: maybe change this behavior?
+        TODO: change iron door toggle behavior?
         Perhaps we could make it more similar to how wooden trapdoors work.
         For now I'm keeping it like how it is in the original BuildersUtilities
         because that's what people are used to, and change is scary.
@@ -51,7 +51,7 @@ public final class IronDoorListener implements Listener {
         final Player player = event.getPlayer();
 
         if (!this.userService.getUser(player).ironDoorToggleEnabled()
-                || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
+                || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
 
@@ -70,11 +70,10 @@ public final class IronDoorListener implements Listener {
 
         Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final Door door = (Door) block.getBlockData();
-
             door.setOpen(!door.isOpen());
-
             block.setBlockData(door);
         });
+
         event.setCancelled(true);
     }
 
@@ -83,7 +82,7 @@ public final class IronDoorListener implements Listener {
         final Player player = event.getPlayer();
 
         if (!this.userService.getUser(player).ironDoorToggleEnabled()
-                || !player.hasPermission(Constants.Permissions.IRON_DOOR_TOGGLE)) {
+                || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
             return;
         }
 

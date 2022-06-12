@@ -6,9 +6,9 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
-import xyz.tehbrian.buildersutilities.Constants;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
+import xyz.tehbrian.buildersutilities.util.Permissions;
 
 @SuppressWarnings("deprecation") // no alternative to Player#isOnGround
 public final class NoclipManager {
@@ -36,7 +36,7 @@ public final class NoclipManager {
             }
 
             final Player p = user.getPlayer();
-            if (p == null || !p.isOnline() || !p.hasPermission(Constants.Permissions.NOCLIP)) {
+            if (p == null || !p.isOnline() || !p.hasPermission(Permissions.NOCLIP)) {
                 continue;
             }
 
