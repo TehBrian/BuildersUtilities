@@ -5,6 +5,8 @@ import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Directional;
@@ -75,6 +77,13 @@ public final class GlazedTerracottaListener implements Listener {
             });
 
             block.setBlockData(directional);
+
+            block.getWorld().playSound(
+                    block.getLocation(),
+                    Sound.BLOCK_STONE_PLACE,
+                    SoundCategory.MASTER,
+                    1F, 2F
+            );
         });
         event.setCancelled(true);
     }
