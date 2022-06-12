@@ -4,18 +4,18 @@
 
 commands:
   advanced-fly:
-    enabled: "<dark_aqua>BU <gray>› <green>Advanced Fly enabled."
-    disabled: "<dark_aqua>BU <gray>› <red>Advanced Fly disabled."
+    enabled: "<#6699FF>BU <gray>› <#66FF99>Advanced Fly enabled."
+    disabled: "<#6699FF>BU <gray>› <#FF6699>Advanced Fly disabled."
   night-vision:
-    enabled: "<dark_aqua>BU <gray>› <green>Night Vision enabled."
-    disabled: "<dark_aqua>BU <gray>› <red>Night Vision disabled."
+    enabled: "<#6699FF>BU <gray>› <#66FF99>Night Vision enabled."
+    disabled: "<#6699FF>BU <gray>› <#FF6699>Night Vision disabled."
   noclip:
-    enabled: "<dark_aqua>BU <gray>› <green>Noclip enabled."
-    disabled: "<dark_aqua>BU <gray>› <red>Noclip disabled."
-  rc: "<dark_aqua>BU <gray>› <aqua>Reloaded the chunks in your view distance."
+    enabled: "<#6699FF>BU <gray>› <#66FF99>Noclip enabled."
+    disabled: "<#6699FF>BU <gray>› <#FF6699>Noclip disabled."
+  rc: "<#6699FF>BU <gray>› <#99FFFF>Reloaded the chunks in your view distance."
   reload:
-    success: "<dark_aqua>BU <gray>› <aqua>The configuration has been successfully reloaded."
-    failure: "<dark_aqua>BU <gray>› <red>Failed to load configuration, please check the console."
+    success: "<#6699FF>BU <gray>› <#99FFFF>The configuration has been successfully reloaded."
+    failure: "<#6699FF>BU <gray>› <#FF6699>Failed to load configuration, please check the console."
   # The message shown to players when they lack permission to run a command.
   # Leave this empty to use the default message configured in paper.yml.
   # To change this option, reloading the plugin will not work. You must restart
@@ -24,85 +24,85 @@ commands:
 
 menus:
   armor-color:
-    inventory-name: "<dark_blue>Armor Color Creator"
+    inventory-name: "<#333399>Armor Color Creator"
     change: |-
       <gray>
       <gray>Left click to increase
       <gray>Right click to decrease
       <gray>Shift click to change by 4
-    get-helmet: "<green>Click to get helmet"
-    get-chestplate: "<green>Click to get chestplate"
-    get-leggings: "<green>Click to get leggings"
-    get-boots: "<green>Click to get boots"
-    red: "<red>Red"
-    green: "<green>Green"
-    blue: "<aqua>Blue"
-    randomize-red: "<red>Randomize Red"
-    randomize-green: "<green>Randomize Green"
-    randomize-blue: "<aqua>Randomize Blue"
+    get-helmet: "<#66FF99>Click to get helmet"
+    get-chestplate: "<#66FF99>Click to get chestplate"
+    get-leggings: "<#66FF99>Click to get leggings"
+    get-boots: "<#66FF99>Click to get boots"
+    red: "<#FF6699>Red"
+    green: "<#66FF99>Green"
+    blue: "<#99FFFF>Blue"
+    randomize-red: "<#FF6699>Randomize Red"
+    randomize-green: "<#66FF99>Randomize Green"
+    randomize-blue: "<#99FFFF>Randomize Blue"
 
   banner:
-    base-inventory-name: "<dark_blue>Select a base.."
-    color-inventory-name: "<dark_blue>Select a color.."
-    pattern-inventory-name: "<dark_blue>Select a pattern.."
+    base-inventory-name: "<#333399>Select a base.."
+    color-inventory-name: "<#333399>Select a color.."
+    pattern-inventory-name: "<#333399>Select a pattern.."
     select: |-
       <gray>
       <gray>Click to select
-    cannot-get-banner: "<red>Select a base color first"
-    get-banner: "<green>Click to get banner"
+    cannot-get-banner: "<#FF6699>Select a base color first"
+    get-banner: "<#66FF99>Click to get banner"
     randomize: "<white>Randomly Select"
 
   special:
-    inventory-name: "<dark_blue>Special Items Menu"
+    inventory-name: "<#333399>Special Items Menu"
 
   ability:
-    inventory-name: "<dark_blue>Ability Menu"
+    inventory-name: "<#333399>Ability Menu"
     status:
       enabled: |-
 
-        <green><bold>Enabled
+        <#66FF99><bold>Enabled
         <gray>
         <gray>Click to toggle
       no-permission: |-
 
-        <gold><bold>No permission
+        <#FF9966><bold>No permission
       disabled: |-
 
-        <red><bold>Disabled
+        <#FF6699><bold>Disabled
         <gray>
         <gray>Click to toggle
     iron-door-toggle:
-      name: "<aqua><bold>Iron Door Toggle"
+      name: "<#99FFFF><bold>Iron Door Toggle"
       description: |-
-        <dark_aqua> Allows you to toggle iron doors
-        <dark_aqua>and iron trapdoors open and closed.
+        <#6699FF> Allows you to toggle iron doors
+        <#6699FF>and iron trapdoors open and closed.
         <gray> To use, right click on an iron
         <gray>door while not holding anything.
     double-slab-break:
-      name: "<aqua><bold>Double Slab Break"
+      name: "<#99FFFF><bold>Double Slab Break"
       description: |-
-        <dark_aqua> Allows you to break
-        <dark_aqua>double slabs in half.
+        <#6699FF> Allows you to break
+        <#6699FF>double slabs in half.
         <gray> To use, break a double slab
         <gray>while holding any slab.
     glazed-terracotta-rotate:
-      name: "<aqua><bold>Glazed Terracotta Rotate"
+      name: "<#99FFFF><bold>Glazed Terracotta Rotate"
       description: |-
-        <dark_aqua> Allows you to rotate
-        <dark_aqua>glazed terracotta.
+        <#6699FF> Allows you to rotate
+        <#6699FF>glazed terracotta.
         <gray> To use, right click on a glazed
         <gray>terracotta while shifting.
     night-vision:
-      name: "<aqua><bold>Night Vision"
+      name: "<#99FFFF><bold>Night Vision"
       description: |-
-        <dark_aqua> Grants you infinite night vision.
+        <#6699FF> Grants you infinite night vision.
     noclip:
-      name: "<aqua><bold>Noclip"
+      name: "<#99FFFF><bold>Noclip"
       description: |-
-        <dark_aqua> Intelligently toggles you between
-        <dark_aqua>creative and spectator mode.
+        <#6699FF> Intelligently toggles you between
+        <#6699FF>creative and spectator mode.
     advanced-fly:
-      name: "<aqua><bold>Advanced Fly"
+      name: "<#99FFFF><bold>Advanced Fly"
       description: |-
-        <dark_aqua> Prevents you from drifting in
-        <dark_aqua>creative mode flight.
+        <#6699FF> Prevents you from drifting in
+        <#6699FF>creative mode flight.
