@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Door;
 import org.bukkit.block.data.type.TrapDoor;
@@ -22,6 +24,12 @@ import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 import java.util.Objects;
 
+/*
+    TODO: change iron door toggle behavior?
+    Perhaps we could make it more similar to how wooden trapdoors work.
+    For now I'm keeping it like how it is in the original BuildersUtilities
+    because that's what people are used to, and change is scary.
+ */
 @SuppressWarnings("unused")
 public final class IronDoorListener implements Listener {
 
@@ -40,12 +48,6 @@ public final class IronDoorListener implements Listener {
         this.restrictionHelper = restrictionHelper;
     }
 
-    /*
-        TODO: change iron door toggle behavior?
-        Perhaps we could make it more similar to how wooden trapdoors work.
-        For now I'm keeping it like how it is in the original BuildersUtilities
-        because that's what people are used to, and change is scary.
-     */
     @EventHandler(ignoreCancelled = true)
     public void onIronDoorInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
@@ -70,8 +72,17 @@ public final class IronDoorListener implements Listener {
 
         Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final Door door = (Door) block.getBlockData();
-            door.setOpen(!door.isOpen());
+            final boolean newState = !door.isOpen();
+
+            door.setOpen(newState);
             block.setBlockData(door);
+
+            block.getWorld().playSound(
+                    block.getLocation(),
+                    newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE,
+                    SoundCategory.BLOCKS,
+                    1F, 1F
+            );
         });
 
         event.setCancelled(true);
@@ -101,11 +112,19 @@ public final class IronDoorListener implements Listener {
 
         Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
             final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
+            final boolean newState = !trapDoor.isOpen();
 
-            trapDoor.setOpen(!trapDoor.isOpen());
-
+            trapDoor.setOpen(newState);
             block.setBlockData(trapDoor);
+
+            block.getWorld().playSound(
+                    block.getLocation(),
+                    newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE,
+                    SoundCategory.BLOCKS,
+                    1F, 1F
+            );
         });
+
         event.setCancelled(true);
     }
 
