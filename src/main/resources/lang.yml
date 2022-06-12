@@ -48,7 +48,7 @@ menus:
     select: |-
       <gray>
       <gray>Click to select
-    cannot-get-banner: "<red>Please select a base color first"
+    cannot-get-banner: "<red>Select a base color first"
     get-banner: "<green>Click to get banner"
     randomize: "<white>Randomly Select"
 
