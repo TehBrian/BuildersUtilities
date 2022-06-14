@@ -2,7 +2,6 @@ package xyz.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import dev.tehbrian.tehlib.paper.configurate.AbstractLangConfig;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -12,7 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
+public class LangConfig extends LameAbstractLangConfig<YamlConfigurateWrapper> {
 
     /**
      * @param dataFolder the data folder

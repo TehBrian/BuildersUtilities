@@ -5,14 +5,15 @@ import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
-import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
+import net.minecraft.network.protocol.game.ClientboundLevelChunkPacket;
+import net.minecraft.network.protocol.game.ClientboundLightUpdatePacket;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_18_R2.CraftChunk;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.CraftChunk;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -79,11 +80,15 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                     final ServerPlayer nmsPlayer = ((CraftPlayer) sender).getHandle();
                     for (final Chunk chunk : chunksToReload) {
                         final var nmsChunk = ((CraftChunk) chunk).getHandle();
-                        final var packet = new ClientboundLevelChunkWithLightPacket(
-                                nmsChunk, nmsChunk.getLevel().getLightEngine(),
-                                null, null, true, false
+
+                        final var chunkPacket = new ClientboundLevelChunkPacket(
+                                nmsChunk, false
                         );
-                        nmsPlayer.trackChunk(nmsChunk.getPos(), packet);
+                        final var lightPacket = new ClientboundLightUpdatePacket(
+                                nmsChunk.getPos(), nmsChunk.getLevel().getLightEngine(), null, null, true
+                        );
+
+                        nmsPlayer.trackChunk(nmsChunk.getPos(), chunkPacket, lightPacket);
                     }
 
                     sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));

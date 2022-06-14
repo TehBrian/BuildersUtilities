@@ -30,7 +30,8 @@ repositories {
 }
 
 dependencies {
-    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
+    paperDevBundle("1.17.1-R0.1-SNAPSHOT")
+    implementation("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT")
 
     implementation("com.google.inject:guice:5.1.0")
     implementation("org.spongepowered:configurate-yaml:4.1.2")
@@ -52,6 +53,7 @@ tasks {
 
     shadowJar {
         val libsPackage = "xyz.tehbrian.buildersutilities.libs"
+        relocate("net.kyori.adventure.text.minimessage", "$libsPackage.minimessage")
         relocate("com.google.inject", "$libsPackage.guice")
         relocate("org.spongepowered.configurate", "$libsPackage.configurate")
         relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
@@ -61,6 +63,6 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.18.2")
+        minecraftVersion("1.17.1")
     }
 }
