@@ -74,6 +74,8 @@ public final class ArmorColorMenuListener implements Listener {
                 }
             }
             case 22, 23, 24 -> Objects.requireNonNull(inventory.getItem(slot + 9)).setAmount(new Random().nextInt(33) + 1);
+            default -> {
+            }
         }
 
         inventory.setItem(slot, item);
