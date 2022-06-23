@@ -52,7 +52,7 @@ tasks {
     }
 
     shadowJar {
-        val libsPackage = "xyz.tehbrian.buildersutilities.libs"
+        val libsPackage = "${project.group}.${project.name}.libs"
         relocate("com.google.inject", "$libsPackage.guice")
         relocate("org.spongepowered.configurate", "$libsPackage.configurate")
         relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
