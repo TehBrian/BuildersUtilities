@@ -4,7 +4,7 @@
 # delete this file and restart your server.
 
 # A list of valid values can be found here:
-# https://papermc.io/javadocs/paper/1.18/org/bukkit/Material.html
+# https://papermc.io/javadocs/paper/1.19/org/bukkit/Material.html
 
 items:
   - DEBUG_STICK
