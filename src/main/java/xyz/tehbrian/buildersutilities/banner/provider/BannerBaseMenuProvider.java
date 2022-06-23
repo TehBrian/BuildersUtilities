@@ -14,6 +14,7 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
 import xyz.tehbrian.buildersutilities.util.Items;
 
+@SuppressWarnings("ClassCanBeRecord")
 public final class BannerBaseMenuProvider {
 
     private final LangConfig langConfig;

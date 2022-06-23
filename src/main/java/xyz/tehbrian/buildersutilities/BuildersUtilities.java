@@ -8,7 +8,6 @@ import com.google.inject.Injector;
 import dev.tehbrian.tehlib.core.configurate.Config;
 import dev.tehbrian.tehlib.paper.TehPlugin;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
@@ -160,7 +159,7 @@ public final class BuildersUtilities extends TehPlugin {
                 .c(NodePath.path("commands", "no-permission"));
 
         if (PlainTextComponentSerializer.plainText().serialize(configNoPermissionMessage).isEmpty()) {
-            noPermissionHandler = e -> LegacyComponentSerializer.legacySection().deserialize(this.getServer().getPermissionMessage());
+            noPermissionHandler = e -> this.getServer().permissionMessage();
         } else {
             noPermissionHandler = e -> configNoPermissionMessage;
         }

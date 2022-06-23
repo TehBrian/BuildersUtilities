@@ -18,6 +18,7 @@ import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 import java.util.Objects;
 
+@SuppressWarnings("ClassCanBeRecord")
 public final class BannerColorMenuListener implements Listener {
 
     private final BannerPatternMenuProvider bannerPatternMenuProvider;
@@ -43,6 +44,7 @@ public final class BannerColorMenuListener implements Listener {
         final int slot = event.getRawSlot();
 
         final Inventory inventory = event.getClickedInventory();
+        Objects.requireNonNull(inventory);
 
         final ItemStack oldBanner = inventory.getItem(5);
         Objects.requireNonNull(oldBanner);

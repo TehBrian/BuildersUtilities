@@ -23,7 +23,6 @@ import java.util.Set;
     on how to make this better. It looks like some kind of
     black magic to me. If it ain't broke don't fix it, right?
  */
-@SuppressWarnings("unused")
 public final class AdvancedFlyListener implements Listener {
 
     private final UserService userService;

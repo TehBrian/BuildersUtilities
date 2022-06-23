@@ -30,7 +30,7 @@ import java.util.Objects;
     For now I'm keeping it like how it is in the original BuildersUtilities
     because that's what people are used to, and change is scary.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("ClassCanBeRecord")
 public final class IronDoorListener implements Listener {
 
     private final BuildersUtilities buildersUtilities;

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ClassCanBeRecord")
 public final class ArmorColorMenuListener implements Listener {
 
     private final ArmorColorMenuProvider armorColorInventoryProvider;

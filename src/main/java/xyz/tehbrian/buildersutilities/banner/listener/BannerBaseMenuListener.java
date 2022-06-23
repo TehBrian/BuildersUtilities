@@ -17,6 +17,7 @@ import xyz.tehbrian.buildersutilities.util.BannerUtil;
 
 import java.util.Objects;
 
+@SuppressWarnings("ClassCanBeRecord")
 public final class BannerBaseMenuListener implements Listener {
 
     private final BannerColorMenuProvider bannerColorMenuProvider;

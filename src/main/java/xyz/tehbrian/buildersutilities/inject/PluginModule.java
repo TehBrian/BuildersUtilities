@@ -27,6 +27,7 @@ public final class PluginModule extends AbstractModule {
     /**
      * @return the plugin's SLF4J logger
      */
+    @SuppressWarnings("unused")
     @Provides
     public @NonNull Logger provideSLF4JLogger() {
         return this.buildersUtilities.getSLF4JLogger();
@@ -35,6 +36,7 @@ public final class PluginModule extends AbstractModule {
     /**
      * @return the plugin's data folder
      */
+    @SuppressWarnings("unused")
     @Provides
     @Named("dataFolder")
     public @NonNull Path provideDataFolder() {

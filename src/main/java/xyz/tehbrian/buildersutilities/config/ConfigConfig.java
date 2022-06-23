@@ -31,6 +31,7 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
     public record Data(@NonNull Settings settings,
                        @NonNull Heads heads) {
 
+        @SuppressWarnings("unused")
         @ConfigSerializable
         public record Settings(boolean disablePhysics,
                                boolean disableEntityExplode,
@@ -41,10 +42,12 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
         }
 
+        @SuppressWarnings("unused")
         @ConfigSerializable
         public record Heads(@NonNull ArmorColor armorColor,
                             @NonNull Banner banner) {
 
+            @SuppressWarnings("unused")
             @ConfigSerializable
             public record ArmorColor(@NonNull String red,
                                      @NonNull String green,
@@ -55,6 +58,7 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
             }
 
+            @SuppressWarnings("unused")
             @ConfigSerializable
             public record Banner(@NonNull String randomize) {
 

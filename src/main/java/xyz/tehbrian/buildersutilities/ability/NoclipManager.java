@@ -10,7 +10,7 @@ import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
-@SuppressWarnings("deprecation") // no alternative to Player#isOnGround
+@SuppressWarnings({"ClassCanBeRecord"})
 public final class NoclipManager {
 
     private final BuildersUtilities buildersUtilities;
@@ -29,6 +29,7 @@ public final class NoclipManager {
         Bukkit.getScheduler().runTaskTimer(this.buildersUtilities, this::checkForBlocks, 1L, 1L);
     }
 
+    @SuppressWarnings("deprecation") // no alternative to Player#isOnGround
     private void checkForBlocks() {
         for (final User user : this.userService.getUserMap().values()) {
             if (!user.noclipEnabled()) {
