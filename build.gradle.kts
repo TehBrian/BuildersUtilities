@@ -33,13 +33,12 @@ repositories {
 dependencies {
     paperDevBundle("1.19-R0.1-SNAPSHOT")
 
-    implementation("com.google.inject:guice:5.1.0")
-    implementation("org.spongepowered:configurate-yaml:4.1.2")
-    implementation("cloud.commandframework:cloud-minecraft-extras:1.7.0")
-
-    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.0")
-    implementation("dev.tehbrian:tehlib-paper:0.3.0")
     implementation("broccolai.corn:corn-minecraft-paper:3.0.0-SNAPSHOT")
+    implementation("cloud.commandframework:cloud-minecraft-extras:1.7.0")
+    implementation("com.google.inject:guice:5.1.0")
+    implementation("dev.tehbrian:tehlib-paper:0.3.1")
+    implementation("org.spongepowered:configurate-yaml:4.1.2")
+    implementation("xyz.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.0")
 }
 
 tasks {
