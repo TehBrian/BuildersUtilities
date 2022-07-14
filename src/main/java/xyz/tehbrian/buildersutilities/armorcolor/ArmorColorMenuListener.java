@@ -14,7 +14,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -55,7 +54,7 @@ public final class ArmorColorMenuListener implements Listener {
             case 10, 19, 28, 37 -> player.getInventory().addItem(PaperItemBuilder
                     .of(Objects.requireNonNull(event.getCurrentItem()).clone())
                     .name(null)
-                    .lore(List.of())
+                    .lore(null)
                     .build());
             case 31, 33, 32 -> {
                 final ClickType clickType = event.getClick();
