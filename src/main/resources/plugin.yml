@@ -17,10 +17,10 @@ permissions:
     description: Permission to use advanced fly.
     default: op
   buildersutilities.armorcolor:
-    description: Permission to open the armor color creator menu.
+    description: Permission to open the armor color creator.
     default: true
   buildersutilities.banner:
-    description: Permission to open the banner creator menu.
+    description: Permission to open the banner creator.
     default: true
   buildersutilities.doubleslabbreak:
     description: Permission to use double slab break.

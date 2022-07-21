@@ -29,7 +29,6 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
-
                     sender.openInventory(this.bannerBaseMenuProvider.generate());
                 });
 

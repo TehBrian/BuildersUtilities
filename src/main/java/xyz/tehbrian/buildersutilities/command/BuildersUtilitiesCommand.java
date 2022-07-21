@@ -63,7 +63,6 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
                 .senderType(Player.class)
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
-
                     sender.openInventory(this.abilityMenuProvider.generate(this.userService.getUser(sender)));
                 });
 
