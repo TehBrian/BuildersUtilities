@@ -66,6 +66,12 @@ public final class BannerUtil {
         return Arrays.asList(DyeColor.values());
     }
 
+    /**
+     * Compiles a list of all banner pattern types except for
+     * {@link PatternType#BASE}.
+     *
+     * @return a list of all pattern types
+     */
     public static List<PatternType> patternTypes() {
         final List<PatternType> allPatternTypes = new ArrayList<>();
 

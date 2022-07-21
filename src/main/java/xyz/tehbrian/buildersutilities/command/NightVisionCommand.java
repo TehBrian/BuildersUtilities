@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.command;
 
+import cloud.commandframework.ArgumentDescription;
 import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
@@ -28,13 +29,28 @@ public final class NightVisionCommand extends PaperCloudCommand<CommandSender> {
 
     @Override
     public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
-        final var main = commandManager.commandBuilder("nightvision", "nv")
+        final var root = commandManager.commandBuilder("nightvision", "nv")
                 .meta(CommandMeta.DESCRIPTION, "Toggles night vision.")
                 .permission(Permissions.NIGHT_VISION)
-                .senderType(Player.class)
+                .senderType(Player.class);
+
+        final var on = root.literal("on", ArgumentDescription.of("Enables night vision."))
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
+                    this.userService.getUser(sender).nightVisionEnabled(true);
+                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "enabled")));
+                });
 
+        final var off = root.literal("off", ArgumentDescription.of("Disables night vision."))
+                .handler(c -> {
+                    final var sender = (Player) c.getSender();
+                    this.userService.getUser(sender).nightVisionEnabled(false);
+                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "disabled")));
+                });
+
+        final var toggle = root
+                .handler(c -> {
+                    final var sender = (Player) c.getSender();
                     if (this.userService.getUser(sender).toggleNightVisionEnabled()) {
                         sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "enabled")));
                     } else {
@@ -42,7 +58,9 @@ public final class NightVisionCommand extends PaperCloudCommand<CommandSender> {
                     }
                 });
 
-        commandManager.command(main);
+        commandManager.command(on)
+                .command(off)
+                .command(toggle);
     }
 
 }

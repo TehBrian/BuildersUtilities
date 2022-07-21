@@ -1,5 +1,6 @@
 package xyz.tehbrian.buildersutilities.command;
 
+import cloud.commandframework.ArgumentDescription;
 import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
@@ -28,13 +29,28 @@ public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
 
     @Override
     public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
-        final var main = commandManager.commandBuilder("noclip", "nc")
+        final var root = commandManager.commandBuilder("noclip", "nc")
                 .meta(CommandMeta.DESCRIPTION, "Toggles noclip.")
                 .permission(Permissions.NOCLIP)
-                .senderType(Player.class)
+                .senderType(Player.class);
+
+        final var on = root.literal("on", ArgumentDescription.of("Enables noclip."))
                 .handler(c -> {
                     final var sender = (Player) c.getSender();
+                    this.userService.getUser(sender).noclipEnabled(true);
+                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "noclip", "enabled")));
+                });
 
+        final var off = root.literal("off", ArgumentDescription.of("Disables noclip."))
+                .handler(c -> {
+                    final var sender = (Player) c.getSender();
+                    this.userService.getUser(sender).noclipEnabled(false);
+                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "noclip", "disabled")));
+                });
+
+        final var toggle = root
+                .handler(c -> {
+                    final var sender = (Player) c.getSender();
                     if (this.userService.getUser(sender).toggleNoclipEnabled()) {
                         sender.sendMessage(this.langConfig.c(NodePath.path("commands", "noclip", "enabled")));
                     } else {
@@ -42,7 +58,9 @@ public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
                     }
                 });
 
-        commandManager.command(main);
+        commandManager.command(on)
+                .command(off)
+                .command(toggle);
     }
 
 }

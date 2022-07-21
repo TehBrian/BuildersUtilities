@@ -2,8 +2,8 @@ plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.papermc.paperweight.userdev") version "1.3.8"
-    id("xyz.jpenilla.run-paper") version "1.0.6"
     id("net.kyori.indra.checkstyle") version "2.1.1"
+    id("xyz.jpenilla.run-paper") version "1.0.6"
 }
 
 group = "xyz.tehbrian"
@@ -49,12 +49,12 @@ tasks {
 
     shadowJar {
         val libsPackage = "${project.group}.${project.name}.libs"
-        relocate("com.google.inject", "$libsPackage.guice")
-        relocate("org.spongepowered.configurate", "$libsPackage.configurate")
-        relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
-        relocate("dev.tehbrian.tehlib", "$libsPackage.tehlib")
         relocate("broccolai.corn", "$libsPackage.corn")
         relocate("cloud.commandframework", "$libsPackage.cloud")
+        relocate("com.google.inject", "$libsPackage.guice")
+        relocate("dev.tehbrian.tehlib", "$libsPackage.tehlib")
+        relocate("org.spongepowered.configurate", "$libsPackage.configurate")
+        relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
     }
 
     runServer {
