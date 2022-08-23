@@ -1,6 +1,6 @@
 package xyz.tehbrian.buildersutilities.config;
 
-import dev.tehbrian.tehlib.core.configurate.ConfigurateWrapper;
+import dev.tehbrian.tehlib.configurate.ConfigurateWrapper;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 

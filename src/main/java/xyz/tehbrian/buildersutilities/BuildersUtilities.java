@@ -5,7 +5,7 @@ import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import dev.tehbrian.tehlib.core.configurate.Config;
+import dev.tehbrian.tehlib.configurate.Config;
 import dev.tehbrian.tehlib.paper.TehPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;

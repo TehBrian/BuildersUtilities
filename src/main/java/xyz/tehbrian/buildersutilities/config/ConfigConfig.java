@@ -2,7 +2,7 @@ package xyz.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import dev.tehbrian.tehlib.core.configurate.AbstractDataConfig;
+import dev.tehbrian.tehlib.configurate.AbstractDataConfig;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
