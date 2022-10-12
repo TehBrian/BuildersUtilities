@@ -12,27 +12,27 @@ import xyz.tehbrian.buildersutilities.util.Permissions;
 
 public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
 
-    private final ArmorColorMenuProvider armorColorMenuProvider;
+  private final ArmorColorMenuProvider armorColorMenuProvider;
 
-    @Inject
-    public ArmorColorCommand(
-            final @NonNull ArmorColorMenuProvider armorColorMenuProvider
-    ) {
-        this.armorColorMenuProvider = armorColorMenuProvider;
-    }
+  @Inject
+  public ArmorColorCommand(
+      final @NonNull ArmorColorMenuProvider armorColorMenuProvider
+  ) {
+    this.armorColorMenuProvider = armorColorMenuProvider;
+  }
 
-    @Override
-    public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
-        final var main = commandManager.commandBuilder("armorcolor", "acc")
-                .meta(CommandMeta.DESCRIPTION, "Opens the armor color creator.")
-                .permission(Permissions.ARMOR_COLOR)
-                .senderType(Player.class)
-                .handler(c -> {
-                    final var sender = (Player) c.getSender();
-                    sender.openInventory(this.armorColorMenuProvider.generate());
-                });
+  @Override
+  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+    final var main = commandManager.commandBuilder("armorcolor", "acc")
+        .meta(CommandMeta.DESCRIPTION, "Opens the armor color creator.")
+        .permission(Permissions.ARMOR_COLOR)
+        .senderType(Player.class)
+        .handler(c -> {
+          final var sender = (Player) c.getSender();
+          sender.openInventory(this.armorColorMenuProvider.generate());
+        });
 
-        commandManager.command(main);
-    }
+    commandManager.command(main);
+  }
 
 }

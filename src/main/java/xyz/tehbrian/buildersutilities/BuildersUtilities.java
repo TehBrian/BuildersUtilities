@@ -52,144 +52,147 @@ import java.util.function.Function;
  */
 public final class BuildersUtilities extends TehPlugin {
 
-    /**
-     * The Guice injector.
-     */
-    private @MonotonicNonNull Injector injector;
+  /**
+   * The Guice injector.
+   */
+  private @MonotonicNonNull Injector injector;
 
-    @Override
-    public void onEnable() {
-        try {
-            this.injector = Guice.createInjector(
-                    new PluginModule(this),
-                    new SingletonModule()
-            );
-        } catch (final Exception e) {
-            this.getSLF4JLogger().error("Something went wrong while creating the Guice injector.");
-            this.getSLF4JLogger().error("Disabling plugin.");
-            this.disableSelf();
-            this.getSLF4JLogger().error("Printing stack trace, please send this to the developers:", e);
-            return;
-        }
-
-        if (!this.loadConfiguration()) {
-            this.disableSelf();
-            return;
-        }
-        if (!this.setupCommands()) {
-            this.disableSelf();
-            return;
-        }
-        this.setupListeners();
-        this.setupRestrictions();
-
-        this.injector.getInstance(NoclipManager.class).start();
+  @Override
+  public void onEnable() {
+    try {
+      this.injector = Guice.createInjector(
+          new PluginModule(this),
+          new SingletonModule()
+      );
+    } catch (final Exception e) {
+      this.getSLF4JLogger().error("Something went wrong while creating the Guice injector.");
+      this.getSLF4JLogger().error("Disabling plugin.");
+      this.disableSelf();
+      this.getSLF4JLogger().error("Printing stack trace, please send this to the developers:", e);
+      return;
     }
 
-    /**
-     * Loads the plugin's configuration. If an exception is caught, logs the
-     * error and returns false.
-     *
-     * @return whether it was successful
-     */
-    public boolean loadConfiguration() {
-        this.saveResourceSilently("config.yml");
-        this.saveResourceSilently("lang.yml");
-        this.saveResourceSilently("special.yml");
+    if (!this.loadConfiguration()) {
+      this.disableSelf();
+      return;
+    }
+    if (!this.setupCommands()) {
+      this.disableSelf();
+      return;
+    }
+    this.setupListeners();
+    this.setupRestrictions();
 
-        final List<Config> configsToLoad = List.of(
-                this.injector.getInstance(ConfigConfig.class),
-                this.injector.getInstance(LangConfig.class),
-                this.injector.getInstance(SpecialConfig.class)
+    this.injector.getInstance(NoclipManager.class).start();
+  }
+
+  /**
+   * Loads the plugin's configuration. If an exception is caught, logs the
+   * error and returns false.
+   *
+   * @return whether it was successful
+   */
+  public boolean loadConfiguration() {
+    this.saveResourceSilently("config.yml");
+    this.saveResourceSilently("lang.yml");
+    this.saveResourceSilently("special.yml");
+
+    final List<Config> configsToLoad = List.of(
+        this.injector.getInstance(ConfigConfig.class),
+        this.injector.getInstance(LangConfig.class),
+        this.injector.getInstance(SpecialConfig.class)
+    );
+
+    for (final Config config : configsToLoad) {
+      try {
+        config.load();
+      } catch (final ConfigurateException e) {
+        this.getSLF4JLogger().error(
+            "Exception caught during config load for {}",
+            config.configurateWrapper().filePath()
         );
-
-        for (final Config config : configsToLoad) {
-            try {
-                config.load();
-            } catch (final ConfigurateException e) {
-                this.getSLF4JLogger().error("Exception caught during config load for {}", config.configurateWrapper().filePath());
-                this.getSLF4JLogger().error("Please check your config.");
-                this.getSLF4JLogger().error("Printing stack trace:", e);
-                return false;
-            }
-        }
-
-        this.getSLF4JLogger().info("Successfully loaded configuration.");
-        return true;
+        this.getSLF4JLogger().error("Please check your config.");
+        this.getSLF4JLogger().error("Printing stack trace:", e);
+        return false;
+      }
     }
 
-    private void setupListeners() {
-        this.registerListeners(
-                this.injector.getInstance(AbilityMenuListener.class),
-                this.injector.getInstance(ArmorColorMenuListener.class),
-                this.injector.getInstance(BannerBaseMenuListener.class),
-                this.injector.getInstance(BannerColorMenuListener.class),
-                this.injector.getInstance(BannerPatternMenuListener.class),
+    this.getSLF4JLogger().info("Successfully loaded configuration.");
+    return true;
+  }
 
-                this.injector.getInstance(AdvancedFlyListener.class),
-                this.injector.getInstance(DoubleSlabListener.class),
-                this.injector.getInstance(GlazedTerracottaListener.class),
-                this.injector.getInstance(IronDoorListener.class),
-                this.injector.getInstance(SettingsListener.class)
-        );
+  private void setupListeners() {
+    this.registerListeners(
+        this.injector.getInstance(AbilityMenuListener.class),
+        this.injector.getInstance(ArmorColorMenuListener.class),
+        this.injector.getInstance(BannerBaseMenuListener.class),
+        this.injector.getInstance(BannerColorMenuListener.class),
+        this.injector.getInstance(BannerPatternMenuListener.class),
+
+        this.injector.getInstance(AdvancedFlyListener.class),
+        this.injector.getInstance(DoubleSlabListener.class),
+        this.injector.getInstance(GlazedTerracottaListener.class),
+        this.injector.getInstance(IronDoorListener.class),
+        this.injector.getInstance(SettingsListener.class)
+    );
+  }
+
+  /**
+   * @return whether it was successful
+   */
+  private boolean setupCommands() {
+    final @NonNull CommandService commandService = this.injector.getInstance(CommandService.class);
+    try {
+      commandService.init();
+    } catch (final Exception e) {
+      this.getSLF4JLogger().error("Failed to create the CommandManager.");
+      this.getSLF4JLogger().error("Printing stack trace, please send this to the developers:", e);
+      return false;
     }
 
-    /**
-     * @return whether it was successful
-     */
-    private boolean setupCommands() {
-        final @NonNull CommandService commandService = this.injector.getInstance(CommandService.class);
-        try {
-            commandService.init();
-        } catch (final Exception e) {
-            this.getSLF4JLogger().error("Failed to create the CommandManager.");
-            this.getSLF4JLogger().error("Printing stack trace, please send this to the developers:", e);
-            return false;
-        }
-
-        final @Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
-        if (commandManager == null) {
-            this.getSLF4JLogger().error("The CommandService was null after initialization!");
-            return false;
-        }
-
-        final @NonNull Function<@NonNull Exception, @NonNull Component> noPermissionHandler;
-
-        final @NonNull Component configNoPermissionMessage = this.injector.getInstance(LangConfig.class)
-                .c(NodePath.path("commands", "no-permission"));
-
-        if (PlainTextComponentSerializer.plainText().serialize(configNoPermissionMessage).isEmpty()) {
-            noPermissionHandler = e -> this.getServer().permissionMessage();
-        } else {
-            noPermissionHandler = e -> configNoPermissionMessage;
-        }
-
-        new MinecraftExceptionHandler<CommandSender>()
-                .withArgumentParsingHandler()
-                .withInvalidSenderHandler()
-                .withInvalidSyntaxHandler()
-                .withHandler(MinecraftExceptionHandler.ExceptionType.NO_PERMISSION, noPermissionHandler)
-                .withCommandExecutionHandler()
-                .apply(commandManager, AudienceProvider.nativeAudience());
-
-        this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
-        this.injector.getInstance(ArmorColorCommand.class).register(commandManager);
-        this.injector.getInstance(BannerCommand.class).register(commandManager);
-        this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
-        this.injector.getInstance(NightVisionCommand.class).register(commandManager);
-        this.injector.getInstance(NoclipCommand.class).register(commandManager);
-
-        return true;
+    final @Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
+    if (commandManager == null) {
+      this.getSLF4JLogger().error("The CommandService was null after initialization!");
+      return false;
     }
 
-    private void setupRestrictions() {
-        final var loader = new SpigotRestrictionLoader(
-                this.getSLF4JLogger(),
-                Arrays.asList(this.getServer().getPluginManager().getPlugins()),
-                List.of(R_PlotSquared_6.class, R_WorldGuard_7.class)
-        );
+    final @NonNull Function<@NonNull Exception, @NonNull Component> noPermissionHandler;
 
-        loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
+    final @NonNull Component configNoPermissionMessage = this.injector.getInstance(LangConfig.class)
+        .c(NodePath.path("commands", "no-permission"));
+
+    if (PlainTextComponentSerializer.plainText().serialize(configNoPermissionMessage).isEmpty()) {
+      noPermissionHandler = e -> this.getServer().permissionMessage();
+    } else {
+      noPermissionHandler = e -> configNoPermissionMessage;
     }
+
+    new MinecraftExceptionHandler<CommandSender>()
+        .withArgumentParsingHandler()
+        .withInvalidSenderHandler()
+        .withInvalidSyntaxHandler()
+        .withHandler(MinecraftExceptionHandler.ExceptionType.NO_PERMISSION, noPermissionHandler)
+        .withCommandExecutionHandler()
+        .apply(commandManager, AudienceProvider.nativeAudience());
+
+    this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
+    this.injector.getInstance(ArmorColorCommand.class).register(commandManager);
+    this.injector.getInstance(BannerCommand.class).register(commandManager);
+    this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
+    this.injector.getInstance(NightVisionCommand.class).register(commandManager);
+    this.injector.getInstance(NoclipCommand.class).register(commandManager);
+
+    return true;
+  }
+
+  private void setupRestrictions() {
+    final var loader = new SpigotRestrictionLoader(
+        this.getSLF4JLogger(),
+        Arrays.asList(this.getServer().getPluginManager().getPlugins()),
+        List.of(R_PlotSquared_6.class, R_WorldGuard_7.class)
+    );
+
+    loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
+  }
 
 }

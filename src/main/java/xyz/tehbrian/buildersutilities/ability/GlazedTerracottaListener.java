@@ -28,64 +28,64 @@ import java.util.Objects;
 @SuppressWarnings("ClassCanBeRecord")
 public final class GlazedTerracottaListener implements Listener {
 
-    private final BuildersUtilities buildersUtilities;
-    private final UserService userService;
-    private final SpigotRestrictionHelper restrictionHelper;
+  private final BuildersUtilities buildersUtilities;
+  private final UserService userService;
+  private final SpigotRestrictionHelper restrictionHelper;
 
-    @Inject
-    public GlazedTerracottaListener(
-            final @NonNull BuildersUtilities buildersUtilities,
-            final @NonNull UserService userService,
-            final @NonNull SpigotRestrictionHelper restrictionHelper
-    ) {
-        this.buildersUtilities = buildersUtilities;
-        this.userService = userService;
-        this.restrictionHelper = restrictionHelper;
+  @Inject
+  public GlazedTerracottaListener(
+      final @NonNull BuildersUtilities buildersUtilities,
+      final @NonNull UserService userService,
+      final @NonNull SpigotRestrictionHelper restrictionHelper
+  ) {
+    this.buildersUtilities = buildersUtilities;
+    this.userService = userService;
+    this.restrictionHelper = restrictionHelper;
+  }
+
+  @EventHandler(ignoreCancelled = true)
+  public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
+    final Player player = event.getPlayer();
+
+    if (!this.userService.getUser(player).glazedTerracottaRotateEnabled()
+        || !player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
+      return;
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onGlazedTerracottaInteract(final PlayerInteractEvent event) {
-        final Player player = event.getPlayer();
+    final Block block = Objects.requireNonNull(event.getClickedBlock());
 
-        if (!this.userService.getUser(player).glazedTerracottaRotateEnabled()
-                || !player.hasPermission(Permissions.GLAZED_TERRACOTTA_ROTATE)) {
-            return;
-        }
-
-        final Block block = Objects.requireNonNull(event.getClickedBlock());
-
-        if (!MaterialTags.GLAZED_TERRACOTTA.isTagged(block)
-                || player.getInventory().getItemInMainHand().getType() != Material.AIR
-                || event.getAction() != Action.RIGHT_CLICK_BLOCK
-                || event.getHand() != EquipmentSlot.HAND
-                || player.getGameMode() != GameMode.CREATIVE
-                || !player.isSneaking()
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
-            return;
-        }
-
-        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-            final Directional directional = (Directional) block.getBlockData();
-
-            directional.setFacing(switch (directional.getFacing()) {
-                case NORTH -> BlockFace.EAST;
-                case EAST -> BlockFace.SOUTH;
-                case SOUTH -> BlockFace.WEST;
-                case WEST -> BlockFace.NORTH;
-                default -> directional.getFacing(); // do nothing
-            });
-
-            block.setBlockData(directional);
-
-            block.getWorld().playSound(
-                    block.getLocation(),
-                    Sound.BLOCK_STONE_PLACE,
-                    SoundCategory.MASTER,
-                    1F, 2F
-            );
-        });
-        event.setCancelled(true);
+    if (!MaterialTags.GLAZED_TERRACOTTA.isTagged(block)
+        || player.getInventory().getItemInMainHand().getType() != Material.AIR
+        || event.getAction() != Action.RIGHT_CLICK_BLOCK
+        || event.getHand() != EquipmentSlot.HAND
+        || player.getGameMode() != GameMode.CREATIVE
+        || !player.isSneaking()
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+      return;
     }
+
+    Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
+      final Directional directional = (Directional) block.getBlockData();
+
+      directional.setFacing(switch (directional.getFacing()) {
+        case NORTH -> BlockFace.EAST;
+        case EAST -> BlockFace.SOUTH;
+        case SOUTH -> BlockFace.WEST;
+        case WEST -> BlockFace.NORTH;
+        default -> directional.getFacing(); // do nothing
+      });
+
+      block.setBlockData(directional);
+
+      block.getWorld().playSound(
+          block.getLocation(),
+          Sound.BLOCK_STONE_PLACE,
+          SoundCategory.MASTER,
+          1F, 2F
+      );
+    });
+    event.setCancelled(true);
+  }
 
 }

@@ -20,45 +20,45 @@ import java.util.Objects;
 @SuppressWarnings("ClassCanBeRecord")
 public final class BannerBaseMenuListener implements Listener {
 
-    private final BannerColorMenuProvider bannerColorMenuProvider;
-    private final LangConfig langConfig;
+  private final BannerColorMenuProvider bannerColorMenuProvider;
+  private final LangConfig langConfig;
 
-    @Inject
-    public BannerBaseMenuListener(
-            final @NonNull BannerColorMenuProvider bannerColorMenuProvider,
-            final @NonNull LangConfig langConfig
-    ) {
-        this.bannerColorMenuProvider = bannerColorMenuProvider;
-        this.langConfig = langConfig;
+  @Inject
+  public BannerBaseMenuListener(
+      final @NonNull BannerColorMenuProvider bannerColorMenuProvider,
+      final @NonNull LangConfig langConfig
+  ) {
+    this.bannerColorMenuProvider = bannerColorMenuProvider;
+    this.langConfig = langConfig;
+  }
+
+  @EventHandler(priority = EventPriority.LOWEST)
+  public void onInventoryClick(final InventoryClickEvent event) {
+    if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
+        || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "banner", "base-inventory-name")))
+        || !(event.getWhoClicked() instanceof Player player)) {
+      return;
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onInventoryClick(final InventoryClickEvent event) {
-        if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-                || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "banner", "base-inventory-name")))
-                || !(event.getWhoClicked() instanceof Player player)) {
-            return;
-        }
+    final int slot = event.getRawSlot();
 
-        final int slot = event.getRawSlot();
+    event.setCancelled(true);
 
-        event.setCancelled(true);
-
-        if (slot == 3) {
-            final DyeColor dyeColor = BannerUtil.randomDyeColor();
-            final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
-                    .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
-                    .build();
-            player.openInventory(this.bannerColorMenuProvider.generate(newBanner));
-        }
-
-        if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-            final DyeColor dyeColor = BannerUtil.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
-            final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
-                    .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
-                    .build();
-            player.openInventory(this.bannerColorMenuProvider.generate(newBanner));
-        }
+    if (slot == 3) {
+      final DyeColor dyeColor = BannerUtil.randomDyeColor();
+      final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
+          .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
+          .build();
+      player.openInventory(this.bannerColorMenuProvider.generate(newBanner));
     }
+
+    if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
+      final DyeColor dyeColor = BannerUtil.bannerToColor(Objects.requireNonNull(event.getCurrentItem()).getType());
+      final ItemStack newBanner = BannerBuilder.ofType(BannerUtil.colorToBanner(dyeColor))
+          .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
+          .build();
+      player.openInventory(this.bannerColorMenuProvider.generate(newBanner));
+    }
+  }
 
 }

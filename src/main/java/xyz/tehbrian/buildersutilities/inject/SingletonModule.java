@@ -14,20 +14,20 @@ import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 public final class SingletonModule extends AbstractModule {
 
-    @Override
-    protected void configure() {
-        this.bind(UserService.class).asEagerSingleton();
-        this.bind(SpigotRestrictionHelper.class).asEagerSingleton();
+  @Override
+  protected void configure() {
+    this.bind(UserService.class).asEagerSingleton();
+    this.bind(SpigotRestrictionHelper.class).asEagerSingleton();
 
-        this.bind(ConfigConfig.class).asEagerSingleton();
-        this.bind(LangConfig.class).asEagerSingleton();
-        this.bind(SpecialConfig.class).asEagerSingleton();
+    this.bind(ConfigConfig.class).asEagerSingleton();
+    this.bind(LangConfig.class).asEagerSingleton();
+    this.bind(SpecialConfig.class).asEagerSingleton();
 
-        this.bind(ArmorColorMenuProvider.class).asEagerSingleton();
-        this.bind(AbilityMenuProvider.class).asEagerSingleton();
-        this.bind(BannerBaseMenuProvider.class).asEagerSingleton();
-        this.bind(BannerColorMenuProvider.class).asEagerSingleton();
-        this.bind(BannerPatternMenuProvider.class).asEagerSingleton();
-    }
+    this.bind(ArmorColorMenuProvider.class).asEagerSingleton();
+    this.bind(AbilityMenuProvider.class).asEagerSingleton();
+    this.bind(BannerBaseMenuProvider.class).asEagerSingleton();
+    this.bind(BannerColorMenuProvider.class).asEagerSingleton();
+    this.bind(BannerPatternMenuProvider.class).asEagerSingleton();
+  }
 
 }

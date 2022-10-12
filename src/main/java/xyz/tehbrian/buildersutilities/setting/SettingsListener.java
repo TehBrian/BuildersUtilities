@@ -22,94 +22,94 @@ import xyz.tehbrian.buildersutilities.util.Permissions;
 @SuppressWarnings("ClassCanBeRecord")
 public final class SettingsListener implements Listener {
 
-    private final ConfigConfig configConfig;
+  private final ConfigConfig configConfig;
 
-    @Inject
-    public SettingsListener(final @NonNull ConfigConfig configConfig) {
-        this.configConfig = configConfig;
-    }
+  @Inject
+  public SettingsListener(final @NonNull ConfigConfig configConfig) {
+    this.configConfig = configConfig;
+  }
 
-    @EventHandler
-    public void onSpectatorTeleport(final PlayerTeleportEvent event) {
-        if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE
-                && !event.getPlayer().hasPermission(Permissions.SPECTATE_TELEPORT)) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onSpectatorTeleport(final PlayerTeleportEvent event) {
+    if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE
+        && !event.getPlayer().hasPermission(Permissions.SPECTATE_TELEPORT)) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onSpectate(final PlayerStartSpectatingEntityEvent event) {
-        if (event.getNewSpectatorTarget().getType() == EntityType.PLAYER) {
-            if (!event.getPlayer().hasPermission(Permissions.SPECTATE_PLAYER)) {
-                event.setCancelled(true);
-            }
-        } else {
-            if (!event.getPlayer().hasPermission(Permissions.SPECTATE_ENTITY)) {
-                event.setCancelled(true);
-            }
-        }
+  @EventHandler
+  public void onSpectate(final PlayerStartSpectatingEntityEvent event) {
+    if (event.getNewSpectatorTarget().getType() == EntityType.PLAYER) {
+      if (!event.getPlayer().hasPermission(Permissions.SPECTATE_PLAYER)) {
+        event.setCancelled(true);
+      }
+    } else {
+      if (!event.getPlayer().hasPermission(Permissions.SPECTATE_ENTITY)) {
+        event.setCancelled(true);
+      }
     }
+  }
 
-    @EventHandler
-    public void onBlockPhysics(final BlockPhysicsEvent event) {
-        if (this.configConfig.data().settings().disablePhysics()) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onBlockPhysics(final BlockPhysicsEvent event) {
+    if (this.configConfig.data().settings().disablePhysics()) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onEntityExplode(final EntityExplodeEvent event) {
-        if (this.configConfig.data().settings().disableEntityExplode()) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onEntityExplode(final EntityExplodeEvent event) {
+    if (this.configConfig.data().settings().disableEntityExplode()) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onEntityDamageByEntityExplode(final EntityDamageEvent event) {
-        if (this.configConfig.data().settings().disableEntityExplode()) {
-            if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
-                event.setCancelled(true);
-            }
-        }
+  @EventHandler
+  public void onEntityDamageByEntityExplode(final EntityDamageEvent event) {
+    if (this.configConfig.data().settings().disableEntityExplode()) {
+      if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+        event.setCancelled(true);
+      }
     }
+  }
 
-    @EventHandler
-    public void onBlockExplode(final BlockExplodeEvent event) {
-        if (this.configConfig.data().settings().disableBlockExplode()) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onBlockExplode(final BlockExplodeEvent event) {
+    if (this.configConfig.data().settings().disableBlockExplode()) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onEntityDamageByBlockExplode(final EntityDamageEvent event) {
-        if (this.configConfig.data().settings().disableBlockExplode()
-                && event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onEntityDamageByBlockExplode(final EntityDamageEvent event) {
+    if (this.configConfig.data().settings().disableBlockExplode()
+        && event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onLeavesDecay(final LeavesDecayEvent event) {
-        if (this.configConfig.data().settings().disableLeavesDecay()) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onLeavesDecay(final LeavesDecayEvent event) {
+    if (this.configConfig.data().settings().disableLeavesDecay()) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onFarmlandTrample(final PlayerInteractEvent event) {
-        if (this.configConfig.data().settings().disableFarmlandTrample()
-                && event.getAction() == Action.PHYSICAL && event.getClickedBlock() != null
-                && event.getClickedBlock().getType() == Material.FARMLAND) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onFarmlandTrample(final PlayerInteractEvent event) {
+    if (this.configConfig.data().settings().disableFarmlandTrample()
+        && event.getAction() == Action.PHYSICAL && event.getClickedBlock() != null
+        && event.getClickedBlock().getType() == Material.FARMLAND) {
+      event.setCancelled(true);
     }
+  }
 
-    @EventHandler
-    public void onDragonEggTeleport(final BlockFromToEvent event) {
-        if (this.configConfig.data().settings().disableDragonEggTeleport()
-                && event.getBlock().getType() == Material.DRAGON_EGG) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onDragonEggTeleport(final BlockFromToEvent event) {
+    if (this.configConfig.data().settings().disableDragonEggTeleport()
+        && event.getBlock().getType() == Material.DRAGON_EGG) {
+      event.setCancelled(true);
     }
+  }
 
 }

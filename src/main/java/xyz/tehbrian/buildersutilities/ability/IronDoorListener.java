@@ -33,99 +33,99 @@ import java.util.Objects;
 @SuppressWarnings("ClassCanBeRecord")
 public final class IronDoorListener implements Listener {
 
-    private final BuildersUtilities buildersUtilities;
-    private final UserService userService;
-    private final SpigotRestrictionHelper restrictionHelper;
+  private final BuildersUtilities buildersUtilities;
+  private final UserService userService;
+  private final SpigotRestrictionHelper restrictionHelper;
 
-    @Inject
-    public IronDoorListener(
-            final @NonNull BuildersUtilities buildersUtilities,
-            final @NonNull UserService userService,
-            final @NonNull SpigotRestrictionHelper restrictionHelper
-    ) {
-        this.buildersUtilities = buildersUtilities;
-        this.userService = userService;
-        this.restrictionHelper = restrictionHelper;
+  @Inject
+  public IronDoorListener(
+      final @NonNull BuildersUtilities buildersUtilities,
+      final @NonNull UserService userService,
+      final @NonNull SpigotRestrictionHelper restrictionHelper
+  ) {
+    this.buildersUtilities = buildersUtilities;
+    this.userService = userService;
+    this.restrictionHelper = restrictionHelper;
+  }
+
+  @EventHandler(ignoreCancelled = true)
+  public void onIronDoorInteract(final PlayerInteractEvent event) {
+    final Player player = event.getPlayer();
+
+    if (!this.userService.getUser(player).ironDoorToggleEnabled()
+        || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
+      return;
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onIronDoorInteract(final PlayerInteractEvent event) {
-        final Player player = event.getPlayer();
+    final Block block = Objects.requireNonNull(event.getClickedBlock());
 
-        if (!this.userService.getUser(player).ironDoorToggleEnabled()
-                || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
-            return;
-        }
-
-        final Block block = Objects.requireNonNull(event.getClickedBlock());
-
-        if (block.getType() != Material.IRON_DOOR
-                || player.getInventory().getItemInMainHand().getType() != Material.AIR
-                || event.getAction() != Action.RIGHT_CLICK_BLOCK
-                || event.getHand() != EquipmentSlot.HAND
-                || player.getGameMode() != GameMode.CREATIVE
-                || player.isSneaking()
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
-            return;
-        }
-
-        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-            final Door door = (Door) block.getBlockData();
-            final boolean newState = !door.isOpen();
-
-            door.setOpen(newState);
-            block.setBlockData(door);
-
-            block.getWorld().playSound(
-                    block.getLocation(),
-                    newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE,
-                    SoundCategory.BLOCKS,
-                    1F, 1F
-            );
-        });
-
-        event.setCancelled(true);
+    if (block.getType() != Material.IRON_DOOR
+        || player.getInventory().getItemInMainHand().getType() != Material.AIR
+        || event.getAction() != Action.RIGHT_CLICK_BLOCK
+        || event.getHand() != EquipmentSlot.HAND
+        || player.getGameMode() != GameMode.CREATIVE
+        || player.isSneaking()
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+      return;
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
-        final Player player = event.getPlayer();
+    Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
+      final Door door = (Door) block.getBlockData();
+      final boolean newState = !door.isOpen();
 
-        if (!this.userService.getUser(player).ironDoorToggleEnabled()
-                || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
-            return;
-        }
+      door.setOpen(newState);
+      block.setBlockData(door);
 
-        final Block block = Objects.requireNonNull(event.getClickedBlock());
+      block.getWorld().playSound(
+          block.getLocation(),
+          newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE,
+          SoundCategory.BLOCKS,
+          1F, 1F
+      );
+    });
 
-        if (block.getType() != Material.IRON_TRAPDOOR
-                || player.getInventory().getItemInMainHand().getType() != Material.AIR
-                || event.getAction() != Action.RIGHT_CLICK_BLOCK
-                || event.getHand() != EquipmentSlot.HAND
-                || player.getGameMode() != GameMode.CREATIVE
-                || player.isSneaking()
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-                || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
-            return;
-        }
+    event.setCancelled(true);
+  }
 
-        Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-            final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
-            final boolean newState = !trapDoor.isOpen();
+  @EventHandler(ignoreCancelled = true)
+  public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
+    final Player player = event.getPlayer();
 
-            trapDoor.setOpen(newState);
-            block.setBlockData(trapDoor);
-
-            block.getWorld().playSound(
-                    block.getLocation(),
-                    newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE,
-                    SoundCategory.BLOCKS,
-                    1F, 1F
-            );
-        });
-
-        event.setCancelled(true);
+    if (!this.userService.getUser(player).ironDoorToggleEnabled()
+        || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
+      return;
     }
+
+    final Block block = Objects.requireNonNull(event.getClickedBlock());
+
+    if (block.getType() != Material.IRON_TRAPDOOR
+        || player.getInventory().getItemInMainHand().getType() != Material.AIR
+        || event.getAction() != Action.RIGHT_CLICK_BLOCK
+        || event.getHand() != EquipmentSlot.HAND
+        || player.getGameMode() != GameMode.CREATIVE
+        || player.isSneaking()
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+      return;
+    }
+
+    Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
+      final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
+      final boolean newState = !trapDoor.isOpen();
+
+      trapDoor.setOpen(newState);
+      block.setBlockData(trapDoor);
+
+      block.getWorld().playSound(
+          block.getLocation(),
+          newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE,
+          SoundCategory.BLOCKS,
+          1F, 1F
+      );
+    });
+
+    event.setCancelled(true);
+  }
 
 }

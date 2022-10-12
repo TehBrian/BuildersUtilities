@@ -14,58 +14,58 @@ import java.nio.file.Path;
  */
 public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrapper, ConfigConfig.Data> {
 
-    @Inject
-    public ConfigConfig(final @NonNull @Named("dataFolder") Path dataFolder) {
-        super(new YamlConfigurateWrapper(dataFolder.resolve("config.yml"), YamlConfigurationLoader.builder()
-                .path(dataFolder.resolve("config.yml"))
-                .defaultOptions(opts -> opts.implicitInitialization(false))
-                .build()));
-    }
+  @Inject
+  public ConfigConfig(final @NonNull @Named("dataFolder") Path dataFolder) {
+    super(new YamlConfigurateWrapper(dataFolder.resolve("config.yml"), YamlConfigurationLoader.builder()
+        .path(dataFolder.resolve("config.yml"))
+        .defaultOptions(opts -> opts.implicitInitialization(false))
+        .build()));
+  }
 
-    @Override
-    protected Class<Data> getDataClass() {
-        return Data.class;
-    }
+  @Override
+  protected Class<Data> getDataClass() {
+    return Data.class;
+  }
 
+  @ConfigSerializable
+  public record Data(@NonNull Settings settings,
+                     @NonNull Heads heads) {
+
+    @SuppressWarnings("unused")
     @ConfigSerializable
-    public record Data(@NonNull Settings settings,
-                       @NonNull Heads heads) {
-
-        @SuppressWarnings("unused")
-        @ConfigSerializable
-        public record Settings(boolean disablePhysics,
-                               boolean disableEntityExplode,
-                               boolean disableBlockExplode,
-                               boolean disableLeavesDecay,
-                               boolean disableFarmlandTrample,
-                               boolean disableDragonEggTeleport) {
-
-        }
-
-        @SuppressWarnings("unused")
-        @ConfigSerializable
-        public record Heads(@NonNull ArmorColor armorColor,
-                            @NonNull Banner banner) {
-
-            @SuppressWarnings("unused")
-            @ConfigSerializable
-            public record ArmorColor(@NonNull String red,
-                                     @NonNull String green,
-                                     @NonNull String blue,
-                                     @NonNull String randomizeRed,
-                                     @NonNull String randomizeGreen,
-                                     @NonNull String randomizeBlue) {
-
-            }
-
-            @SuppressWarnings("unused")
-            @ConfigSerializable
-            public record Banner(@NonNull String randomize) {
-
-            }
-
-        }
+    public record Settings(boolean disablePhysics,
+                           boolean disableEntityExplode,
+                           boolean disableBlockExplode,
+                           boolean disableLeavesDecay,
+                           boolean disableFarmlandTrample,
+                           boolean disableDragonEggTeleport) {
 
     }
+
+    @SuppressWarnings("unused")
+    @ConfigSerializable
+    public record Heads(@NonNull ArmorColor armorColor,
+                        @NonNull Banner banner) {
+
+      @SuppressWarnings("unused")
+      @ConfigSerializable
+      public record ArmorColor(@NonNull String red,
+                               @NonNull String green,
+                               @NonNull String blue,
+                               @NonNull String randomizeRed,
+                               @NonNull String randomizeGreen,
+                               @NonNull String randomizeBlue) {
+
+      }
+
+      @SuppressWarnings("unused")
+      @ConfigSerializable
+      public record Banner(@NonNull String randomize) {
+
+      }
+
+    }
+
+  }
 
 }

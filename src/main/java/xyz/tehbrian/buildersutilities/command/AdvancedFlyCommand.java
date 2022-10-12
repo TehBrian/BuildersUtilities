@@ -15,52 +15,52 @@ import xyz.tehbrian.buildersutilities.util.Permissions;
 
 public final class AdvancedFlyCommand extends PaperCloudCommand<CommandSender> {
 
-    private final UserService userService;
-    private final LangConfig langConfig;
+  private final UserService userService;
+  private final LangConfig langConfig;
 
-    @Inject
-    public AdvancedFlyCommand(
-            final @NonNull UserService userService,
-            final @NonNull LangConfig langConfig
-    ) {
-        this.userService = userService;
-        this.langConfig = langConfig;
-    }
+  @Inject
+  public AdvancedFlyCommand(
+      final @NonNull UserService userService,
+      final @NonNull LangConfig langConfig
+  ) {
+    this.userService = userService;
+    this.langConfig = langConfig;
+  }
 
-    @Override
-    public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
-        final var root = commandManager.commandBuilder("advancedfly", "advfly", "af")
-                .meta(CommandMeta.DESCRIPTION, "Toggles advanced fly.")
-                .permission(Permissions.ADVANCED_FLY)
-                .senderType(Player.class);
+  @Override
+  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+    final var root = commandManager.commandBuilder("advancedfly", "advfly", "af")
+        .meta(CommandMeta.DESCRIPTION, "Toggles advanced fly.")
+        .permission(Permissions.ADVANCED_FLY)
+        .senderType(Player.class);
 
-        final var on = root.literal("on", ArgumentDescription.of("Enables advanced fly."))
-                .handler(c -> {
-                    final var sender = (Player) c.getSender();
-                    this.userService.getUser(sender).advancedFlyEnabled(true);
-                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "enabled")));
-                });
+    final var on = root.literal("on", ArgumentDescription.of("Enables advanced fly."))
+        .handler(c -> {
+          final var sender = (Player) c.getSender();
+          this.userService.getUser(sender).advancedFlyEnabled(true);
+          sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "enabled")));
+        });
 
-        final var off = root.literal("off", ArgumentDescription.of("Disables advanced fly."))
-                .handler(c -> {
-                    final var sender = (Player) c.getSender();
-                    this.userService.getUser(sender).advancedFlyEnabled(false);
-                    sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "disabled")));
-                });
+    final var off = root.literal("off", ArgumentDescription.of("Disables advanced fly."))
+        .handler(c -> {
+          final var sender = (Player) c.getSender();
+          this.userService.getUser(sender).advancedFlyEnabled(false);
+          sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "disabled")));
+        });
 
-        final var toggle = root
-                .handler(c -> {
-                    final var sender = (Player) c.getSender();
-                    if (this.userService.getUser(sender).toggleAdvancedFlyEnabled()) {
-                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "enabled")));
-                    } else {
-                        sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "disabled")));
-                    }
-                });
+    final var toggle = root
+        .handler(c -> {
+          final var sender = (Player) c.getSender();
+          if (this.userService.getUser(sender).toggleAdvancedFlyEnabled()) {
+            sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "enabled")));
+          } else {
+            sender.sendMessage(this.langConfig.c(NodePath.path("commands", "advanced-fly", "disabled")));
+          }
+        });
 
-        commandManager.command(on)
-                .command(off)
-                .command(toggle);
-    }
+    commandManager.command(on)
+        .command(off)
+        .command(toggle);
+  }
 
 }
