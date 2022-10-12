@@ -5,14 +5,13 @@ charset = utf-8
 end_of_line = lf
 
 indent_style = space
-indent_size = 4
+indent_size = 2
 
+max_line_length = 120
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-max_line_length = 120
-
-ij_continuation_indent_size = 8
+ij_continuation_indent_size = 4
 ij_formatter_off_tag = @formatter:off
 ij_formatter_on_tag = @formatter:on
 ij_formatter_tags_enabled = false
@@ -21,9 +20,6 @@ ij_wrap_on_typing = false
 ij_visual_guides = 80, 120
 
 [*.conf]
-indent_size = 2
-ij_continuation_indent_size = 2
-
 ij_hocon_keep_blank_lines_before_right_brace = 2
 ij_hocon_keep_indents_on_empty_lines = false
 ij_hocon_keep_line_breaks = true
@@ -55,8 +51,6 @@ ij_css_use_double_quotes = true
 ij_css_value_alignment = do_not_align
 
 [*.java]
-max_line_length = 140
-
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = false
 ij_java_align_group_field_declarations = false
@@ -290,9 +284,6 @@ ij_java_wrap_first_method_in_call_chain = true
 ij_java_wrap_long_lines = false
 
 [*.nbtt]
-max_line_length = 150
-ij_continuation_indent_size = 4
-
 ij_nbtt_keep_indents_on_empty_lines = false
 ij_nbtt_space_after_colon = true
 ij_nbtt_space_after_comma = true
@@ -308,8 +299,6 @@ ij_properties_key_value_delimiter = equals
 ij_properties_spaces_around_key_value_delimiter = false
 
 [*.sass]
-indent_size = 2
-
 ij_sass_align_closing_brace_with_properties = false
 ij_sass_blank_lines_around_nested_selector = 1
 ij_sass_blank_lines_between_blocks = 1
@@ -329,8 +318,6 @@ ij_sass_use_double_quotes = true
 ij_sass_value_alignment = 0
 
 [*.scss]
-indent_size = 2
-
 ij_scss_align_closing_brace_with_properties = false
 ij_scss_blank_lines_around_nested_selector = 1
 ij_scss_blank_lines_between_blocks = 1
@@ -376,8 +363,6 @@ ij_xml_space_inside_empty_tag = false
 ij_xml_text_wrap = normal
 
 [{*.ats, *.ts}]
-ij_continuation_indent_size = 4
-
 ij_typescript_align_imports = false
 ij_typescript_align_multiline_array_initializer_expression = false
 ij_typescript_align_multiline_binary_operation = false
@@ -545,8 +530,6 @@ ij_typescript_while_on_new_line = false
 ij_typescript_wrap_comments = false
 
 [{*.bash, *.sh, *.zsh}]
-indent_size = 2
-
 ij_shell_binary_ops_start_line = false
 ij_shell_keep_column_alignment_padding = false
 ij_shell_minify_program = false
@@ -555,8 +538,6 @@ ij_shell_switch_cases_indented = false
 ij_shell_use_unix_line_separator = true
 
 [{*.cjs, *.js}]
-ij_continuation_indent_size = 4
-
 ij_javascript_align_imports = false
 ij_javascript_align_multiline_array_initializer_expression = false
 ij_javascript_align_multiline_binary_operation = false
@@ -985,14 +966,12 @@ ij_kotlin_wrap_expression_body_functions = 0
 ij_kotlin_wrap_first_method_in_call_chain = false
 
 [{*.har, *.json}]
-indent_size = 2
-
 ij_json_keep_blank_lines_in_code = 0
 ij_json_keep_indents_on_empty_lines = false
 ij_json_keep_line_breaks = true
 ij_json_space_after_colon = true
 ij_json_space_after_comma = true
-ij_json_space_before_colon = true
+ij_json_space_before_colon = false
 ij_json_space_before_comma = false
 ij_json_spaces_within_braces = false
 ij_json_spaces_within_brackets = false
@@ -1027,8 +1006,6 @@ ij_html_text_wrap = normal
 ij_html_uniform_ident = false
 
 [{*.markdown, *.md}]
-max_line_length = 80
-
 ij_markdown_force_one_space_after_blockquote_symbol = true
 ij_markdown_force_one_space_after_header_symbol = true
 ij_markdown_force_one_space_after_list_bullet = true
@@ -1042,8 +1019,6 @@ ij_markdown_min_lines_around_header = 1
 ij_markdown_min_lines_between_paragraphs = 1
 
 [{*.yaml, *.yml}]
-indent_size = 2
-
 ij_yaml_align_values_properties = do_not_align
 ij_yaml_autoinsert_sequence_marker = true
 ij_yaml_block_mapping_on_new_line = false
