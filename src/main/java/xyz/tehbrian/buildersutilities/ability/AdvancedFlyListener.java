@@ -33,7 +33,7 @@ public final class AdvancedFlyListener implements Listener {
 
   @Inject
   public AdvancedFlyListener(
-      final @NonNull UserService userService
+      final UserService userService
   ) {
     this.userService = userService;
   }

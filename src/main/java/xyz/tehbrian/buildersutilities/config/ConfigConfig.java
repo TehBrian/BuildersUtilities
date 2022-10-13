@@ -15,7 +15,7 @@ import java.nio.file.Path;
 public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrapper, ConfigConfig.Data> {
 
   @Inject
-  public ConfigConfig(final @NonNull @Named("dataFolder") Path dataFolder) {
+  public ConfigConfig(final @Named("dataFolder") Path dataFolder) {
     super(new YamlConfigurateWrapper(dataFolder.resolve("config.yml"), YamlConfigurationLoader.builder()
         .path(dataFolder.resolve("config.yml"))
         .defaultOptions(opts -> opts.implicitInitialization(false))
@@ -28,8 +28,8 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
   }
 
   @ConfigSerializable
-  public record Data(@NonNull Settings settings,
-                     @NonNull Heads heads) {
+  public record Data(Settings settings,
+                     Heads heads) {
 
     @SuppressWarnings("unused")
     @ConfigSerializable
@@ -44,23 +44,23 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
     @SuppressWarnings("unused")
     @ConfigSerializable
-    public record Heads(@NonNull ArmorColor armorColor,
-                        @NonNull Banner banner) {
+    public record Heads(ArmorColor armorColor,
+                        Banner banner) {
 
       @SuppressWarnings("unused")
       @ConfigSerializable
-      public record ArmorColor(@NonNull String red,
-                               @NonNull String green,
-                               @NonNull String blue,
-                               @NonNull String randomizeRed,
-                               @NonNull String randomizeGreen,
-                               @NonNull String randomizeBlue) {
+      public record ArmorColor(String red,
+                               String green,
+                               String blue,
+                               String randomizeRed,
+                               String randomizeGreen,
+                               String randomizeBlue) {
 
       }
 
       @SuppressWarnings("unused")
       @ConfigSerializable
-      public record Banner(@NonNull String randomize) {
+      public record Banner(String randomize) {
 
       }
 

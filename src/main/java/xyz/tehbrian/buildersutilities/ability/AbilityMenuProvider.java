@@ -40,7 +40,7 @@ public final class AbilityMenuProvider {
 
   @Inject
   public AbilityMenuProvider(
-      final @NonNull LangConfig langConfig
+      final LangConfig langConfig
   ) {
     this.langConfig = langConfig;
   }

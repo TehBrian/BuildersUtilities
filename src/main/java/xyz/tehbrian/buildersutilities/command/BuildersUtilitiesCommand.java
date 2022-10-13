@@ -40,11 +40,11 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
 
   @Inject
   public BuildersUtilitiesCommand(
-      final @NonNull BuildersUtilities buildersUtilities,
-      final @NonNull UserService userService,
-      final @NonNull LangConfig langConfig,
-      final @NonNull AbilityMenuProvider abilityMenuProvider,
-      final @NonNull SpecialConfig specialConfig
+      final BuildersUtilities buildersUtilities,
+      final UserService userService,
+      final LangConfig langConfig,
+      final AbilityMenuProvider abilityMenuProvider,
+      final SpecialConfig specialConfig
   ) {
     this.buildersUtilities = buildersUtilities;
     this.userService = userService;
@@ -54,7 +54,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("buildersutilities", "butils", "bu");
 
     final var ability = root

@@ -11,7 +11,7 @@ public class YamlConfigurateWrapper extends ConfigurateWrapper<YamlConfiguration
   /**
    * @param filePath the file path for the config
    */
-  public YamlConfigurateWrapper(final @NonNull Path filePath) {
+  public YamlConfigurateWrapper(final Path filePath) {
     super(filePath, YamlConfigurationLoader.builder()
         .path(filePath)
         .build());
@@ -21,7 +21,7 @@ public class YamlConfigurateWrapper extends ConfigurateWrapper<YamlConfiguration
    * @param filePath the file path for the config
    * @param loader   the loader
    */
-  public YamlConfigurateWrapper(final @NonNull Path filePath, final @NonNull YamlConfigurationLoader loader) {
+  public YamlConfigurateWrapper(final Path filePath, final YamlConfigurationLoader loader) {
     super(filePath, loader);
   }
 

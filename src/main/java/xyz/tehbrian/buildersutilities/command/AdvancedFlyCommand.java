@@ -20,15 +20,15 @@ public final class AdvancedFlyCommand extends PaperCloudCommand<CommandSender> {
 
   @Inject
   public AdvancedFlyCommand(
-      final @NonNull UserService userService,
-      final @NonNull LangConfig langConfig
+      final UserService userService,
+      final LangConfig langConfig
   ) {
     this.userService = userService;
     this.langConfig = langConfig;
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("advancedfly", "advfly", "af")
         .meta(CommandMeta.DESCRIPTION, "Toggles advanced fly.")
         .permission(Permissions.ADVANCED_FLY)

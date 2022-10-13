@@ -20,10 +20,10 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 
   private final Logger logger;
 
-  private final @NonNull List<@NonNull ItemStack> items = new ArrayList<>();
+  private final List<ItemStack> items = new ArrayList<>();
 
   @Inject
-  public SpecialConfig(final @NonNull @Named("dataFolder") Path dataFolder, final @NonNull Logger logger) {
+  public SpecialConfig(final @Named("dataFolder") Path dataFolder, final Logger logger) {
     super(new YamlConfigurateWrapper(dataFolder.resolve("special.yml")));
     this.logger = logger;
   }
@@ -31,7 +31,7 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
   @Override
   public void load() throws ConfigurateException {
     this.configurateWrapper.load();
-    final @NonNull CommentedConfigurationNode rootNode =
+    final CommentedConfigurationNode rootNode =
         Objects.requireNonNull(this.configurateWrapper.get()); // will not be null as we called #load()
     final String fileName = this.configurateWrapper.filePath().getFileName().toString();
 
@@ -57,7 +57,7 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
     }
   }
 
-  public @NonNull List<@NonNull ItemStack> items() {
+  public List<ItemStack> items() {
     return this.items;
   }
 

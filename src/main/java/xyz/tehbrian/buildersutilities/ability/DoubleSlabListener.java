@@ -21,7 +21,7 @@ public final class DoubleSlabListener implements Listener {
 
   @Inject
   public DoubleSlabListener(
-      final @NonNull UserService userService
+      final UserService userService
   ) {
     this.userService = userService;
   }

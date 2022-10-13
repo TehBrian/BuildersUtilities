@@ -141,7 +141,7 @@ public final class BuildersUtilities extends TehPlugin {
    * @return whether it was successful
    */
   private boolean setupCommands() {
-    final @NonNull CommandService commandService = this.injector.getInstance(CommandService.class);
+    final CommandService commandService = this.injector.getInstance(CommandService.class);
     try {
       commandService.init();
     } catch (final Exception e) {
@@ -156,9 +156,9 @@ public final class BuildersUtilities extends TehPlugin {
       return false;
     }
 
-    final @NonNull Function<@NonNull Exception, @NonNull Component> noPermissionHandler;
+    final Function<Exception, Component> noPermissionHandler;
 
-    final @NonNull Component configNoPermissionMessage = this.injector.getInstance(LangConfig.class)
+    final Component configNoPermissionMessage = this.injector.getInstance(LangConfig.class)
         .c(NodePath.path("commands", "no-permission"));
 
     if (PlainTextComponentSerializer.plainText().serialize(configNoPermissionMessage).isEmpty()) {

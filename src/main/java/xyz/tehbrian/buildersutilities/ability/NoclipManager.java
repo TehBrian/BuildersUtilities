@@ -17,8 +17,8 @@ public final class NoclipManager {
 
   @Inject
   public NoclipManager(
-      final @NonNull BuildersUtilities buildersUtilities,
-      final @NonNull UserService userService
+      final BuildersUtilities buildersUtilities,
+      final UserService userService
   ) {
     this.buildersUtilities = buildersUtilities;
     this.userService = userService;

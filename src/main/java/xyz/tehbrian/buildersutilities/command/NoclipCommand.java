@@ -20,15 +20,15 @@ public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
 
   @Inject
   public NoclipCommand(
-      final @NonNull UserService userService,
-      final @NonNull LangConfig langConfig
+      final UserService userService,
+      final LangConfig langConfig
   ) {
     this.userService = userService;
     this.langConfig = langConfig;
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("noclip", "nc")
         .meta(CommandMeta.DESCRIPTION, "Toggles noclip.")
         .permission(Permissions.NOCLIP)

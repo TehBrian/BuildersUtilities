@@ -14,7 +14,7 @@ public final class PluginModule extends AbstractModule {
 
   private final BuildersUtilities buildersUtilities;
 
-  public PluginModule(final @NonNull BuildersUtilities buildersUtilities) {
+  public PluginModule(final BuildersUtilities buildersUtilities) {
     this.buildersUtilities = buildersUtilities;
   }
 
@@ -29,7 +29,7 @@ public final class PluginModule extends AbstractModule {
    */
   @SuppressWarnings("unused")
   @Provides
-  public @NonNull Logger provideSLF4JLogger() {
+  public Logger provideSLF4JLogger() {
     return this.buildersUtilities.getSLF4JLogger();
   }
 
@@ -39,7 +39,7 @@ public final class PluginModule extends AbstractModule {
   @SuppressWarnings("unused")
   @Provides
   @Named("dataFolder")
-  public @NonNull Path provideDataFolder() {
+  public Path provideDataFolder() {
     return this.buildersUtilities.getDataFolder().toPath();
   }
 

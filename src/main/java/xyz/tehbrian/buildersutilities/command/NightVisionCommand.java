@@ -20,15 +20,15 @@ public final class NightVisionCommand extends PaperCloudCommand<CommandSender> {
 
   @Inject
   public NightVisionCommand(
-      final @NonNull UserService userService,
-      final @NonNull LangConfig langConfig
+      final UserService userService,
+      final LangConfig langConfig
   ) {
     this.userService = userService;
     this.langConfig = langConfig;
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("nightvision", "nv")
         .meta(CommandMeta.DESCRIPTION, "Toggles night vision.")
         .permission(Permissions.NIGHT_VISION)

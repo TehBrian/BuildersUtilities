@@ -24,8 +24,8 @@ public final class BannerPatternMenuProvider {
 
   @Inject
   public BannerPatternMenuProvider(
-      final @NonNull LangConfig langConfig,
-      final @NonNull ConfigConfig configConfig
+      final LangConfig langConfig,
+      final ConfigConfig configConfig
   ) {
     this.langConfig = langConfig;
     this.configConfig = configConfig;

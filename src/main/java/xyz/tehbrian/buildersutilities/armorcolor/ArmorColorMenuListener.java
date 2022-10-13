@@ -24,8 +24,8 @@ public final class ArmorColorMenuListener implements Listener {
 
   @Inject
   public ArmorColorMenuListener(
-      final @NonNull ArmorColorMenuProvider armorColorInventoryProvider,
-      final @NonNull LangConfig langConfig
+      final ArmorColorMenuProvider armorColorInventoryProvider,
+      final LangConfig langConfig
   ) {
     this.armorColorInventoryProvider = armorColorInventoryProvider;
     this.langConfig = langConfig;

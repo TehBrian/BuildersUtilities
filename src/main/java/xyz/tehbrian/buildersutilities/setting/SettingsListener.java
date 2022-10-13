@@ -24,7 +24,7 @@ public final class SettingsListener implements Listener {
   private final ConfigConfig configConfig;
 
   @Inject
-  public SettingsListener(final @NonNull ConfigConfig configConfig) {
+  public SettingsListener(final ConfigConfig configConfig) {
     this.configConfig = configConfig;
   }
 

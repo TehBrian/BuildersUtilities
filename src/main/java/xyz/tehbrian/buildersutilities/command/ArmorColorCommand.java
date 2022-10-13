@@ -16,13 +16,13 @@ public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
 
   @Inject
   public ArmorColorCommand(
-      final @NonNull ArmorColorMenuProvider armorColorMenuProvider
+      final ArmorColorMenuProvider armorColorMenuProvider
   ) {
     this.armorColorMenuProvider = armorColorMenuProvider;
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var main = commandManager.commandBuilder("armorcolor", "acc")
         .meta(CommandMeta.DESCRIPTION, "Opens the armor color creator.")
         .permission(Permissions.ARMOR_COLOR)

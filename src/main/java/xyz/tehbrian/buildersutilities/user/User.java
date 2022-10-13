@@ -20,7 +20,7 @@ public final class User extends PaperUser {
   private boolean noclipEnabled = false;
   private boolean advancedFlyEnabled = false;
 
-  public User(final @NonNull UUID uuid) {
+  public User(final UUID uuid) {
     super(uuid);
   }
 

@@ -23,9 +23,9 @@ public final class AbilityMenuListener implements Listener {
 
   @Inject
   public AbilityMenuListener(
-      final @NonNull UserService userService,
-      final @NonNull AbilityMenuProvider abilityMenuProvider,
-      final @NonNull LangConfig langConfig
+      final UserService userService,
+      final AbilityMenuProvider abilityMenuProvider,
+      final LangConfig langConfig
   ) {
     this.userService = userService;
     this.abilityMenuProvider = abilityMenuProvider;

@@ -25,8 +25,8 @@ public final class BannerPatternMenuListener implements Listener {
 
   @Inject
   public BannerPatternMenuListener(
-      final @NonNull BannerColorMenuProvider bannerColorMenuProvider,
-      final @NonNull LangConfig langConfig
+      final BannerColorMenuProvider bannerColorMenuProvider,
+      final LangConfig langConfig
   ) {
     this.bannerColorMenuProvider = bannerColorMenuProvider;
     this.langConfig = langConfig;

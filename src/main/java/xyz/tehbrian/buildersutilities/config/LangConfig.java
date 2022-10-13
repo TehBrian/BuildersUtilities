@@ -18,7 +18,7 @@ public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
    * @param dataFolder the data folder
    */
   @Inject
-  public LangConfig(final @NonNull @Named("dataFolder") Path dataFolder) {
+  public LangConfig(final @Named("dataFolder") Path dataFolder) {
     super(new YamlConfigurateWrapper(dataFolder.resolve("lang.yml")));
   }
 
@@ -31,7 +31,7 @@ public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
    * @param path the config path
    * @return the component
    */
-  public @NonNull List<@NonNull Component> cl(final NodePath path) {
+  public List<Component> cl(final NodePath path) {
     final List<String> toParse = this.getAndVerifyString(path).lines().toList();
     final List<Component> parsed = new ArrayList<>();
     for (final String string : toParse) {

@@ -33,9 +33,9 @@ public final class GlazedTerracottaListener implements Listener {
 
   @Inject
   public GlazedTerracottaListener(
-      final @NonNull BuildersUtilities buildersUtilities,
-      final @NonNull UserService userService,
-      final @NonNull SpigotRestrictionHelper restrictionHelper
+      final BuildersUtilities buildersUtilities,
+      final UserService userService,
+      final SpigotRestrictionHelper restrictionHelper
   ) {
     this.buildersUtilities = buildersUtilities;
     this.userService = userService;

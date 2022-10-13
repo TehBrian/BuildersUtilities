@@ -16,13 +16,13 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
 
   @Inject
   public BannerCommand(
-      final @NonNull BannerBaseMenuProvider bannerBaseMenuProvider
+      final BannerBaseMenuProvider bannerBaseMenuProvider
   ) {
     this.bannerBaseMenuProvider = bannerBaseMenuProvider;
   }
 
   @Override
-  public void register(final @NonNull PaperCommandManager<CommandSender> commandManager) {
+  public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var main = commandManager.commandBuilder("banner", "bc")
         .meta(CommandMeta.DESCRIPTION, "Opens the banner creator.")
         .permission(Permissions.BANNER)

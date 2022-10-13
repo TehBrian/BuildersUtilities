@@ -38,9 +38,9 @@ public final class IronDoorListener implements Listener {
 
   @Inject
   public IronDoorListener(
-      final @NonNull BuildersUtilities buildersUtilities,
-      final @NonNull UserService userService,
-      final @NonNull SpigotRestrictionHelper restrictionHelper
+      final BuildersUtilities buildersUtilities,
+      final UserService userService,
+      final SpigotRestrictionHelper restrictionHelper
   ) {
     this.buildersUtilities = buildersUtilities;
     this.userService = userService;

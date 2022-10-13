@@ -16,7 +16,7 @@ public class CommandService extends PaperCloudService<CommandSender> {
 
   @Inject
   public CommandService(
-      final @NonNull BuildersUtilities buildersUtilities
+      final BuildersUtilities buildersUtilities
   ) {
     this.buildersUtilities = buildersUtilities;
   }
