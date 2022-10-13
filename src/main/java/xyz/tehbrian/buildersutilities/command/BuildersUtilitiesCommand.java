@@ -71,9 +71,9 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
         .handler(c -> {
           final var sender = (Player) c.getSender();
 
-          final Collection<Chunk> chunksToReload = this.around(
+          final Collection<Chunk> chunksToReload = around(
               sender.getLocation().getChunk(),
-              sender.getClientViewDistance()
+              min(8, sender.getViewDistance(), sender.getServer().getViewDistance())
           );
 
           // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.18
@@ -125,8 +125,12 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     commandManager.command(special);
   }
 
+  private static int min(final int a, final int b, final int c) {
+    return Math.min(Math.min(a, b), c);
+  }
+
   // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
-  private Collection<Chunk> around(final Chunk origin, final int radius) {
+  private static Collection<Chunk> around(final Chunk origin, final int radius) {
     final World world = origin.getWorld();
 
     final int length = (radius * 2) + 1;
