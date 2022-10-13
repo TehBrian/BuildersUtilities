@@ -27,6 +27,11 @@ me, over a couple sleepless nights. Now *that's* what I call quality code.
 [MiniMessage]: https://docs.adventure.kyori.net/minimessage/
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
+## Screenshots
+![commands](assets/commands.png)
+![ability menu](assets/ability-menu.gif)
+![armor color creator](assets/armor-color-creator.gif)
+
 ## Building
 This project uses Gradle. To build, run `./gradlew build` in the project's root
 directory. The built jar can be found in `build/libs`.
