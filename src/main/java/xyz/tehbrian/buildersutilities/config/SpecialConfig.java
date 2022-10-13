@@ -5,7 +5,6 @@ import com.google.inject.name.Named;
 import dev.tehbrian.tehlib.configurate.AbstractConfig;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 import org.spongepowered.configurate.CommentedConfigurationNode;

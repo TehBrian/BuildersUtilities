@@ -1,7 +1,6 @@
 package xyz.tehbrian.buildersutilities.config;
 
 import dev.tehbrian.tehlib.configurate.ConfigurateWrapper;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.nio.file.Path;

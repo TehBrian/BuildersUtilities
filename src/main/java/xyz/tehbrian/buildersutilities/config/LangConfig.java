@@ -5,7 +5,6 @@ import com.google.inject.name.Named;
 import dev.tehbrian.tehlib.paper.configurate.AbstractLangConfig;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.NodePath;
 
 import java.nio.file.Path;

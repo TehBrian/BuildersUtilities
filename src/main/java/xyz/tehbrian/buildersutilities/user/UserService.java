@@ -1,7 +1,6 @@
 package xyz.tehbrian.buildersutilities.user;
 
 import dev.tehbrian.tehlib.paper.user.PaperUserService;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.UUID;
 

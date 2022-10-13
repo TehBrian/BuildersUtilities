@@ -25,6 +25,7 @@ In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
 [MiniMessage]: https://docs.adventure.kyori.net/minimessage/
+
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
 ## Screenshots
