@@ -11,10 +11,11 @@ not function exactly the same; they differ greatly in some areas.
 
 [arcaniax-bu]: https://www.spigotmc.org/resources/builders-utilities.42361/
 
+---
+
 ## What's different?
 
-- Every message is easily configurable,
-  using [MiniMessage](https://docs.adventure.kyori.net/minimessage.html) syntax.
+- Every message is easily configurable and uses [MiniMessage][MiniMessage] syntax.
 - World interactions respect PlotSquared and WorldGuard restrictions.
 - Both the permissions and the commands have been completely redone. (See the
   [plugin.yml][plugin.yml] for an updated list!)
@@ -23,6 +24,7 @@ not function exactly the same; they differ greatly in some areas.
 In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
+[MiniMessage]: https://docs.adventure.kyori.net/minimessage/
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
 ## Building
@@ -30,5 +32,5 @@ This project uses Gradle. To build, run `./gradlew build` in the project's root
 directory. The built jar can be found in `build/libs`.
 
 ## Contributing
-Feel free to submit a pull-request or file an issue! All changes are welcome. If
+Feel free to submit a pull request or file an issue! All changes are welcome. If
 you're contributing code, please follow the project's code style.
