@@ -17,7 +17,6 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import java.util.Objects;
 import java.util.Random;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class ArmorColorMenuListener implements Listener {
 
   private final ArmorColorMenuProvider armorColorInventoryProvider;

@@ -25,7 +25,6 @@ import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 import java.util.Objects;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class GlazedTerracottaListener implements Listener {
 
   private final BuildersUtilities buildersUtilities;

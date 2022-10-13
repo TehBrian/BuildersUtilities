@@ -19,7 +19,6 @@ import xyz.tehbrian.buildersutilities.util.Items;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class ArmorColorMenuProvider {
 
   private final LangConfig langConfig;

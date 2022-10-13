@@ -10,7 +10,6 @@ import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
-@SuppressWarnings({"ClassCanBeRecord"})
 public final class NoclipManager {
 
   private final BuildersUtilities buildersUtilities;

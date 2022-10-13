@@ -15,7 +15,6 @@ import xyz.tehbrian.buildersutilities.util.BlockUtil;
 import xyz.tehbrian.buildersutilities.util.Half;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class DoubleSlabListener implements Listener {
 
   private final UserService userService;

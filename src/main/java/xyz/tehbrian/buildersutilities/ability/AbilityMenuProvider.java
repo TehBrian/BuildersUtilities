@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class AbilityMenuProvider {
 
   private static final ItemStack GREEN = PaperItemBuilder

@@ -17,7 +17,6 @@ import xyz.tehbrian.buildersutilities.util.BannerUtil;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
 import xyz.tehbrian.buildersutilities.util.Items;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class BannerPatternMenuProvider {
 
   private final LangConfig langConfig;

@@ -15,7 +15,6 @@ import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.Objects;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class AbilityMenuListener implements Listener {
 
   private final UserService userService;

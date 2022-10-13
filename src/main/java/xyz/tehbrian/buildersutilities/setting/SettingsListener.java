@@ -19,7 +19,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class SettingsListener implements Listener {
 
   private final ConfigConfig configConfig;
