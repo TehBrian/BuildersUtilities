@@ -16,15 +16,9 @@ java {
 
 repositories {
   mavenCentral()
-  maven("https://papermc.io/repo/repository/maven-public/") {
-    name = "papermc"
-  }
-  maven("https://repo.broccol.ai/releases/") {
-    name = "broccolai"
-  }
-  maven("https://repo.thbn.me/releases/") {
-    name = "thbn"
-  }
+  maven("https://papermc.io/repo/repository/maven-public/")
+  maven("https://repo.broccol.ai/releases/")
+  maven("https://repo.thbn.me/releases/")
 }
 
 dependencies {
@@ -45,6 +39,10 @@ tasks {
 
   processResources {
     expand("version" to project.version, "description" to project.description)
+  }
+
+  base {
+    archivesName.set("BuildersUtilities")
   }
 
   shadowJar {
