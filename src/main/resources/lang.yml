@@ -12,7 +12,7 @@ commands:
   noclip:
     enabled: "<#6699FF>BU <gray>› <#66FF99>Noclip enabled."
     disabled: "<#6699FF>BU <gray>› <#FF6699>Noclip disabled."
-  rc: "<#6699FF>BU <gray>› <#99FFFF>Reloaded the chunks in your view distance."
+  rc: "<#6699FF>BU <gray>› <#99FFFF>Reloaded the chunks around you."
   reload:
     success: "<#6699FF>BU <gray>› <#99FFFF>The configuration has been successfully reloaded."
     failure: "<#6699FF>BU <gray>› <#FF6699>Failed to load configuration, please check the console."
