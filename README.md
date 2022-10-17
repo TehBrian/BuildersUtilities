@@ -5,7 +5,7 @@ This is a **fork** of [Arcaniax's Builder's Utilities][arcaniax-bu] with
 customizable messages and nicer-looking GUIs. Be aware that the two plugins do
 not function exactly the same; they differ greatly in some areas.
 
-* [Download](https://github.com/TehBrian/BuildersUtilities/releases/latest)
+* [Download](https://modrinth.com/plugin/buildersutilities)
 * [Discord](https://thbn.me/discord)
 * [Donate](https://github.com/sponsors/TehBrian) <3
 
