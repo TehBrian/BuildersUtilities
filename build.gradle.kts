@@ -3,7 +3,7 @@ plugins {
   id("com.github.johnrengelman.shadow") version "7.1.2"
   id("io.papermc.paperweight.userdev") version "1.3.8"
   id("net.kyori.indra.checkstyle") version "3.0.0"
-  id("xyz.jpenilla.run-paper") version "1.0.6"
+  id("xyz.jpenilla.run-paper") version "1.1.0"
 }
 
 group = "xyz.tehbrian"
