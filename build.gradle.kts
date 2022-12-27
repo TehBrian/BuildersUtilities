@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "xyz.tehbrian"
-version = "1.6.1"
+version = "1.6.2"
 description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
