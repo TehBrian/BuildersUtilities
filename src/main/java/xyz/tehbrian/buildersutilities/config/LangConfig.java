@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
+public final class LangConfig extends AbstractLangConfig<YamlConfigurateWrapper> {
 
   /**
    * @param dataFolder the data folder
