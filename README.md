@@ -1,10 +1,6 @@
 # BuildersUtilities
 A curated bundle of tiny features that help builders do their thing.
 
-This is a **fork** of [Arcaniax's Builder's Utilities][arcaniax-bu] with
-customizable messages and nicer-looking GUIs. Be aware that the two plugins do
-not function exactly the same; they differ greatly in some areas.
-
 * [Download](https://modrinth.com/plugin/buildersutilities)
 * [Discord](https://thbn.me/discord)
 * [Donate](https://github.com/sponsors/TehBrian) <3
@@ -12,6 +8,11 @@ not function exactly the same; they differ greatly in some areas.
 [arcaniax-bu]: https://www.spigotmc.org/resources/builders-utilities.42361/
 
 ---
+
+## About
+This is a fork of [Arcaniax's Builder's Utilities][arcaniax-bu] with
+customizable messages and nicer-looking GUIs. Be aware that the two plugins do
+not function exactly the same; they differ greatly in some areas.
 
 ## What's different?
 
