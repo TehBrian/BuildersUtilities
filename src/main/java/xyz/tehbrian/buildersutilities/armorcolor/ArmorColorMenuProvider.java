@@ -13,7 +13,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
-import xyz.tehbrian.buildersutilities.util.Items;
+import xyz.tehbrian.buildersutilities.util.MenuItems;
 
 import java.util.List;
 import java.util.Objects;
@@ -40,7 +40,7 @@ public final class ArmorColorMenuProvider {
     );
 
     for (int i = 0; i < inv.getSize(); i++) {
-      inv.setItem(i, Items.INTERFACE_BACKGROUND);
+      inv.setItem(i, MenuItems.BACKGROUND);
     }
 
     inv.setItem(

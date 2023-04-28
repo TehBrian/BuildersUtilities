@@ -13,7 +13,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.user.User;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
-import xyz.tehbrian.buildersutilities.util.Items;
+import xyz.tehbrian.buildersutilities.util.MenuItems;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public final class AbilityMenuProvider {
     );
 
     for (int i = 0; i < inv.getSize(); i++) {
-      inv.setItem(i, Items.INTERFACE_BACKGROUND);
+      inv.setItem(i, MenuItems.BACKGROUND);
     }
 
     this.update(inv, user);
