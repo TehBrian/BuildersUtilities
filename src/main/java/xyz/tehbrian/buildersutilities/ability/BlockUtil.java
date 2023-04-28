@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.util;
+package xyz.tehbrian.buildersutilities.ability;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
