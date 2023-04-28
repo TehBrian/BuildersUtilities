@@ -46,25 +46,25 @@ public final class ArmorColorMenuProvider {
     inv.setItem(
         10,
         PaperItemBuilder.ofType(Material.LEATHER_HELMET)
-            .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-helmet")))
+            .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-helmet")))
             .build()
     );
     inv.setItem(
         19,
         PaperItemBuilder.ofType(Material.LEATHER_CHESTPLATE)
-            .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-chestplate")))
+            .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-chestplate")))
             .build()
     );
     inv.setItem(
         28,
         PaperItemBuilder.ofType(Material.LEATHER_LEGGINGS)
-            .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-leggings")))
+            .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-leggings")))
             .build()
     );
     inv.setItem(
         37,
         PaperItemBuilder.ofType(Material.LEATHER_BOOTS)
-            .lore(this.langConfig.cl(NodePath.path("menus", "armor-color", "get-boots")))
+            .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-boots")))
             .build()
     );
 

@@ -30,10 +30,10 @@ menus:
       <gray>Left click to increase
       <gray>Right click to decrease
       <gray>Shift click to change by 4
-    get-helmet: "<#66FF99>Click to get helmet"
-    get-chestplate: "<#66FF99>Click to get chestplate"
-    get-leggings: "<#66FF99>Click to get leggings"
-    get-boots: "<#66FF99>Click to get boots"
+    get-helmet: "<#66FF99>Get Helmet"
+    get-chestplate: "<#66FF99>Get Chestplate"
+    get-leggings: "<#66FF99>Get Leggings"
+    get-boots: "<#66FF99>Get Boots"
     red: "<#FF6699>Red"
     green: "<#66FF99>Green"
     blue: "<#99FFFF>Blue"
