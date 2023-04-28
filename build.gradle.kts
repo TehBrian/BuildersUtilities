@@ -52,7 +52,7 @@ tasks {
     relocate("com.google.inject", "$libsPackage.guice")
     relocate("dev.tehbrian.tehlib", "$libsPackage.tehlib")
     relocate("org.spongepowered.configurate", "$libsPackage.configurate")
-    relocate("xyz.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
+    relocate("dev.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
   }
 
   runServer {

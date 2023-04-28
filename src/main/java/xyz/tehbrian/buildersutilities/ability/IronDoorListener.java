@@ -1,6 +1,8 @@
 package xyz.tehbrian.buildersutilities.ability;
 
 import com.google.inject.Inject;
+import dev.tehbrian.restrictionhelper.core.ActionType;
+import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -18,8 +20,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import xyz.tehbrian.buildersutilities.BuildersUtilities;
 import xyz.tehbrian.buildersutilities.user.UserService;
 import xyz.tehbrian.buildersutilities.util.Permissions;
-import xyz.tehbrian.restrictionhelper.core.ActionType;
-import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 import java.util.Objects;
 

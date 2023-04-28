@@ -10,8 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import xyz.tehbrian.buildersutilities.user.UserService;
-import xyz.tehbrian.buildersutilities.util.BlockUtil;
-import xyz.tehbrian.buildersutilities.util.Half;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 public final class DoubleSlabListener implements Listener {

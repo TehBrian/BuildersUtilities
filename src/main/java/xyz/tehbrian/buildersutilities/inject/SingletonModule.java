@@ -1,6 +1,7 @@
 package xyz.tehbrian.buildersutilities.inject;
 
 import com.google.inject.AbstractModule;
+import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorMenuProvider;
 import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseMenuProvider;
@@ -10,7 +11,6 @@ import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
 import xyz.tehbrian.buildersutilities.user.UserService;
-import xyz.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 
 public final class SingletonModule extends AbstractModule {
 
