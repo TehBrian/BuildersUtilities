@@ -1,4 +1,4 @@
-package xyz.tehbrian.buildersutilities.util;
+package xyz.tehbrian.buildersutilities.banner;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -9,17 +9,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Various utilities relating to banners.
- */
-public final class BannerUtil {
+public final class Util {
 
   public static final Random RANDOM = new Random();
 
-  private BannerUtil() {
+  private Util() {
   }
 
-  public static Material colorToBanner(final DyeColor dyeColor) {
+  public static Material bannerFromColor(final DyeColor dyeColor) {
     return switch (dyeColor) {
       case WHITE -> Material.WHITE_BANNER;
       case ORANGE -> Material.ORANGE_BANNER;
@@ -40,7 +37,7 @@ public final class BannerUtil {
     };
   }
 
-  public static DyeColor bannerToColor(final Material material) {
+  public static DyeColor colorFromItem(final Material material) {
     return switch (material) {
       case WHITE_BANNER, WHITE_DYE -> DyeColor.WHITE;
       case ORANGE_BANNER, ORANGE_DYE -> DyeColor.ORANGE;
@@ -67,8 +64,7 @@ public final class BannerUtil {
   }
 
   /**
-   * Compiles a list of all banner pattern types except for
-   * {@link PatternType#BASE}.
+   * Compiles a list of all pattern types except {@link PatternType#BASE}.
    *
    * @return a list of all pattern types
    */
