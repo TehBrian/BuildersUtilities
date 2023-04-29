@@ -6,13 +6,16 @@ import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
+import net.minecraft.server.level.ChunkHolder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.ChunkPos;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_19_R2.CraftChunk;
-import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -52,6 +55,28 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     this.specialConfig = specialConfig;
   }
 
+  private static int min(final int a, final int b, final int c) {
+    return Math.min(Math.min(a, b), c);
+  }
+
+  // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
+  private static Collection<Chunk> around(final Chunk origin, final int radius) {
+    final World world = origin.getWorld();
+
+    final int length = (radius * 2) + 1;
+    final Set<Chunk> chunks = new HashSet<>(length * length);
+
+    final int cX = origin.getX();
+    final int cZ = origin.getZ();
+
+    for (int x = -radius; x <= radius; x++) {
+      for (int z = -radius; z <= radius; z++) {
+        chunks.add(world.getChunkAt(cX + x, cZ + z));
+      }
+    }
+    return chunks;
+  }
+
   @Override
   public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("buildersutilities", "butils", "bu");
@@ -76,15 +101,23 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
               min(8, sender.getViewDistance(), sender.getServer().getViewDistance())
           );
 
-          // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.18
+          // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.19.4
           final ServerPlayer nmsPlayer = ((CraftPlayer) sender).getHandle();
+          final ServerLevel nmsLevel = ((CraftWorld) sender.getWorld()).getHandle();
           for (final Chunk chunk : chunksToReload) {
-            final var nmsChunk = ((CraftChunk) chunk).getHandle();
+            final ChunkPos nmsChunkPos = new ChunkPos(chunk.getX(), chunk.getZ());
+            final ChunkHolder nmsChunk = nmsLevel.getChunkSource().chunkMap.getVisibleChunkIfPresent(nmsChunkPos.toLong());
+            if (nmsChunk == null) {
+              // chunk isn't loaded. no need to worry about it.
+              continue;
+            }
+
             final var packet = new ClientboundLevelChunkWithLightPacket(
-                nmsChunk, nmsChunk.getLevel().getLightEngine(),
+                nmsChunk.getSendingChunk(),
+                nmsLevel.getLightEngine(),
                 null, null, true, false
             );
-            nmsPlayer.trackChunk(nmsChunk.getPos(), packet);
+            nmsPlayer.trackChunk(nmsChunkPos, packet);
           }
 
           sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));
@@ -123,28 +156,6 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     commandManager.command(rc);
     commandManager.command(reload);
     commandManager.command(special);
-  }
-
-  private static int min(final int a, final int b, final int c) {
-    return Math.min(Math.min(a, b), c);
-  }
-
-  // https://www.spigotmc.org/threads/getting-chunks-around-a-center-chunk-within-a-specific-radius.422279/
-  private static Collection<Chunk> around(final Chunk origin, final int radius) {
-    final World world = origin.getWorld();
-
-    final int length = (radius * 2) + 1;
-    final Set<Chunk> chunks = new HashSet<>(length * length);
-
-    final int cX = origin.getX();
-    final int cZ = origin.getZ();
-
-    for (int x = -radius; x <= radius; x++) {
-      for (int z = -radius; z <= radius; z++) {
-        chunks.add(world.getChunkAt(cX + x, cZ + z));
-      }
-    }
-    return chunks;
   }
 
 }
