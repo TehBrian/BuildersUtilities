@@ -59,7 +59,8 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
       @SuppressWarnings("unused")
       @ConfigSerializable
-      public record Banner(String randomize) {
+      public record Banner(String randomize,
+                           String undo) {
 
       }
 

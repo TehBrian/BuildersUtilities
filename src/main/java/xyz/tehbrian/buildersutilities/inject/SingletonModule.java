@@ -4,9 +4,11 @@ import com.google.inject.AbstractModule;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import xyz.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorMenuProvider;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseMenuProvider;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerColorMenuProvider;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerPatternMenuProvider;
+import xyz.tehbrian.buildersutilities.banner.PlayerSessions;
+import xyz.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
+import xyz.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
+import xyz.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
+import xyz.tehbrian.buildersutilities.banner.menu.PatternMenuProvider;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 import xyz.tehbrian.buildersutilities.config.SpecialConfig;
@@ -25,9 +27,12 @@ public final class SingletonModule extends AbstractModule {
 
     this.bind(ArmorColorMenuProvider.class).asEagerSingleton();
     this.bind(AbilityMenuProvider.class).asEagerSingleton();
-    this.bind(BannerBaseMenuProvider.class).asEagerSingleton();
-    this.bind(BannerColorMenuProvider.class).asEagerSingleton();
-    this.bind(BannerPatternMenuProvider.class).asEagerSingleton();
+
+    this.bind(BaseMenuProvider.class).asEagerSingleton();
+    this.bind(ColorMenuProvider.class).asEagerSingleton();
+    this.bind(PatternMenuProvider.class).asEagerSingleton();
+    this.bind(DoneMenuProvider.class).asEagerSingleton();
+    this.bind(PlayerSessions.class).asEagerSingleton();
   }
 
 }

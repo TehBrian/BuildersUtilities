@@ -25,9 +25,10 @@ import xyz.tehbrian.buildersutilities.ability.GlazedTerracottaListener;
 import xyz.tehbrian.buildersutilities.ability.IronDoorListener;
 import xyz.tehbrian.buildersutilities.ability.NoclipManager;
 import xyz.tehbrian.buildersutilities.armorcolor.ArmorColorMenuListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerBaseMenuListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerColorMenuListener;
-import xyz.tehbrian.buildersutilities.banner.listener.BannerPatternMenuListener;
+import xyz.tehbrian.buildersutilities.banner.menu.BaseMenuListener;
+import xyz.tehbrian.buildersutilities.banner.menu.ColorMenuListener;
+import xyz.tehbrian.buildersutilities.banner.menu.DoneMenuListener;
+import xyz.tehbrian.buildersutilities.banner.menu.PatternMenuListener;
 import xyz.tehbrian.buildersutilities.command.AdvancedFlyCommand;
 import xyz.tehbrian.buildersutilities.command.ArmorColorCommand;
 import xyz.tehbrian.buildersutilities.command.BannerCommand;
@@ -124,9 +125,11 @@ public final class BuildersUtilities extends TehPlugin {
     this.registerListeners(
         this.injector.getInstance(AbilityMenuListener.class),
         this.injector.getInstance(ArmorColorMenuListener.class),
-        this.injector.getInstance(BannerBaseMenuListener.class),
-        this.injector.getInstance(BannerColorMenuListener.class),
-        this.injector.getInstance(BannerPatternMenuListener.class),
+
+        this.injector.getInstance(BaseMenuListener.class),
+        this.injector.getInstance(ColorMenuListener.class),
+        this.injector.getInstance(PatternMenuListener.class),
+        this.injector.getInstance(DoneMenuListener.class),
 
         this.injector.getInstance(AdvancedFlyListener.class),
         this.injector.getInstance(DoubleSlabListener.class),

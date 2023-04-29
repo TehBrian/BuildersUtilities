@@ -1,28 +1,27 @@
-package xyz.tehbrian.buildersutilities.banner.provider;
+package xyz.tehbrian.buildersutilities.banner.menu;
 
 import broccolai.corn.paper.item.special.BannerBuilder;
-import broccolai.corn.paper.item.special.SkullBuilder;
 import com.google.inject.Inject;
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.NodePath;
+import xyz.tehbrian.buildersutilities.banner.Buttons;
+import xyz.tehbrian.buildersutilities.banner.Session;
+import xyz.tehbrian.buildersutilities.banner.Util;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
-import xyz.tehbrian.buildersutilities.util.BannerUtil;
 import xyz.tehbrian.buildersutilities.util.ChestSize;
-import xyz.tehbrian.buildersutilities.util.Items;
+import xyz.tehbrian.buildersutilities.util.MenuItems;
 
-public final class BannerPatternMenuProvider {
+public final class PatternMenuProvider {
 
   private final LangConfig langConfig;
   private final ConfigConfig configConfig;
 
   @Inject
-  public BannerPatternMenuProvider(
+  public PatternMenuProvider(
       final LangConfig langConfig,
       final ConfigConfig configConfig
   ) {
@@ -30,7 +29,7 @@ public final class BannerPatternMenuProvider {
     this.configConfig = configConfig;
   }
 
-  public Inventory generate(final ItemStack oldBanner, final DyeColor dyeColor) {
+  public Inventory generate(final Session session) {
     final Inventory inv = Bukkit.createInventory(
         null,
         ChestSize.DOUBLE,
@@ -38,25 +37,20 @@ public final class BannerPatternMenuProvider {
     );
 
     for (int i = 0; i < inv.getSize(); i++) {
-      inv.setItem(i, Items.INTERFACE_BACKGROUND);
+      inv.setItem(i, MenuItems.BACKGROUND);
     }
 
-    inv.setItem(3, SkullBuilder.ofType(Material.PLAYER_HEAD)
-        .name(this.langConfig.c(NodePath.path("menus", "banner", "randomize")))
-        .textures(this.configConfig.data().heads().banner().randomize())
-        .build()
-    );
-    inv.setItem(5, oldBanner);
+    Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
 
-    final Material base = switch (dyeColor) {
+    final Material displayBase = switch (session.nextPatternColor()) {
       case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
       default -> Material.WHITE_BANNER;
     };
 
-    for (int i = 9; i < (BannerUtil.patternTypes().size() + 9); i++) {
-      inv.setItem(i, BannerBuilder.ofType(base)
+    for (int i = 0; i < Util.patternTypes().size(); i++) {
+      inv.setItem(i + 9, BannerBuilder.ofType(displayBase)
           .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
-          .addPattern(new Pattern(dyeColor, BannerUtil.patternTypes().get(i - 9)))
+          .addPattern(new Pattern(session.nextPatternColor(), Util.patternTypes().get(i)))
           .build()
       );
     }

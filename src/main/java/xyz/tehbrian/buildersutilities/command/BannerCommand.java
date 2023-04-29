@@ -6,18 +6,18 @@ import com.google.inject.Inject;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.tehbrian.buildersutilities.banner.provider.BannerBaseMenuProvider;
+import xyz.tehbrian.buildersutilities.banner.PlayerSessions;
 import xyz.tehbrian.buildersutilities.util.Permissions;
 
 public final class BannerCommand extends PaperCloudCommand<CommandSender> {
 
-  private final BannerBaseMenuProvider bannerBaseMenuProvider;
+  private final PlayerSessions playerSessions;
 
   @Inject
   public BannerCommand(
-      final BannerBaseMenuProvider bannerBaseMenuProvider
+      final PlayerSessions playerSessions
   ) {
-    this.bannerBaseMenuProvider = bannerBaseMenuProvider;
+    this.playerSessions = playerSessions;
   }
 
   @Override
@@ -28,7 +28,7 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
         .senderType(Player.class)
         .handler(c -> {
           final var sender = (Player) c.getSender();
-          sender.openInventory(this.bannerBaseMenuProvider.generate());
+          playerSessions.get(sender).showInterface(sender);
         });
 
     commandManager.command(main);

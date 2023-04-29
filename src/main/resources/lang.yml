@@ -42,15 +42,17 @@ menus:
     randomize-blue: "<#99FFFF>Randomize Blue"
 
   banner:
-    base-inventory-name: "<#333399>Select a base.."
-    color-inventory-name: "<#333399>Select a color.."
-    pattern-inventory-name: "<#333399>Select a pattern.."
+    base-inventory-name: "<#333399>Select Base"
+    color-inventory-name: "<#333399>Select Color"
+    pattern-inventory-name: "<#333399>Select Pattern"
+    done-inventory-name: "<#333399>Maximum Patterns Reached"
     select: |-
       <gray>
       <gray>Click to select
-    cannot-get-banner: "<#FF6699>Select a base color first"
-    get-banner: "<#66FF99>Click to get banner"
+    undo: "<gray>Undo"
     randomize: "<white>Randomly Select"
+    get-banner: "<#66FF99>Get Banner"
+    reset: "<#FF6699>Reset"
 
   special:
     inventory-name: "<#333399>Special Items Menu"
