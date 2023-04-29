@@ -28,7 +28,7 @@ public final class BannerCommand extends PaperCloudCommand<CommandSender> {
         .senderType(Player.class)
         .handler(c -> {
           final var sender = (Player) c.getSender();
-          playerSessions.get(sender).showInterface(sender);
+          this.playerSessions.get(sender).showInterface(sender);
         });
 
     commandManager.command(main);

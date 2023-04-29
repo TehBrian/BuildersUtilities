@@ -11,7 +11,7 @@ import xyz.tehbrian.buildersutilities.config.LangConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerSessions {
+public final class PlayerSessions {
 
   private final BaseMenuProvider baseProvider;
   private final ColorMenuProvider colorProvider;
@@ -36,11 +36,11 @@ public class PlayerSessions {
   }
 
   public Session get(final Player player) {
-    return this.sessions.computeIfAbsent(player, (p) -> newSession());
+    return this.sessions.computeIfAbsent(player, (p) -> this.newSession());
   }
 
   public void wipe(final Player player) {
-    this.sessions.put(player, newSession());
+    this.sessions.put(player, this.newSession());
   }
 
   private Session newSession() {

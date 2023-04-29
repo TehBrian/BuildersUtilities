@@ -25,7 +25,7 @@ import java.util.List;
  * Any session can be perfectly replicated with only the
  * data in this class. This allows sessions to be paused and resumed.
  */
-public class Session {
+public final class Session {
 
   private static final ItemStack DEFAULT_BANNER = new ItemStack(Material.WHITE_BANNER);
 
@@ -134,7 +134,7 @@ public class Session {
   }
 
   public List<Pattern> patterns() {
-    return patterns;
+    return this.patterns;
   }
 
   /**

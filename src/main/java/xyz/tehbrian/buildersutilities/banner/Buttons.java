@@ -9,7 +9,7 @@ import org.spongepowered.configurate.NodePath;
 import xyz.tehbrian.buildersutilities.config.ConfigConfig;
 import xyz.tehbrian.buildersutilities.config.LangConfig;
 
-public class Buttons {
+public final class Buttons {
 
   public static final int UNDO_SLOT = 0;
   public static final int RANDOM_SLOT = 3;
