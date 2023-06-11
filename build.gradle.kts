@@ -52,12 +52,27 @@ tasks {
 
   shadowJar {
     val libsPackage = "${project.group}.${project.name}.libs"
-    relocate("broccolai.corn", "$libsPackage.corn")
-    relocate("cloud.commandframework", "$libsPackage.cloud")
-    relocate("com.google.inject", "$libsPackage.guice")
-    relocate("dev.tehbrian.tehlib", "$libsPackage.tehlib")
-    relocate("org.spongepowered.configurate", "$libsPackage.configurate")
-    relocate("dev.tehbrian.restrictionhelper", "$libsPackage.restrictionhelper")
+    fun moveToLibs(vararg patterns: String) {
+      for (pattern in patterns) {
+        relocate(pattern, "$libsPackage.$pattern")
+      }
+    }
+
+    moveToLibs(
+        "broccolai.corn",
+        "cloud.commandframework",
+        "com.google",
+        "dev.tehbrian.restrictionhelper",
+        "dev.tehbrian.tehlib",
+        "io.leangen",
+        "jakarta.inject",
+        "javax.annotation",
+        "net.kyori.examination",
+        "org.aopalliance",
+        "org.checkerframework",
+        "org.spongepowered",
+        "org.yaml",
+    )
   }
 
   runServer {
