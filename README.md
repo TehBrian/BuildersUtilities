@@ -1,4 +1,5 @@
 # BuildersUtilities
+
 A curated bundle of tiny features that help builders do their thing.
 
 * [Download](https://modrinth.com/plugin/buildersutilities)
@@ -8,6 +9,7 @@ A curated bundle of tiny features that help builders do their thing.
 ---
 
 ## About
+
 This is a fork of [Arcaniax's Builder's Utilities][arcaniax-bu] with
 customizable messages and nicer-looking GUIs. Be aware that the two plugins do
 not function exactly the same; they differ greatly in some areas.
@@ -30,14 +32,17 @@ me, over a couple sleepless nights. Now *that's* what I call quality code.
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
 ## Screenshots
+
 ![commands](assets/commands.png)
 ![ability menu](assets/ability-menu.gif)
 ![armor color creator](assets/armor-color-creator.gif)
 
 ## Building
+
 This project uses Gradle. To build, run `./gradlew build` in the project's root
 directory. The built jar can be found in `build/libs`.
 
 ## Contributing
+
 Feel free to submit a pull request or file an issue! All changes are welcome. If
 you're contributing code, please follow the project's code style.

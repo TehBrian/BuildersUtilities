@@ -6,7 +6,7 @@ website: https://github.com/TehBrian/BuildersUtilities
 softdepend: [ PlotSquared, WorldGuard ]
 
 version: ${version}
-main: xyz.tehbrian.buildersutilities.BuildersUtilities
+main: dev.tehbrian.buildersutilities.BuildersUtilities
 api-version: 1.19
 
 permissions:
