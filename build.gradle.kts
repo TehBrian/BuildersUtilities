@@ -7,7 +7,7 @@ plugins {
   id("com.github.ben-manes.versions") version "0.47.0"
 }
 
-group = "xyz.tehbrian"
+group = "dev.tehbrian"
 version = "1.7.0"
 description = "A curated bundle of tiny features that help builders do their thing."
 
