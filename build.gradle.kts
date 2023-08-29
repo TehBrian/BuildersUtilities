@@ -2,7 +2,7 @@ plugins {
   id("java")
   id("com.github.johnrengelman.shadow") version "8.1.1"
   id("io.papermc.paperweight.userdev") version "1.5.5"
-  id("net.kyori.indra.checkstyle") version "3.1.1"
+  id("net.kyori.indra.checkstyle") version "3.1.3"
   id("xyz.jpenilla.run-paper") version "2.1.0"
   id("com.github.ben-manes.versions") version "0.47.0"
 }
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
 
   implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
   implementation("cloud.commandframework:cloud-minecraft-extras:1.8.3")
@@ -40,8 +40,8 @@ tasks {
   processResources {
     filesMatching("plugin.yml") {
       expand(
-          "version" to project.version,
-          "description" to project.description
+        "version" to project.version,
+        "description" to project.description
       )
     }
   }
@@ -59,23 +59,23 @@ tasks {
     }
 
     moveToLibs(
-        "broccolai.corn",
-        "cloud.commandframework",
-        "com.google",
-        "dev.tehbrian.restrictionhelper",
-        "dev.tehbrian.tehlib",
-        "io.leangen",
-        "jakarta.inject",
-        "javax.annotation",
-        "net.kyori.examination",
-        "org.aopalliance",
-        "org.checkerframework",
-        "org.spongepowered",
-        "org.yaml",
+      "broccolai.corn",
+      "cloud.commandframework",
+      "com.google",
+      "dev.tehbrian.restrictionhelper",
+      "dev.tehbrian.tehlib",
+      "io.leangen",
+      "jakarta.inject",
+      "javax.annotation",
+      "net.kyori.examination",
+      "org.aopalliance",
+      "org.checkerframework",
+      "org.spongepowered",
+      "org.yaml",
     )
   }
 
   runServer {
-    minecraftVersion("1.19.4")
+    minecraftVersion("1.20.1")
   }
 }
