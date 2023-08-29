@@ -2,12 +2,12 @@ package dev.tehbrian.buildersutilities.banner;
 
 import broccolai.corn.paper.item.PaperItemBuilder;
 import broccolai.corn.paper.item.special.SkullBuilder;
+import dev.tehbrian.buildersutilities.config.ConfigConfig;
+import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.NodePath;
-import dev.tehbrian.buildersutilities.config.ConfigConfig;
-import dev.tehbrian.buildersutilities.config.LangConfig;
 
 public final class Buttons {
 

@@ -2,6 +2,8 @@ package dev.tehbrian.buildersutilities.setting;
 
 import com.destroystokyo.paper.event.player.PlayerStartSpectatingEntityEvent;
 import com.google.inject.Inject;
+import dev.tehbrian.buildersutilities.config.ConfigConfig;
+import dev.tehbrian.buildersutilities.util.Permissions;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -15,8 +17,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import dev.tehbrian.buildersutilities.config.ConfigConfig;
-import dev.tehbrian.buildersutilities.util.Permissions;
 
 public final class SettingsListener implements Listener {
 

@@ -1,6 +1,7 @@
 package dev.tehbrian.buildersutilities.inject;
 
 import com.google.inject.AbstractModule;
+import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import dev.tehbrian.buildersutilities.armorcolor.ArmorColorMenuProvider;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
 import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
@@ -12,7 +13,6 @@ import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
-import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 
 public final class SingletonModule extends AbstractModule {
 

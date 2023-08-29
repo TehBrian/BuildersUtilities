@@ -3,13 +3,13 @@ package dev.tehbrian.buildersutilities.banner.menu;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.Session;
-import org.bukkit.Bukkit;
-import org.bukkit.inventory.Inventory;
-import org.spongepowered.configurate.NodePath;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.util.ChestSize;
 import dev.tehbrian.buildersutilities.util.MenuItems;
+import org.bukkit.Bukkit;
+import org.bukkit.inventory.Inventory;
+import org.spongepowered.configurate.NodePath;
 
 public final class DoneMenuProvider {
 

@@ -2,6 +2,11 @@ package dev.tehbrian.buildersutilities.banner;
 
 import broccolai.corn.paper.item.PaperItemBuilder;
 import broccolai.corn.paper.item.special.BannerBuilder;
+import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
+import dev.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
+import dev.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
+import dev.tehbrian.buildersutilities.banner.menu.PatternMenuProvider;
+import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
@@ -10,11 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.NodePath;
-import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
-import dev.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
-import dev.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
-import dev.tehbrian.buildersutilities.banner.menu.PatternMenuProvider;
-import dev.tehbrian.buildersutilities.config.LangConfig;
 
 import java.util.ArrayList;
 import java.util.List;

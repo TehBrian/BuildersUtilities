@@ -4,13 +4,13 @@ import cloud.commandframework.ArgumentDescription;
 import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
+import dev.tehbrian.buildersutilities.config.LangConfig;
+import dev.tehbrian.buildersutilities.user.UserService;
+import dev.tehbrian.buildersutilities.util.Permissions;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.spongepowered.configurate.NodePath;
-import dev.tehbrian.buildersutilities.config.LangConfig;
-import dev.tehbrian.buildersutilities.user.UserService;
-import dev.tehbrian.buildersutilities.util.Permissions;
 
 public final class NightVisionCommand extends PaperCloudCommand<CommandSender> {
 

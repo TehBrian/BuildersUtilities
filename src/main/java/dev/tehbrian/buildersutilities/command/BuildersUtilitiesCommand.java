@@ -5,7 +5,9 @@ import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.BuildersUtilities;
+import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import dev.tehbrian.buildersutilities.config.LangConfig;
+import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.ChestSize;
 import dev.tehbrian.buildersutilities.util.Permissions;
@@ -25,8 +27,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.NodePath;
-import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
-import dev.tehbrian.buildersutilities.config.SpecialConfig;
 
 import java.util.Collection;
 import java.util.HashSet;

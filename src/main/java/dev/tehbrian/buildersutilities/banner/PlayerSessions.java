@@ -1,12 +1,12 @@
 package dev.tehbrian.buildersutilities.banner;
 
 import com.google.inject.Inject;
-import org.bukkit.entity.Player;
 import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.PatternMenuProvider;
 import dev.tehbrian.buildersutilities.config.LangConfig;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;

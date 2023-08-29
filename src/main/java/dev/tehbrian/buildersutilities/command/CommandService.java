@@ -3,9 +3,9 @@ package dev.tehbrian.buildersutilities.command;
 import cloud.commandframework.execution.CommandExecutionCoordinator;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
+import dev.tehbrian.buildersutilities.BuildersUtilities;
 import dev.tehbrian.tehlib.paper.cloud.PaperCloudService;
 import org.bukkit.command.CommandSender;
-import dev.tehbrian.buildersutilities.BuildersUtilities;
 
 import java.util.function.Function;
 
