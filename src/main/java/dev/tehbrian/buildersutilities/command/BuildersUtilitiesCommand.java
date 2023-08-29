@@ -21,8 +21,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -115,7 +115,7 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
             final var packet = new ClientboundLevelChunkWithLightPacket(
                 nmsChunk.getSendingChunk(),
                 nmsLevel.getLightEngine(),
-                null, null, true, false
+                null, null, false
             );
             nmsPlayer.trackChunk(nmsChunkPos, packet);
           }
