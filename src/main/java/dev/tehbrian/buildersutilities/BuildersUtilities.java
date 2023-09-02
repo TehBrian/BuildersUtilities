@@ -1,5 +1,6 @@
 package dev.tehbrian.buildersutilities;
 
+import cloud.commandframework.execution.CommandExecutionCoordinator;
 import cloud.commandframework.minecraft.extras.AudienceProvider;
 import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.paper.PaperCommandManager;
@@ -20,7 +21,6 @@ import dev.tehbrian.buildersutilities.command.AdvancedFlyCommand;
 import dev.tehbrian.buildersutilities.command.ArmorColorCommand;
 import dev.tehbrian.buildersutilities.command.BannerCommand;
 import dev.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
-import dev.tehbrian.buildersutilities.command.CommandService;
 import dev.tehbrian.buildersutilities.command.NightVisionCommand;
 import dev.tehbrian.buildersutilities.command.NoclipCommand;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
@@ -39,7 +39,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.NodePath;
 
@@ -52,9 +51,7 @@ import java.util.function.Function;
  */
 public final class BuildersUtilities extends TehPlugin {
 
-  /**
-   * The Guice injector.
-   */
+  private @MonotonicNonNull PaperCommandManager<CommandSender> commandManager;
   private @MonotonicNonNull Injector injector;
 
   @Override
@@ -143,18 +140,20 @@ public final class BuildersUtilities extends TehPlugin {
    * @return whether it was successful
    */
   private boolean setupCommands() {
-    final CommandService commandService = this.injector.getInstance(CommandService.class);
+    if (this.commandManager != null) {
+      throw new IllegalStateException("The CommandManager is already instantiated.");
+    }
+
     try {
-      commandService.init();
+      this.commandManager = new PaperCommandManager<>(
+          this,
+          CommandExecutionCoordinator.simpleCoordinator(),
+          Function.identity(),
+          Function.identity()
+      );
     } catch (final Exception e) {
       this.getSLF4JLogger().error("Failed to create the CommandManager.");
       this.getSLF4JLogger().error("Printing stack trace, please send this to the developers:", e);
-      return false;
-    }
-
-    final @Nullable PaperCommandManager<CommandSender> commandManager = commandService.get();
-    if (commandManager == null) {
-      this.getSLF4JLogger().error("The CommandService was null after initialization!");
       return false;
     }
 
@@ -175,14 +174,14 @@ public final class BuildersUtilities extends TehPlugin {
         .withInvalidSyntaxHandler()
         .withHandler(MinecraftExceptionHandler.ExceptionType.NO_PERMISSION, noPermissionHandler)
         .withCommandExecutionHandler()
-        .apply(commandManager, AudienceProvider.nativeAudience());
+        .apply(this.commandManager, AudienceProvider.nativeAudience());
 
-    this.injector.getInstance(AdvancedFlyCommand.class).register(commandManager);
-    this.injector.getInstance(ArmorColorCommand.class).register(commandManager);
-    this.injector.getInstance(BannerCommand.class).register(commandManager);
-    this.injector.getInstance(BuildersUtilitiesCommand.class).register(commandManager);
-    this.injector.getInstance(NightVisionCommand.class).register(commandManager);
-    this.injector.getInstance(NoclipCommand.class).register(commandManager);
+    this.injector.getInstance(AdvancedFlyCommand.class).register(this.commandManager);
+    this.injector.getInstance(ArmorColorCommand.class).register(this.commandManager);
+    this.injector.getInstance(BannerCommand.class).register(this.commandManager);
+    this.injector.getInstance(BuildersUtilitiesCommand.class).register(this.commandManager);
+    this.injector.getInstance(NightVisionCommand.class).register(this.commandManager);
+    this.injector.getInstance(NoclipCommand.class).register(this.commandManager);
 
     return true;
   }

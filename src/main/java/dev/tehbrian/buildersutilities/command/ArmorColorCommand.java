@@ -5,11 +5,10 @@ import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.armorcolor.ArmorColorMenuProvider;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
+public final class ArmorColorCommand {
 
   private final ArmorColorMenuProvider armorColorMenuProvider;
 
@@ -20,7 +19,6 @@ public final class ArmorColorCommand extends PaperCloudCommand<CommandSender> {
     this.armorColorMenuProvider = armorColorMenuProvider;
   }
 
-  @Override
   public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var main = commandManager.commandBuilder("armorcolor", "acc")
         .meta(CommandMeta.DESCRIPTION, "Opens the armor color creator.")

@@ -7,12 +7,11 @@ import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.spongepowered.configurate.NodePath;
 
-public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
+public final class NoclipCommand {
 
   private final UserService userService;
   private final LangConfig langConfig;
@@ -26,7 +25,6 @@ public final class NoclipCommand extends PaperCloudCommand<CommandSender> {
     this.langConfig = langConfig;
   }
 
-  @Override
   public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("noclip", "nc")
         .meta(CommandMeta.DESCRIPTION, "Toggles noclip.")

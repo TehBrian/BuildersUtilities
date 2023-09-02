@@ -25,9 +25,10 @@ dependencies {
   paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
 
   implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
+  implementation("cloud.commandframework:cloud-paper:1.8.3")
   implementation("cloud.commandframework:cloud-minecraft-extras:1.8.3")
   implementation("com.google.inject:guice:7.0.0")
-  implementation("dev.tehbrian:tehlib-paper:0.4.2")
+  implementation("dev.tehbrian:tehlib-paper:0.5.0")
   implementation("org.spongepowered:configurate-yaml:4.1.2")
   implementation("dev.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.4")
 }

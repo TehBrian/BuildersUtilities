@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.user;
 
-import dev.tehbrian.tehlib.paper.user.PaperUser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -9,7 +8,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.UUID;
 
-public final class User extends PaperUser {
+public final class User {
+
+  private final UUID uuid;
 
   private boolean ironDoorToggleEnabled = true;
   private boolean doubleSlabBreakEnabled = true;
@@ -20,7 +21,7 @@ public final class User extends PaperUser {
   private boolean advancedFlyEnabled = false;
 
   public User(final UUID uuid) {
-    super(uuid);
+    this.uuid = uuid;
   }
 
   public @Nullable Player getPlayer() {

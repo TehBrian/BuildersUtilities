@@ -11,7 +11,6 @@ import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.ChestSize;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import dev.tehbrian.tehlib.paper.cloud.PaperCloudCommand;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerLevel;
@@ -32,7 +31,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSender> {
+public final class BuildersUtilitiesCommand {
 
   private final BuildersUtilities buildersUtilities;
   private final UserService userService;
@@ -77,7 +76,6 @@ public final class BuildersUtilitiesCommand extends PaperCloudCommand<CommandSen
     return chunks;
   }
 
-  @Override
   public void register(final PaperCommandManager<CommandSender> commandManager) {
     final var root = commandManager.commandBuilder("buildersutilities", "butils", "bu");
 
