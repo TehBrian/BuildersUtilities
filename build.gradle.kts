@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.tehbrian"
-version = "1.7.1"
+version = "1.7.1-1.19.4"
 description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 
   implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
   implementation("cloud.commandframework:cloud-paper:1.8.3")
@@ -77,6 +77,6 @@ tasks {
   }
 
   runServer {
-    minecraftVersion("1.20.1")
+    minecraftVersion("1.19.4")
   }
 }
