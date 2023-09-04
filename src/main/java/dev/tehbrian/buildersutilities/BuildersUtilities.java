@@ -31,7 +31,7 @@ import dev.tehbrian.buildersutilities.inject.SingletonModule;
 import dev.tehbrian.buildersutilities.setting.SettingsListener;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
-import dev.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6;
+import dev.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6_7;
 import dev.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7;
 import dev.tehbrian.tehlib.configurate.Config;
 import dev.tehbrian.tehlib.paper.TehPlugin;
@@ -190,7 +190,7 @@ public final class BuildersUtilities extends TehPlugin {
     final var loader = new SpigotRestrictionLoader(
         this.getSLF4JLogger(),
         Arrays.asList(this.getServer().getPluginManager().getPlugins()),
-        List.of(R_PlotSquared_6.class, R_WorldGuard_7.class)
+        List.of(R_PlotSquared_6_7.class, R_WorldGuard_7.class)
     );
 
     loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));

@@ -30,7 +30,7 @@ dependencies {
   implementation("com.google.inject:guice:7.0.0")
   implementation("dev.tehbrian:tehlib-paper:0.5.0")
   implementation("org.spongepowered:configurate-yaml:4.1.2")
-  implementation("dev.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.4")
+  implementation("dev.tehbrian.restrictionhelper:restrictionhelper-spigot:0.3.5")
 }
 
 tasks {
