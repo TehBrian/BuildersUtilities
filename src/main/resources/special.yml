@@ -7,14 +7,25 @@
 # https://papermc.io/javadocs/paper/1.20/org/bukkit/Material.html
 
 items:
-  - DEBUG_STICK
-  - BARRIER
-  - LIGHT
+  # Items below are in the operator items menu.
   - COMMAND_BLOCK
-  - REPEATING_COMMAND_BLOCK
   - CHAIN_COMMAND_BLOCK
+  - REPEATING_COMMAND_BLOCK
   - COMMAND_BLOCK_MINECART
+  - JIGSAW
   - STRUCTURE_BLOCK
   - STRUCTURE_VOID
-  - JIGSAW
+  - BARRIER
+  - LIGHT
+  - DEBUG_STICK
+
+  # Items below are not in the operator items menu.
   - KNOWLEDGE_BOOK
+  - BUNDLE
+  - ENDER_DRAGON_SPAWN_EGG
+  - WITHER_SPAWN_EGG
+  - POTION
+  - SPLASH_POTION
+  - LINGERING_POTION
+  - TIPPED_ARROW
+  - PETRIFIED_OAK_SLAB
