@@ -72,24 +72,22 @@ public final class IronDoorListener implements Listener {
 
     Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
       final Openable door = (Openable) block.getBlockData();
-      final boolean newState = !door.isOpen();
+      final boolean willOpen = !door.isOpen();
+      door.setOpen(willOpen);
+      block.setBlockData(door);
 
       final Sound sound;
       if (blockType == Material.IRON_DOOR) {
-        sound = newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
+        sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
       } else { // type is iron trapdoor.
-        sound = newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
+        sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
       }
-
-      door.setOpen(newState);
-      block.setBlockData(door);
-
       block.getWorld().playSound(
-          block.getLocation(),
-          sound,
+          block.getLocation(), sound,
           SoundCategory.BLOCKS,
           1F, 1F
       );
+
       player.swingMainHand();
     });
 

@@ -64,25 +64,25 @@ public final class GlazedTerracottaListener implements Listener {
 
     Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
       final Directional directional = (Directional) block.getBlockData();
-
       directional.setFacing(switch (directional.getFacing()) {
         case NORTH -> BlockFace.EAST;
         case EAST -> BlockFace.SOUTH;
         case SOUTH -> BlockFace.WEST;
         case WEST -> BlockFace.NORTH;
-        default -> directional.getFacing(); // do nothing
+        default -> directional.getFacing(); // do nothing.
       });
-
       block.setBlockData(directional);
 
       block.getWorld().playSound(
           block.getLocation(),
           Sound.BLOCK_STONE_PLACE,
-          SoundCategory.MASTER,
+          SoundCategory.BLOCKS,
           1F, 2F
       );
+
       player.swingMainHand();
     });
+
     event.setCancelled(true);
   }
 
