@@ -81,6 +81,7 @@ public final class IronDoorListener implements Listener {
           SoundCategory.BLOCKS,
           1F, 1F
       );
+      player.swingMainHand();
     });
 
     event.setCancelled(true);
@@ -121,6 +122,7 @@ public final class IronDoorListener implements Listener {
           SoundCategory.BLOCKS,
           1F, 1F
       );
+      player.swingMainHand();
     });
 
     event.setCancelled(true);

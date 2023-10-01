@@ -81,6 +81,7 @@ public final class GlazedTerracottaListener implements Listener {
           SoundCategory.MASTER,
           1F, 2F
       );
+      player.swingMainHand();
     });
     event.setCancelled(true);
   }
