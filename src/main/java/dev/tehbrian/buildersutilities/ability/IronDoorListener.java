@@ -12,8 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Door;
-import org.bukkit.block.data.type.TrapDoor;
+import org.bukkit.block.data.Openable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,11 +22,14 @@ import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Objects;
 
-/*
-    TODO: change iron door toggle behavior?
-    Perhaps we could make it more similar to how wooden trapdoors work.
-    For now I'm keeping it like how it is in the original BuildersUtilities
-    because that's what people are used to, and change is scary.
+/**
+ * Allows players to open iron doors/trapdoors similarly to how wooden
+ * doors/trapdoors can be opened.
+ * <p>
+ * The difference between this functionality and native (wooden) functionality is
+ * that players <strong>must</strong> have an empty hand to toggle doors/trapdoors.
+ * This is to prevent glitchy single-tick block placement (and subsequent
+ * disappearance) because the client isn't aware of this functionality.
  */
 public final class IronDoorListener implements Listener {
 
@@ -56,8 +58,9 @@ public final class IronDoorListener implements Listener {
     }
 
     final Block block = Objects.requireNonNull(event.getClickedBlock());
+    final Material blockType = block.getType();
 
-    if (block.getType() != Material.IRON_DOOR
+    if ((blockType != Material.IRON_DOOR && blockType != Material.IRON_TRAPDOOR)
         || player.getInventory().getItemInMainHand().getType() != Material.AIR
         || event.getAction() != Action.RIGHT_CLICK_BLOCK
         || event.getHand() != EquipmentSlot.HAND
@@ -69,56 +72,22 @@ public final class IronDoorListener implements Listener {
     }
 
     Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-      final Door door = (Door) block.getBlockData();
+      final Openable door = (Openable) block.getBlockData();
       final boolean newState = !door.isOpen();
+
+      final Sound sound;
+      if (blockType == Material.IRON_DOOR) {
+        sound = newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
+      } else { // type is iron trapdoor.
+        sound = newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
+      }
 
       door.setOpen(newState);
       block.setBlockData(door);
 
       block.getWorld().playSound(
           block.getLocation(),
-          newState ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE,
-          SoundCategory.BLOCKS,
-          1F, 1F
-      );
-      player.swingMainHand();
-    });
-
-    event.setCancelled(true);
-  }
-
-  @EventHandler(ignoreCancelled = true)
-  public void onIronTrapDoorInteract(final PlayerInteractEvent event) {
-    final Player player = event.getPlayer();
-
-    if (!this.userService.getUser(player).ironDoorToggleEnabled()
-        || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
-      return;
-    }
-
-    final Block block = Objects.requireNonNull(event.getClickedBlock());
-
-    if (block.getType() != Material.IRON_TRAPDOOR
-        || player.getInventory().getItemInMainHand().getType() != Material.AIR
-        || event.getAction() != Action.RIGHT_CLICK_BLOCK
-        || event.getHand() != EquipmentSlot.HAND
-        || player.getGameMode() != GameMode.CREATIVE
-        || player.isSneaking()
-        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
-      return;
-    }
-
-    Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-      final TrapDoor trapDoor = (TrapDoor) block.getBlockData();
-      final boolean newState = !trapDoor.isOpen();
-
-      trapDoor.setOpen(newState);
-      block.setBlockData(trapDoor);
-
-      block.getWorld().playSound(
-          block.getLocation(),
-          newState ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE,
+          sound,
           SoundCategory.BLOCKS,
           1F, 1F
       );
