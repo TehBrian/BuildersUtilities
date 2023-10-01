@@ -65,7 +65,6 @@ public final class IronDoorListener implements Listener {
         || event.getAction() != Action.RIGHT_CLICK_BLOCK
         || event.getHand() != EquipmentSlot.HAND
         || player.getGameMode() != GameMode.CREATIVE
-        || player.isSneaking()
         || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
         || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
       return;
