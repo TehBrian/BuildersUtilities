@@ -9,19 +9,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-/*
-    TODO: clean up/refactor this.
-    I'm going to be honest here, I don't have a clue
-    on how to make this better. It looks like some kind of
-    black magic to me. If it ain't broke don't fix it, right?
- */
 public final class AdvancedFlyListener implements Listener {
 
   private final UserService userService;
@@ -47,25 +39,23 @@ public final class AdvancedFlyListener implements Listener {
     }
 
     final Location from = event.getFrom().clone();
-    final Location to = Objects.requireNonNull(event.getTo()).clone();
+    final Location to = event.getTo().clone();
 
-    final Double speed = from.add(0, -event.getFrom().getY(), 0)
-        .distance(to.add(0, -event.getTo().getY(), 0));
-
-    if (Math.abs(event.getFrom().getYaw() - event.getTo().getYaw()) > 5
-        || Math.abs(event.getFrom().getPitch() - event.getTo().getPitch()) > 5) {
+    if (Math.abs(from.getYaw() - to.getYaw()) > 5
+        || Math.abs(from.getPitch() - to.getPitch()) > 5) {
       return;
     }
+
+    from.setY(0);
+    to.setY(0);
+    final Double speed = from.distance(to);
 
     if (this.lastVelocity.containsKey(player)) {
       final Double lastSpeed = this.lastVelocity.get(player);
       if (speed * 1.3 < lastSpeed) {
         if (this.slower.contains(player)) {
           if (this.slower2.contains(player)) {
-            final Vector v = player.getVelocity().clone();
-            v.setX(0);
-            v.setZ(0);
-            player.setVelocity(v);
+            player.setVelocity(player.getVelocity().setX(0).setZ(0));
             this.lastVelocity.put(player, 0.0);
             this.slower.remove(player);
             this.slower2.remove(player);
