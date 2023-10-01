@@ -4,8 +4,8 @@ import broccolai.corn.paper.item.special.BannerBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
+import dev.tehbrian.buildersutilities.banner.Sayge;
 import dev.tehbrian.buildersutilities.banner.Session;
-import dev.tehbrian.buildersutilities.banner.Util;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.entity.Player;
@@ -51,7 +51,10 @@ public final class PatternMenuListener implements Listener {
     }
 
     if (slot == Buttons.RANDOM_SLOT) {
-      session.patterns().add(new Pattern(Objects.requireNonNull(session.nextPatternColor()), Util.randomPatternType()));
+      session.patterns().add(new Pattern(
+          Objects.requireNonNull(session.nextPatternColor()),
+          Sayge.randomPatternType()
+      ));
       session.nextPatternColor(null);
       session.showInterface(player);
     }
@@ -65,7 +68,7 @@ public final class PatternMenuListener implements Listener {
       this.playerSessions.get(player).showInterface(player);
     }
 
-    if (slot >= 9 && slot <= (8 + Util.patternTypes().size())) {
+    if (slot >= 9 && slot <= (8 + Sayge.patternTypes().size())) {
       // get the pattern from the clicked banner that PatternMenuProvider has already assigned the next pattern color to.
       final Pattern clickedPattern = BannerBuilder.of(Objects.requireNonNull(event.getCurrentItem())).getPattern(0);
       session.patterns().add(clickedPattern);

@@ -3,8 +3,8 @@ package dev.tehbrian.buildersutilities.banner.menu;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
+import dev.tehbrian.buildersutilities.banner.Sayge;
 import dev.tehbrian.buildersutilities.banner.Session;
-import dev.tehbrian.buildersutilities.banner.Util;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
@@ -56,7 +56,7 @@ public final class ColorMenuListener implements Listener {
     }
 
     if (slot == Buttons.RANDOM_SLOT) {
-      session.nextPatternColor(Util.randomDyeColor());
+      session.nextPatternColor(Sayge.randomDyeColor());
       session.showInterface(player);
     }
 
@@ -70,7 +70,7 @@ public final class ColorMenuListener implements Listener {
     }
 
     if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-      final DyeColor clickedColor = Util.colorFromItem(Objects.requireNonNull(event.getCurrentItem()).getType());
+      final DyeColor clickedColor = Sayge.colorFromItem(Objects.requireNonNull(event.getCurrentItem()).getType());
       session.nextPatternColor(clickedColor);
       session.showInterface(player);
     }

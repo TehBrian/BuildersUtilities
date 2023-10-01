@@ -9,11 +9,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public final class Util {
+/**
+ * Provides utilities for banner patterns and colors.
+ */
+public final class Sayge {
 
   public static final Random RANDOM = new Random();
 
-  private Util() {
+  private Sayge() {
   }
 
   public static Material bannerFromColor(final DyeColor dyeColor) {

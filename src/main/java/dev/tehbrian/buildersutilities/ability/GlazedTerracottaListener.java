@@ -7,7 +7,6 @@ import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
 import dev.tehbrian.restrictionhelper.core.ActionType;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;

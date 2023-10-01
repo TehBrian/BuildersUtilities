@@ -127,7 +127,7 @@ public final class Session {
     if (this.baseColor == null) {
       return DEFAULT_BANNER;
     } else {
-      return BannerBuilder.ofType(Util.bannerFromColor(this.baseColor))
+      return BannerBuilder.ofType(Sayge.bannerFromColor(this.baseColor))
           .patterns(this.patterns)
           .build();
     }
@@ -143,7 +143,7 @@ public final class Session {
    * Sessions start with {@code PICK_BASE} and then flip back and forth
    * between {@code PICK_COLOR} and {@code PICK_PATTERN}.
    */
-  enum Step {
+  public enum Step {
     PICK_BASE,
     PICK_COLOR,
     PICK_PATTERN,
