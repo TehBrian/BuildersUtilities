@@ -1,12 +1,10 @@
 package dev.tehbrian.buildersutilities.ability;
 
 import com.google.inject.Inject;
-import dev.tehbrian.buildersutilities.BuildersUtilities;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
 import dev.tehbrian.restrictionhelper.core.ActionType;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -33,17 +31,14 @@ import java.util.Objects;
  */
 public final class IronDoorListener implements Listener {
 
-  private final BuildersUtilities buildersUtilities;
   private final UserService userService;
   private final SpigotRestrictionHelper restrictionHelper;
 
   @Inject
   public IronDoorListener(
-      final BuildersUtilities buildersUtilities,
       final UserService userService,
       final SpigotRestrictionHelper restrictionHelper
   ) {
-    this.buildersUtilities = buildersUtilities;
     this.userService = userService;
     this.restrictionHelper = restrictionHelper;
   }
@@ -70,26 +65,24 @@ public final class IronDoorListener implements Listener {
       return;
     }
 
-    Bukkit.getScheduler().runTask(this.buildersUtilities, () -> {
-      final Openable door = (Openable) block.getBlockData();
-      final boolean willOpen = !door.isOpen();
-      door.setOpen(willOpen);
-      block.setBlockData(door);
+    final Openable door = (Openable) block.getBlockData();
+    final boolean willOpen = !door.isOpen();
+    door.setOpen(willOpen);
+    block.setBlockData(door);
 
-      final Sound sound;
-      if (blockType == Material.IRON_DOOR) {
-        sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
-      } else { // type is iron trapdoor.
-        sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
-      }
-      block.getWorld().playSound(
-          block.getLocation(), sound,
-          SoundCategory.BLOCKS,
-          1F, 1F
-      );
+    final Sound sound;
+    if (blockType == Material.IRON_DOOR) {
+      sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
+    } else { // type is iron trapdoor.
+      sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
+    }
+    block.getWorld().playSound(
+        block.getLocation(), sound,
+        SoundCategory.BLOCKS,
+        1F, 1F
+    );
 
-      player.swingMainHand();
-    });
+    player.swingMainHand();
 
     event.setCancelled(true);
   }
