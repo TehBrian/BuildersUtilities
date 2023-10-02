@@ -58,5 +58,5 @@ permissions:
     description: Permission to teleport to players via the spectator menu.
     default: true
   buildersutilities.worldedit-aliases:
-    description: Allows the player to use WorldEdit aliases if they are enabled.
+    description: Permission to use WorldEdit aliases if they are enabled.
     default: true
