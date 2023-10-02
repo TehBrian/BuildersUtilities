@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import dev.tehbrian.tehlib.configurate.AbstractDataConfig;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import org.spongepowered.configurate.objectmapping.meta.Setting;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.nio.file.Path;
@@ -28,7 +29,8 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
   @ConfigSerializable
   public record Data(Settings settings,
-                     Heads heads) {
+                     Heads heads,
+                     @Setting("worldedit-aliases") boolean worldEditAliases) {
 
     @SuppressWarnings("unused")
     @ConfigSerializable

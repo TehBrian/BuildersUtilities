@@ -24,6 +24,8 @@ public final class Permissions {
   public static final String SPECTATE_ENTITY = ROOT + ".spectate.entity";
   public static final String SPECTATE_PLAYER = ROOT + ".spectate.player";
 
+  public static final String WORLDEDIT_ALIASES = ROOT + ".worldedit-aliases";
+
   private Permissions() {
   }
 

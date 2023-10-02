@@ -23,6 +23,7 @@ import dev.tehbrian.buildersutilities.command.BannerCommand;
 import dev.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
 import dev.tehbrian.buildersutilities.command.NightVisionCommand;
 import dev.tehbrian.buildersutilities.command.NoclipCommand;
+import dev.tehbrian.buildersutilities.command.WorldEditAliases;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
@@ -38,6 +39,7 @@ import dev.tehbrian.tehlib.paper.TehPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.PluginManager;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.NodePath;
@@ -167,6 +169,18 @@ public final class BuildersUtilities extends TehPlugin {
     this.injector.getInstance(BuildersUtilitiesCommand.class).register(this.commandManager);
     this.injector.getInstance(NightVisionCommand.class).register(this.commandManager);
     this.injector.getInstance(NoclipCommand.class).register(this.commandManager);
+
+    if (this.injector.getInstance(ConfigConfig.class).data().worldEditAliases()) {
+      final PluginManager pm = this.getServer().getPluginManager();
+      if (pm.isPluginEnabled("WorldEdit")) {
+        this.injector.getInstance(WorldEditAliases.class).register(this.commandManager, false);
+      } else if (pm.isPluginEnabled("FastAsyncWorldEdit")) {
+        this.injector.getInstance(WorldEditAliases.class).register(this.commandManager, true);
+      } else {
+        this.getSLF4JLogger().error("worledit-aliases is enabled in config.yml, but WorldEdit isn't present "
+            + "on this server. WorldEdit aliases will not be registered.");
+      }
+    }
 
     return true;
   }
