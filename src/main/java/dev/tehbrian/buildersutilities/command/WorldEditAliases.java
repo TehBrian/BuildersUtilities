@@ -31,7 +31,7 @@ public class WorldEditAliases {
    * @param commandManager the command manager
    * @param isFawe         whether the WorldEdit plugin is FastAsyncWorldEdit
    */
-  public void register(final PaperCommandManager<CommandSender> commandManager, boolean isFawe) {
+  public void register(final PaperCommandManager<CommandSender> commandManager, final boolean isFawe) {
     if (!isFawe) {
       commandManager.command(commandManager.commandBuilder("/p1", "/1")
           .meta(CommandMeta.DESCRIPTION, "WorldEdit alias.")
@@ -133,6 +133,7 @@ public class WorldEditAliases {
             case X -> this.dispatch(sender, "/deform rotate(y,z," + radians + ")");
             case Y -> this.dispatch(sender, "/deform rotate(x,z," + radians + ")");
             case Z -> this.dispatch(sender, "/deform rotate(x,y," + radians + ")");
+            default -> {}
           }
         }));
 
@@ -149,6 +150,7 @@ public class WorldEditAliases {
             case X -> this.dispatch(sender, "/deform rotate(y,z," + radians / 2 + "*(x+1))");
             case Y -> this.dispatch(sender, "/deform rotate(x,z," + radians / 2 + "*(y+1))");
             case Z -> this.dispatch(sender, "/deform rotate(x,y," + radians / 2 + "*(z+1))");
+            default -> {}
           }
         }));
 
