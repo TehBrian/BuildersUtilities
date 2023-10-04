@@ -1,6 +1,7 @@
 # Language configuration for all messages sent by BuildersUtilities.
+
 # Message formatting syntax is MiniMessage, which you can read up on here:
-# https://docs.adventure.kyori.net/minimessage.html
+# https://docs.advntr.dev/minimessage/
 
 commands:
   advanced-fly:
@@ -18,8 +19,7 @@ commands:
     failure: "<#6699FF>BU <gray>› <#FF6699>Failed to load configuration, please check the console."
   # The message shown to players when they lack permission to run a command.
   # Leave this empty to use the default message configured in paper.yml.
-  # To change this option, reloading the plugin will not work. You must restart
-  # the server for changes to take effect.
+  # You must restart the server for changes to take effect.
   no-permission: ""
 
 menus:
