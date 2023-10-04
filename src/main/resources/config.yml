@@ -14,6 +14,11 @@
 worldedit-aliases: false
 
 settings:
+  # Disables redstone behavior.
+  disable-redstone: false
+  # Disables physics for gravity-affected blocks (e.g., sand, gravel).
+  disable-gravity-physics: false
+  # Disables all other types of physics.
   disable-physics: false
 
   disable-entity-explode: true

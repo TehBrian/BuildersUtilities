@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.util.Permissions;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,14 +18,20 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.slf4j.Logger;
 
 public final class SettingsListener implements Listener {
 
   private final ConfigConfig configConfig;
+  private final Logger logger;
 
   @Inject
-  public SettingsListener(final ConfigConfig configConfig) {
+  public SettingsListener(
+      final ConfigConfig configConfig,
+      final Logger logger
+  ) {
     this.configConfig = configConfig;
+    this.logger = logger;
   }
 
   @EventHandler
@@ -50,8 +57,62 @@ public final class SettingsListener implements Listener {
 
   @EventHandler
   public void onBlockPhysics(final BlockPhysicsEvent event) {
-    if (this.configConfig.data().settings().disablePhysics()) {
-      event.setCancelled(true);
+    final Block block = event.getBlock();
+
+    if (event.getSourceBlock().getType() == Material.AIR
+        && event.getChangedType() == Material.AIR
+        && block.getLocation().getBlockY() > 0
+        && block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")) {
+      return;
+    }
+
+    if (event.getSourceBlock().getType().name().toLowerCase().contains("snow")
+        && block.getLocation().getBlockY() > 0
+        && block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")) {
+      return;
+    }
+
+    final String lowerName = event.getChangedType().name().toLowerCase();
+
+    if (lowerName.contains("chest") ||
+        lowerName.contains("stair") ||
+        lowerName.contains("fence") ||
+        lowerName.contains("pane") ||
+        lowerName.contains("wall") ||
+        lowerName.contains("bar") ||
+        lowerName.contains("door")) {
+      return;
+    }
+
+    if (!this.configConfig.data().settings().disableRedstone()) {
+      if (lowerName.contains("redstone") ||
+          lowerName.contains("daylight") ||
+          lowerName.contains("diode") ||
+          lowerName.contains("note") ||
+          lowerName.contains("lever") ||
+          lowerName.contains("button") ||
+          lowerName.contains("command") ||
+          lowerName.contains("tripwire") ||
+          lowerName.contains("plate") ||
+          lowerName.contains("string") ||
+          lowerName.contains("piston") ||
+          lowerName.contains("observer")) {
+        if (!block.getType().name().contains("air")) {
+          return;
+        }
+      }
+    }
+
+    if (event.getChangedType().hasGravity()) {
+      if (this.configConfig.data().settings().disableGravityPhysics()) {
+        event.setCancelled(true);
+        this.logger.debug("Gravity physics were cancelled because disable-gravity-physics: true");
+      }
+    } else {
+      if (this.configConfig.data().settings().disablePhysics()) {
+        event.setCancelled(true);
+        this.logger.debug("Physics were cancelled because disable-physics: true");
+      }
     }
   }
 

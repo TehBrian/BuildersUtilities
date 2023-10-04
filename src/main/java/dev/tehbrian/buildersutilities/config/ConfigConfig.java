@@ -34,7 +34,9 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
     @SuppressWarnings("unused")
     @ConfigSerializable
-    public record Settings(boolean disablePhysics,
+    public record Settings(boolean disableRedstone,
+                           boolean disableGravityPhysics,
+                           boolean disablePhysics,
                            boolean disableEntityExplode,
                            boolean disableBlockExplode,
                            boolean disableLeavesDecay,
