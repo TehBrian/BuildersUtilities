@@ -145,15 +145,15 @@ public final class BuildersUtilities extends TehPlugin {
       return false;
     }
 
-    final Component noPermMessage = this.injector.getInstance(LangConfig.class)
-        .c(NodePath.path("commands", "no-permission"));
-
-    final Function<Exception, Component> noPermHandler;
-    if (PlainTextComponentSerializer.plainText().serialize(noPermMessage).isEmpty()) {
-      noPermHandler = e -> this.getServer().permissionMessage();
-    } else {
-      noPermHandler = e -> noPermMessage;
-    }
+    final LangConfig langConfig = this.injector.getInstance(LangConfig.class);
+    final Function<Exception, Component> noPermHandler = e -> {
+      final var noPermission = langConfig.c(NodePath.path("commands", "no-permission"));
+      if (isEmpty(noPermission)) {
+        return this.getServer().permissionMessage();
+      } else {
+        return noPermission;
+      }
+    };
 
     new MinecraftExceptionHandler<CommandSender>()
         .withArgumentParsingHandler()
@@ -211,6 +211,10 @@ public final class BuildersUtilities extends TehPlugin {
     );
 
     loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
+  }
+
+  private boolean isEmpty(final Component component) {
+    return PlainTextComponentSerializer.plainText().serialize(component).isEmpty();
   }
 
 }
