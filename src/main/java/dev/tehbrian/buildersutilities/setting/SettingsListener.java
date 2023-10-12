@@ -74,29 +74,29 @@ public final class SettingsListener implements Listener {
 
     final String lowerName = event.getChangedType().name().toLowerCase();
 
-    if (lowerName.contains("chest") ||
-        lowerName.contains("stair") ||
-        lowerName.contains("fence") ||
-        lowerName.contains("pane") ||
-        lowerName.contains("wall") ||
-        lowerName.contains("bar") ||
-        lowerName.contains("door")) {
+    if (lowerName.contains("chest")
+        || lowerName.contains("stair")
+        || lowerName.contains("fence")
+        || lowerName.contains("pane")
+        || lowerName.contains("wall")
+        || lowerName.contains("bar")
+        || lowerName.contains("door")) {
       return;
     }
 
     if (!this.configConfig.data().settings().disableRedstone()) {
-      if (lowerName.contains("redstone") ||
-          lowerName.contains("daylight") ||
-          lowerName.contains("diode") ||
-          lowerName.contains("note") ||
-          lowerName.contains("lever") ||
-          lowerName.contains("button") ||
-          lowerName.contains("command") ||
-          lowerName.contains("tripwire") ||
-          lowerName.contains("plate") ||
-          lowerName.contains("string") ||
-          lowerName.contains("piston") ||
-          lowerName.contains("observer")) {
+      if (lowerName.contains("redstone")
+          || lowerName.contains("daylight")
+          || lowerName.contains("diode")
+          || lowerName.contains("note")
+          || lowerName.contains("lever")
+          || lowerName.contains("button")
+          || lowerName.contains("command")
+          || lowerName.contains("tripwire")
+          || lowerName.contains("plate")
+          || lowerName.contains("string")
+          || lowerName.contains("piston")
+          || lowerName.contains("observer")) {
         if (!block.getType().name().contains("air")) {
           return;
         }

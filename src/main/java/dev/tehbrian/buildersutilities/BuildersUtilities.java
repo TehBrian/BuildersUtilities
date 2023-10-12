@@ -213,7 +213,7 @@ public final class BuildersUtilities extends TehPlugin {
     loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
   }
 
-  private boolean isEmpty(final Component component) {
+  private static boolean isEmpty(final Component component) {
     return PlainTextComponentSerializer.plainText().serialize(component).isEmpty();
   }
 
