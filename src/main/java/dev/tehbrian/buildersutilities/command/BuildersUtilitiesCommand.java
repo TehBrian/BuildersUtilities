@@ -20,8 +20,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -115,7 +115,7 @@ public final class BuildersUtilitiesCommand {
                 nmsLevel.getLightEngine(),
                 null, null, false
             );
-            nmsPlayer.trackChunk(nmsChunkPos, packet);
+            nmsPlayer.connection.send(packet);
           }
 
           sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));
