@@ -16,7 +16,6 @@ public final class User {
   private boolean doubleSlabBreakEnabled = true;
   private boolean glazedTerracottaRotateEnabled = true;
 
-  private boolean nightVisionEnabled = false;
   private boolean noclipEnabled = false;
   private boolean advancedFlyEnabled = false;
 
@@ -68,12 +67,16 @@ public final class User {
   }
 
   public boolean nightVisionEnabled() {
-    return this.nightVisionEnabled;
+    final @Nullable Player player = this.getPlayer();
+    if (player == null) {
+      return false;
+    }
+
+    final @Nullable PotionEffect nightVision = player.getPotionEffect(PotionEffectType.NIGHT_VISION);
+    return nightVision != null && nightVision.isInfinite();
   }
 
   public void nightVisionEnabled(final boolean nightVisionEnabled) {
-    this.nightVisionEnabled = nightVisionEnabled;
-
     final @Nullable Player player = this.getPlayer();
     if (player == null) {
       return;
