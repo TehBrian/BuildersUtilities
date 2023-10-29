@@ -9,7 +9,6 @@ import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
-import dev.tehbrian.buildersutilities.util.ChestSize;
 import dev.tehbrian.buildersutilities.util.Permissions;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.server.level.ChunkHolder;
@@ -137,9 +136,10 @@ public final class BuildersUtilitiesCommand {
         .handler(c -> {
           final var sender = (Player) c.getSender();
 
+          final int slotsRequired = (int) Math.ceil(this.specialConfig.items().size() / 9.0) * 9;
           final Inventory inv = Bukkit.createInventory(
               null,
-              ChestSize.SINGLE,
+              Math.max(Math.min(slotsRequired, 54), 9),
               this.langConfig.c(NodePath.path("menus", "special", "inventory-name"))
           );
 
