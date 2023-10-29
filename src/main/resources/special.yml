@@ -16,8 +16,23 @@ items:
   - STRUCTURE_BLOCK
   - STRUCTURE_VOID
   - BARRIER
-  - LIGHT
   - DEBUG_STICK
+  - LIGHT-15
+  - LIGHT-14
+  - LIGHT-13
+  - LIGHT-12
+  - LIGHT-11
+  - LIGHT-10
+  - LIGHT-9
+  - LIGHT-8
+  - LIGHT-7
+  - LIGHT-6
+  - LIGHT-5
+  - LIGHT-4
+  - LIGHT-3
+  - LIGHT-2
+  - LIGHT-1
+  - LIGHT-0
 
   # Items below are not in the operator items menu.
   - KNOWLEDGE_BOOK
