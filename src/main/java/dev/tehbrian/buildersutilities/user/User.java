@@ -83,7 +83,14 @@ public final class User {
     }
 
     if (nightVisionEnabled) {
-      player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, PotionEffect.INFINITE_DURATION, 0, true, false, false));
+      player.addPotionEffect(new PotionEffect(
+          PotionEffectType.NIGHT_VISION,
+          PotionEffect.INFINITE_DURATION,
+          0,
+          true,
+          false,
+          false
+      ));
     } else {
       player.removePotionEffect(PotionEffectType.NIGHT_VISION);
     }

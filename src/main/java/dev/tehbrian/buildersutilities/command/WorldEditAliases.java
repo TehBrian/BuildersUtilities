@@ -133,7 +133,8 @@ public class WorldEditAliases {
             case X -> this.dispatch(sender, "/deform rotate(y,z," + radians + ")");
             case Y -> this.dispatch(sender, "/deform rotate(x,z," + radians + ")");
             case Z -> this.dispatch(sender, "/deform rotate(x,y," + radians + ")");
-            default -> {}
+            default -> {
+            }
           }
         }));
 
@@ -150,7 +151,8 @@ public class WorldEditAliases {
             case X -> this.dispatch(sender, "/deform rotate(y,z," + radians / 2 + "*(x+1))");
             case Y -> this.dispatch(sender, "/deform rotate(x,z," + radians / 2 + "*(y+1))");
             case Z -> this.dispatch(sender, "/deform rotate(x,y," + radians / 2 + "*(z+1))");
-            default -> {}
+            default -> {
+            }
           }
         }));
 
