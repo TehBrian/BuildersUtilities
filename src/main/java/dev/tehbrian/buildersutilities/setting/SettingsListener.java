@@ -55,8 +55,19 @@ public final class SettingsListener implements Listener {
     }
   }
 
+  private boolean shouldCheckPhysics() {
+    return this.configConfig.data().settings().disableRedstone()
+        || this.configConfig.data().settings().disableGravityPhysics()
+        || this.configConfig.data().settings().disablePhysics();
+  }
+
   @EventHandler
   public void onBlockPhysics(final BlockPhysicsEvent event) {
+    // don't perform any relatively expensive checks if we don't need to.
+    if (!this.shouldCheckPhysics()) {
+      return;
+    }
+
     final Block block = event.getBlock();
 
     if (block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")) {
