@@ -72,32 +72,34 @@ public final class SettingsListener implements Listener {
       return;
     }
 
-    final String lowerName = event.getChangedType().name().toLowerCase();
+    final String changed = event.getChangedType().name().toLowerCase();
 
-    if (lowerName.contains("chest")
-        || lowerName.contains("stair")
-        || lowerName.contains("fence")
-        || lowerName.contains("pane")
-        || lowerName.contains("wall")
-        || lowerName.contains("bar")
-        || lowerName.contains("door")) {
+    if (changed.contains("chest")
+        || changed.contains("stair")
+        || changed.contains("fence")
+        || changed.contains("pane")
+        || changed.contains("wall")
+        || changed.contains("bar")
+        || changed.contains("door")) {
       return;
     }
 
-    if (!this.configConfig.data().settings().disableRedstone()) {
-      if (lowerName.contains("redstone")
-          || lowerName.contains("daylight")
-          || lowerName.contains("diode")
-          || lowerName.contains("note")
-          || lowerName.contains("lever")
-          || lowerName.contains("button")
-          || lowerName.contains("command")
-          || lowerName.contains("tripwire")
-          || lowerName.contains("plate")
-          || lowerName.contains("string")
-          || lowerName.contains("piston")
-          || lowerName.contains("observer")) {
+    if (this.configConfig.data().settings().disableRedstone()) {
+      if (changed.contains("redstone")
+          || changed.contains("daylight")
+          || changed.contains("diode")
+          || changed.contains("note")
+          || changed.contains("lever")
+          || changed.contains("button")
+          || changed.contains("command")
+          || changed.contains("tripwire")
+          || changed.contains("plate")
+          || changed.contains("string")
+          || changed.contains("piston")
+          || changed.contains("observer")) {
         if (!block.getType().name().contains("air")) {
+          this.logger.debug("Physics were cancelled because disable-redstone: true");
+          event.setCancelled(true);
           return;
         }
       }
