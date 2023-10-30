@@ -59,8 +59,7 @@ public final class SettingsListener implements Listener {
   public void onBlockPhysics(final BlockPhysicsEvent event) {
     final Block block = event.getBlock();
 
-    if (block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")
-        && block.getLocation().getBlockY() > 0) {
+    if (block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")) {
       if (event.getSourceBlock().getType() == Material.AIR && event.getChangedType() == Material.AIR) {
         return;
       }
