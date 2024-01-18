@@ -168,14 +168,14 @@ public class WorldEditAliases {
         }));
   }
 
+  private void dispatch(final CommandSender sender, final String command) {
+    this.buildersUtilities.getServer().dispatchCommand(sender, command);
+  }
+
   enum Axis {
     X,
     Y,
     Z
-  }
-
-  private void dispatch(final CommandSender sender, final String command) {
-    this.buildersUtilities.getServer().dispatchCommand(sender, command);
   }
 
 }

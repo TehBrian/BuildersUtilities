@@ -29,6 +29,23 @@ public final class DoubleSlabListener implements Listener {
     this.userService = userService;
   }
 
+  private static Half getBlockHalfPlayerFacing(final Player player, final Block block) {
+    final Location eyeLoc = player.getEyeLocation();
+    final Location ray = eyeLoc.clone();
+    final Vector march = eyeLoc.getDirection().multiply(MARCH_AMOUNT);
+
+    while (!ray.getBlock().equals(block) && ray.distanceSquared(eyeLoc) < MAX_REACH_SQUARED) {
+      ray.add(march);
+    }
+
+    final double y = ray.getY();
+    if (Math.round(y) > y) {
+      return Half.TOP;
+    } else {
+      return Half.BOTTOM;
+    }
+  }
+
   @EventHandler(ignoreCancelled = true)
   public void onDoubleSlabBreak(final BlockBreakEvent event) {
     final Player player = event.getPlayer();
@@ -55,23 +72,6 @@ public final class DoubleSlabListener implements Listener {
 
     block.setBlockData(blockData, true);
     event.setCancelled(true);
-  }
-
-  private static Half getBlockHalfPlayerFacing(final Player player, final Block block) {
-    final Location eyeLoc = player.getEyeLocation();
-    final Location ray = eyeLoc.clone();
-    final Vector march = eyeLoc.getDirection().multiply(MARCH_AMOUNT);
-
-    while (!ray.getBlock().equals(block) && ray.distanceSquared(eyeLoc) < MAX_REACH_SQUARED) {
-      ray.add(march);
-    }
-
-    final double y = ray.getY();
-    if (Math.round(y) > y) {
-      return Half.TOP;
-    } else {
-      return Half.BOTTOM;
-    }
   }
 
   public enum Half {

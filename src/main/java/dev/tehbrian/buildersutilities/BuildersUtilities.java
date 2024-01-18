@@ -56,6 +56,10 @@ public final class BuildersUtilities extends TehPlugin {
   private @MonotonicNonNull PaperCommandManager<CommandSender> commandManager;
   private @MonotonicNonNull Injector injector;
 
+  private static boolean isEmpty(final Component component) {
+    return PlainTextComponentSerializer.plainText().serialize(component).isEmpty();
+  }
+
   @Override
   public void onEnable() {
     try {
@@ -211,10 +215,6 @@ public final class BuildersUtilities extends TehPlugin {
     );
 
     loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
-  }
-
-  private static boolean isEmpty(final Component component) {
-    return PlainTextComponentSerializer.plainText().serialize(component).isEmpty();
   }
 
 }
