@@ -4,7 +4,7 @@ plugins {
   id("io.papermc.paperweight.userdev") version "1.5.11"
   id("net.kyori.indra.checkstyle") version "3.1.3"
   id("xyz.jpenilla.run-paper") version "2.2.2"
-  id("com.github.ben-manes.versions") version "0.50.0"
+  id("com.github.ben-manes.versions") version "0.51.0"
 }
 
 group = "dev.tehbrian"
