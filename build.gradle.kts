@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 
   implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
   implementation("cloud.commandframework:cloud-paper:1.8.4")
@@ -77,6 +77,6 @@ tasks {
   }
 
   runServer {
-    minecraftVersion("1.20.2")
+    minecraftVersion("1.20.4")
   }
 }
