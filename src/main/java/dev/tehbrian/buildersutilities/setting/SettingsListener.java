@@ -20,6 +20,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.slf4j.Logger;
 
+import java.util.Locale;
+
 public final class SettingsListener implements Listener {
 
   private final ConfigConfig configConfig;
@@ -68,48 +70,46 @@ public final class SettingsListener implements Listener {
       return;
     }
 
+    final Block sourceBlock = event.getSourceBlock();
     final Block block = event.getBlock();
 
-    if (block.getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")) {
-      if (event.getSourceBlock().getType() == Material.AIR && event.getChangedType() == Material.AIR) {
-        return;
-      }
-
-      if (event.getSourceBlock().getType().name().toLowerCase().contains("snow")) {
-        return;
-      }
+    if (sourceBlock.getType().isAir() || block.getType().isAir()) {
+      return;
     }
 
-    final String changed = event.getChangedType().name().toLowerCase();
+    // allow grass blocks to convert to snowy.
+    if (sourceBlock.getType().name().toLowerCase(Locale.ROOT).contains("snow")
+        && block.getLocation().add(0, -1, 0).getBlock().getType().equals(Material.GRASS_BLOCK)) {
+      return;
+    }
 
-    if (changed.contains("chest")
-        || changed.contains("stair")
-        || changed.contains("fence")
-        || changed.contains("pane")
-        || changed.contains("wall")
-        || changed.contains("bar")
-        || changed.contains("door")) {
+    final String blockType = block.getType().name().toLowerCase();
+    if (blockType.contains("chest")
+        || blockType.contains("stair")
+        || blockType.contains("fence")
+        || blockType.contains("pane")
+        || blockType.contains("wall")
+        || blockType.contains("bar")
+        || blockType.contains("door")) {
       return;
     }
 
     if (this.configConfig.data().settings().disableRedstone()) {
-      if (changed.contains("redstone")
-          || changed.contains("daylight")
-          || changed.contains("diode")
-          || changed.contains("note")
-          || changed.contains("lever")
-          || changed.contains("button")
-          || changed.contains("command")
-          || changed.contains("tripwire")
-          || changed.contains("plate")
-          || changed.contains("string")
-          || changed.contains("piston")
-          || changed.contains("observer")) {
-        if (!block.getType().name().contains("air")) {
-          this.logger.debug("Physics were cancelled because disable-redstone: true");
-          event.setCancelled(true);
-          return;
-        }
+      if (blockType.contains("redstone")
+          || blockType.contains("daylight")
+          || blockType.contains("diode")
+          || blockType.contains("note")
+          || blockType.contains("lever")
+          || blockType.contains("button")
+          || blockType.contains("command")
+          || blockType.contains("tripwire")
+          || blockType.contains("plate")
+          || blockType.contains("string")
+          || blockType.contains("piston")
+          || blockType.contains("observer")) {
+        event.setCancelled(true);
+        this.logger.debug("Physics were cancelled because disable-redstone: true");
+        return;
       }
     }
 
@@ -168,7 +168,7 @@ public final class SettingsListener implements Listener {
   public void onFarmlandTrample(final PlayerInteractEvent event) {
     if (this.configConfig.data().settings().disableFarmlandTrample()
         && event.getAction() == Action.PHYSICAL && event.getClickedBlock() != null
-        && event.getClickedBlock().getType() == Material.FARMLAND) {
+        && event.getClickedBlock().getType().equals(Material.FARMLAND)) {
       event.setCancelled(true);
     }
   }
@@ -176,7 +176,7 @@ public final class SettingsListener implements Listener {
   @EventHandler
   public void onDragonEggTeleport(final BlockFromToEvent event) {
     if (this.configConfig.data().settings().disableDragonEggTeleport()
-        && event.getBlock().getType() == Material.DRAGON_EGG) {
+        && event.getBlock().getType().equals(Material.DRAGON_EGG)) {
       event.setCancelled(true);
     }
   }

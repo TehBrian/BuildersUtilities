@@ -71,7 +71,7 @@ public final class IronDoorListener implements Listener {
     block.setBlockData(door);
 
     final Sound sound;
-    if (blockType == Material.IRON_DOOR) {
+    if (blockType.equals(Material.IRON_DOOR)) {
       sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
     } else { // type is iron trapdoor.
       sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
