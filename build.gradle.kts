@@ -1,9 +1,9 @@
 plugins {
   id("java")
   id("com.github.johnrengelman.shadow") version "8.1.1"
-  id("io.papermc.paperweight.userdev") version "1.5.11"
+  id("io.papermc.paperweight.userdev") version "1.7.1"
   id("net.kyori.indra.checkstyle") version "3.1.3"
-  id("xyz.jpenilla.run-paper") version "2.2.2"
+  id("xyz.jpenilla.run-paper") version "2.3.0"
   id("com.github.ben-manes.versions") version "0.51.0"
 }
 
