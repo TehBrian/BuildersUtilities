@@ -41,23 +41,24 @@ public final class BaseMenuProvider {
 
     Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
 
-    inv.setItem(28, this.createSelectBanner(Material.BLACK_BANNER));
-    inv.setItem(29, this.createSelectBanner(Material.RED_BANNER));
-    inv.setItem(30, this.createSelectBanner(Material.GREEN_BANNER));
-    inv.setItem(31, this.createSelectBanner(Material.BROWN_BANNER));
-    inv.setItem(32, this.createSelectBanner(Material.BLUE_BANNER));
-    inv.setItem(33, this.createSelectBanner(Material.PURPLE_BANNER));
-    inv.setItem(34, this.createSelectBanner(Material.CYAN_BANNER));
-    inv.setItem(35, this.createSelectBanner(Material.LIGHT_GRAY_BANNER));
+    inv.setItem(19, this.createSelectBanner(Material.WHITE_BANNER));
+    inv.setItem(20, this.createSelectBanner(Material.LIGHT_GRAY_BANNER));
+    inv.setItem(21, this.createSelectBanner(Material.GRAY_BANNER));
+    inv.setItem(22, this.createSelectBanner(Material.BLACK_BANNER));
 
-    inv.setItem(37, this.createSelectBanner(Material.GRAY_BANNER));
-    inv.setItem(38, this.createSelectBanner(Material.PINK_BANNER));
-    inv.setItem(39, this.createSelectBanner(Material.LIME_BANNER));
-    inv.setItem(40, this.createSelectBanner(Material.YELLOW_BANNER));
-    inv.setItem(41, this.createSelectBanner(Material.LIGHT_BLUE_BANNER));
-    inv.setItem(42, this.createSelectBanner(Material.MAGENTA_BANNER));
-    inv.setItem(43, this.createSelectBanner(Material.ORANGE_BANNER));
-    inv.setItem(44, this.createSelectBanner(Material.WHITE_BANNER));
+    inv.setItem(28, this.createSelectBanner(Material.BROWN_BANNER));
+    inv.setItem(29, this.createSelectBanner(Material.RED_BANNER));
+    inv.setItem(30, this.createSelectBanner(Material.ORANGE_BANNER));
+    inv.setItem(31, this.createSelectBanner(Material.YELLOW_BANNER));
+    inv.setItem(32, this.createSelectBanner(Material.LIME_BANNER));
+    inv.setItem(33, this.createSelectBanner(Material.GREEN_BANNER));
+
+    inv.setItem(37, this.createSelectBanner(Material.LIGHT_BLUE_BANNER));
+    inv.setItem(38, this.createSelectBanner(Material.CYAN_BANNER));
+    inv.setItem(39, this.createSelectBanner(Material.BLUE_BANNER));
+    inv.setItem(40, this.createSelectBanner(Material.PURPLE_BANNER));
+    inv.setItem(41, this.createSelectBanner(Material.MAGENTA_BANNER));
+    inv.setItem(42, this.createSelectBanner(Material.PINK_BANNER));
 
     return inv;
   }

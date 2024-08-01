@@ -1,5 +1,6 @@
 package dev.tehbrian.buildersutilities.banner.menu;
 
+import com.destroystokyo.paper.MaterialTags;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
@@ -7,6 +8,7 @@ import dev.tehbrian.buildersutilities.banner.Sayge;
 import dev.tehbrian.buildersutilities.banner.Session;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.DyeColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,6 +17,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public final class ColorMenuListener implements Listener {
 
@@ -69,8 +73,13 @@ public final class ColorMenuListener implements Listener {
       this.playerSessions.get(player).showInterface(player);
     }
 
-    if (slot >= 28 && slot <= 44 && (slot % 9) > 0) {
-      final DyeColor clickedColor = Sayge.colorFromItem(Objects.requireNonNull(event.getCurrentItem()).getType());
+    if (slot >= 18) { // color area.
+      final Material clickedItemType = requireNonNull(event.getCurrentItem()).getType();
+      if (!MaterialTags.DYES.isTagged(clickedItemType)) {
+        return;
+      }
+      final DyeColor clickedColor = Sayge.colorFromItem(clickedItemType);
+
       session.nextPatternColor(clickedColor);
       session.showInterface(player);
     }
