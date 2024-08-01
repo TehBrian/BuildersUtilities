@@ -1,6 +1,6 @@
 name: BuildersUtilities
 description: ${description}
-authors: [ Arcaniax, TehBrian ]
+authors: [ TehBrian, Arcaniax ]
 website: https://github.com/TehBrian/BuildersUtilities
 
 softdepend: [ PlotSquared, WorldGuard ]
