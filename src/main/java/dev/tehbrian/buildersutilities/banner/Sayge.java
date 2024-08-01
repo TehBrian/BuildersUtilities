@@ -2,6 +2,7 @@ package dev.tehbrian.buildersutilities.banner;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Registry;
 import org.bukkit.block.banner.PatternType;
 
 import java.util.ArrayList;
@@ -74,9 +75,9 @@ public final class Sayge {
   public static List<PatternType> patternTypes() {
     final List<PatternType> allPatternTypes = new ArrayList<>();
 
-    for (final PatternType patternType : PatternType.values()) {
-      if (patternType != PatternType.BASE) {
-        allPatternTypes.add(patternType);
+    for (final PatternType type : Registry.BANNER_PATTERN) {
+      if (type != PatternType.BASE) {
+        allPatternTypes.add(type);
       }
     }
 
