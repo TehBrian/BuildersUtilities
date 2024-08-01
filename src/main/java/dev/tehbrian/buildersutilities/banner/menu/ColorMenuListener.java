@@ -53,7 +53,7 @@ public final class ColorMenuListener implements Listener {
         session.baseColor(null);
         session.showInterface(player);
       } else {
-        final DyeColor previousPatternColor = session.patterns().remove(session.patterns().size() - 1).getColor();
+        final DyeColor previousPatternColor = session.patterns().removeLast().getColor();
         session.nextPatternColor(previousPatternColor);
         session.showInterface(player);
       }
