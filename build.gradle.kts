@@ -12,7 +12,7 @@ version = "1.8.1"
 description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
-  toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+  toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 repositories {
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
 
   implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
   implementation("cloud.commandframework:cloud-paper:1.8.4")
@@ -77,6 +77,6 @@ tasks {
   }
 
   runServer {
-    minecraftVersion("1.20.4")
+    minecraftVersion("1.21")
   }
 }

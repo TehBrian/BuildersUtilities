@@ -15,12 +15,13 @@ import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.chunk.LevelChunk;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_20_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -98,7 +99,6 @@ public final class BuildersUtilitiesCommand {
               min(8, sender.getViewDistance(), sender.getServer().getViewDistance())
           );
 
-          // ChunkMap#playerLoadedChunk was an invaluable resource in porting this to 1.19.4
           final ServerPlayer nmsPlayer = ((CraftPlayer) sender).getHandle();
           final ServerLevel nmsLevel = ((CraftWorld) sender.getWorld()).getHandle();
           for (final Chunk chunk : chunksToReload) {
@@ -108,9 +108,13 @@ public final class BuildersUtilitiesCommand {
               // chunk isn't loaded. no need to worry about it.
               continue;
             }
+            final LevelChunk nmsChunkToSend = nmsChunk.getChunkToSend();
+            if (nmsChunkToSend == null) {
+              continue;
+            }
 
             final var packet = new ClientboundLevelChunkWithLightPacket(
-                nmsChunk.getSendingChunk(),
+                nmsChunkToSend,
                 nmsLevel.getLightEngine(),
                 null, null, false
             );
