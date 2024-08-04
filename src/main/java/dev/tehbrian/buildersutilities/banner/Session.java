@@ -1,7 +1,5 @@
 package dev.tehbrian.buildersutilities.banner;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
-import broccolai.corn.paper.item.special.BannerBuilder;
 import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
@@ -18,6 +16,9 @@ import org.spongepowered.configurate.NodePath;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
+import static love.broccolai.corn.minecraft.item.special.BannerBuilder.bannerBuilder;
 
 /**
  * Holds the state of a player's banner creation session.
@@ -118,7 +119,7 @@ public final class Session {
   }
 
   public ItemStack generateInterfaceBanner() {
-    return PaperItemBuilder.of(this.generateBanner())
+    return itemBuilder(this.generateBanner())
         .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
         .build();
   }
@@ -127,7 +128,7 @@ public final class Session {
     if (this.baseColor == null) {
       return DEFAULT_BANNER;
     } else {
-      return BannerBuilder.ofType(Sayge.bannerFromColor(this.baseColor))
+      return bannerBuilder(Sayge.bannerFromColor(this.baseColor))
           .patterns(this.patterns)
           .build();
     }

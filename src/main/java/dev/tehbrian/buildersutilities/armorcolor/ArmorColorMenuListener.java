@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.armorcolor;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.entity.Player;
@@ -15,6 +14,8 @@ import org.spongepowered.configurate.NodePath;
 
 import java.util.Objects;
 import java.util.Random;
+
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
 
 public final class ArmorColorMenuListener implements Listener {
 
@@ -34,7 +35,7 @@ public final class ArmorColorMenuListener implements Listener {
   public void onInventoryClick(final InventoryClickEvent event) {
     if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
         || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "armor-color", "inventory-name")))
-        || !(event.getWhoClicked() instanceof Player player)) {
+        || !(event.getWhoClicked() instanceof final Player player)) {
       return;
     }
 
@@ -49,11 +50,11 @@ public final class ArmorColorMenuListener implements Listener {
     event.setCancelled(true);
 
     switch (slot) {
-      case 10, 19, 28, 37 -> player.getInventory().addItem(PaperItemBuilder
-          .of(Objects.requireNonNull(event.getCurrentItem()).clone())
-          .name(null)
-          .lore(null)
-          .build());
+      case 10, 19, 28, 37 -> {
+        final var currentItem = Objects.requireNonNull(event.getCurrentItem()).clone();
+        final var newItem = itemBuilder(currentItem).name(null).lore(null).build();
+        player.getInventory().addItem(newItem);
+      }
       case 31, 33, 32 -> {
         final ClickType clickType = event.getClick();
         if (clickType == ClickType.LEFT && item.getAmount() < 33) {

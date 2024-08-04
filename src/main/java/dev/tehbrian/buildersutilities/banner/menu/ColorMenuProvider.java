@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.banner.menu;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.Session;
@@ -13,6 +12,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.NodePath;
+
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
 
 public final class ColorMenuProvider {
 
@@ -64,7 +65,7 @@ public final class ColorMenuProvider {
   }
 
   private ItemStack createSelectDye(final Material material) {
-    return PaperItemBuilder.ofType(material)
+    return itemBuilder(material)
         .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
         .build();
   }

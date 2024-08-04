@@ -35,7 +35,7 @@ public final class AbilityMenuListener implements Listener {
   public void onInventoryClick(final InventoryClickEvent event) {
     if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
         || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "ability", "inventory-name")))
-        || !(event.getWhoClicked() instanceof Player player)) {
+        || !(event.getWhoClicked() instanceof final Player player)) {
       return;
     }
 

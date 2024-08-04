@@ -1,13 +1,14 @@
 package dev.tehbrian.buildersutilities.banner;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
-import broccolai.corn.paper.item.special.SkullBuilder;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.spongepowered.configurate.NodePath;
+
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
+import static love.broccolai.corn.minecraft.item.special.SkullBuilder.skullBuilder;
 
 public final class Buttons {
 
@@ -20,20 +21,20 @@ public final class Buttons {
   }
 
   public static ItemStack randomize(final LangConfig langConfig, final ConfigConfig configConfig) {
-    return SkullBuilder.ofType(Material.PLAYER_HEAD)
+    return skullBuilder()
         .name(langConfig.c(NodePath.path("menus", "banner", "randomize")))
         .textures(configConfig.data().heads().banner().randomize())
         .build();
   }
 
   public static ItemStack reset(final LangConfig langConfig) {
-    return PaperItemBuilder.ofType(Material.BARRIER)
+    return itemBuilder(Material.BARRIER)
         .name(langConfig.c(NodePath.path("menus", "banner", "reset")))
         .build();
   }
 
   public static ItemStack undo(final LangConfig langConfig, final ConfigConfig configConfig) {
-    return SkullBuilder.ofType(Material.PLAYER_HEAD)
+    return skullBuilder()
         .name(langConfig.c(NodePath.path("menus", "banner", "undo")))
         .textures(configConfig.data().heads().banner().undo())
         .build();

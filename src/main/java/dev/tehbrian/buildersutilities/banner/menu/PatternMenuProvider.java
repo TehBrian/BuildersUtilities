@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.banner.menu;
 
-import broccolai.corn.paper.item.special.BannerBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.Sayge;
@@ -14,6 +13,9 @@ import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.Inventory;
 import org.spongepowered.configurate.NodePath;
+
+import static java.util.Objects.requireNonNull;
+import static love.broccolai.corn.minecraft.item.special.BannerBuilder.bannerBuilder;
 
 public final class PatternMenuProvider {
 
@@ -42,13 +44,14 @@ public final class PatternMenuProvider {
 
     Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
 
+    requireNonNull(session.nextPatternColor());
     final Material displayBase = switch (session.nextPatternColor()) {
       case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
       default -> Material.WHITE_BANNER;
     };
 
     for (int i = 0; i < Sayge.patternTypes().size(); i++) {
-      inv.setItem(i + 9, BannerBuilder.ofType(displayBase)
+      inv.setItem(i + 9, bannerBuilder(displayBase)
           .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
           .addPattern(new Pattern(session.nextPatternColor(), Sayge.patternTypes().get(i)))
           .build()

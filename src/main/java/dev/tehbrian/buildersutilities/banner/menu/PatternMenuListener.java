@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.banner.menu;
 
-import broccolai.corn.paper.item.special.BannerBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
@@ -16,6 +15,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
+import static love.broccolai.corn.minecraft.item.special.BannerBuilder.bannerBuilder;
 
 public final class PatternMenuListener implements Listener {
 
@@ -36,7 +38,7 @@ public final class PatternMenuListener implements Listener {
     final var title = this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name"));
     if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
         || !event.getView().title().equals(title)
-        || !(event.getWhoClicked() instanceof Player player)) {
+        || !(event.getWhoClicked() instanceof final Player player)) {
       return;
     }
 
@@ -52,7 +54,7 @@ public final class PatternMenuListener implements Listener {
 
     if (slot == Buttons.RANDOM_SLOT) {
       session.patterns().add(new Pattern(
-          Objects.requireNonNull(session.nextPatternColor()),
+          requireNonNull(session.nextPatternColor()),
           Sayge.randomPatternType()
       ));
       session.nextPatternColor(null);
@@ -70,7 +72,7 @@ public final class PatternMenuListener implements Listener {
 
     if (slot >= 9 && slot <= (8 + Sayge.patternTypes().size())) {
       // get the pattern from the clicked banner that PatternMenuProvider has already assigned the next pattern color to.
-      final Pattern clickedPattern = BannerBuilder.of(Objects.requireNonNull(event.getCurrentItem())).getPattern(0);
+      final Pattern clickedPattern = bannerBuilder(requireNonNull(event.getCurrentItem())).pattern(0);
       session.patterns().add(clickedPattern);
       session.nextPatternColor(null);
       session.showInterface(player);

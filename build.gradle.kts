@@ -19,12 +19,13 @@ repositories {
   mavenCentral()
   maven("https://papermc.io/repo/repository/maven-public/")
   maven("https://repo.thbn.me/releases/")
+  maven("https://repo.thbn.me/snapshots/")
 }
 
 dependencies {
   paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
 
-  implementation("broccolai.corn:corn-minecraft-paper:3.2.0")
+  implementation("love.broccolai.corn:corn-minecraft:4.0.0-SNAPSHOT")
   implementation("cloud.commandframework:cloud-paper:1.8.4")
   implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4")
   implementation("com.google.inject:guice:7.0.0")

@@ -1,8 +1,5 @@
 package dev.tehbrian.buildersutilities.armorcolor;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
-import broccolai.corn.paper.item.special.LeatherArmorBuilder;
-import broccolai.corn.paper.item.special.SkullBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
@@ -16,7 +13,11 @@ import org.bukkit.inventory.Inventory;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.List;
-import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
+import static love.broccolai.corn.minecraft.item.special.LeatherArmorBuilder.leatherArmorBuilder;
+import static love.broccolai.corn.minecraft.item.special.SkullBuilder.skullBuilder;
 
 public final class ArmorColorMenuProvider {
 
@@ -45,25 +46,25 @@ public final class ArmorColorMenuProvider {
 
     inv.setItem(
         10,
-        PaperItemBuilder.ofType(Material.LEATHER_HELMET)
+        itemBuilder(Material.LEATHER_HELMET)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-helmet")))
             .build()
     );
     inv.setItem(
         19,
-        PaperItemBuilder.ofType(Material.LEATHER_CHESTPLATE)
+        itemBuilder(Material.LEATHER_CHESTPLATE)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-chestplate")))
             .build()
     );
     inv.setItem(
         28,
-        PaperItemBuilder.ofType(Material.LEATHER_LEGGINGS)
+        itemBuilder(Material.LEATHER_LEGGINGS)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-leggings")))
             .build()
     );
     inv.setItem(
         37,
-        PaperItemBuilder.ofType(Material.LEATHER_BOOTS)
+        itemBuilder(Material.LEATHER_BOOTS)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "get-boots")))
             .build()
     );
@@ -72,28 +73,28 @@ public final class ArmorColorMenuProvider {
 
     inv.setItem(
         22,
-        SkullBuilder.ofType(Material.PLAYER_HEAD)
+        skullBuilder()
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-red")))
             .textures(this.configConfig.data().heads().armorColor().randomizeRed())
             .build()
     );
     inv.setItem(
         23,
-        SkullBuilder.ofType(Material.PLAYER_HEAD)
+        skullBuilder()
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-green")))
             .textures(this.configConfig.data().heads().armorColor().randomizeGreen())
             .build()
     );
     inv.setItem(
         24,
-        SkullBuilder.ofType(Material.PLAYER_HEAD)
+        skullBuilder()
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-blue")))
             .textures(this.configConfig.data().heads().armorColor().randomizeBlue())
             .build()
     );
     inv.setItem(
         31,
-        SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
+        skullBuilder().amount(16)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "red")))
             .lore(lore)
             .textures(this.configConfig.data().heads().armorColor().red())
@@ -101,7 +102,7 @@ public final class ArmorColorMenuProvider {
     );
     inv.setItem(
         32,
-        SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
+        skullBuilder().amount(16)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "green")))
             .lore(lore)
             .textures(this.configConfig.data().heads().armorColor().green())
@@ -109,7 +110,7 @@ public final class ArmorColorMenuProvider {
     );
     inv.setItem(
         33,
-        SkullBuilder.ofType(Material.PLAYER_HEAD).amount(16)
+        skullBuilder().amount(16)
             .name(this.langConfig.c(NodePath.path("menus", "armor-color", "blue")))
             .lore(lore)
             .textures(this.configConfig.data().heads().armorColor().blue())
@@ -122,9 +123,9 @@ public final class ArmorColorMenuProvider {
   }
 
   public void update(final Inventory inv) {
-    int r = (Objects.requireNonNull(inv.getItem(31)).getAmount() - 1) * 8;
-    int g = (Objects.requireNonNull(inv.getItem(32)).getAmount() - 1) * 8;
-    int b = (Objects.requireNonNull(inv.getItem(33)).getAmount() - 1) * 8;
+    int r = (requireNonNull(inv.getItem(31)).getAmount() - 1) * 8;
+    int g = (requireNonNull(inv.getItem(32)).getAmount() - 1) * 8;
+    int b = (requireNonNull(inv.getItem(33)).getAmount() - 1) * 8;
 
     if (r == 256) {
       r = 255;
@@ -140,10 +141,10 @@ public final class ArmorColorMenuProvider {
 
     final Color finalColor = Color.fromRGB(r, g, b);
 
-    inv.setItem(10, LeatherArmorBuilder.of(Objects.requireNonNull(inv.getItem(10))).color(finalColor).build());
-    inv.setItem(19, LeatherArmorBuilder.of(Objects.requireNonNull(inv.getItem(19))).color(finalColor).build());
-    inv.setItem(28, LeatherArmorBuilder.of(Objects.requireNonNull(inv.getItem(28))).color(finalColor).build());
-    inv.setItem(37, LeatherArmorBuilder.of(Objects.requireNonNull(inv.getItem(37))).color(finalColor).build());
+    inv.setItem(10, leatherArmorBuilder(requireNonNull(inv.getItem(10))).color(finalColor).build());
+    inv.setItem(19, leatherArmorBuilder(requireNonNull(inv.getItem(19))).color(finalColor).build());
+    inv.setItem(28, leatherArmorBuilder(requireNonNull(inv.getItem(28))).color(finalColor).build());
+    inv.setItem(37, leatherArmorBuilder(requireNonNull(inv.getItem(37))).color(finalColor).build());
   }
 
 }

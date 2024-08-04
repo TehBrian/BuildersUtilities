@@ -39,7 +39,7 @@ public final class BaseMenuListener implements Listener {
     final var title = this.langConfig.c(NodePath.path("menus", "banner", "base-inventory-name"));
     if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
         || !event.getView().title().equals(title)
-        || !(event.getWhoClicked() instanceof Player player)) {
+        || !(event.getWhoClicked() instanceof final Player player)) {
       return;
     }
 

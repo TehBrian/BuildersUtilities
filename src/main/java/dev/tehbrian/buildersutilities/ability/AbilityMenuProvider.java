@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.ability;
 
-import broccolai.corn.paper.item.PaperItemBuilder;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.user.User;
@@ -20,18 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
+
 public final class AbilityMenuProvider {
 
-  private static final ItemStack GREEN = PaperItemBuilder
-      .ofType(Material.LIME_STAINED_GLASS_PANE)
+  private static final ItemStack GREEN = itemBuilder(Material.LIME_STAINED_GLASS_PANE)
       .name(Component.empty())
       .build();
-  private static final ItemStack ORANGE = PaperItemBuilder
-      .ofType(Material.ORANGE_STAINED_GLASS_PANE)
+  private static final ItemStack ORANGE = itemBuilder(Material.ORANGE_STAINED_GLASS_PANE)
       .name(Component.empty())
       .build();
-  private static final ItemStack RED = PaperItemBuilder
-      .ofType(Material.RED_STAINED_GLASS_PANE)
+  private static final ItemStack RED = itemBuilder(Material.RED_STAINED_GLASS_PANE)
       .name(Component.empty())
       .build();
 
@@ -124,7 +122,7 @@ public final class AbilityMenuProvider {
     lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", abilityKey, "description")));
     lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", "status", statusKey)));
 
-    return PaperItemBuilder.ofType(material)
+    return itemBuilder(material)
         .name(this.langConfig.c(NodePath.path("menus", "ability", abilityKey, "name")))
         .lore(lore)
         .build();
