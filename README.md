@@ -34,8 +34,10 @@ me, over a couple sleepless nights. Now *that's* what I call quality code.
 ## Screenshots
 
 ![commands](assets/commands.png)
+![banner creator](assets/banner-creator.gif)
 ![ability menu](assets/ability-menu.gif)
 ![armor color creator](assets/armor-color-creator.gif)
+![special items menu](assets/special-items-menu.png)
 
 ## Building
 
