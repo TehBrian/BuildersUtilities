@@ -27,7 +27,9 @@ dependencies {
 
 	implementation("love.broccolai.corn:corn-minecraft:4.0.0-SNAPSHOT")
 	implementation("cloud.commandframework:cloud-paper:1.8.4")
-	implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4")
+	implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4") {
+		exclude("net.kyori", "adventure-api")
+	}
 	implementation("com.google.inject:guice:7.0.0")
 	implementation("org.spongepowered:configurate-yaml:4.1.2")
 	implementation("dev.tehbrian:tehlib-paper:0.5.0")
