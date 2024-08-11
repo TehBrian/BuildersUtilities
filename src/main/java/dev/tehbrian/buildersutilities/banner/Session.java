@@ -28,127 +28,127 @@ import static love.broccolai.corn.minecraft.item.special.BannerBuilder.bannerBui
  */
 public final class Session {
 
-  private static final ItemStack DEFAULT_BANNER = new ItemStack(Material.WHITE_BANNER);
+	private static final ItemStack DEFAULT_BANNER = new ItemStack(Material.WHITE_BANNER);
 
-  private final BaseMenuProvider baseProvider;
-  private final ColorMenuProvider colorProvider;
-  private final PatternMenuProvider patternProvider;
-  private final DoneMenuProvider doneProvider;
-  private final LangConfig langConfig;
-  /**
-   * The banner's current patterns.
-   */
-  private final List<Pattern> patterns = new ArrayList<>();
-  /**
-   * The banner's current base color.
-   * <p>
-   * This is only <b>null</b> iff the current step is {@code PICK_BASE}.
-   */
-  private @Nullable DyeColor baseColor = null;
-  /**
-   * The color that will be used for the next pattern.
-   * <p>
-   * This is only <b>non</b>-null iff the current step is {@code PICK_PATTERN}.
-   */
-  private @Nullable DyeColor nextPatternColor = null;
+	private final BaseMenuProvider baseProvider;
+	private final ColorMenuProvider colorProvider;
+	private final PatternMenuProvider patternProvider;
+	private final DoneMenuProvider doneProvider;
+	private final LangConfig langConfig;
+	/**
+	 * The banner's current patterns.
+	 */
+	private final List<Pattern> patterns = new ArrayList<>();
+	/**
+	 * The banner's current base color.
+	 * <p>
+	 * This is only <b>null</b> iff the current step is {@code PICK_BASE}.
+	 */
+	private @Nullable DyeColor baseColor = null;
+	/**
+	 * The color that will be used for the next pattern.
+	 * <p>
+	 * This is only <b>non</b>-null iff the current step is {@code PICK_PATTERN}.
+	 */
+	private @Nullable DyeColor nextPatternColor = null;
 
-  public Session(
-      final BaseMenuProvider baseProvider,
-      final ColorMenuProvider colorProvider,
-      final PatternMenuProvider patternProvider,
-      final DoneMenuProvider doneProvider,
-      final LangConfig langConfig
-  ) {
-    this.baseProvider = baseProvider;
-    this.colorProvider = colorProvider;
-    this.patternProvider = patternProvider;
-    this.doneProvider = doneProvider;
-    this.langConfig = langConfig;
-  }
+	public Session(
+			final BaseMenuProvider baseProvider,
+			final ColorMenuProvider colorProvider,
+			final PatternMenuProvider patternProvider,
+			final DoneMenuProvider doneProvider,
+			final LangConfig langConfig
+	) {
+		this.baseProvider = baseProvider;
+		this.colorProvider = colorProvider;
+		this.patternProvider = patternProvider;
+		this.doneProvider = doneProvider;
+		this.langConfig = langConfig;
+	}
 
-  /**
-   * Builds the interface relevant to this session.
-   * <p>
-   * Although the player can change this session's state via buttons in the
-   * interface, this method alone will not affect this session's state and
-   * can be called multiple times without mutating state.
-   *
-   * @return the built interface
-   */
-  public Inventory buildInterface() {
-    return switch (this.getStep()) {
-      case PICK_BASE -> this.baseProvider.generate(this);
-      case PICK_COLOR -> this.colorProvider.generate(this);
-      case PICK_PATTERN -> this.patternProvider.generate(this);
-      case DONE -> this.doneProvider.generate(this);
-    };
-  }
+	/**
+	 * Builds the interface relevant to this session.
+	 * <p>
+	 * Although the player can change this session's state via buttons in the
+	 * interface, this method alone will not affect this session's state and
+	 * can be called multiple times without mutating state.
+	 *
+	 * @return the built interface
+	 */
+	public Inventory buildInterface() {
+		return switch (this.getStep()) {
+			case PICK_BASE -> this.baseProvider.generate(this);
+			case PICK_COLOR -> this.colorProvider.generate(this);
+			case PICK_PATTERN -> this.patternProvider.generate(this);
+			case DONE -> this.doneProvider.generate(this);
+		};
+	}
 
-  /**
-   * Opens an interface built via {@link #buildInterface()} to the player.
-   *
-   * @param player the player to show the built interface to
-   */
-  public void showInterface(final Player player) {
-    player.openInventory(this.buildInterface());
-  }
+	/**
+	 * Opens an interface built via {@link #buildInterface()} to the player.
+	 *
+	 * @param player the player to show the built interface to
+	 */
+	public void showInterface(final Player player) {
+		player.openInventory(this.buildInterface());
+	}
 
-  public Step getStep() {
-    if (this.patterns.size() >= 16) {
-      return Step.DONE;
-    }
-    if (this.baseColor == null) {
-      return Step.PICK_BASE;
-    }
-    if (this.nextPatternColor == null) {
-      return Step.PICK_COLOR;
-    }
-    return Step.PICK_PATTERN;
-  }
+	public Step getStep() {
+		if (this.patterns.size() >= 16) {
+			return Step.DONE;
+		}
+		if (this.baseColor == null) {
+			return Step.PICK_BASE;
+		}
+		if (this.nextPatternColor == null) {
+			return Step.PICK_COLOR;
+		}
+		return Step.PICK_PATTERN;
+	}
 
-  public @Nullable DyeColor nextPatternColor() {
-    return this.nextPatternColor;
-  }
+	public @Nullable DyeColor nextPatternColor() {
+		return this.nextPatternColor;
+	}
 
-  public void nextPatternColor(final @Nullable DyeColor nextPatternColor) {
-    this.nextPatternColor = nextPatternColor;
-  }
+	public void nextPatternColor(final @Nullable DyeColor nextPatternColor) {
+		this.nextPatternColor = nextPatternColor;
+	}
 
-  public void baseColor(final @Nullable DyeColor baseColor) {
-    this.baseColor = baseColor;
-  }
+	public void baseColor(final @Nullable DyeColor baseColor) {
+		this.baseColor = baseColor;
+	}
 
-  public ItemStack generateInterfaceBanner() {
-    return itemBuilder(this.generateBanner())
-        .name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
-        .build();
-  }
+	public ItemStack generateInterfaceBanner() {
+		return itemBuilder(this.generateBanner())
+				.name(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
+				.build();
+	}
 
-  public ItemStack generateBanner() {
-    if (this.baseColor == null) {
-      return DEFAULT_BANNER;
-    } else {
-      return bannerBuilder(Sayge.bannerFromColor(this.baseColor))
-          .patterns(this.patterns)
-          .build();
-    }
-  }
+	public ItemStack generateBanner() {
+		if (this.baseColor == null) {
+			return DEFAULT_BANNER;
+		} else {
+			return bannerBuilder(Sayge.bannerFromColor(this.baseColor))
+					.patterns(this.patterns)
+					.build();
+		}
+	}
 
-  public List<Pattern> patterns() {
-    return this.patterns;
-  }
+	public List<Pattern> patterns() {
+		return this.patterns;
+	}
 
-  /**
-   * A step of the session.
-   * <p>
-   * Sessions start with {@code PICK_BASE} and then flip back and forth
-   * between {@code PICK_COLOR} and {@code PICK_PATTERN}.
-   */
-  public enum Step {
-    PICK_BASE,
-    PICK_COLOR,
-    PICK_PATTERN,
-    DONE,
-  }
+	/**
+	 * A step of the session.
+	 * <p>
+	 * Sessions start with {@code PICK_BASE} and then flip back and forth
+	 * between {@code PICK_COLOR} and {@code PICK_PATTERN}.
+	 */
+	public enum Step {
+		PICK_BASE,
+		PICK_COLOR,
+		PICK_PATTERN,
+		DONE,
+	}
 
 }

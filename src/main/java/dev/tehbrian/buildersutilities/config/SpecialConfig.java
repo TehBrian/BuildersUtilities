@@ -20,80 +20,80 @@ import java.util.Objects;
 
 public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
-  private final Logger logger;
+	private final Logger logger;
 
-  private final List<ItemStack> items = new ArrayList<>();
+	private final List<ItemStack> items = new ArrayList<>();
 
-  @Inject
-  public SpecialConfig(final @Named("dataFolder") Path dataFolder, final Logger logger) {
-    super(new YamlConfigurateWrapper(dataFolder.resolve("special.yml")));
-    this.logger = logger;
-  }
+	@Inject
+	public SpecialConfig(final @Named("dataFolder") Path dataFolder, final Logger logger) {
+		super(new YamlConfigurateWrapper(dataFolder.resolve("special.yml")));
+		this.logger = logger;
+	}
 
-  @Override
-  public void load() throws ConfigurateException {
-    this.configurateWrapper.load();
-    final CommentedConfigurationNode rootNode =
-        Objects.requireNonNull(this.configurateWrapper.get()); // will not be null as we called #load()
-    final String fileName = this.configurateWrapper.filePath().getFileName().toString();
+	@Override
+	public void load() throws ConfigurateException {
+		this.configurateWrapper.load();
+		final CommentedConfigurationNode rootNode =
+				Objects.requireNonNull(this.configurateWrapper.get()); // will not be null as we called #load()
+		final String fileName = this.configurateWrapper.filePath().getFileName().toString();
 
-    this.items.clear();
+		this.items.clear();
 
-    final @Nullable List<String> itemNames = rootNode.node("items").getList(String.class);
-    if (itemNames == null) {
-      return;
-    }
+		final @Nullable List<String> itemNames = rootNode.node("items").getList(String.class);
+		if (itemNames == null) {
+			return;
+		}
 
-    for (final String dirtyItemName : itemNames) {
-      final var itemName = dirtyItemName.strip().toUpperCase(Locale.ROOT);
+		for (final String dirtyItemName : itemNames) {
+			final var itemName = dirtyItemName.strip().toUpperCase(Locale.ROOT);
 
-      // special case for light levels.
-      if (itemName.startsWith("LIGHT") && !itemName.equals("LIGHT")) {
-        int level;
-        try {
-          level = Integer.parseInt(itemName.split("-")[1]);
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-          this.logger.warn("Invalid light data {}.", itemName);
-          this.logger.warn("Skipping this item. Please check your {}", fileName);
-          this.logger.warn("Printing stack trace:", e);
-          continue;
-        }
+			// special case for light levels.
+			if (itemName.startsWith("LIGHT") && !itemName.equals("LIGHT")) {
+				int level;
+				try {
+					level = Integer.parseInt(itemName.split("-")[1]);
+				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					this.logger.warn("Invalid light data {}.", itemName);
+					this.logger.warn("Skipping this item. Please check your {}", fileName);
+					this.logger.warn("Printing stack trace:", e);
+					continue;
+				}
 
-        if (level > 15) {
-          level = 15;
-        }
-        if (level < 0) {
-          level = 0;
-        }
+				if (level > 15) {
+					level = 15;
+				}
+				if (level < 0) {
+					level = 0;
+				}
 
-        // create a light item with that light level.
-        final ItemStack item = new ItemStack(Material.LIGHT);
-        final BlockDataMeta meta = (BlockDataMeta) item.getItemMeta();
-        final Light data = (Light) Material.LIGHT.createBlockData();
-        data.setLevel(level);
-        meta.setBlockData(data);
-        item.setItemMeta(meta);
+				// create a light item with that light level.
+				final ItemStack item = new ItemStack(Material.LIGHT);
+				final BlockDataMeta meta = (BlockDataMeta) item.getItemMeta();
+				final Light data = (Light) Material.LIGHT.createBlockData();
+				data.setLevel(level);
+				meta.setBlockData(data);
+				item.setItemMeta(meta);
 
-        this.items.add(item);
-        continue;
-      }
+				this.items.add(item);
+				continue;
+			}
 
-      final Material itemMaterial;
-      try {
-        itemMaterial = Material.valueOf(itemName);
-      } catch (final IllegalArgumentException e) {
-        this.logger.warn("The material {} does not exist.", itemName);
-        this.logger.warn("Skipping this item. Please check your {}", fileName);
-        this.logger.warn("Printing stack trace:", e);
-        continue;
-      }
+			final Material itemMaterial;
+			try {
+				itemMaterial = Material.valueOf(itemName);
+			} catch (final IllegalArgumentException e) {
+				this.logger.warn("The material {} does not exist.", itemName);
+				this.logger.warn("Skipping this item. Please check your {}", fileName);
+				this.logger.warn("Printing stack trace:", e);
+				continue;
+			}
 
-      this.items.add(new ItemStack(itemMaterial));
-    }
-  }
+			this.items.add(new ItemStack(itemMaterial));
+		}
+	}
 
-  public List<ItemStack> items() {
-    return this.items;
-  }
+	public List<ItemStack> items() {
+		return this.items;
+	}
 
 }

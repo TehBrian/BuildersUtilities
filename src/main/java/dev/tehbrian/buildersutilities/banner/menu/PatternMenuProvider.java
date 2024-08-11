@@ -19,46 +19,46 @@ import static love.broccolai.corn.minecraft.item.special.BannerBuilder.bannerBui
 
 public final class PatternMenuProvider {
 
-  private final LangConfig langConfig;
-  private final ConfigConfig configConfig;
+	private final LangConfig langConfig;
+	private final ConfigConfig configConfig;
 
-  @Inject
-  public PatternMenuProvider(
-      final LangConfig langConfig,
-      final ConfigConfig configConfig
-  ) {
-    this.langConfig = langConfig;
-    this.configConfig = configConfig;
-  }
+	@Inject
+	public PatternMenuProvider(
+			final LangConfig langConfig,
+			final ConfigConfig configConfig
+	) {
+		this.langConfig = langConfig;
+		this.configConfig = configConfig;
+	}
 
-  public Inventory generate(final Session session) {
-    final Inventory inv = Bukkit.createInventory(
-        null,
-        ChestSize.DOUBLE,
-        this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name"))
-    );
+	public Inventory generate(final Session session) {
+		final Inventory inv = Bukkit.createInventory(
+				null,
+				ChestSize.DOUBLE,
+				this.langConfig.c(NodePath.path("menus", "banner", "pattern-inventory-name"))
+		);
 
-    for (int i = 0; i < inv.getSize(); i++) {
-      inv.setItem(i, MenuItems.BACKGROUND);
-    }
+		for (int i = 0; i < inv.getSize(); i++) {
+			inv.setItem(i, MenuItems.BACKGROUND);
+		}
 
-    Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
+		Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
 
-    requireNonNull(session.nextPatternColor());
-    final Material displayBase = switch (session.nextPatternColor()) {
-      case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
-      default -> Material.WHITE_BANNER;
-    };
+		requireNonNull(session.nextPatternColor());
+		final Material displayBase = switch (session.nextPatternColor()) {
+			case WHITE, LIGHT_GRAY, LIME, LIGHT_BLUE, YELLOW -> Material.BLACK_BANNER;
+			default -> Material.WHITE_BANNER;
+		};
 
-    for (int i = 0; i < Sayge.patternTypes().size(); i++) {
-      inv.setItem(i + 9, bannerBuilder(displayBase)
-          .lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
-          .addPattern(new Pattern(session.nextPatternColor(), Sayge.patternTypes().get(i)))
-          .build()
-      );
-    }
+		for (int i = 0; i < Sayge.patternTypes().size(); i++) {
+			inv.setItem(i + 9, bannerBuilder(displayBase)
+					.lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
+					.addPattern(new Pattern(session.nextPatternColor(), Sayge.patternTypes().get(i)))
+					.build()
+			);
+		}
 
-    return inv;
-  }
+		return inv;
+	}
 
 }

@@ -31,60 +31,60 @@ import java.util.Objects;
  */
 public final class IronDoorListener implements Listener {
 
-  private final UserService userService;
-  private final SpigotRestrictionHelper restrictionHelper;
+	private final UserService userService;
+	private final SpigotRestrictionHelper restrictionHelper;
 
-  @Inject
-  public IronDoorListener(
-      final UserService userService,
-      final SpigotRestrictionHelper restrictionHelper
-  ) {
-    this.userService = userService;
-    this.restrictionHelper = restrictionHelper;
-  }
+	@Inject
+	public IronDoorListener(
+			final UserService userService,
+			final SpigotRestrictionHelper restrictionHelper
+	) {
+		this.userService = userService;
+		this.restrictionHelper = restrictionHelper;
+	}
 
-  @EventHandler(ignoreCancelled = true)
-  public void onIronDoorInteract(final PlayerInteractEvent event) {
-    final Player player = event.getPlayer();
+	@EventHandler(ignoreCancelled = true)
+	public void onIronDoorInteract(final PlayerInteractEvent event) {
+		final Player player = event.getPlayer();
 
-    if (!this.userService.getUser(player).ironDoorToggleEnabled()
-        || !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
-      return;
-    }
+		if (!this.userService.getUser(player).ironDoorToggleEnabled()
+				|| !player.hasPermission(Permissions.IRON_DOOR_TOGGLE)) {
+			return;
+		}
 
-    final Block block = Objects.requireNonNull(event.getClickedBlock());
-    final Material blockType = block.getType();
+		final Block block = Objects.requireNonNull(event.getClickedBlock());
+		final Material blockType = block.getType();
 
-    if ((blockType != Material.IRON_DOOR && blockType != Material.IRON_TRAPDOOR)
-        || player.getInventory().getItemInMainHand().getType() != Material.AIR
-        || event.getAction() != Action.RIGHT_CLICK_BLOCK
-        || event.getHand() != EquipmentSlot.HAND
-        || player.getGameMode() != GameMode.CREATIVE
-        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
-        || !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
-      return;
-    }
+		if ((blockType != Material.IRON_DOOR && blockType != Material.IRON_TRAPDOOR)
+				|| player.getInventory().getItemInMainHand().getType() != Material.AIR
+				|| event.getAction() != Action.RIGHT_CLICK_BLOCK
+				|| event.getHand() != EquipmentSlot.HAND
+				|| player.getGameMode() != GameMode.CREATIVE
+				|| !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
+				|| !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+			return;
+		}
 
-    final Openable door = (Openable) block.getBlockData();
-    final boolean willOpen = !door.isOpen();
-    door.setOpen(willOpen);
-    block.setBlockData(door);
+		final Openable door = (Openable) block.getBlockData();
+		final boolean willOpen = !door.isOpen();
+		door.setOpen(willOpen);
+		block.setBlockData(door);
 
-    final Sound sound;
-    if (blockType.equals(Material.IRON_DOOR)) {
-      sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
-    } else { // type is iron trapdoor.
-      sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
-    }
-    block.getWorld().playSound(
-        block.getLocation(), sound,
-        SoundCategory.BLOCKS,
-        1F, 1F
-    );
+		final Sound sound;
+		if (blockType.equals(Material.IRON_DOOR)) {
+			sound = willOpen ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
+		} else { // type is iron trapdoor.
+			sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
+		}
+		block.getWorld().playSound(
+				block.getLocation(), sound,
+				SoundCategory.BLOCKS,
+				1F, 1F
+		);
 
-    player.swingMainHand();
+		player.swingMainHand();
 
-    event.setCancelled(true);
-  }
+		event.setCancelled(true);
+	}
 
 }

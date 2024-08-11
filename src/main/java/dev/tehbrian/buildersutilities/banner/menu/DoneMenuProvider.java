@@ -13,32 +13,32 @@ import org.spongepowered.configurate.NodePath;
 
 public final class DoneMenuProvider {
 
-  private final LangConfig langConfig;
-  private final ConfigConfig configConfig;
+	private final LangConfig langConfig;
+	private final ConfigConfig configConfig;
 
-  @Inject
-  public DoneMenuProvider(
-      final LangConfig langConfig,
-      final ConfigConfig configConfig
-  ) {
-    this.langConfig = langConfig;
-    this.configConfig = configConfig;
-  }
+	@Inject
+	public DoneMenuProvider(
+			final LangConfig langConfig,
+			final ConfigConfig configConfig
+	) {
+		this.langConfig = langConfig;
+		this.configConfig = configConfig;
+	}
 
-  public Inventory generate(final Session session) {
-    final Inventory inv = Bukkit.createInventory(
-        null,
-        ChestSize.DOUBLE,
-        this.langConfig.c(NodePath.path("menus", "banner", "done-inventory-name"))
-    );
+	public Inventory generate(final Session session) {
+		final Inventory inv = Bukkit.createInventory(
+				null,
+				ChestSize.DOUBLE,
+				this.langConfig.c(NodePath.path("menus", "banner", "done-inventory-name"))
+		);
 
-    for (int i = 0; i < inv.getSize(); i++) {
-      inv.setItem(i, MenuItems.BACKGROUND);
-    }
+		for (int i = 0; i < inv.getSize(); i++) {
+			inv.setItem(i, MenuItems.BACKGROUND);
+		}
 
-    Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
+		Buttons.addToolbar(inv, this.langConfig, this.configConfig, session.generateInterfaceBanner());
 
-    return inv;
-  }
+		return inv;
+	}
 
 }

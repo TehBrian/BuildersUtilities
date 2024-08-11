@@ -19,66 +19,66 @@ import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
 
 public final class ArmorColorMenuListener implements Listener {
 
-  private final ArmorColorMenuProvider armorColorInventoryProvider;
-  private final LangConfig langConfig;
+	private final ArmorColorMenuProvider armorColorInventoryProvider;
+	private final LangConfig langConfig;
 
-  @Inject
-  public ArmorColorMenuListener(
-      final ArmorColorMenuProvider armorColorInventoryProvider,
-      final LangConfig langConfig
-  ) {
-    this.armorColorInventoryProvider = armorColorInventoryProvider;
-    this.langConfig = langConfig;
-  }
+	@Inject
+	public ArmorColorMenuListener(
+			final ArmorColorMenuProvider armorColorInventoryProvider,
+			final LangConfig langConfig
+	) {
+		this.armorColorInventoryProvider = armorColorInventoryProvider;
+		this.langConfig = langConfig;
+	}
 
-  @EventHandler(priority = EventPriority.LOWEST)
-  public void onInventoryClick(final InventoryClickEvent event) {
-    if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
-        || !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "armor-color", "inventory-name")))
-        || !(event.getWhoClicked() instanceof final Player player)) {
-      return;
-    }
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onInventoryClick(final InventoryClickEvent event) {
+		if (!Objects.equals(event.getClickedInventory(), event.getView().getTopInventory())
+				|| !event.getView().title().equals(this.langConfig.c(NodePath.path("menus", "armor-color", "inventory-name")))
+				|| !(event.getWhoClicked() instanceof final Player player)) {
+			return;
+		}
 
-    final int slot = event.getRawSlot();
+		final int slot = event.getRawSlot();
 
-    final Inventory inventory = event.getClickedInventory();
-    Objects.requireNonNull(inventory);
+		final Inventory inventory = event.getClickedInventory();
+		Objects.requireNonNull(inventory);
 
-    final ItemStack item = inventory.getItem(slot);
-    Objects.requireNonNull(item);
+		final ItemStack item = inventory.getItem(slot);
+		Objects.requireNonNull(item);
 
-    event.setCancelled(true);
+		event.setCancelled(true);
 
-    switch (slot) {
-      case 10, 19, 28, 37 -> {
-        final var currentItem = Objects.requireNonNull(event.getCurrentItem()).clone();
-        final var newItem = itemBuilder(currentItem).name(null).lore(null).build();
-        player.getInventory().addItem(newItem);
-      }
-      case 31, 33, 32 -> {
-        final ClickType clickType = event.getClick();
-        if (clickType == ClickType.LEFT && item.getAmount() < 33) {
-          item.setAmount(item.getAmount() + 1);
-        } else if (clickType == ClickType.RIGHT && item.getAmount() > 1) {
-          item.setAmount(item.getAmount() - 1);
-        } else if (clickType == ClickType.SHIFT_LEFT && item.getAmount() < 30) {
-          item.setAmount(item.getAmount() + 4);
-        } else if (clickType == ClickType.SHIFT_LEFT) {
-          item.setAmount(33);
-        } else if (clickType == ClickType.SHIFT_RIGHT && item.getAmount() > 4) {
-          item.setAmount(item.getAmount() - 4);
-        } else if (clickType == ClickType.SHIFT_RIGHT) {
-          item.setAmount(1);
-        }
-      }
-      case 22, 23, 24 -> Objects.requireNonNull(inventory.getItem(slot + 9)).setAmount(new Random().nextInt(33) + 1);
-      default -> {
-      }
-    }
+		switch (slot) {
+			case 10, 19, 28, 37 -> {
+				final var currentItem = Objects.requireNonNull(event.getCurrentItem()).clone();
+				final var newItem = itemBuilder(currentItem).name(null).lore(null).build();
+				player.getInventory().addItem(newItem);
+			}
+			case 31, 33, 32 -> {
+				final ClickType clickType = event.getClick();
+				if (clickType == ClickType.LEFT && item.getAmount() < 33) {
+					item.setAmount(item.getAmount() + 1);
+				} else if (clickType == ClickType.RIGHT && item.getAmount() > 1) {
+					item.setAmount(item.getAmount() - 1);
+				} else if (clickType == ClickType.SHIFT_LEFT && item.getAmount() < 30) {
+					item.setAmount(item.getAmount() + 4);
+				} else if (clickType == ClickType.SHIFT_LEFT) {
+					item.setAmount(33);
+				} else if (clickType == ClickType.SHIFT_RIGHT && item.getAmount() > 4) {
+					item.setAmount(item.getAmount() - 4);
+				} else if (clickType == ClickType.SHIFT_RIGHT) {
+					item.setAmount(1);
+				}
+			}
+			case 22, 23, 24 -> Objects.requireNonNull(inventory.getItem(slot + 9)).setAmount(new Random().nextInt(33) + 1);
+			default -> {
+			}
+		}
 
-    inventory.setItem(slot, item);
+		inventory.setItem(slot, item);
 
-    this.armorColorInventoryProvider.update(event.getClickedInventory());
-  }
+		this.armorColorInventoryProvider.update(event.getClickedInventory());
+	}
 
 }

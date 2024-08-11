@@ -8,11 +8,11 @@ import static love.broccolai.corn.minecraft.item.ItemBuilder.itemBuilder;
 
 public final class MenuItems {
 
-  public static final ItemStack BACKGROUND = itemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
-      .name(Component.empty())
-      .build();
+	public static final ItemStack BACKGROUND = itemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
+			.name(Component.empty())
+			.build();
 
-  private MenuItems() {
-  }
+	private MenuItems() {
+	}
 
 }
