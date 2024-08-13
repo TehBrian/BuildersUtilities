@@ -34,14 +34,14 @@ import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
 import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
 import dev.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6_7;
 import dev.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7;
-import dev.tehbrian.tehlib.configurate.Config;
 import dev.tehbrian.tehlib.paper.TehPlugin;
+import dev.tehbrian.tehlib.paper.configurate.ConfigLoader;
+import dev.tehbrian.tehlib.paper.configurate.ConfigLoader.Loadable;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.Arrays;
@@ -98,34 +98,11 @@ public final class BuildersUtilities extends TehPlugin {
 	 * @return whether all config files were successfully loaded
 	 */
 	public boolean loadConfiguration() {
-		this.saveResourceSilently("config.yml");
-		this.saveResourceSilently("lang.yml");
-		this.saveResourceSilently("special.yml");
-
-		final List<Config> configsToLoad = List.of(
-				this.injector.getInstance(ConfigConfig.class),
-				this.injector.getInstance(LangConfig.class),
-				this.injector.getInstance(SpecialConfig.class)
-		);
-
-		boolean wasSuccessful = true;
-		for (final Config config : configsToLoad) {
-			try {
-				config.load();
-			} catch (final ConfigurateException e) {
-				this.getSLF4JLogger().error(
-						"An error occurred while loading config file {}. Please ensure that the file is valid.",
-						config.configurateWrapper().filePath()
-				);
-				this.getSLF4JLogger().error("Printing stack trace:", e);
-				wasSuccessful = false;
-			}
-		}
-
-		if (wasSuccessful) {
-			this.getSLF4JLogger().info("Successfully loaded configuration.");
-		}
-		return wasSuccessful;
+		return new ConfigLoader(this).load(List.of(
+				Loadable.ofVersioned("config.yml", this.injector.getInstance(ConfigConfig.class), 1),
+				Loadable.ofVersioned("lang.yml", this.injector.getInstance(LangConfig.class), 1),
+				Loadable.ofVersioned("special.yml", this.injector.getInstance(SpecialConfig.class), 1)
+		));
 	}
 
 	/**

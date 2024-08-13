@@ -107,3 +107,6 @@ menus:
       description: |-
         <#6699FF> Prevents you from drifting in
         <#6699FF>creative mode flight.
+
+# No touch!
+version: 1

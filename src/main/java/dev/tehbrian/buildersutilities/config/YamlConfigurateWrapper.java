@@ -8,16 +8,14 @@ import java.nio.file.Path;
 public class YamlConfigurateWrapper extends ConfigurateWrapper<YamlConfigurationLoader> {
 
 	/**
-	 * @param filePath the file path for the config
+	 * @param path the path for the config
 	 */
-	public YamlConfigurateWrapper(final Path filePath) {
-		super(filePath, YamlConfigurationLoader.builder()
-				.path(filePath)
-				.build());
+	public YamlConfigurateWrapper(final Path path) {
+		super(path, YamlConfigurationLoader.builder().path(path).build());
 	}
 
 	/**
-	 * @param filePath the file path for the config
+	 * @param filePath the path for the config
 	 * @param loader   the loader
 	 */
 	public YamlConfigurateWrapper(final Path filePath, final YamlConfigurationLoader loader) {

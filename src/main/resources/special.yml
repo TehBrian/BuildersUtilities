@@ -44,3 +44,6 @@ items:
   - LINGERING_POTION
   - TIPPED_ARROW
   - PETRIFIED_OAK_SLAB
+
+# No touch!
+version: 1

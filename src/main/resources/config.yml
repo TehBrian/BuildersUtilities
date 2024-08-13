@@ -43,3 +43,6 @@ heads:
 
 # Language configuration can be found in lang.yml.
 # The items in the special items menu can be configured in special.yml.
+
+# No touch!
+version: 1

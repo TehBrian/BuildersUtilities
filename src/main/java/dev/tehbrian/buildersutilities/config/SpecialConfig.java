@@ -16,7 +16,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
@@ -32,10 +31,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 
 	@Override
 	public void load() throws ConfigurateException {
-		this.configurateWrapper.load();
-		final CommentedConfigurationNode rootNode =
-				Objects.requireNonNull(this.configurateWrapper.get()); // will not be null as we called #load()
-		final String fileName = this.configurateWrapper.filePath().getFileName().toString();
+		this.wrapper().load();
+		final CommentedConfigurationNode rootNode = this.wrapper().rootNode();
+		final String fileName = this.wrapper().path().getFileName().toString();
 
 		this.items.clear();
 

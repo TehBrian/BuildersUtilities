@@ -44,7 +44,7 @@ public final class DoneMenuListener implements Listener {
 		event.setCancelled(true);
 
 		if (slot == Buttons.UNDO_SLOT) {
-			final DyeColor previousPatternColor = session.patterns().remove(session.patterns().size() - 1).getColor();
+			final DyeColor previousPatternColor = session.patterns().removeLast().getColor();
 			session.nextPatternColor(previousPatternColor);
 			session.showInterface(player);
 		}

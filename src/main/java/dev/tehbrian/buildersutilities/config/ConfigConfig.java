@@ -23,7 +23,7 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 	}
 
 	@Override
-	protected Class<Data> getDataClass() {
+	protected Class<Data> dataClass() {
 		return Data.class;
 	}
 
@@ -32,7 +32,6 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 										 Heads heads,
 										 @Setting("worldedit-aliases") boolean worldEditAliases) {
 
-		@SuppressWarnings("unused")
 		@ConfigSerializable
 		public record Settings(boolean disableRedstone,
 													 boolean disableGravityPhysics,
@@ -45,12 +44,10 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
 		}
 
-		@SuppressWarnings("unused")
 		@ConfigSerializable
 		public record Heads(ArmorColor armorColor,
 												Banner banner) {
 
-			@SuppressWarnings("unused")
 			@ConfigSerializable
 			public record ArmorColor(String red,
 															 String green,
@@ -61,7 +58,6 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
 			}
 
-			@SuppressWarnings("unused")
 			@ConfigSerializable
 			public record Banner(String randomize,
 													 String undo) {
