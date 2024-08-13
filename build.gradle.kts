@@ -25,6 +25,7 @@ repositories {
 dependencies {
 	paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
+	implementation("org.jspecify:jspecify:1.0.0")
 	implementation("love.broccolai.corn:corn-minecraft:4.0.0-SNAPSHOT")
 	implementation("cloud.commandframework:cloud-paper:1.8.4")
 	implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4") {
