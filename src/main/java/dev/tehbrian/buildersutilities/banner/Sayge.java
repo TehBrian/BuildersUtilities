@@ -1,14 +1,16 @@
 package dev.tehbrian.buildersutilities.banner;
 
+import io.papermc.paper.registry.RegistryKey;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.Registry;
 import org.bukkit.block.banner.PatternType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import static io.papermc.paper.registry.RegistryAccess.registryAccess;
 
 /**
  * Provides utilities for banner patterns and colors.
@@ -75,7 +77,7 @@ public final class Sayge {
 	public static List<PatternType> patternTypes() {
 		final List<PatternType> allPatternTypes = new ArrayList<>();
 
-		for (final PatternType type : Registry.BANNER_PATTERN) {
+		for (final PatternType type : registryAccess().getRegistry(RegistryKey.BANNER_PATTERN)) {
 			if (type != PatternType.BASE) {
 				allPatternTypes.add(type);
 			}
