@@ -42,17 +42,17 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		}
 
 		for (final String dirtyItemName : itemNames) {
-			final var itemName = dirtyItemName.strip();
+			final var configItem = dirtyItemName.strip();
 
 			final Material itemMaterial;
 			try {
-				if (itemName.contains(", ")) {
-					this.items.add(this.itemFromString(itemName));
+				if (configItem.contains(", ")) {
+					this.items.add(this.itemFromString(configItem));
 					continue;
 				}
-				itemMaterial = Material.valueOf(itemName.toUpperCase());
+				itemMaterial = Material.valueOf(configItem.toUpperCase());
 			} catch (final IllegalArgumentException e) {
-				this.logger.warn("The material {} does not exist.", itemName);
+				this.logger.warn("The material {} does not exist.", configItem);
 				this.logger.warn("Skipping this item. Please check your {}", fileName);
 				this.logger.warn("Printing stack trace:", e);
 				continue;
@@ -66,12 +66,12 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		return this.items;
 	}
 
-	private ItemStack itemFromString(String string) {
-		String[] itemData = string.strip().split(", ", 2);
+	private ItemStack itemFromString(String configItem) {
+		String[] itemData = configItem.strip().split(", ", 2);
 		Material material = Material.valueOf(itemData[0].toUpperCase());
 		ItemStack item = new ItemStack(material);
 
-		if (itemData.length > 1 && !itemData[1].isEmpty()) {
+		if (itemData.length > 1 && !itemData[1].isBlank()) {
 			try {
 				ReadableNBT itemNBT = NBT.parseNBT(itemData[1]);
 				NBT.modifyComponents(item, nbt -> {
