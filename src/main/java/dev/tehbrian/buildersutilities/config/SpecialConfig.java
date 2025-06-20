@@ -43,18 +43,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 
 		for (final String dirtyItemName : itemNames) {
 			final String configItem = dirtyItemName.strip();
-
-			try {
-				if (configItem.contains(", ")) {
-					this.items.add(this.itemFromString(configItem));
-				} else {
-					Material itemMaterial = Material.valueOf(configItem.toUpperCase());
-					this.items.add(new ItemStack(itemMaterial));
-				}
-			} catch (final IllegalArgumentException e) {
-				this.logger.warn("The material {} does not exist.", configItem);
-				this.logger.warn("Skipping this item. Please check your {}", fileName);
-				this.logger.warn("Printing stack trace:", e);
+			ItemStack item = this.itemFromString(configItem, fileName);
+			if (item != null) {
+				this.items.add(item);
 			}
 		}
 	}
@@ -63,22 +54,38 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		return this.items;
 	}
 
-	private ItemStack itemFromString(String configItem) {
-		String[] itemData = configItem.strip().split(", ", 2);
-		Material material = Material.valueOf(itemData[0].toUpperCase());
-		ItemStack item = new ItemStack(material);
+	/**
+	 * This method return the ItemStack object based on the configuration following
+	 * the syntax '%Material name%, %JSON values%'.
+	 * @param configItem The item string
+	 * @param fileName The name of the configuration file for logging purposes
+	 * @return The ItemStack object or null if the item is invalid
+	 */
+	private @Nullable ItemStack itemFromString(String configItem, String fileName) {
+		try {
+			String[] itemData = configItem.strip().split(", ", 2);
+			Material material = Material.valueOf(itemData[0].toUpperCase());
+			ItemStack item = new ItemStack(material);
 
-		if (itemData.length > 1 && !itemData[1].isBlank()) {
-			try {
-				ReadableNBT itemNBT = NBT.parseNBT(itemData[1]);
-				NBT.modifyComponents(item, nbt -> {
-					nbt.mergeCompound(itemNBT);
-				});
-			} catch (Exception e) {
-				this.logger.warn("Invalid NBT data for item {}: {}", material, itemData[1]);
-				this.logger.warn("Skipping this item. Please check your special.yml", e);
+			if (itemData.length > 1 && !itemData[1].isBlank()) {
+				try {
+					ReadableNBT itemNBT = NBT.parseNBT(itemData[1]);
+					NBT.modifyComponents(
+							item, nbt -> {
+								nbt.mergeCompound(itemNBT);
+							}
+					);
+				} catch (Exception e) {
+					this.logger.warn("Invalid NBT data for item {}: {}", material, itemData[1], e);
+					return null;
+				}
 			}
+			return item;
+		} catch (IllegalArgumentException e) {
+			this.logger.warn("The material {} does not exist.", configItem);
+			this.logger.warn("Skipping this item. Please check your {}", fileName);
+			this.logger.warn("Printing stack trace:", e);
+			return null;
 		}
-		return item;
 	}
 }
