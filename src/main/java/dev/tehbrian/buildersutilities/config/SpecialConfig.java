@@ -15,7 +15,6 @@ import org.spongepowered.configurate.ConfigurateException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
@@ -44,7 +43,6 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 
 		for (final String dirtyItemName : itemNames) {
 			final var itemName = dirtyItemName.strip();
-			final String upperItemName = itemName.toUpperCase(Locale.ROOT);
 
 			final Material itemMaterial;
 			try {
@@ -52,7 +50,7 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 					this.items.add(this.itemFromString(itemName));
 					continue;
 				}
-				itemMaterial = Material.valueOf(upperItemName);
+				itemMaterial = Material.valueOf(itemName.toUpperCase());
 			} catch (final IllegalArgumentException e) {
 				this.logger.warn("The material {} does not exist.", itemName);
 				this.logger.warn("Skipping this item. Please check your {}", fileName);
@@ -68,9 +66,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		return this.items;
 	}
 
-private ItemStack itemFromString(String string) {
+	private ItemStack itemFromString(String string) {
 		String[] itemData = string.strip().split(", ", 2);
-		Material material = Material.valueOf(itemData[0]);
+		Material material = Material.valueOf(itemData[0].toUpperCase());
 		ItemStack item = new ItemStack(material);
 
 		if (itemData.length > 1 && !itemData[1].isEmpty()) {
