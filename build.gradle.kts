@@ -17,11 +17,11 @@ java {
 
 repositories {
 	mavenCentral()
-	mavenLocal()
 	maven("https://papermc.io/repo/repository/maven-public/")
 	maven("https://repo.thbn.me/releases/")
 	maven("https://repo.tehbrian.dev/snapshots/")
 	maven("https://repo.codemc.io/repository/maven-public/")
+	maven("https://repo.broccol.ai/snapshots/")
 }
 
 dependencies {
