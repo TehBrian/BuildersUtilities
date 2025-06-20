@@ -17,22 +17,22 @@ items:
   - STRUCTURE_VOID
   - BARRIER
   - DEBUG_STICK
-  - LIGHT-15
-  - LIGHT-14
-  - LIGHT-13
-  - LIGHT-12
-  - LIGHT-11
-  - LIGHT-10
-  - LIGHT-9
-  - LIGHT-8
-  - LIGHT-7
-  - LIGHT-6
-  - LIGHT-5
-  - LIGHT-4
-  - LIGHT-3
-  - LIGHT-2
-  - LIGHT-1
-  - LIGHT-0
+  - 'LIGHT, {"minecraft:block_state": {level: "15"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "14"}} '
+  - 'LIGHT, {"minecraft:block_state": {level: "13"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "12"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "11"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "10"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "9"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "8"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "7"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "6"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "5"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "4"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "3"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "2"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "1"}}'
+  - 'LIGHT, {"minecraft:block_state": {level: "0"}}'
 
   # Items below are not in the operator items menu.
   - KNOWLEDGE_BOOK
@@ -46,7 +46,7 @@ items:
   - PETRIFIED_OAK_SLAB
 
   # Items with special NBT
-  - 'ITEM_FRAME {"minecraft:entity_data": {id: "minecraft:item_frame", Invisible: 1b}, "minecraft:custom_name":''{text:"Invisible Item Frame"}''}'
+  - 'ITEM_FRAME, {"minecraft:entity_data": {id: "minecraft:item_frame", Invisible: 1b}, "minecraft:item_name":''{text:"Invisible Item Frame"}''}'
 
 # No touch!
 version: 1
