@@ -42,23 +42,20 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		}
 
 		for (final String dirtyItemName : itemNames) {
-			final var configItem = dirtyItemName.strip();
+			final String configItem = dirtyItemName.strip();
 
-			final Material itemMaterial;
 			try {
 				if (configItem.contains(", ")) {
 					this.items.add(this.itemFromString(configItem));
-					continue;
+				} else {
+					Material itemMaterial = Material.valueOf(configItem.toUpperCase());
+					this.items.add(new ItemStack(itemMaterial));
 				}
-				itemMaterial = Material.valueOf(configItem.toUpperCase());
 			} catch (final IllegalArgumentException e) {
 				this.logger.warn("The material {} does not exist.", configItem);
 				this.logger.warn("Skipping this item. Please check your {}", fileName);
 				this.logger.warn("Printing stack trace:", e);
-				continue;
 			}
-
-			this.items.add(new ItemStack(itemMaterial));
 		}
 	}
 
