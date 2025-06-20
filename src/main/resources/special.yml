@@ -45,5 +45,8 @@ items:
   - TIPPED_ARROW
   - PETRIFIED_OAK_SLAB
 
+  # Items with special NBT
+  - 'ITEM_FRAME {"minecraft:entity_data": {id: "minecraft:item_frame", Invisible: 1b}, "minecraft:custom_name":''{text:"Invisible Item Frame"}''}'
+
 # No touch!
 version: 1

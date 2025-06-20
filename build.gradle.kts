@@ -17,9 +17,11 @@ java {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 	maven("https://papermc.io/repo/repository/maven-public/")
 	maven("https://repo.thbn.me/releases/")
-	maven("https://repo.thbn.me/snapshots/")
+	maven("https://repo.tehbrian.dev/snapshots/")
+	maven("https://repo.codemc.io/repository/maven-public/")
 }
 
 dependencies {
@@ -34,7 +36,8 @@ dependencies {
 	implementation("com.google.inject:guice:7.0.0")
 	implementation("org.spongepowered:configurate-yaml:4.1.2")
 	implementation("dev.tehbrian:tehlib-paper:0.6.0")
-	implementation("dev.tehbrian.restrictionhelper:restrictionhelper-spigot:0.4.1")
+	implementation("dev.tehbrian:restrictionhelper-spigot:0.5.0")
+	implementation("de.tr7zw:item-nbt-api:2.15.0")
 }
 
 tasks {
@@ -67,7 +70,7 @@ tasks {
 				"love.broccolai.corn",
 				"cloud.commandframework",
 				"com.google",
-				"dev.tehbrian.restrictionhelper",
+				"dev.tehbrian.restrictionhelper-spigot",
 				"dev.tehbrian.tehlib",
 				"io.leangen",
 				"jakarta.inject",
@@ -77,6 +80,7 @@ tasks {
 				"org.checkerframework",
 				"org.spongepowered",
 				"org.yaml",
+				"de.tr7zw.item-nbt-api"
 		)
 	}
 
