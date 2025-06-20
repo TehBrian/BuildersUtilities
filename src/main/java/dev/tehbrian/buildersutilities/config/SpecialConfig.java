@@ -70,11 +70,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 			if (itemData.length > 1 && !itemData[1].isBlank()) {
 				try {
 					ReadableNBT itemNBT = NBT.parseNBT(itemData[1]);
-					NBT.modifyComponents(
-							item, nbt -> {
-								nbt.mergeCompound(itemNBT);
-							}
-					);
+					NBT.modifyComponents(item, nbt -> {
+						nbt.mergeCompound(itemNBT);
+					});
 				} catch (Exception e) {
 					this.logger.warn("Invalid NBT data for item {}: {}", material, itemData[1], e);
 					return null;
