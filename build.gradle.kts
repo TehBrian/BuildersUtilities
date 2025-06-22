@@ -80,7 +80,7 @@ tasks {
 				"org.checkerframework",
 				"org.spongepowered",
 				"org.yaml",
-				"de.tr7zw.item-nbt-api"
+				"de.tr7zw.changeme.nbtapi"
 		)
 	}
 
