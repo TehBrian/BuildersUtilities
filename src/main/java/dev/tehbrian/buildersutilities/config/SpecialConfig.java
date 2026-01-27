@@ -2,11 +2,11 @@ package dev.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import de.tr7zw.changeme.nbtapi.NBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadableNBT;
 import dev.tehbrian.tehlib.configurate.AbstractConfig;
 import org.bukkit.Material;
-import org.bukkit.block.data.type.Light;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockDataMeta;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 import org.spongepowered.configurate.CommentedConfigurationNode;
@@ -15,7 +15,6 @@ import org.spongepowered.configurate.ConfigurateException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
@@ -43,50 +42,11 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		}
 
 		for (final String dirtyItemName : itemNames) {
-			final var itemName = dirtyItemName.strip().toUpperCase(Locale.ROOT);
-
-			// special case for light levels.
-			if (itemName.startsWith("LIGHT") && !itemName.equals("LIGHT")) {
-				int level;
-				try {
-					level = Integer.parseInt(itemName.split("-")[1]);
-				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-					this.logger.warn("Invalid light data {}.", itemName);
-					this.logger.warn("Skipping this item. Please check your {}", fileName);
-					this.logger.warn("Printing stack trace:", e);
-					continue;
-				}
-
-				if (level > 15) {
-					level = 15;
-				}
-				if (level < 0) {
-					level = 0;
-				}
-
-				// create a light item with that light level.
-				final ItemStack item = new ItemStack(Material.LIGHT);
-				final BlockDataMeta meta = (BlockDataMeta) item.getItemMeta();
-				final Light data = (Light) Material.LIGHT.createBlockData();
-				data.setLevel(level);
-				meta.setBlockData(data);
-				item.setItemMeta(meta);
-
+			final String configItem = dirtyItemName.strip();
+			ItemStack item = this.itemFromString(configItem, fileName);
+			if (item != null) {
 				this.items.add(item);
-				continue;
 			}
-
-			final Material itemMaterial;
-			try {
-				itemMaterial = Material.valueOf(itemName);
-			} catch (final IllegalArgumentException e) {
-				this.logger.warn("The material {} does not exist.", itemName);
-				this.logger.warn("Skipping this item. Please check your {}", fileName);
-				this.logger.warn("Printing stack trace:", e);
-				continue;
-			}
-
-			this.items.add(new ItemStack(itemMaterial));
 		}
 	}
 
@@ -94,4 +54,36 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 		return this.items;
 	}
 
+	/**
+	 * This method return the ItemStack object based on the configuration following
+	 * the syntax '%Material name%, %JSON values%'.
+	 * @param configItem The item string
+	 * @param fileName The name of the configuration file for logging purposes
+	 * @return The ItemStack object or null if the item is invalid
+	 */
+	private @Nullable ItemStack itemFromString(String configItem, String fileName) {
+		try {
+			String[] itemData = configItem.strip().split(", ", 2);
+			Material material = Material.valueOf(itemData[0].toUpperCase());
+			ItemStack item = new ItemStack(material);
+
+			if (itemData.length > 1 && !itemData[1].isBlank()) {
+				try {
+					ReadableNBT itemNBT = NBT.parseNBT(itemData[1]);
+					NBT.modifyComponents(item, nbt -> {
+						nbt.mergeCompound(itemNBT);
+					});
+				} catch (Exception e) {
+					this.logger.warn("Invalid NBT data for item {}: {}", material, itemData[1], e);
+					return null;
+				}
+			}
+			return item;
+		} catch (IllegalArgumentException e) {
+			this.logger.warn("The material {} does not exist.", configItem);
+			this.logger.warn("Skipping this item. Please check your {}", fileName);
+			this.logger.warn("Printing stack trace:", e);
+			return null;
+		}
+	}
 }
