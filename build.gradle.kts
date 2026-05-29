@@ -1,10 +1,10 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "8.3.0"
-	id("io.papermc.paperweight.userdev") version "1.7.1"
-	id("net.kyori.indra.checkstyle") version "3.1.3"
-	id("xyz.jpenilla.run-paper") version "2.3.0"
-	id("com.github.ben-manes.versions") version "0.51.0"
+	id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
+	id("com.gradleup.shadow") version "9.4.2"
+	id("xyz.jpenilla.run-paper") version "3.0.2"
+	id("net.kyori.indra.checkstyle") version "4.0.0"
+	id("com.github.ben-manes.versions") version "0.54.0"
 }
 
 group = "dev.tehbrian"
@@ -12,34 +12,31 @@ version = "1.8.3"
 description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
-	toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+	toolchain.languageVersion.set(JavaLanguageVersion.of(25))
 }
 
 repositories {
 	mavenCentral()
-	maven("https://papermc.io/repo/repository/maven-public/")
-	maven("https://repo.thbn.me/releases/")
-	maven("https://repo.thbn.me/snapshots/")
+	maven("https://repo.papermc.io/repository/maven-public/")
+	maven("https://repo.tehbrian.dev/releases/")
+	maven("https://repo.broccol.ai/snapshots/")
 }
 
 dependencies {
-	paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
-
-	implementation("org.jspecify:jspecify:1.0.0")
+	paperweight.paperDevBundle("26.1.2.build.+")
+	compileOnly("org.jspecify:jspecify:1.0.0")
 	implementation("love.broccolai.corn:corn-minecraft:4.0.0-SNAPSHOT")
 	implementation("cloud.commandframework:cloud-paper:1.8.4")
-	implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4") {
-		exclude("net.kyori", "adventure-api")
-	}
+	implementation("cloud.commandframework:cloud-minecraft-extras:1.8.4")
 	implementation("com.google.inject:guice:7.0.0")
-	implementation("org.spongepowered:configurate-yaml:4.1.2")
-	implementation("dev.tehbrian:tehlib-paper:0.6.0")
-	implementation("dev.tehbrian.restrictionhelper:restrictionhelper-spigot:0.4.1")
+	implementation("org.spongepowered:configurate-yaml:4.2.0")
+	implementation("dev.tehbrian:agna-paper:1.0.1")
+	implementation("dev.tehbrian:mayi-paper:1.0.0")
 }
 
 tasks {
 	assemble {
-		dependsOn(reobfJar)
+		dependsOn(shadowJar)
 	}
 
 	processResources {
@@ -58,6 +55,8 @@ tasks {
 	}
 
 	shadowJar {
+		archiveClassifier.set("")
+
 		val libsPackage = "${project.group}.${project.name}.libs"
 		fun moveToLibs(vararg patterns: String) {
 			for (pattern in patterns) {
@@ -69,8 +68,8 @@ tasks {
 				"love.broccolai.corn",
 				"cloud.commandframework",
 				"com.google",
-				"dev.tehbrian.restrictionhelper",
-				"dev.tehbrian.tehlib",
+				"dev.tehbrian.mayi",
+				"dev.tehbrian.agna",
 				"io.leangen",
 				"jakarta.inject",
 				"javax.annotation",
@@ -78,11 +77,12 @@ tasks {
 				"org.aopalliance",
 				"org.checkerframework",
 				"org.spongepowered",
+				"net.kyori.option",
 				"org.yaml",
 		)
 	}
 
 	runServer {
-		minecraftVersion("1.21.1")
+		minecraftVersion("26.1.2")
 	}
 }

@@ -1,6 +1,5 @@
 package dev.tehbrian.buildersutilities.banner.menu;
 
-import com.destroystokyo.paper.MaterialTags;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.Buttons;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
@@ -9,6 +8,7 @@ import dev.tehbrian.buildersutilities.banner.Session;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -75,7 +75,7 @@ public final class ColorMenuListener implements Listener {
 
 		if (slot >= 18) { // color area.
 			final Material clickedItemType = requireNonNull(event.getCurrentItem()).getType();
-			if (!MaterialTags.DYES.isTagged(clickedItemType)) {
+			if (!Tag.ITEMS_DYES.isTagged(clickedItemType)) {
 				return;
 			}
 			final DyeColor clickedColor = Sayge.colorFromItem(clickedItemType);

@@ -12,14 +12,14 @@ import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
-import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
+import dev.tehbrian.mayi.paper.PaperMayi;
 
 public final class SingletonModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
 		this.bind(UserService.class).asEagerSingleton();
-		this.bind(SpigotRestrictionHelper.class).asEagerSingleton();
+		this.bind(PaperMayi.class).asEagerSingleton();
 
 		this.bind(ConfigConfig.class).asEagerSingleton();
 		this.bind(LangConfig.class).asEagerSingleton();

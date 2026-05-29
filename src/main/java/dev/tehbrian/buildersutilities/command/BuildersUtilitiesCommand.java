@@ -103,7 +103,7 @@ public final class BuildersUtilitiesCommand {
 					final ServerLevel nmsLevel = ((CraftWorld) sender.getWorld()).getHandle();
 					for (final Chunk chunk : chunksToReload) {
 						final ChunkPos nmsChunkPos = new ChunkPos(chunk.getX(), chunk.getZ());
-						final ChunkHolder nmsChunk = nmsLevel.getChunkSource().chunkMap.getVisibleChunkIfPresent(nmsChunkPos.toLong());
+						final ChunkHolder nmsChunk = nmsLevel.getChunkSource().chunkMap.getVisibleChunkIfPresent(nmsChunkPos.longKey());
 						if (nmsChunk == null) {
 							// chunk isn't loaded. no need to worry about it.
 							continue;

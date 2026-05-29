@@ -4,8 +4,8 @@ import com.destroystokyo.paper.MaterialTags;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import dev.tehbrian.restrictionhelper.core.ActionType;
-import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
+import dev.tehbrian.mayi.core.ActionType;
+import dev.tehbrian.mayi.paper.PaperMayi;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -25,12 +25,12 @@ import java.util.Objects;
 public final class GlazedTerracottaListener implements Listener {
 
 	private final UserService userService;
-	private final SpigotRestrictionHelper restrictionHelper;
+	private final PaperMayi restrictionHelper;
 
 	@Inject
 	public GlazedTerracottaListener(
 			final UserService userService,
-			final SpigotRestrictionHelper restrictionHelper
+			final PaperMayi restrictionHelper
 	) {
 		this.userService = userService;
 		this.restrictionHelper = restrictionHelper;

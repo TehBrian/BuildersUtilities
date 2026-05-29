@@ -2,7 +2,7 @@ package dev.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import dev.tehbrian.tehlib.paper.configurate.AbstractLangConfig;
+import dev.tehbrian.agna.paper.configurate.AbstractLangConfig;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.configurate.NodePath;
 

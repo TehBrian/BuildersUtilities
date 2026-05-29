@@ -2,7 +2,7 @@ package dev.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import dev.tehbrian.tehlib.configurate.AbstractConfig;
+import dev.tehbrian.agna.configurate.AbstractConfig;
 import org.bukkit.Material;
 import org.bukkit.block.data.type.Light;
 import org.bukkit.inventory.ItemStack;

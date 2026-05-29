@@ -2,7 +2,7 @@ package dev.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import dev.tehbrian.tehlib.configurate.AbstractDataConfig;
+import dev.tehbrian.agna.configurate.AbstractDataConfig;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import org.spongepowered.configurate.objectmapping.meta.Setting;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;

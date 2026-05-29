@@ -1,6 +1,6 @@
 package dev.tehbrian.buildersutilities.config;
 
-import dev.tehbrian.tehlib.configurate.ConfigurateWrapper;
+import dev.tehbrian.agna.configurate.ConfigurateWrapper;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.nio.file.Path;

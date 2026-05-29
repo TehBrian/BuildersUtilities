@@ -6,6 +6,8 @@ import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import dev.tehbrian.agna.paper.configurate.ConfigLoader;
+import dev.tehbrian.agna.paper.configurate.ConfigLoader.Loadable;
 import dev.tehbrian.buildersutilities.ability.AbilityMenuListener;
 import dev.tehbrian.buildersutilities.ability.AdvancedFlyListener;
 import dev.tehbrian.buildersutilities.ability.DoubleSlabListener;
@@ -30,17 +32,15 @@ import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.inject.PluginModule;
 import dev.tehbrian.buildersutilities.inject.SingletonModule;
 import dev.tehbrian.buildersutilities.setting.SettingsListener;
-import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionHelper;
-import dev.tehbrian.restrictionhelper.spigot.SpigotRestrictionLoader;
-import dev.tehbrian.restrictionhelper.spigot.restrictions.R_PlotSquared_6_7;
-import dev.tehbrian.restrictionhelper.spigot.restrictions.R_WorldGuard_7;
-import dev.tehbrian.tehlib.paper.TehPlugin;
-import dev.tehbrian.tehlib.paper.configurate.ConfigLoader;
-import dev.tehbrian.tehlib.paper.configurate.ConfigLoader.Loadable;
+import dev.tehbrian.mayi.paper.PaperMayi;
+import dev.tehbrian.mayi.paper.PaperRestrictionLoader;
+import dev.tehbrian.mayi.paper.restrictions.R_PlotSquared_6_7;
+import dev.tehbrian.mayi.paper.restrictions.R_WorldGuard_7;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.spongepowered.configurate.NodePath;
 
@@ -48,10 +48,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import static dev.tehbrian.agna.paper.PluginUtils.disableSelf;
+import static dev.tehbrian.agna.paper.PluginUtils.registerListeners;
+
 /**
  * The main class for the BuildersUtilities plugin.
  */
-public final class BuildersUtilities extends TehPlugin {
+public final class BuildersUtilities extends JavaPlugin {
 
 	private @MonotonicNonNull PaperCommandManager<CommandSender> commandManager;
 	private @MonotonicNonNull Injector injector;
@@ -70,17 +73,17 @@ public final class BuildersUtilities extends TehPlugin {
 		} catch (final Exception e) {
 			this.getSLF4JLogger().error("An error occurred while creating the Guice injector.");
 			this.getSLF4JLogger().error("Disabling plugin.");
-			this.disableSelf();
+			disableSelf(this);
 			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers:", e);
 			return;
 		}
 
 		if (!this.loadConfiguration()) {
-			this.disableSelf();
+			disableSelf(this);
 			return;
 		}
 		if (!this.initCommands()) {
-			this.disableSelf();
+			disableSelf(this);
 			return;
 		}
 		this.initListeners();
@@ -167,7 +170,8 @@ public final class BuildersUtilities extends TehPlugin {
 	}
 
 	private void initListeners() {
-		this.registerListeners(
+		registerListeners(
+				this,
 				this.injector.getInstance(AbilityMenuListener.class),
 				this.injector.getInstance(ArmorColorMenuListener.class),
 
@@ -185,13 +189,13 @@ public final class BuildersUtilities extends TehPlugin {
 	}
 
 	private void initRestrictions() {
-		final var loader = new SpigotRestrictionLoader(
+		final var loader = new PaperRestrictionLoader(
 				this.getSLF4JLogger(),
 				Arrays.asList(this.getServer().getPluginManager().getPlugins()),
 				List.of(R_PlotSquared_6_7.class, R_WorldGuard_7.class)
 		);
 
-		loader.load(this.injector.getInstance(SpigotRestrictionHelper.class));
+		loader.load(this.injector.getInstance(PaperMayi.class));
 	}
 
 }
