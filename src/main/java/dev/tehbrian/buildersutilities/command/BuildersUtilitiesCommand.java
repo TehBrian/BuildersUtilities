@@ -1,8 +1,5 @@
 package dev.tehbrian.buildersutilities.command;
 
-import cloud.commandframework.ArgumentDescription;
-import cloud.commandframework.meta.CommandMeta;
-import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.BuildersUtilities;
 import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
@@ -19,17 +16,20 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.incendo.cloud.paper.PaperCommandManager;
+import org.incendo.cloud.paper.util.sender.PlayerSource;
+import org.incendo.cloud.paper.util.sender.Source;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.incendo.cloud.description.Description.description;
 
 public final class BuildersUtilitiesCommand {
 
@@ -76,23 +76,23 @@ public final class BuildersUtilitiesCommand {
 		return chunks;
 	}
 
-	public void register(final PaperCommandManager<CommandSender> commandManager) {
+	public void register(final PaperCommandManager<Source> commandManager) {
 		final var root = commandManager.commandBuilder("buildersutilities", "butils", "bu");
 
 		final var ability = root
-				.meta(CommandMeta.DESCRIPTION, "Opens the ability menu.")
+				.commandDescription(description("Opens the ability menu."))
 				.permission(Permissions.ABILITY)
-				.senderType(Player.class)
+				.senderType(PlayerSource.class)
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 					sender.openInventory(this.abilityMenuProvider.generate(this.userService.getUser(sender)));
 				});
 
-		final var rc = root.literal("rc", ArgumentDescription.of("Reloads the chunks around you."))
+		final var rc = root.literal("rc", description("Reloads the chunks around you."))
 				.permission(Permissions.RC)
-				.senderType(Player.class)
+				.senderType(PlayerSource.class)
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 
 					final Collection<Chunk> chunksToReload = around(
 							sender.getLocation().getChunk(),
@@ -124,21 +124,21 @@ public final class BuildersUtilitiesCommand {
 					sender.sendMessage(this.langConfig.c(NodePath.path("commands", "rc")));
 				});
 
-		final var reload = root.literal("reload", ArgumentDescription.of("Reloads the config."))
+		final var reload = root.literal("reload", description("Reloads the config."))
 				.permission(Permissions.RELOAD)
 				.handler(c -> {
 					if (this.buildersUtilities.loadConfiguration()) {
-						c.getSender().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "success")));
+						c.sender().source().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "success")));
 					} else {
-						c.getSender().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "failure")));
+						c.sender().source().sendMessage(this.langConfig.c(NodePath.path("commands", "reload", "failure")));
 					}
 				});
 
-		final var special = root.literal("special", ArgumentDescription.of("Opens the special items menu."))
+		final var special = root.literal("special", description("Opens the special items menu."))
 				.permission(Permissions.SPECIAL)
-				.senderType(Player.class)
+				.senderType(PlayerSource.class)
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 
 					final int slotsRequired = (int) Math.ceil(this.specialConfig.items().size() / 9.0) * 9;
 					final Inventory inv = Bukkit.createInventory(

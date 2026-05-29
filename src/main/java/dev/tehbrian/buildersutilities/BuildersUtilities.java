@@ -1,9 +1,5 @@
 package dev.tehbrian.buildersutilities;
 
-import cloud.commandframework.execution.CommandExecutionCoordinator;
-import cloud.commandframework.minecraft.extras.AudienceProvider;
-import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
-import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import dev.tehbrian.agna.paper.configurate.ConfigLoader;
@@ -38,25 +34,30 @@ import dev.tehbrian.mayi.paper.restrictions.R_PlotSquared_6_7;
 import dev.tehbrian.mayi.paper.restrictions.R_WorldGuard_7;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.incendo.cloud.exception.NoPermissionException;
+import org.incendo.cloud.minecraft.extras.MinecraftExceptionHandler;
+import org.incendo.cloud.paper.PaperCommandManager;
+import org.incendo.cloud.paper.util.sender.Source;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.configurate.NodePath;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import static dev.tehbrian.agna.paper.PluginUtils.disableSelf;
 import static dev.tehbrian.agna.paper.PluginUtils.registerListeners;
+import static org.incendo.cloud.execution.ExecutionCoordinator.simpleCoordinator;
+import static org.incendo.cloud.paper.util.sender.PaperSimpleSenderMapper.simpleSenderMapper;
 
 /**
  * The main class for the BuildersUtilities plugin.
  */
 public final class BuildersUtilities extends JavaPlugin {
 
-	private @MonotonicNonNull PaperCommandManager<CommandSender> commandManager;
+	private @Nullable PaperCommandManager<Source> commandManager;
 	private @MonotonicNonNull Injector injector;
 
 	private static boolean isEmpty(final Component component) {
@@ -117,12 +118,10 @@ public final class BuildersUtilities extends JavaPlugin {
 		}
 
 		try {
-			this.commandManager = new PaperCommandManager<>(
-					this,
-					CommandExecutionCoordinator.simpleCoordinator(),
-					Function.identity(),
-					Function.identity()
-			);
+			this.commandManager = PaperCommandManager
+					.builder(simpleSenderMapper())
+					.executionCoordinator(simpleCoordinator())
+					.buildOnEnable(this);
 		} catch (final Exception e) {
 			this.getSLF4JLogger().error("An error occurred while creating the command manager.");
 			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers:", e);
@@ -130,7 +129,8 @@ public final class BuildersUtilities extends JavaPlugin {
 		}
 
 		final LangConfig langConfig = this.injector.getInstance(LangConfig.class);
-		final Function<Exception, Component> noPermHandler = e -> {
+
+		final MinecraftExceptionHandler.MessageFactory<Source, NoPermissionException> noPermissionHandler = (formatter, ctx) -> {
 			final var noPermission = langConfig.c(NodePath.path("commands", "no-permission"));
 			if (isEmpty(noPermission)) {
 				return this.getServer().permissionMessage();
@@ -139,13 +139,13 @@ public final class BuildersUtilities extends JavaPlugin {
 			}
 		};
 
-		new MinecraftExceptionHandler<CommandSender>()
-				.withArgumentParsingHandler()
-				.withInvalidSenderHandler()
-				.withInvalidSyntaxHandler()
-				.withHandler(MinecraftExceptionHandler.ExceptionType.NO_PERMISSION, noPermHandler)
-				.withCommandExecutionHandler()
-				.apply(this.commandManager, AudienceProvider.nativeAudience());
+		MinecraftExceptionHandler.<Source>create(Source::source)
+				.defaultArgumentParsingHandler()
+				.defaultInvalidSenderHandler()
+				.defaultInvalidSyntaxHandler()
+				.handler(NoPermissionException.class, noPermissionHandler)
+				.defaultCommandExecutionHandler()
+				.registerTo(this.commandManager);
 
 		this.injector.getInstance(AdvancedFlyCommand.class).register(this.commandManager);
 		this.injector.getInstance(ArmorColorCommand.class).register(this.commandManager);

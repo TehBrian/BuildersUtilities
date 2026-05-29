@@ -1,12 +1,13 @@
 package dev.tehbrian.buildersutilities.command;
 
-import cloud.commandframework.meta.CommandMeta;
-import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.banner.PlayerSessions;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.incendo.cloud.paper.PaperCommandManager;
+import org.incendo.cloud.paper.util.sender.PlayerSource;
+import org.incendo.cloud.paper.util.sender.Source;
+
+import static org.incendo.cloud.description.Description.description;
 
 public final class BannerCommand {
 
@@ -19,13 +20,13 @@ public final class BannerCommand {
 		this.playerSessions = playerSessions;
 	}
 
-	public void register(final PaperCommandManager<CommandSender> commandManager) {
+	public void register(final PaperCommandManager<Source> commandManager) {
 		final var main = commandManager.commandBuilder("banner", "bc")
-				.meta(CommandMeta.DESCRIPTION, "Opens the banner creator.")
+				.commandDescription(description("Opens the banner creator."))
 				.permission(Permissions.BANNER)
-				.senderType(Player.class)
+				.senderType(PlayerSource.class)
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 					this.playerSessions.get(sender).showInterface(sender);
 				});
 

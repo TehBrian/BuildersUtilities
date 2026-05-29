@@ -1,15 +1,15 @@
 package dev.tehbrian.buildersutilities.command;
 
-import cloud.commandframework.ArgumentDescription;
-import cloud.commandframework.meta.CommandMeta;
-import cloud.commandframework.paper.PaperCommandManager;
 import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.incendo.cloud.paper.PaperCommandManager;
+import org.incendo.cloud.paper.util.sender.PlayerSource;
+import org.incendo.cloud.paper.util.sender.Source;
 import org.spongepowered.configurate.NodePath;
+
+import static org.incendo.cloud.description.Description.description;
 
 public final class NightVisionCommand {
 
@@ -25,29 +25,29 @@ public final class NightVisionCommand {
 		this.langConfig = langConfig;
 	}
 
-	public void register(final PaperCommandManager<CommandSender> commandManager) {
+	public void register(final PaperCommandManager<Source> commandManager) {
 		final var root = commandManager.commandBuilder("nightvision", "nv")
-				.meta(CommandMeta.DESCRIPTION, "Toggles night vision.")
+				.commandDescription(description("Toggles night vision."))
 				.permission(Permissions.NIGHT_VISION)
-				.senderType(Player.class);
+				.senderType(PlayerSource.class);
 
-		final var on = root.literal("on", ArgumentDescription.of("Enables night vision."))
+		final var on = root.literal("on", description("Enables night vision."))
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 					this.userService.getUser(sender).nightVisionEnabled(true);
 					sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "enabled")));
 				});
 
-		final var off = root.literal("off", ArgumentDescription.of("Disables night vision."))
+		final var off = root.literal("off", description("Disables night vision."))
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 					this.userService.getUser(sender).nightVisionEnabled(false);
 					sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "disabled")));
 				});
 
 		final var toggle = root
 				.handler(c -> {
-					final var sender = (Player) c.getSender();
+					final var sender = c.sender().source();
 					if (this.userService.getUser(sender).toggleNightVisionEnabled()) {
 						sender.sendMessage(this.langConfig.c(NodePath.path("commands", "night-vision", "enabled")));
 					} else {
