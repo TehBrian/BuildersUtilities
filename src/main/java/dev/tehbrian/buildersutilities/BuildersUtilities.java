@@ -2,6 +2,7 @@ package dev.tehbrian.buildersutilities;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import dev.tehbrian.agna.paper.UpdateChecker;
 import dev.tehbrian.agna.paper.configurate.ConfigLoader;
 import dev.tehbrian.agna.paper.configurate.ConfigLoader.Loadable;
 import dev.tehbrian.buildersutilities.ability.AbilityMenuListener;
@@ -85,10 +86,12 @@ public final class BuildersUtilities extends JavaPlugin {
 			disableSelf(this);
 			return;
 		}
+
 		if (!this.initCommands()) {
 			disableSelf(this);
 			return;
 		}
+
 		this.initListeners();
 		this.initRestrictions();
 
@@ -96,6 +99,8 @@ public final class BuildersUtilities extends JavaPlugin {
 
 		// initialize bStats.
 		Metrics _ = new Metrics(this, BSTATS_PLUGIN_ID);
+
+		new UpdateChecker(this, "buildersutilities").checkForUpdates();
 	}
 
 	/**
