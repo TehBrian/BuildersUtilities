@@ -45,5 +45,7 @@ items:
   - tipped_arrow
   - petrified_oak_slab
 
+  - 'item_frame[minecraft:entity_data={id:"minecraft:item_frame",Invisible:1b},minecraft:item_name="Invisible Item Frame"]'
+
 # No touch!
 version: 1
