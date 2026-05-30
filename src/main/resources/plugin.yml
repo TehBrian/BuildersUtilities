@@ -7,7 +7,7 @@ softdepend: [ PlotSquared, WorldGuard ]
 
 version: ${version}
 main: dev.tehbrian.buildersutilities.BuildersUtilities
-api-version: 1.21
+api-version: "26.1.2"
 
 permissions:
   buildersutilities.ability:
