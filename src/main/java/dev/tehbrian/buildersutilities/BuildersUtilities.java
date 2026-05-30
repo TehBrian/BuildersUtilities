@@ -133,8 +133,8 @@ public final class BuildersUtilities extends JavaPlugin {
 					.executionCoordinator(simpleCoordinator())
 					.buildOnEnable(this);
 		} catch (final Exception e) {
-			this.getSLF4JLogger().error("An error occurred while creating the command manager.");
-			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers:", e);
+			this.getSLF4JLogger().error("An error occurred while creating the command manager");
+			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers", e);
 			return false;
 		}
 
@@ -172,7 +172,7 @@ public final class BuildersUtilities extends JavaPlugin {
 				this.injector.getInstance(WorldEditAliases.class).register(this.commandManager, true);
 			} else {
 				this.getSLF4JLogger().error("worledit-aliases is enabled in config.yml, but WorldEdit isn't present "
-						+ "on this server. WorldEdit aliases will not be registered.");
+						+ "on this server. WorldEdit aliases will not be registered");
 			}
 		}
 

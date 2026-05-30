@@ -51,9 +51,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 				try {
 					level = Integer.parseInt(itemName.split("-")[1]);
 				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-					this.logger.warn("Invalid light data {}.", itemName);
+					this.logger.warn("Invalid light data {}", itemName);
 					this.logger.warn("Skipping this item. Please check your {}", fileName);
-					this.logger.warn("Printing stack trace:", e);
+					this.logger.warn("Printing stack trace", e);
 					continue;
 				}
 
@@ -80,9 +80,9 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 			try {
 				itemMaterial = Material.valueOf(itemName);
 			} catch (final IllegalArgumentException e) {
-				this.logger.warn("The material {} does not exist.", itemName);
+				this.logger.warn("The material {} does not exist", itemName);
 				this.logger.warn("Skipping this item. Please check your {}", fileName);
-				this.logger.warn("Printing stack trace:", e);
+				this.logger.warn("Printing stack trace", e);
 				continue;
 			}
 
