@@ -23,11 +23,6 @@ import java.util.Objects;
 /**
  * Allows players to open iron doors/trapdoors similarly to how wooden
  * doors/trapdoors can be opened.
- * <p>
- * The difference between this functionality and native (wooden) functionality is
- * that players <strong>must</strong> have an empty hand to toggle doors/trapdoors.
- * This is to prevent glitchy single-tick block placement (and subsequent
- * disappearance) because the client isn't aware of this functionality.
  */
 public final class IronDoorListener implements Listener {
 
@@ -56,12 +51,16 @@ public final class IronDoorListener implements Listener {
 		final Material blockType = block.getType();
 
 		if ((blockType != Material.IRON_DOOR && blockType != Material.IRON_TRAPDOOR)
-				|| player.getInventory().getItemInMainHand().getType() != Material.AIR
 				|| event.getAction() != Action.RIGHT_CLICK_BLOCK
 				|| event.getHand() != EquipmentSlot.HAND
 				|| player.getGameMode() != GameMode.CREATIVE
 				|| !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.BREAK)
 				|| !this.restrictionHelper.checkRestrictions(player, block.getLocation(), ActionType.PLACE)) {
+			return;
+		}
+
+		if (player.getInventory().getItemInMainHand().getType() != Material.AIR
+				&& player.isSneaking()) {
 			return;
 		}
 
@@ -76,6 +75,7 @@ public final class IronDoorListener implements Listener {
 		} else { // type is iron trapdoor.
 			sound = willOpen ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
 		}
+
 		block.getWorld().playSound(
 				block.getLocation(), sound,
 				SoundCategory.BLOCKS,
