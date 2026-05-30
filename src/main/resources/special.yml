@@ -17,6 +17,11 @@ items:
   - structure_void
   - barrier
   - debug_stick
+  - test_instance_block
+  - test_block[block_state={mode:start}]
+  - test_block[block_state={mode:log}]
+  - test_block[block_state={mode:fail}]
+  - test_block[block_state={mode:accept}]
   - light[block_state={level:"15"}]
   - light[block_state={level:"14"}]
   - light[block_state={level:"13"}]
