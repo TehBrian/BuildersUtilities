@@ -34,6 +34,7 @@ import dev.tehbrian.mayi.paper.restrictions.R_PlotSquared_6_7;
 import dev.tehbrian.mayi.paper.restrictions.R_WorldGuard_7;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
@@ -57,6 +58,8 @@ import static org.incendo.cloud.paper.util.sender.PaperSimpleSenderMapper.simple
  */
 public final class BuildersUtilities extends JavaPlugin {
 
+	private static final int BSTATS_PLUGIN_ID = 31665;
+
 	private @Nullable PaperCommandManager<Source> commandManager;
 	private @MonotonicNonNull Injector injector;
 
@@ -72,10 +75,9 @@ public final class BuildersUtilities extends JavaPlugin {
 					new SingletonModule()
 			);
 		} catch (final Exception e) {
-			this.getSLF4JLogger().error("An error occurred while creating the Guice injector.");
-			this.getSLF4JLogger().error("Disabling plugin.");
+			this.getSLF4JLogger().error("Something went wrong while creating the injector. Disabling plugin");
 			disableSelf(this);
-			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers:", e);
+			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers", e);
 			return;
 		}
 
@@ -91,6 +93,9 @@ public final class BuildersUtilities extends JavaPlugin {
 		this.initRestrictions();
 
 		this.injector.getInstance(NoclipManager.class).start();
+
+		// initialize bStats.
+		Metrics _ = new Metrics(this, BSTATS_PLUGIN_ID);
 	}
 
 	/**
