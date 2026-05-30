@@ -1,10 +1,5 @@
 # This is a list of items that will be shown in /bu special.
-
-# To update this list to the recommended configuration,
-# delete this file and restart your server.
-
-# A list of valid values can be found here:
-# https://papermc.io/javadocs/paper/1.21/org/bukkit/Material.html
+# Items use the same syntax as in the /give command.
 
 items:
   # Items below ARE in the operator items menu.
@@ -49,6 +44,7 @@ items:
   - tipped_arrow
   - petrified_oak_slab
 
+  # Bonus items!
   - 'item_frame[entity_data={id:"item_frame",Invisible:1b},item_name="Invisible Item Frame"]'
 
 # No touch!
