@@ -11,6 +11,7 @@ import dev.tehbrian.buildersutilities.banner.menu.PatternMenuProvider;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
+import dev.tehbrian.buildersutilities.special.SpecialMenuProvider;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.mayi.paper.PaperMayi;
 
@@ -27,6 +28,7 @@ public final class SingletonModule extends AbstractModule {
 
 		this.bind(ArmorColorMenuProvider.class).asEagerSingleton();
 		this.bind(AbilityMenuProvider.class).asEagerSingleton();
+		this.bind(SpecialMenuProvider.class).asEagerSingleton();
 
 		this.bind(BaseMenuProvider.class).asEagerSingleton();
 		this.bind(ColorMenuProvider.class).asEagerSingleton();

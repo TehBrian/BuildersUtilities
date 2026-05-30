@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import dev.tehbrian.buildersutilities.BuildersUtilities;
 import dev.tehbrian.buildersutilities.ability.AbilityMenuProvider;
 import dev.tehbrian.buildersutilities.config.LangConfig;
-import dev.tehbrian.buildersutilities.config.SpecialConfig;
+import dev.tehbrian.buildersutilities.special.SpecialMenuProvider;
 import dev.tehbrian.buildersutilities.user.UserService;
 import dev.tehbrian.buildersutilities.util.Permissions;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
@@ -13,13 +13,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.LevelChunk;
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.incendo.cloud.paper.PaperCommandManager;
 import org.incendo.cloud.paper.util.sender.PlayerSource;
 import org.incendo.cloud.paper.util.sender.Source;
@@ -37,7 +34,7 @@ public final class BuildersUtilitiesCommand {
 	private final UserService userService;
 	private final LangConfig langConfig;
 	private final AbilityMenuProvider abilityMenuProvider;
-	private final SpecialConfig specialConfig;
+	private final SpecialMenuProvider specialMenuProvider;
 
 	@Inject
 	public BuildersUtilitiesCommand(
@@ -45,13 +42,13 @@ public final class BuildersUtilitiesCommand {
 			final UserService userService,
 			final LangConfig langConfig,
 			final AbilityMenuProvider abilityMenuProvider,
-			final SpecialConfig specialConfig
+			final SpecialMenuProvider specialMenuProvider
 	) {
 		this.buildersUtilities = buildersUtilities;
 		this.userService = userService;
 		this.langConfig = langConfig;
 		this.abilityMenuProvider = abilityMenuProvider;
-		this.specialConfig = specialConfig;
+		this.specialMenuProvider = specialMenuProvider;
 	}
 
 	private static int min(final int a, final int b, final int c) {
@@ -139,19 +136,7 @@ public final class BuildersUtilitiesCommand {
 				.senderType(PlayerSource.class)
 				.handler(c -> {
 					final var sender = c.sender().source();
-
-					final int slotsRequired = (int) Math.ceil(this.specialConfig.items().size() / 9.0) * 9;
-					final Inventory inv = Bukkit.createInventory(
-							null,
-							Math.max(Math.min(slotsRequired, 54), 9),
-							this.langConfig.c(NodePath.path("menus", "special", "inventory-name"))
-					);
-
-					for (final ItemStack item : this.specialConfig.items()) {
-						inv.addItem(item);
-					}
-
-					sender.openInventory(inv);
+					sender.openInventory(this.specialMenuProvider.generate());
 				});
 
 		commandManager.command(ability);

@@ -29,6 +29,7 @@ import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.inject.PluginModule;
 import dev.tehbrian.buildersutilities.inject.SingletonModule;
 import dev.tehbrian.buildersutilities.setting.SettingsListener;
+import dev.tehbrian.buildersutilities.special.SpecialMenuListener;
 import dev.tehbrian.mayi.paper.PaperMayi;
 import dev.tehbrian.mayi.paper.PaperRestrictionLoader;
 import dev.tehbrian.mayi.paper.restrictions.R_PlotSquared_6_7;
@@ -149,7 +150,7 @@ public final class BuildersUtilities extends JavaPlugin {
 			}
 		};
 
-		MinecraftExceptionHandler.<Source>create(Source::source)
+		MinecraftExceptionHandler.create(Source::source)
 				.defaultArgumentParsingHandler()
 				.defaultInvalidSenderHandler()
 				.defaultInvalidSyntaxHandler()
@@ -184,6 +185,7 @@ public final class BuildersUtilities extends JavaPlugin {
 				this,
 				this.injector.getInstance(AbilityMenuListener.class),
 				this.injector.getInstance(ArmorColorMenuListener.class),
+				this.injector.getInstance(SpecialMenuListener.class),
 
 				this.injector.getInstance(BaseMenuListener.class),
 				this.injector.getInstance(ColorMenuListener.class),
