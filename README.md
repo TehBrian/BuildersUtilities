@@ -24,13 +24,14 @@ not function exactly the same; they differ greatly in some areas.
 - Every message is easily configurable and uses [MiniMessage][MiniMessage] syntax.
 - World interactions respect PlotSquared and WorldGuard restrictions.
 - Both the permissions and the commands have been completely redone. (See the
-	[plugin.yml][plugin.yml] for an updated list!)
+  [plugin.yml][plugin.yml] for an updated list!)
 - All the GUIs have been revamped. Everything looks and feels a lot nicer.
 
 In addition to that, everything has been polished and reviewed, rigorously, by
 me, over a couple sleepless nights. Now *that's* what I call quality code.
 
 [MiniMessage]: https://docs.papermc.io/adventure/minimessage/
+
 [plugin.yml]: https://github.com/TehBrian/BuildersUtilities/blob/main/src/main/resources/plugin.yml
 
 ## Screenshots

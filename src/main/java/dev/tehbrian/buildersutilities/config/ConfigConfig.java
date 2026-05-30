@@ -16,10 +16,12 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
 	@Inject
 	public ConfigConfig(final @Named("dataFolder") Path dataFolder) {
-		super(new YamlConfigurateWrapper(dataFolder.resolve("config.yml"), YamlConfigurationLoader.builder()
+		super(new YamlConfigurateWrapper(
+				dataFolder.resolve("config.yml"), YamlConfigurationLoader.builder()
 				.path(dataFolder.resolve("config.yml"))
 				.defaultOptions(opts -> opts.implicitInitialization(false))
-				.build()));
+				.build()
+		));
 	}
 
 	@Override
@@ -29,38 +31,38 @@ public final class ConfigConfig extends AbstractDataConfig<YamlConfigurateWrappe
 
 	@ConfigSerializable
 	public record Data(Settings settings,
-										 Heads heads,
-										 @Setting("worldedit-aliases") boolean worldEditAliases) {
+	                   Heads heads,
+	                   @Setting("worldedit-aliases") boolean worldEditAliases) {
 
 		@ConfigSerializable
 		public record Settings(boolean disableRedstone,
-													 boolean disableGravityPhysics,
-													 boolean disablePhysics,
-													 boolean disableEntityExplode,
-													 boolean disableBlockExplode,
-													 boolean disableLeavesDecay,
-													 boolean disableFarmlandTrample,
-													 boolean disableDragonEggTeleport) {
+		                       boolean disableGravityPhysics,
+		                       boolean disablePhysics,
+		                       boolean disableEntityExplode,
+		                       boolean disableBlockExplode,
+		                       boolean disableLeavesDecay,
+		                       boolean disableFarmlandTrample,
+		                       boolean disableDragonEggTeleport) {
 
 		}
 
 		@ConfigSerializable
 		public record Heads(ArmorColor armorColor,
-												Banner banner) {
+		                    Banner banner) {
 
 			@ConfigSerializable
 			public record ArmorColor(String red,
-															 String green,
-															 String blue,
-															 String randomizeRed,
-															 String randomizeGreen,
-															 String randomizeBlue) {
+			                         String green,
+			                         String blue,
+			                         String randomizeRed,
+			                         String randomizeGreen,
+			                         String randomizeBlue) {
 
 			}
 
 			@ConfigSerializable
 			public record Banner(String randomize,
-													 String undo) {
+			                     String undo) {
 
 			}
 

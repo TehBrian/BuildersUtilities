@@ -51,10 +51,11 @@ public final class PatternMenuProvider {
 		};
 
 		for (int i = 0; i < Sayge.patternTypes().size(); i++) {
-			inv.setItem(i + 9, bannerBuilder(displayBase)
-					.lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
-					.addPattern(new Pattern(session.nextPatternColor(), Sayge.patternTypes().get(i)))
-					.build()
+			inv.setItem(
+					i + 9, bannerBuilder(displayBase)
+							.lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
+							.addPattern(new Pattern(session.nextPatternColor(), Sayge.patternTypes().get(i)))
+							.build()
 			);
 		}
 
