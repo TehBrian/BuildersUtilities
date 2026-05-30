@@ -1,5 +1,8 @@
 # BuildersUtilities
 
+[![License](https://img.shields.io/github/license/TehBrian/BuildersUtilities)](LICENSE)
+[![Chat](https://img.shields.io/discord/791861916314239006)](https://tehbrian.dev/discord)
+
 A curated bundle of tiny features that help builders do their thing.
 
 * [Download](https://modrinth.com/plugin/buildersutilities)
