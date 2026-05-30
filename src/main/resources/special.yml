@@ -7,43 +7,43 @@
 # https://papermc.io/javadocs/paper/1.21/org/bukkit/Material.html
 
 items:
-  # Items below are in the operator items menu.
-  - COMMAND_BLOCK
-  - CHAIN_COMMAND_BLOCK
-  - REPEATING_COMMAND_BLOCK
-  - COMMAND_BLOCK_MINECART
-  - JIGSAW
-  - STRUCTURE_BLOCK
-  - STRUCTURE_VOID
-  - BARRIER
-  - DEBUG_STICK
-  - LIGHT-15
-  - LIGHT-14
-  - LIGHT-13
-  - LIGHT-12
-  - LIGHT-11
-  - LIGHT-10
-  - LIGHT-9
-  - LIGHT-8
-  - LIGHT-7
-  - LIGHT-6
-  - LIGHT-5
-  - LIGHT-4
-  - LIGHT-3
-  - LIGHT-2
-  - LIGHT-1
-  - LIGHT-0
+  # Items below ARE in the operator items menu.
+  - command_block
+  - chain_command_block
+  - repeating_command_block
+  - command_block_minecart
+  - jigsaw
+  - structure_block
+  - structure_void
+  - barrier
+  - debug_stick
+  - minecraft:light[block_state={level:"15"}]
+  - minecraft:light[block_state={level:"14"}]
+  - minecraft:light[block_state={level:"13"}]
+  - minecraft:light[block_state={level:"12"}]
+  - minecraft:light[block_state={level:"11"}]
+  - minecraft:light[block_state={level:"10"}]
+  - minecraft:light[block_state={level:"9"}]
+  - minecraft:light[block_state={level:"8"}]
+  - minecraft:light[block_state={level:"7"}]
+  - minecraft:light[block_state={level:"6"}]
+  - minecraft:light[block_state={level:"5"}]
+  - minecraft:light[block_state={level:"4"}]
+  - minecraft:light[block_state={level:"3"}]
+  - minecraft:light[block_state={level:"2"}]
+  - minecraft:light[block_state={level:"1"}]
+  - minecraft:light[block_state={level:"0"}]
 
-  # Items below are not in the operator items menu.
-  - KNOWLEDGE_BOOK
-  - BUNDLE
-  - ENDER_DRAGON_SPAWN_EGG
-  - WITHER_SPAWN_EGG
-  - POTION
-  - SPLASH_POTION
-  - LINGERING_POTION
-  - TIPPED_ARROW
-  - PETRIFIED_OAK_SLAB
+  # Items below are NOT in the operator items menu.
+  - knowledge_book
+  - bundle
+  - ender_dragon_spawn_egg
+  - wither_spawn_egg
+  - potion
+  - splash_potion
+  - lingering_potion
+  - tipped_arrow
+  - petrified_oak_slab
 
 # No touch!
 version: 1

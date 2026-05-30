@@ -2,12 +2,11 @@ package dev.tehbrian.buildersutilities.config;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.tehbrian.agna.configurate.AbstractConfig;
-import org.bukkit.Material;
-import org.bukkit.block.data.type.Light;
+import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockDataMeta;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
@@ -15,7 +14,6 @@ import org.spongepowered.configurate.ConfigurateException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> {
 
@@ -37,56 +35,23 @@ public final class SpecialConfig extends AbstractConfig<YamlConfigurateWrapper> 
 
 		this.items.clear();
 
-		final @Nullable List<String> itemNames = rootNode.node("items").getList(String.class);
-		if (itemNames == null) {
+		final List<String> itemStrings = rootNode.node("items").getList(String.class);
+		if (itemStrings == null) {
 			return;
 		}
 
-		for (final String dirtyItemName : itemNames) {
-			final var itemName = dirtyItemName.strip().toUpperCase(Locale.ROOT);
-
-			// special case for light levels.
-			if (itemName.startsWith("LIGHT") && !itemName.equals("LIGHT")) {
-				int level;
-				try {
-					level = Integer.parseInt(itemName.split("-")[1]);
-				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-					this.logger.warn("Invalid light data {}", itemName);
-					this.logger.warn("Skipping this item. Please check your {}", fileName);
-					this.logger.warn("Printing stack trace", e);
-					continue;
-				}
-
-				if (level > 15) {
-					level = 15;
-				}
-				if (level < 0) {
-					level = 0;
-				}
-
-				// create a light item with that light level.
-				final ItemStack item = new ItemStack(Material.LIGHT);
-				final BlockDataMeta meta = (BlockDataMeta) item.getItemMeta();
-				final Light data = (Light) Material.LIGHT.createBlockData();
-				data.setLevel(level);
-				meta.setBlockData(data);
-				item.setItemMeta(meta);
-
-				this.items.add(item);
-				continue;
-			}
-
-			final Material itemMaterial;
+		for (final String itemString : itemStrings) {
+			final ItemStack item;
 			try {
-				itemMaterial = Material.valueOf(itemName);
-			} catch (final IllegalArgumentException e) {
-				this.logger.warn("The material {} does not exist", itemName);
+				item = ArgumentTypes.itemStack().parse(new StringReader(itemString));
+			} catch (final CommandSyntaxException e) {
+				this.logger.warn("The item {} could not be parsed", itemString);
 				this.logger.warn("Skipping this item. Please check your {}", fileName);
 				this.logger.warn("Printing stack trace", e);
 				continue;
 			}
 
-			this.items.add(new ItemStack(itemMaterial));
+			this.items.add(item);
 		}
 	}
 
