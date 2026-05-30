@@ -113,9 +113,9 @@ public final class BuildersUtilities extends JavaPlugin {
 	 */
 	public boolean loadConfiguration() {
 		return new ConfigLoader(this).load(List.of(
-				Loadable.ofVersioned("config.yml", this.injector.getInstance(ConfigConfig.class), 1),
-				Loadable.ofVersioned("lang.yml", this.injector.getInstance(LangConfig.class), 1),
-				Loadable.ofVersioned("special.yml", this.injector.getInstance(SpecialConfig.class), 1)
+				Loadable.ofVersioned("config.yml", this.injector.getInstance(ConfigConfig.class), 2),
+				Loadable.ofVersioned("lang.yml", this.injector.getInstance(LangConfig.class), 2),
+				Loadable.ofVersioned("special.yml", this.injector.getInstance(SpecialConfig.class), 2)
 		));
 	}
 

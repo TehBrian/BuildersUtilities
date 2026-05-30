@@ -48,4 +48,4 @@ items:
   - 'item_frame[entity_data={id:"item_frame",Invisible:1b},item_name="Invisible Item Frame"]'
 
 # No touch!
-version: 1
+version: 2
