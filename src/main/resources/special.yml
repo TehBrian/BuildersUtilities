@@ -17,22 +17,22 @@ items:
   - structure_void
   - barrier
   - debug_stick
-  - minecraft:light[block_state={level:"15"}]
-  - minecraft:light[block_state={level:"14"}]
-  - minecraft:light[block_state={level:"13"}]
-  - minecraft:light[block_state={level:"12"}]
-  - minecraft:light[block_state={level:"11"}]
-  - minecraft:light[block_state={level:"10"}]
-  - minecraft:light[block_state={level:"9"}]
-  - minecraft:light[block_state={level:"8"}]
-  - minecraft:light[block_state={level:"7"}]
-  - minecraft:light[block_state={level:"6"}]
-  - minecraft:light[block_state={level:"5"}]
-  - minecraft:light[block_state={level:"4"}]
-  - minecraft:light[block_state={level:"3"}]
-  - minecraft:light[block_state={level:"2"}]
-  - minecraft:light[block_state={level:"1"}]
-  - minecraft:light[block_state={level:"0"}]
+  - light[block_state={level:"15"}]
+  - light[block_state={level:"14"}]
+  - light[block_state={level:"13"}]
+  - light[block_state={level:"12"}]
+  - light[block_state={level:"11"}]
+  - light[block_state={level:"10"}]
+  - light[block_state={level:"9"}]
+  - light[block_state={level:"8"}]
+  - light[block_state={level:"7"}]
+  - light[block_state={level:"6"}]
+  - light[block_state={level:"5"}]
+  - light[block_state={level:"4"}]
+  - light[block_state={level:"3"}]
+  - light[block_state={level:"2"}]
+  - light[block_state={level:"1"}]
+  - light[block_state={level:"0"}]
 
   # Items below are NOT in the operator items menu.
   - knowledge_book
@@ -45,7 +45,7 @@ items:
   - tipped_arrow
   - petrified_oak_slab
 
-  - 'item_frame[minecraft:entity_data={id:"minecraft:item_frame",Invisible:1b},minecraft:item_name="Invisible Item Frame"]'
+  - 'item_frame[entity_data={id:"item_frame",Invisible:1b},item_name="Invisible Item Frame"]'
 
 # No touch!
 version: 1
