@@ -66,20 +66,23 @@ tasks {
 		}
 
 		moveToLibs(
-				"love.broccolai.corn",
-				"cloud.commandframework",
-				"com.google",
-				"dev.tehbrian.mayi",
+				"com.google.common",
+				"com.google.errorprone",
+				"com.google.inject",
+				"com.google.j2objc",
+				"com.google.thirdparty",
 				"dev.tehbrian.agna",
+				"dev.tehbrian.mayi",
 				"io.leangen",
 				"jakarta.inject",
 				"javax.annotation",
-				"net.kyori.examination",
-				"org.aopalliance",
-				"org.checkerframework",
-				"org.spongepowered",
+				"love.broccolai.corn",
 				"net.kyori.option",
-				"org.yaml",
+				"org.aopalliance",
+				"org.bstats",
+				"org.checkerframework",
+				"org.incendo.cloud",
+				"org.spongepowered",
 		)
 	}
 
