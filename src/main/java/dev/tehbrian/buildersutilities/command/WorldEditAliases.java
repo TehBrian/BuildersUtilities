@@ -8,7 +8,6 @@ import org.incendo.cloud.paper.PaperCommandManager;
 import org.incendo.cloud.paper.util.sender.PlayerSource;
 import org.incendo.cloud.paper.util.sender.Source;
 
-import static org.incendo.cloud.component.CommandComponent.builder;
 import static org.incendo.cloud.description.Description.description;
 import static org.incendo.cloud.parser.standard.DoubleParser.doubleParser;
 import static org.incendo.cloud.parser.standard.EnumParser.enumParser;
@@ -58,7 +57,7 @@ public class WorldEditAliases {
 					.commandDescription(description("WorldEdit alias."))
 					.permission(Permissions.WORLDEDIT_ALIASES)
 					.senderType(PlayerSource.class)
-					.argument(builder("args", greedyStringParser()).optional())
+					.optional("args", greedyStringParser())
 					.handler(c -> {
 						final var sender = c.sender().source();
 						this.dispatch(sender, "/paste " + c.getOrDefault("args", ""));
@@ -87,7 +86,7 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("args", greedyStringParser()).optional())
+				.optional("args", greedyStringParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					this.dispatch(sender, "/set " + c.getOrDefault("args", ""));
@@ -97,7 +96,7 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("args", greedyStringParser()).optional())
+				.optional("args", greedyStringParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					this.dispatch(sender, "/replace " + c.getOrDefault("args", ""));
@@ -107,7 +106,7 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("args", greedyStringParser()).optional())
+				.optional("args", greedyStringParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					this.dispatch(sender, "/flip " + c.getOrDefault("args", ""));
@@ -117,7 +116,7 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("args", greedyStringParser()).optional())
+				.optional("args", greedyStringParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					this.dispatch(sender, "/copy " + c.getOrDefault("args", ""));
@@ -127,8 +126,8 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("axis", enumParser(Axis.class)))
-				.argument(builder("degrees", integerParser()))
+				.required("axis", enumParser(Axis.class))
+				.required("degrees", integerParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					final double radians = Math.toRadians(c.<Integer>get("degrees"));
@@ -145,8 +144,8 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("axis", enumParser(Axis.class)))
-				.argument(builder("degrees", integerParser()))
+				.required("axis", enumParser(Axis.class))
+				.required("degrees", integerParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					final double radians = Math.toRadians(c.<Integer>get("degrees"));
@@ -163,7 +162,7 @@ public class WorldEditAliases {
 				.commandDescription(description("WorldEdit alias."))
 				.permission(Permissions.WORLDEDIT_ALIASES)
 				.senderType(PlayerSource.class)
-				.argument(builder("size", doubleParser()))
+				.required("size", doubleParser())
 				.handler(c -> {
 					final var sender = c.sender().source();
 					final double size = c.<Double>get("size");
