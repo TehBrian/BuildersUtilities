@@ -125,7 +125,7 @@ public final class BuildersUtilities extends JavaPlugin {
 	 */
 	private boolean initCommands() {
 		if (this.commandManager != null) {
-			throw new IllegalStateException("The CommandManager is already instantiated.");
+			throw new IllegalStateException("The CommandManager is already instantiated");
 		}
 
 		try {
