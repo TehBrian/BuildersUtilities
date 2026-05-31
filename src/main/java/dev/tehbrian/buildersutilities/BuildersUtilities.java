@@ -128,16 +128,10 @@ public final class BuildersUtilities extends JavaPlugin {
 			throw new IllegalStateException("The CommandManager is already instantiated");
 		}
 
-		try {
-			this.commandManager = PaperCommandManager
-					.builder(simpleSenderMapper())
-					.executionCoordinator(simpleCoordinator())
-					.buildOnEnable(this);
-		} catch (final Exception e) {
-			this.getSLF4JLogger().error("An error occurred while creating the command manager");
-			this.getSLF4JLogger().error("Printing stack trace. Please send this to the developers", e);
-			return false;
-		}
+		this.commandManager = PaperCommandManager
+				.builder(simpleSenderMapper())
+				.executionCoordinator(simpleCoordinator())
+				.buildOnEnable(this);
 
 		final LangConfig langConfig = this.injector.getInstance(LangConfig.class);
 
