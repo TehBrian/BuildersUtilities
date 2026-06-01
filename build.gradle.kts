@@ -25,7 +25,7 @@ repositories {
 dependencies {
 	paperweight.paperDevBundle("26.1.2.build.+")
 	compileOnly("org.jspecify:jspecify:1.0.0")
-	implementation("love.broccolai.corn:corn-minecraft:4.0.0-SNAPSHOT")
+	implementation("love.broccolai.corn:corn-minecraft:4.1.0-SNAPSHOT")
 	implementation("org.bstats:bstats-bukkit:3.2.1")
 	implementation("org.incendo:cloud-paper:2.0.0-beta.15")
 	implementation("org.incendo:cloud-minecraft-extras:2.0.0-beta.15")
