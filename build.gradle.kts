@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.tehbrian"
-version = "1.9.2-SNAPSHOT"
+version = "1.10.0"
 description = "A curated bundle of tiny features that help builders do their thing."
 
 java {
