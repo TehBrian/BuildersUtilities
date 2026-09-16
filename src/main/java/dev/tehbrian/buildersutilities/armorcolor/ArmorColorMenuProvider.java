@@ -1,7 +1,7 @@
 package dev.tehbrian.buildersutilities.armorcolor;
 
 import com.google.inject.Inject;
-import dev.tehbrian.agna.paper.ItemEditor;
+import dev.tehbrian.agna.paper.FluentItem;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.util.ChestSize;
@@ -15,7 +15,7 @@ import org.spongepowered.configurate.NodePath;
 
 import java.util.List;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 import static java.util.Objects.requireNonNull;
 
 public final class ArmorColorMenuProvider {
@@ -45,25 +45,25 @@ public final class ArmorColorMenuProvider {
 
 		inv.setItem(
 				10,
-				edit(ItemType.LEATHER_HELMET)
+				createItem(ItemType.LEATHER_HELMET)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "get-helmet")))
 						.item()
 		);
 		inv.setItem(
 				19,
-				edit(ItemType.LEATHER_CHESTPLATE)
+				createItem(ItemType.LEATHER_CHESTPLATE)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "get-chestplate")))
 						.item()
 		);
 		inv.setItem(
 				28,
-				edit(ItemType.LEATHER_LEGGINGS)
+				createItem(ItemType.LEATHER_LEGGINGS)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "get-leggings")))
 						.item()
 		);
 		inv.setItem(
 				37,
-				edit(ItemType.LEATHER_BOOTS)
+				createItem(ItemType.LEATHER_BOOTS)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "get-boots")))
 						.item()
 		);
@@ -72,28 +72,28 @@ public final class ArmorColorMenuProvider {
 
 		inv.setItem(
 				22,
-				edit(ItemType.PLAYER_HEAD)
+				createItem(ItemType.PLAYER_HEAD)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-red")))
 						.textures(this.configConfig.data().heads().armorColor().randomizeRed())
 						.item()
 		);
 		inv.setItem(
 				23,
-				edit(ItemType.PLAYER_HEAD)
+				createItem(ItemType.PLAYER_HEAD)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-green")))
 						.textures(this.configConfig.data().heads().armorColor().randomizeGreen())
 						.item()
 		);
 		inv.setItem(
 				24,
-				edit(ItemType.PLAYER_HEAD)
+				createItem(ItemType.PLAYER_HEAD)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "randomize-blue")))
 						.textures(this.configConfig.data().heads().armorColor().randomizeBlue())
 						.item()
 		);
 		inv.setItem(
 				31,
-				edit(ItemType.PLAYER_HEAD).amount(16)
+				createItem(ItemType.PLAYER_HEAD).amount(16)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "red")))
 						.lore(changeLore)
 						.textures(this.configConfig.data().heads().armorColor().red())
@@ -101,7 +101,7 @@ public final class ArmorColorMenuProvider {
 		);
 		inv.setItem(
 				32,
-				edit(ItemType.PLAYER_HEAD).amount(16)
+				createItem(ItemType.PLAYER_HEAD).amount(16)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "green")))
 						.lore(changeLore)
 						.textures(this.configConfig.data().heads().armorColor().green())
@@ -109,7 +109,7 @@ public final class ArmorColorMenuProvider {
 		);
 		inv.setItem(
 				33,
-				edit(ItemType.PLAYER_HEAD).amount(16)
+				createItem(ItemType.PLAYER_HEAD).amount(16)
 						.itemName(this.langConfig.c(NodePath.path("menus", "armor-color", "blue")))
 						.lore(changeLore)
 						.textures(this.configConfig.data().heads().armorColor().blue())
@@ -140,10 +140,10 @@ public final class ArmorColorMenuProvider {
 
 		final Color finalColor = Color.fromRGB(r, g, b);
 
-		inv.setItem(10, ItemEditor.edit(requireNonNull(inv.getItem(10))).dyedColor(finalColor).item());
-		inv.setItem(19, ItemEditor.edit(requireNonNull(inv.getItem(19))).dyedColor(finalColor).item());
-		inv.setItem(28, ItemEditor.edit(requireNonNull(inv.getItem(28))).dyedColor(finalColor).item());
-		inv.setItem(37, ItemEditor.edit(requireNonNull(inv.getItem(37))).dyedColor(finalColor).item());
+		inv.setItem(10, FluentItem.editItem(requireNonNull(inv.getItem(10))).dyedColor(finalColor).item());
+		inv.setItem(19, FluentItem.editItem(requireNonNull(inv.getItem(19))).dyedColor(finalColor).item());
+		inv.setItem(28, FluentItem.editItem(requireNonNull(inv.getItem(28))).dyedColor(finalColor).item());
+		inv.setItem(37, FluentItem.editItem(requireNonNull(inv.getItem(37))).dyedColor(finalColor).item());
 	}
 
 }

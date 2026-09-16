@@ -19,17 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 
 public final class AbilityMenuProvider {
 
-	private static final ItemStack GREEN = edit(ItemType.LIME_STAINED_GLASS_PANE)
+	private static final ItemStack GREEN = createItem(ItemType.LIME_STAINED_GLASS_PANE)
 			.hideTooltip(true)
 			.item();
-	private static final ItemStack ORANGE = edit(ItemType.ORANGE_STAINED_GLASS_PANE)
+	private static final ItemStack ORANGE = createItem(ItemType.ORANGE_STAINED_GLASS_PANE)
 			.hideTooltip(true)
 			.item();
-	private static final ItemStack RED = edit(ItemType.RED_STAINED_GLASS_PANE)
+	private static final ItemStack RED = createItem(ItemType.RED_STAINED_GLASS_PANE)
 			.hideTooltip(true)
 			.item();
 
@@ -122,7 +122,7 @@ public final class AbilityMenuProvider {
 		lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", abilityKey, "description")));
 		lore.addAll(this.langConfig.cl(NodePath.path("menus", "ability", "status", statusKey)));
 
-		return edit(itemType)
+		return createItem(itemType)
 				.itemName(this.langConfig.c(NodePath.path("menus", "ability", abilityKey, "name")))
 				.lore(lore)
 				.item();

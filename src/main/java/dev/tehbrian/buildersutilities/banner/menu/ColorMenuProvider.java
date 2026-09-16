@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
 import org.spongepowered.configurate.NodePath;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 
 public final class ColorMenuProvider {
 
@@ -65,7 +65,7 @@ public final class ColorMenuProvider {
 	}
 
 	private ItemStack createSelectDye(final ItemType itemType) {
-		return edit(itemType)
+		return createItem(itemType)
 				.lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
 				.item();
 	}

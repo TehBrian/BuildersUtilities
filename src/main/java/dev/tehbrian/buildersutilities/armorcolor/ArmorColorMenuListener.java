@@ -1,7 +1,7 @@
 package dev.tehbrian.buildersutilities.armorcolor;
 
 import com.google.inject.Inject;
-import dev.tehbrian.agna.paper.ItemEditor;
+import dev.tehbrian.agna.paper.FluentItem;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -54,7 +54,7 @@ public final class ArmorColorMenuListener implements Listener {
 		switch (slot) {
 			case 10, 19, 28, 37 -> {
 				final var currentItem = Objects.requireNonNull(event.getCurrentItem()).clone();
-				final var newItem = ItemEditor.edit(currentItem).reset(ITEM_NAME).reset(LORE).item();
+				final var newItem = FluentItem.editItem(currentItem).reset(ITEM_NAME).reset(LORE).item();
 				player.getInventory().addItem(newItem);
 			}
 			case 31, 33, 32 -> {

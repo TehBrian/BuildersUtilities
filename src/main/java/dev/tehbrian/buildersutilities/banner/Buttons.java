@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
 import org.spongepowered.configurate.NodePath;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 
 public final class Buttons {
 
@@ -20,20 +20,20 @@ public final class Buttons {
 	}
 
 	public static ItemStack randomize(final LangConfig langConfig, final ConfigConfig configConfig) {
-		return edit(ItemType.PLAYER_HEAD)
+		return createItem(ItemType.PLAYER_HEAD)
 				.itemName(langConfig.c(NodePath.path("menus", "banner", "randomize")))
 				.textures(configConfig.data().heads().banner().randomize())
 				.item();
 	}
 
 	public static ItemStack reset(final LangConfig langConfig) {
-		return edit(ItemType.BARRIER)
+		return createItem(ItemType.BARRIER)
 				.itemName(langConfig.c(NodePath.path("menus", "banner", "reset")))
 				.item();
 	}
 
 	public static ItemStack undo(final LangConfig langConfig, final ConfigConfig configConfig) {
-		return edit(ItemType.PLAYER_HEAD)
+		return createItem(ItemType.PLAYER_HEAD)
 				.itemName(langConfig.c(NodePath.path("menus", "banner", "undo")))
 				.textures(configConfig.data().heads().banner().undo())
 				.item();

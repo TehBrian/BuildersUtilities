@@ -15,7 +15,7 @@ import org.spongepowered.configurate.NodePath;
 
 import java.util.List;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 import static dev.tehbrian.buildersutilities.banner.Sayge.patternTypes;
 import static java.util.Objects.requireNonNull;
 
@@ -54,7 +54,7 @@ public final class PatternMenuProvider {
 
 		for (int i = 0; i < patternTypes().size(); i++) {
 			inv.setItem(
-					i + 9, edit(displayBase)
+					i + 9, createItem(displayBase)
 							.lore(this.langConfig.cl(NodePath.path("menus", "banner", "select")))
 							.bannerPatterns(List.of(new Pattern(session.nextPatternColor(), patternTypes().get(i))))
 							.item()

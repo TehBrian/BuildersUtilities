@@ -1,10 +1,10 @@
 plugins {
 	id("java")
-	id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
-	id("com.gradleup.shadow") version "9.5.1"
+	id("io.papermc.paperweight.userdev") version "2.0.0-beta.23"
+	id("com.gradleup.shadow") version "9.6.1"
 	id("xyz.jpenilla.run-paper") version "3.0.2"
-	id("net.kyori.indra.checkstyle") version "4.0.0"
-	id("com.github.ben-manes.versions") version "0.54.0"
+	id("net.kyori.indra.checkstyle") version "4.1.0"
+	id("io.github.ben-manes.versions") version "0.63.1"
 }
 
 group = "dev.tehbrian"
@@ -22,14 +22,15 @@ repositories {
 }
 
 dependencies {
-	paperweight.paperDevBundle("26.2.build.+")
-	compileOnly("org.jspecify:jspecify:1.0.0")
+	paperweight.paperDevBundle("26.3.build.+")
+	compileOnly("org.jspecify:jspecify:1.0.1")
 	implementation("org.bstats:bstats-bukkit:3.2.1")
-	implementation("org.incendo:cloud-paper:2.0.0-beta.17")
-	implementation("org.incendo:cloud-minecraft-extras:2.0.0-beta.17")
+	implementation("org.incendo:cloud-paper:2.0.1")
+	implementation("org.incendo:cloud-minecraft-extras:2.0.1")
 	implementation("com.google.inject:guice:7.0.0")
 	implementation("org.spongepowered:configurate-yaml:4.2.0")
-	implementation("dev.tehbrian:agna-paper:1.1.2")
+	implementation("dev.tehbrian:agna-configurate:1.2.2")
+	implementation("dev.tehbrian:agna-paper:1.2.2")
 	implementation("dev.tehbrian:mayi-paper:1.0.0")
 }
 
@@ -84,6 +85,6 @@ tasks {
 	}
 
 	runServer {
-		minecraftVersion("26.2")
+		minecraftVersion("26.3")
 	}
 }

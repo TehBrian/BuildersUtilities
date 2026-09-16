@@ -1,6 +1,6 @@
 package dev.tehbrian.buildersutilities.banner;
 
-import dev.tehbrian.agna.paper.ItemEditor;
+import dev.tehbrian.agna.paper.FluentItem;
 import dev.tehbrian.buildersutilities.banner.menu.BaseMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.ColorMenuProvider;
 import dev.tehbrian.buildersutilities.banner.menu.DoneMenuProvider;
@@ -18,7 +18,7 @@ import org.spongepowered.configurate.NodePath;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.tehbrian.agna.paper.ItemEditor.edit;
+import static dev.tehbrian.agna.paper.FluentItem.createItem;
 import static dev.tehbrian.buildersutilities.banner.Sayge.bannerItemType;
 
 /**
@@ -120,7 +120,7 @@ public final class Session {
 	}
 
 	public ItemStack generateInterfaceBanner() {
-		return ItemEditor.edit(this.generateBanner())
+		return FluentItem.editItem(this.generateBanner())
 				.itemName(this.langConfig.c(NodePath.path("menus", "banner", "get-banner")))
 				.item();
 	}
@@ -129,7 +129,7 @@ public final class Session {
 		if (this.baseColor == null) {
 			return DEFAULT_BANNER;
 		} else {
-			return edit(bannerItemType(this.baseColor))
+			return createItem(bannerItemType(this.baseColor))
 					.bannerPatterns(this.patterns)
 					.item();
 		}
