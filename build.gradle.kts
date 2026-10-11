@@ -1,10 +1,10 @@
 plugins {
 	id("java")
-	id("io.papermc.paperweight.userdev") version "2.0.0-beta.23"
+	id("io.papermc.paperweight.userdev") version "2.0.0-beta.24"
 	id("com.gradleup.shadow") version "9.6.1"
 	id("xyz.jpenilla.run-paper") version "3.1.0"
 	id("net.kyori.indra.checkstyle") version "4.1.0"
-	id("io.github.ben-manes.versions") version "0.63.1"
+	id("io.github.ben-manes.versions") version "0.65.0"
 }
 
 group = "dev.tehbrian"
@@ -29,9 +29,9 @@ dependencies {
 	implementation("org.incendo:cloud-minecraft-extras:2.0.1")
 	implementation("com.google.inject:guice:7.0.0")
 	implementation("org.spongepowered:configurate-yaml:4.2.0")
-	implementation("dev.tehbrian:agna-configurate:1.2.2")
-	implementation("dev.tehbrian:agna-paper:1.2.2")
-	implementation("dev.tehbrian:mayi-paper:1.0.0")
+	implementation("dev.tehbrian:agna-configurate:1.2.4")
+	implementation("dev.tehbrian:agna-paper:1.2.4")
+	implementation("dev.tehbrian:mayi-paper:1.0.1")
 }
 
 tasks {
