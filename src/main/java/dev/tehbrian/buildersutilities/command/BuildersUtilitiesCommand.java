@@ -113,7 +113,7 @@ public final class BuildersUtilitiesCommand {
 						final var packet = new ClientboundLevelChunkWithLightPacket(
 								nmsChunkToSend,
 								nmsLevel.getLightEngine(),
-								null, null
+								null, null, true
 						);
 						nmsPlayer.connection.send(packet);
 					}
