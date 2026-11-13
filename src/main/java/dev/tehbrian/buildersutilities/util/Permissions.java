@@ -6,6 +6,7 @@ public final class Permissions {
 
 	public static final String BANNER = ROOT + ".banner";
 	public static final String ARMOR_COLOR = ROOT + ".armorcolor";
+	public static final String POTS = ROOT + ".pots";
 	public static final String ABILITY = ROOT + ".ability";
 
 	public static final String ADVANCED_FLY = ROOT + ".advancedfly";

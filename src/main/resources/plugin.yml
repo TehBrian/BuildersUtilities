@@ -37,6 +37,9 @@ permissions:
   buildersutilities.noclip:
     description: Permission to use noclip.
     default: op
+  buildersutilities.pots:
+    description: Permission to open the pot creator.
+    default: true
   buildersutilities.rc:
     description: Permission to run /buildersutilities rc.
     default: op

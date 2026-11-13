@@ -53,6 +53,22 @@ menus:
     get-banner: "<#66FF99>Get Banner"
     reset: "<#FF6699>Reset"
 
+  pots:
+    inventory-name: "<#333399>Pot Creator"
+    select: |-
+      <gray>
+      <gray>Click to apply to the selected side
+    select-side: |-
+      <gray>
+      <gray>Click to select this side
+    back: "<white>Back"
+    left: "<white>Left"
+    right: "<white>Right"
+    front: "<white>Front"
+    randomize: "<white>Randomize"
+    get-pot: "<#66FF99>Get Pot"
+    reset: "<#FF6699>Reset"
+
   special:
     inventory-name: "<#333399>Special Items Menu"
 
@@ -112,4 +128,4 @@ menus:
         <#6699FF>mode flight.
 
 # No touch!
-version: 3
+version: 4
