@@ -22,12 +22,14 @@ import dev.tehbrian.buildersutilities.command.BannerCommand;
 import dev.tehbrian.buildersutilities.command.BuildersUtilitiesCommand;
 import dev.tehbrian.buildersutilities.command.NightVisionCommand;
 import dev.tehbrian.buildersutilities.command.NoclipCommand;
+import dev.tehbrian.buildersutilities.command.PotsCommand;
 import dev.tehbrian.buildersutilities.command.WorldEditAliases;
 import dev.tehbrian.buildersutilities.config.ConfigConfig;
 import dev.tehbrian.buildersutilities.config.LangConfig;
 import dev.tehbrian.buildersutilities.config.SpecialConfig;
 import dev.tehbrian.buildersutilities.inject.PluginModule;
 import dev.tehbrian.buildersutilities.inject.SingletonModule;
+import dev.tehbrian.buildersutilities.pots.PotMenuListener;
 import dev.tehbrian.buildersutilities.setting.SettingsListener;
 import dev.tehbrian.buildersutilities.special.SpecialMenuListener;
 import dev.tehbrian.mayi.paper.PaperMayi;
@@ -115,7 +117,7 @@ public final class BuildersUtilities extends JavaPlugin {
 	public boolean loadConfiguration() {
 		return new ConfigLoader(this).load(List.of(
 				Loadable.ofVersioned("config.yml", this.injector.getInstance(ConfigConfig.class), 2),
-				Loadable.ofVersioned("lang.yml", this.injector.getInstance(LangConfig.class), 3),
+				Loadable.ofVersioned("lang.yml", this.injector.getInstance(LangConfig.class), 4),
 				Loadable.ofVersioned("special.yml", this.injector.getInstance(SpecialConfig.class), 2)
 		));
 	}
@@ -158,6 +160,7 @@ public final class BuildersUtilities extends JavaPlugin {
 		this.injector.getInstance(BuildersUtilitiesCommand.class).register(this.commandManager);
 		this.injector.getInstance(NightVisionCommand.class).register(this.commandManager);
 		this.injector.getInstance(NoclipCommand.class).register(this.commandManager);
+		this.injector.getInstance(PotsCommand.class).register(this.commandManager);
 
 		if (this.injector.getInstance(ConfigConfig.class).data().worldEditAliases()) {
 			final PluginManager pm = this.getServer().getPluginManager();
@@ -179,6 +182,7 @@ public final class BuildersUtilities extends JavaPlugin {
 				this,
 				this.injector.getInstance(AbilityMenuListener.class),
 				this.injector.getInstance(ArmorColorMenuListener.class),
+				this.injector.getInstance(PotMenuListener.class),
 				this.injector.getInstance(SpecialMenuListener.class),
 
 				this.injector.getInstance(BaseMenuListener.class),
